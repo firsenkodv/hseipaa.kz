@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ContentTemplate;
 use Illuminate\Database\Eloquent\Model;
 
 class Partner extends Model
@@ -9,6 +10,7 @@ class Partner extends Model
     protected $fillable = [
         'title',
         'slug',
+        'template',
         'subtitle',
         'short_desc',
         'img',
@@ -37,10 +39,11 @@ class Partner extends Model
     {
         return [
             'published' => 'integer',
-            'sorting' => 'integer',
-            'gallery' => 'array',
-            'files' => 'array',
-            'faq' => 'array',
+            'sorting'   => 'integer',
+            'template'  => ContentTemplate::class,
+            'gallery'   => 'array',
+            'files'     => 'array',
+            'faq'       => 'array',
         ];
     }
 }

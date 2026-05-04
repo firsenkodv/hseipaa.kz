@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Resources\Team\Pages;
 
+use App\Enums\ContentTemplate;
 use App\Models\Team;
 use App\MoonShine\Resources\Team\TeamResource;
 use MoonShine\Contracts\Core\TypeCasts\DataWrapperContract;
@@ -25,6 +26,7 @@ use MoonShine\UI\Fields\ID;
 use MoonShine\UI\Fields\Image;
 use MoonShine\UI\Fields\Json;
 use MoonShine\UI\Fields\Number;
+use MoonShine\UI\Fields\Select;
 use MoonShine\UI\Fields\Switcher;
 use MoonShine\UI\Fields\Text;
 use MoonShine\UI\Fields\Textarea;
@@ -60,6 +62,10 @@ final class TeamFormPage extends FormPage
                                 Box::make([
                                     Switcher::make('Опубликовано', 'published')->default(1),
                                     Number::make('Сортировка', 'sorting')->default(1),
+                                    Select::make('Шаблон', 'template')
+                                        ->options(ContentTemplate::toOptions())
+                                        ->default(ContentTemplate::Default->value)
+                                        ->required(),
                                 ]),
                             ])->columnSpan(3),
                         ]),

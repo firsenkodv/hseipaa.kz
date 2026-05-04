@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ContentTemplate;
 use Illuminate\Database\Eloquent\Model;
 
 class Online extends Model
@@ -9,6 +10,7 @@ class Online extends Model
     protected $fillable = [
         'title',
         'slug',
+        'template',
         'subtitle',
         'short_desc',
         'img',
@@ -38,6 +40,7 @@ class Online extends Model
         return [
             'published' => 'integer',
             'sorting'   => 'integer',
+            'template'  => ContentTemplate::class,
             'gallery'   => 'array',
             'files'     => 'array',
             'faq'       => 'array',
