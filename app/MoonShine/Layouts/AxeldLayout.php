@@ -4,19 +4,27 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Layouts;
 
-use App\Models\PersonCount;
-use App\MoonShine\Pages\HomePage;
 
-use App\MoonShine\Pages\SettingPage;
-use App\MoonShine\Resources\AgeRestriction\AgeRestrictionResource;
+
+
+use App\Models\Document;
+use App\MoonShine\Pages\Pages\ContactPage;
+use App\MoonShine\Resources\About\AboutResource;
+use App\MoonShine\Pages\Pages\HomePage;
+use App\MoonShine\Resources\City\CityResource;
+use App\MoonShine\Resources\Consulting\ConsultingResource;
+use App\MoonShine\Resources\Document\DocumentResource;
 use App\MoonShine\Resources\MoonShineUser\MoonShineUserResource;
-
-use App\MoonShine\Resources\Order\OrderResource;
-use App\MoonShine\Resources\OrderPaper\OrderPaperResource;
-use App\MoonShine\Resources\Page\PageResource;
-use App\MoonShine\Resources\PersonCount\PersonCountResource;
-use App\MoonShine\Resources\ProductPriceOption\ProductPriceOptionResource;
-use App\MoonShine\Resources\ProductTag\ProductTagResource;
+use App\MoonShine\Resources\Online\OnlineResource;
+use App\MoonShine\Resources\Partner\PartnerResource;
+use App\MoonShine\Resources\Team\TeamResource;
+use App\MoonShine\Resources\Training\TrainingResource;
+use App\MoonShine\Resources\Useful\UsefulResource;
+use App\MoonShine\Resources\Law\LawResource;
+use App\MoonShine\Resources\News\NewsResource;
+use App\MoonShine\Resources\Important\ImportantResource;
+use App\MoonShine\Resources\Diploma\DiplomaResource;
+use App\MoonShine\Resources\Seminar\SeminarResource;
 use MoonShine\AssetManager\Js;
 use MoonShine\Laravel\Layouts\AppLayout;
 use MoonShine\ColorManager\Palettes\PurplePalette;
@@ -27,15 +35,7 @@ use MoonShine\MenuManager\MenuDivider;
 use MoonShine\MenuManager\MenuGroup;
 use MoonShine\MenuManager\MenuItem;
 use YuriZoom\MoonShineMediaManager\Pages\MediaManagerPage;
-use App\MoonShine\Resources\User\UserResource;
-use App\MoonShine\Resources\Vendor\VendorResource;
-use App\MoonShine\Resources\LegalEntity\LegalEntityResource;
-use App\MoonShine\Resources\IndividualEntrepreneur\IndividualEntrepreneurResource;
-use App\MoonShine\Resources\SelfEmployed\SelfEmployedResource;
-use App\MoonShine\Resources\City\CityResource;
-use App\MoonShine\Resources\Taxation\TaxationResource;
-use App\MoonShine\Resources\ProductCategory\ProductCategoryResource;
-use App\MoonShine\Resources\Product\ProductResource;
+
 
 final class AxeldLayout extends AppLayout
 {
@@ -61,17 +61,70 @@ final class AxeldLayout extends AppLayout
 
             ]),
 
-/*            MenuGroup::make(static fn() => __('Услуги'), [
-                MenuGroup::make(static fn() => __('Опции'), [
-                    MenuItem::make(ProductPriceOptionResource::class, 'Опции цены сертификата', 'check'),
-                    MenuItem::make(PersonCountResource::class, 'Количество человек', 'check'),
-                    MenuItem::make(AgeRestrictionResource::class, 'Возрастное ограничение', 'check'),
 
+            MenuGroup::make(static fn() => __('Страницы'), [
+                MenuItem::make(HomePage::class, 'Главная', 'home'),
+                MenuItem::make(ContactPage::class, 'Контакты', 'home'),
+            ]),
+
+
+            MenuGroup::make(static fn() => __('О компании'), [
+                MenuGroup::make(static fn() => __('О нас'), [
+                  MenuItem::make(AboutResource::class, 'Страницы', 'folder-plus'),
                 ]),
-                MenuItem::make(ProductCategoryResource::class, 'Категории', 'squares-2x2'),
+               MenuGroup::make(static fn() => __('Документы'), [
+                  MenuItem::make(DocumentResource::class, 'Страницы', 'folder-plus'),
+                ]),
+               MenuGroup::make(static fn() => __('Партнеры'), [
+                  MenuItem::make(PartnerResource::class, 'Страницы', 'folder-plus'),
+                ]),
+               MenuGroup::make(static fn() => __('Команда'), [
+                  MenuItem::make(TeamResource::class, 'Страницы', 'folder-plus'),
+                ]),
+
+           /*     MenuItem::make(ProductCategoryResource::class, 'Категории', 'squares-2x2'),
                 MenuItem::make(ProductTagResource::class, 'Теги', 'hashtag'),
-                MenuItem::make(ProductResource::class, 'Сертификаты', 'squares-plus'),
-            ]),*/
+                MenuItem::make(ProductResource::class, 'Сертификаты', 'squares-plus'),*/
+            ]),
+
+           MenuGroup::make(static fn() => __('Обучение'), [
+               MenuGroup::make(static fn() => __('Обучение'), [
+                  MenuItem::make(TrainingResource::class, 'Страницы', 'folder-plus'),
+               ]),
+           ]),
+
+           MenuGroup::make(static fn() => __('Консалтинг'), [
+               MenuGroup::make(static fn() => __('Консалтинг'), [
+                  MenuItem::make(ConsultingResource::class, 'Страницы', 'folder-plus'),
+               ]),
+           ]),
+
+           MenuGroup::make(static fn() => __('Полезное'), [
+               MenuGroup::make(static fn() => __('Полезное'), [
+                  MenuItem::make(UsefulResource::class, 'Страницы', 'folder-plus'),
+               ]),
+               MenuGroup::make(static fn() => __('Законы'), [
+                  MenuItem::make(LawResource::class, 'Страницы', 'folder-plus'),
+               ]),
+               MenuGroup::make(static fn() => __('Новости'), [
+                  MenuItem::make(NewsResource::class, 'Страницы', 'folder-plus'),
+               ]),
+               MenuGroup::make(static fn() => __('Важное'), [
+                  MenuItem::make(ImportantResource::class, 'Страницы', 'folder-plus'),
+               ]),
+               MenuGroup::make(static fn() => __('Дипломы'), [
+                  MenuItem::make(DiplomaResource::class, 'Страницы', 'folder-plus'),
+               ]),
+               MenuGroup::make(static fn() => __('Семинары'), [
+                  MenuItem::make(SeminarResource::class, 'Страницы', 'folder-plus'),
+               ]),
+           ]),
+
+           MenuGroup::make(static fn() => __('Online'), [
+               MenuGroup::make(static fn() => __('Online'), [
+                  MenuItem::make(OnlineResource::class, 'Страницы', 'folder-plus'),
+               ]),
+           ]),
 /*            MenuGroup::make(static fn() => __('Страницы'), [
                 MenuItem::make(HomePage::class, 'Главная страница', 'building-library'),
                 MenuItem::make(PageResource::class, 'Страницы', 'check'),
@@ -80,8 +133,8 @@ final class AxeldLayout extends AppLayout
 
 
             MenuGroup::make(static fn() => __('Настройки'), [
-          /*      MenuItem::make(CityResource::class, 'Города', 'building-office-2' ),
-                MenuItem::make(SettingPage::class, 'Константы', 'adjustments-vertical'),*/
+                MenuItem::make(CityResource::class, 'Города', 'building-office-2'),
+             /* MenuItem::make(SettingPage::class, 'Константы', 'adjustments-vertical'),*/
                 MenuItem::make(MediaManagerPage::class, 'Media', 'film'),
 /*                MenuItem::make(TaxationResource::class, 'Налоги', 'currency-dollar'),
                 MenuGroup::make(static fn() => __('Продавцы'), [
@@ -111,12 +164,12 @@ final class AxeldLayout extends AppLayout
     {
         return \sprintf(
             <<<'HTML'
-                &copy; %d Made  by
-                <a href="https://t.me/AxeldMaster"
+                &copy; %d Портал
+                <a href="/"
                     class="font-semibold text-primary"
                     target="_blank"
                 >
-                    @AxeldMaster
+                    Бухгалтеров Казахстана
                 </a>
                 HTML,
             now()->year,

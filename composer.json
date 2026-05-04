@@ -7,12 +7,14 @@
     "license": "MIT",
     "require": {
         "php": "^8.3",
+        "diglactic/laravel-breadcrumbs": "^10.1",
         "intervention/image": "^4.0",
         "intervention/image-laravel": "^4.0",
         "laravel/framework": "^13.0",
         "laravel/tinker": "^3.0",
         "moonshine/moonshine": "^4.11",
         "moonshine/ru": "^1.0",
+        "moonshine/tinymce": "^2.0",
         "yurizoom/moonshine-media-manager": "^3.1"
     },
     "require-dev": {

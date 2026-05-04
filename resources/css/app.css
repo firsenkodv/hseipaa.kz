@@ -1,11 +1,25 @@
-@import 'tailwindcss';
+@import 'pagination.scss';
+@import 'general-style/paddind.scss';
+@import 'general-style/width.scss';
+@import '@fontsource-variable/source-sans-3';
+@import '@fontsource-variable/roboto/wdth.css';
+@import 'fancybox/fancubox6.scss';
+@import 'message/flach_message.scss';
+@import 'loader_map.css';
+@import 'trix/trix.scss';
+@import 'components/modules/banner.scss';
+@import 'components/modules/programs.scss';
+@import 'components/modules/slider.scss';
+@import 'components/modules/schedule.scss';
+@import 'components/modules/advantages.scss';
+@import 'components/modules/consulting.scss';
+@import 'components/modules/actions_strip.scss';
+@import 'components/modules/faq.scss';
+@import 'components/form/form-loader.scss';
+@import 'components/form/form-input.scss';
+@import 'components/form/form-blue-component.scss';
+@import 'buttons/buttons.scss';
+@import 'templates/axeld/header.scss';
+@import 'templates/axeld/footer.scss';
+@import 'style.scss';
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
-
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
-}
