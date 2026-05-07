@@ -4,8 +4,21 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\MoonShine\Pages\Pages\AboutPage;
+use App\MoonShine\Pages\Pages\ConsultingPage;
 use App\MoonShine\Pages\Pages\ContactPage;
+use App\MoonShine\Pages\Pages\DiplomasPage;
+use App\MoonShine\Pages\Pages\DocumentsPage;
 use App\MoonShine\Pages\Pages\HomePage;
+use App\MoonShine\Pages\Pages\ImportantPage;
+use App\MoonShine\Pages\Pages\LawsPage;
+use App\MoonShine\Pages\Pages\NewsPage;
+use App\MoonShine\Pages\Pages\PartnersPage;
+use App\MoonShine\Pages\Pages\RemotePage;
+use App\MoonShine\Pages\Pages\ResourcesPage;
+use App\MoonShine\Pages\Pages\SeminarPage;
+use App\MoonShine\Pages\Pages\TeamPage;
+use App\MoonShine\Pages\Pages\TrainingPage;
 use Illuminate\Support\ServiceProvider;
 use App\MoonShine\Resources\About\AboutResource;
 use App\MoonShine\Resources\City\CityResource;
@@ -57,6 +70,19 @@ class MoonShineServiceProvider extends ServiceProvider
                 ...$core->getConfig()->getPages(),
                 HomePage::class,
                 ContactPage::class,
+                AboutPage::class,
+                TeamPage::class,
+                PartnersPage::class,
+                DocumentsPage::class,
+                TrainingPage::class,
+                ConsultingPage::class,
+                RemotePage::class,
+                ResourcesPage::class,
+                LawsPage::class,
+                NewsPage::class,
+                ImportantPage::class,
+                DiplomasPage::class,
+                SeminarPage::class,
             ])
         ;
     }

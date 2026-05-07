@@ -109,27 +109,3 @@
     </div>
 
 </header>
-
-<script>
-    (function () {
-        const burger = document.querySelector('.header-burger');
-        const menu = document.querySelector('.header-mobile-menu');
-        if (!burger || !menu) return;
-
-        burger.addEventListener('click', function () {
-            const isOpen = menu.classList.toggle('is-open');
-            burger.classList.toggle('is-open', isOpen);
-            burger.setAttribute('aria-expanded', isOpen);
-            menu.setAttribute('aria-hidden', !isOpen);
-        });
-
-        menu.querySelectorAll('.header-mobile-link').forEach(function (link) {
-            link.addEventListener('click', function () {
-                menu.classList.remove('is-open');
-                burger.classList.remove('is-open');
-                burger.setAttribute('aria-expanded', 'false');
-                menu.setAttribute('aria-hidden', 'true');
-            });
-        });
-    })();
-</script>

@@ -8,9 +8,22 @@ namespace App\MoonShine\Layouts;
 
 
 use App\Models\Document;
+use App\MoonShine\Pages\Pages\AboutPage;
+use App\MoonShine\Pages\Pages\ConsultingPage;
 use App\MoonShine\Pages\Pages\ContactPage;
-use App\MoonShine\Resources\About\AboutResource;
+use App\MoonShine\Pages\Pages\DiplomasPage;
+use App\MoonShine\Pages\Pages\DocumentsPage;
 use App\MoonShine\Pages\Pages\HomePage;
+use App\MoonShine\Pages\Pages\ImportantPage;
+use App\MoonShine\Pages\Pages\LawsPage;
+use App\MoonShine\Pages\Pages\NewsPage;
+use App\MoonShine\Pages\Pages\PartnersPage;
+use App\MoonShine\Pages\Pages\RemotePage;
+use App\MoonShine\Pages\Pages\ResourcesPage;
+use App\MoonShine\Pages\Pages\SeminarPage;
+use App\MoonShine\Pages\Pages\TeamPage;
+use App\MoonShine\Pages\Pages\TrainingPage;
+use App\MoonShine\Resources\About\AboutResource;
 use App\MoonShine\Resources\City\CityResource;
 use App\MoonShine\Resources\Consulting\ConsultingResource;
 use App\MoonShine\Resources\Document\DocumentResource;
@@ -64,7 +77,23 @@ final class AxeldLayout extends AppLayout
 
             MenuGroup::make(static fn() => __('Страницы'), [
                 MenuItem::make(HomePage::class, 'Главная', 'home'),
-                MenuItem::make(ContactPage::class, 'Контакты', 'home'),
+                MenuItem::make(ContactPage::class, 'Контакты', 'phone'),
+                MenuDivider::make(),
+                MenuItem::make(AboutPage::class, 'О нас', 'document-text'),
+                MenuItem::make(TeamPage::class, 'Команда', 'document-text'),
+                MenuItem::make(PartnersPage::class, 'Партнёры', 'document-text'),
+                MenuItem::make(DocumentsPage::class, 'Документы', 'document-text'),
+                MenuDivider::make(),
+                MenuItem::make(TrainingPage::class, 'Обучение', 'document-text'),
+                MenuItem::make(ConsultingPage::class, 'Консалтинг', 'document-text'),
+                MenuItem::make(RemotePage::class, 'Дистанционно', 'document-text'),
+                MenuDivider::make(),
+                MenuItem::make(ResourcesPage::class, 'Полезное', 'document-text'),
+                MenuItem::make(LawsPage::class, 'Законы', 'document-text'),
+                MenuItem::make(NewsPage::class, 'Новости', 'document-text'),
+                MenuItem::make(ImportantPage::class, 'Важное', 'document-text'),
+                MenuItem::make(DiplomasPage::class, 'Дипломы', 'document-text'),
+                MenuItem::make(SeminarPage::class, 'Семинары', 'document-text'),
             ]),
 
 

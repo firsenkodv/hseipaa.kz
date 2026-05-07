@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Setting;
 use Illuminate\Contracts\View\View;
 
 class HomeController extends Controller
 {
     public function index():View
     {
+        $home = Setting::getGroup('home')->data;
+
         if(auth()->check()) {
             $user = auth()->user();
         } else {
@@ -17,7 +20,8 @@ class HomeController extends Controller
 
 
         return view('home', [
-                'user' => $user
+                'user' => $user,
+                'home' => $home,
             ]
         );
     }

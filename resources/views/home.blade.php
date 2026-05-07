@@ -1,8 +1,8 @@
 @extends('layouts.layout')
 <x-seo.meta
-    title=""
-    description=""
-    keywords=""
+    title="{{ $home['metatitle'] }}"
+    description="{{ $home['description'] }}"
+    keywords="{{ $home['keywords'] }}"
 />
 @section('content')
 
@@ -24,5 +24,13 @@
 
    <x-form.form-end-to-end.form-blue-component />
 
+    @if($home['desc'])
+        <div class="block home_desc">
+            <h1 class="h1">{{ $home['title'] }}</h1>
+            <div class="desc">
+            {!! $home['desc'] !!}
+        </div>
+        </div>
+    @endif
 @endsection
 

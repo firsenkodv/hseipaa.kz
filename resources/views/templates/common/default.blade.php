@@ -1,23 +1,13 @@
-@extends('layouts.layout')
-
-@section('content')
-    <div class="container">
-        <h1>{{ $page->title }}</h1>
-
-        @if ($page->subtitle)
-            <p class="subtitle">{{ $page->subtitle }}</p>
-        @endif
-
-        @if ($page->img)
-            <img src="{{ Storage::url($page->img) }}" alt="{{ $page->title }}">
-        @endif
-
-        @if ($page->short_desc)
-            <div class="short-desc">{!! $page->short_desc !!}</div>
-        @endif
-
-        @if ($page->desc)
-            <div class="desc">{!! $page->desc !!}</div>
-        @endif
+@if($item->img)
+    <div class="item-img">
+        <img src="{{ Storage::url($item->img) }}" alt="{{ $item->title }}">
     </div>
-@endsection
+@endif
+
+@if($item->short_desc)
+    <div class="short-desc">{!! $item->short_desc !!}</div>
+@endif
+
+@if($item->desc)
+    <div class="desc">{!! $item->desc !!}</div>
+@endif

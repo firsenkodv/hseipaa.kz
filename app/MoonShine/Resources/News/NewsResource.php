@@ -23,7 +23,7 @@ class NewsResource extends ModelResource
     protected string $model = News::class;
 
     protected string $column = 'title';
-    protected string $sortColumn = 'sorting';
+    protected string $sortColumn = 'created_at';
     protected bool $simplePaginate = true;
 
     public function getTitle(): string

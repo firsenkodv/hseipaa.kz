@@ -21,6 +21,7 @@ use MoonShine\UI\Components\Layout\Column;
 use MoonShine\UI\Components\Layout\Grid;
 use MoonShine\UI\Components\Tabs;
 use MoonShine\UI\Components\Tabs\Tab;
+use MoonShine\UI\Fields\Date;
 use MoonShine\UI\Fields\File;
 use MoonShine\UI\Fields\ID;
 use MoonShine\UI\Fields\Image;
@@ -61,6 +62,7 @@ final class NewsFormPage extends FormPage
                                 Box::make([
                                     Switcher::make('Опубликовано', 'published')->default(1),
                                     Number::make('Сортировка', 'sorting')->default(1),
+                                    Date::make('Дата', 'created_at'),
                                     Select::make('Шаблон', 'template')
                                         ->options(ContentTemplate::toOptions())
                                         ->default(ContentTemplate::Default->value)

@@ -13,12 +13,14 @@
 @import 'components/modules/schedule.scss';
 @import 'components/modules/advantages.scss';
 @import 'components/modules/consulting.scss';
-@import 'components/modules/actions_strip.scss';
+@import 'components/modules/actions_script.scss';
 @import 'components/modules/faq.scss';
 @import 'components/form/form-loader.scss';
 @import 'components/form/form-input.scss';
 @import 'components/form/form-blue-component.scss';
 @import 'buttons/buttons.scss';
+@import 'templates/axeld/breadcrumbs.scss';
+@import 'templates/axeld/content.scss';
 @import 'templates/axeld/header.scss';
 @import 'templates/axeld/footer.scss';
 @import 'style.scss';

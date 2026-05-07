@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\ContentTemplate;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class News extends Model
@@ -36,6 +37,13 @@ class News extends Model
         'custom_field2',
         'custom_field3',
     ];
+
+
+
+    public function scopePublished(Builder $query): Builder
+    {
+        return $query->where('published', 1)->orderBy('sorting');
+    }
 
     protected function casts(): array
     {

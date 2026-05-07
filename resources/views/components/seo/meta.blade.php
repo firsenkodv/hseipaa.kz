@@ -1,7 +1,7 @@
 @props([
-    'title' => '',
-    'description'=> '',
-    'keywords' => '',
+    'title'       => '',
+    'description' => '',
+    'keywords'    => '',
 ])
 @if(isset($seo_title))
      @php
