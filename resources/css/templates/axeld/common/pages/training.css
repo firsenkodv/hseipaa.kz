@@ -1,0 +1,366 @@
+.edu-hero {
+  width: min(1260px, 100%);
+  margin: 24px auto 32px;
+  border-radius: 40px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #ffe2de 0%, #ffd7d2 100%);
+}
+
+.edu-hero__inner {
+  min-height: 545px;
+  padding: 100px 0 84px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.edu-hero__copy {
+  width: 100%;
+  max-width: 760px;
+  text-align: center;
+}
+.edu-hero__copy h1 {
+  margin: 0 0 16px;
+  font-size: 57px;
+  line-height: 1.05;
+  font-weight: 600;
+}
+.edu-hero__copy p {
+  margin: 0;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.edu-search {
+  width: min(756px, 100%);
+  height: 48px;
+  margin-top: 40px;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px rgba(33, 33, 33, 0.06);
+  transition: box-shadow 0.2s ease;
+  cursor: text;
+}
+.edu-search:focus-within {
+  box-shadow: inset 0 0 0 1px rgba(239, 83, 63, 0.38), 0 0 0 4px rgba(239, 83, 63, 0.1);
+}
+.edu-search button {
+  all: unset;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+.edu-search button:hover svg {
+  stroke: #ef533f;
+}
+.edu-search svg {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 auto;
+  stroke: #9f9f9f;
+  stroke-width: 1.8;
+  fill: none;
+  transition: stroke 0.2s ease;
+}
+.edu-search input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  font-size: 16px;
+  color: #212121;
+  font: inherit;
+}
+.edu-search input::placeholder {
+  color: #9f9f9f;
+}
+
+.edu-hero__stats {
+  width: 100%;
+  max-width: 1144px;
+  margin-top: 36px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 88px;
+}
+
+.edu-stat {
+  text-align: center;
+}
+.edu-stat strong {
+  display: block;
+  margin-bottom: 8px;
+  font-family: "Philosopher", Georgia, serif;
+  font-size: 48px;
+  line-height: 1;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.edu-stat span {
+  display: block;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 500;
+  color: #212121;
+}
+
+@media (max-width: 1240px) {
+  .edu-hero__inner {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+}
+@media (max-width: 900px) {
+  .edu-hero__inner {
+    padding: 32px 24px;
+  }
+  .edu-hero__copy h1 {
+    font-size: 36px;
+    line-height: 42px;
+  }
+  .edu-hero__copy p {
+    font-size: 18px;
+    line-height: 26px;
+  }
+  .edu-hero__stats {
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 640px) {
+  .edu-hero {
+    width: calc(100vw - 24px);
+    max-width: calc(100vw - 24px);
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 24px;
+  }
+  .edu-hero__inner {
+    min-height: auto;
+    padding: 40px 16px;
+    gap: 24px;
+  }
+  .edu-hero__copy {
+    max-width: 330px;
+  }
+  .edu-hero__copy h1 {
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 36px;
+    line-height: 36px;
+    font-weight: 700;
+  }
+  .edu-hero__copy p {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .edu-search {
+    height: 48px;
+    margin-top: 0;
+    padding: 0 16px;
+    gap: 16px;
+  }
+  .edu-search input {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .edu-hero__stats {
+    display: grid;
+    grid-template-columns: none;
+    margin-top: 0;
+    gap: 20px;
+    flex: none;
+  }
+  .edu-stat {
+    min-width: 0;
+  }
+  .edu-stat strong {
+    font-size: 32px;
+    line-height: 1;
+  }
+  .edu-stat span {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+  }
+}
+.edu-section {
+  margin-bottom: 32px;
+}
+
+.edu-section__heading {
+  max-width: 1118px;
+  margin: 0 auto 40px;
+}
+.edu-section__heading h2 {
+  margin: 0 0 16px;
+  font-size: 45px;
+  line-height: 52px;
+  font-weight: 600;
+}
+.edu-section__heading p {
+  margin: 0;
+  font-size: 24px;
+  line-height: 32px;
+}
+.edu-section__heading--center {
+  text-align: center;
+}
+
+.edu-steps {
+  padding: 50px 124px;
+}
+
+.edu-steps__grid {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.edu-step {
+  flex: 0 1 180px;
+  min-width: 0;
+  text-align: center;
+}
+.edu-step strong {
+  display: block;
+  margin-bottom: 20px;
+  font-family: "Philosopher", Georgia, serif;
+  font-size: 40px;
+  line-height: 1;
+  font-style: italic;
+  font-weight: 700;
+  color: #212121;
+}
+.edu-step h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+}
+.edu-step p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: #9f9f9f;
+}
+
+.edu-step__icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px;
+  background: #ffe7e2;
+}
+.edu-step__icon img {
+  width: 32px;
+  height: 32px;
+}
+
+.edu-step__line {
+  flex: 0 1 72px;
+  display: block;
+  height: 2px;
+  margin-top: 94px;
+  background: linear-gradient(90deg, rgba(239, 83, 63, 0.25) 0%, #ef533f 100%);
+}
+
+@media (max-width: 1240px) {
+  .edu-steps {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+  .edu-steps__grid {
+    gap: 24px;
+  }
+  .edu-step {
+    flex: 1 1 0;
+  }
+  .edu-step__line {
+    display: none;
+  }
+}
+@media (max-width: 900px) {
+  .edu-steps {
+    padding: 32px 24px;
+  }
+  .edu-section__heading h2 {
+    font-size: 36px;
+    line-height: 42px;
+  }
+  .edu-section__heading p {
+    font-size: 18px;
+    line-height: 26px;
+  }
+  .edu-steps__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px 16px;
+  }
+}
+@media (max-width: 640px) {
+  .edu-steps {
+    padding: 40px 16px;
+  }
+  .edu-section__heading {
+    margin-bottom: 24px;
+  }
+  .edu-section__heading h2 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  .edu-section__heading p {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .edu-steps__grid {
+    gap: 24px 8px;
+  }
+  .edu-step {
+    padding: 0 8px;
+  }
+  .edu-step strong {
+    margin-bottom: 16px;
+    font-size: 32px;
+  }
+  .edu-step__icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 16px;
+    border-radius: 40px;
+  }
+  .edu-step h3 {
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+@media (max-width: 420px) {
+  .edu-steps {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .edu-steps__grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .edu-step {
+    max-width: 260px;
+    margin: 0 auto;
+  }
+}
+
+/*# sourceMappingURL=training.css.map */

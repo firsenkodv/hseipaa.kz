@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Ajax\CityController;
 use App\Http\Controllers\Axios\AxiosController;
 use App\Http\Controllers\FancyBox\FancyBoxController;
 use App\Http\Controllers\HomeController;
@@ -18,37 +19,56 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::controller(AboutController::class)->group(function () {
     Route::get('/onas', 'index')->name('about');
     Route::get('/onas/team', 'team')->name('about.team');
+    Route::get('/onas/team/{slug}', 'teamShow')->name('about.team.show');
     Route::get('/onas/partnjory', 'partners')->name('about.partners');
+    Route::get('/onas/partnjory/{slug}', 'partnersShow')->name('about.partners.show');
     Route::get('/onas/dokumenty', 'documents')->name('about.documents');
+    Route::get('/onas/dokumenty/{slug}', 'documentsShow')->name('about.documents.show');
+    Route::get('/onas/{slug}', 'indexShow')->name('about.show');
 });
 /** ///О нас **/
 
 /** Обучение **/
-Route::get('/obuchenie', [TrainingController::class, 'index'])->name('training');
+Route::controller(TrainingController::class)->group(function () {
+    Route::get('/obuchenie', 'index')->name('training');
+    Route::get('/obuchenie/{slug}', 'indexShow')->name('training.show');
+});
 /** ///Обучение **/
 
 /** Консалтинг **/
-Route::get('/konsalting', [ConsultingController::class, 'index'])->name('consulting');
+Route::controller(ConsultingController::class)->group(function () {
+    Route::get('/konsalting', 'index')->name('consulting');
+    Route::get('/konsalting/{slug}', 'indexShow')->name('consulting.show');
+});
 /** ///Консалтинг **/
 
 /** Дистанционно **/
-Route::get('/distantcionno', [RemoteController::class, 'index'])->name('remote');
+Route::controller(RemoteController::class)->group(function () {
+    Route::get('/distantcionno', 'index')->name('remote');
+    Route::get('/distantcionno/{slug}', 'indexShow')->name('remote.show');
+});
 /** ///Дистанционно **/
 
 /** Полезное **/
 Route::controller(ResourcesController::class)->group(function () {
-    Route::get('/poleznoe', 'index')->name('resources');
-    Route::get('/poleznoe/zakony', 'laws')->name('resources.laws');
+    Route::get('/poleznoe',               'index')->name('resources');
+    Route::get('/poleznoe/zakony',        'laws')->name('resources.laws');
     Route::get('/poleznoe/zakony/{slug}', 'lawsShow')->name('resources.laws.show');
-    Route::get('/poleznoe/novosti', 'news')->name('resources.news');
-    Route::get('/poleznoe/novosti/{slug}', 'newsShow')->name('resources.news.show');
-    Route::get('/poleznoe/vazhnoe', 'important')->name('resources.important');
-    Route::get('/poleznoe/diplomy', 'diplomas')->name('resources.diplomas');
-    Route::get('/poleznoe/diplomy/{slug}', 'diplomasShow')->name('resources.diplomas.show');
-    Route::get('/poleznoe/seminar', 'seminar')->name('resources.seminar');
-    Route::get('/poleznoe/seminar/{slug}', 'seminarShow')->name('resources.seminar.show');
+    Route::get('/poleznoe/novosti',       'news')->name('resources.news');
+    Route::get('/poleznoe/novosti/{slug}','newsShow')->name('resources.news.show');
+    Route::get('/poleznoe/vazhnoe',       'important')->name('resources.important');
+    Route::get('/poleznoe/vazhnoe/{slug}','importantShow')->name('resources.important.show');
+    Route::get('/poleznoe/diplomy',       'diplomas')->name('resources.diplomas');
+    Route::get('/poleznoe/diplomy/{slug}','diplomasShow')->name('resources.diplomas.show');
+    Route::get('/poleznoe/seminar',       'seminar')->name('resources.seminar');
+    Route::get('/poleznoe/seminar/{slug}','seminarShow')->name('resources.seminar.show');
+    Route::get('/poleznoe/{slug}',        'indexShow')->name('resources.show');
 });
 /** ///Полезное **/
+
+/** Город (сессия) **/
+Route::post('/set-city', [CityController::class, 'setCity'])->name('city.set');
+/** ///Город (сессия) **/
 
 /** FancyBox AJAX **/
 Route::controller(FancyBoxController::class)->group(function () {

@@ -16,6 +16,11 @@ import {scrollCabinetMessages} from "./cabinet_message";
 
 });*/
 
+Fancybox.bind('[data-fancybox="gallery"]', {
+    animated: true,
+    dragToClose: true,
+});
+
 /** получаем csrf **/
 const metaElements = document.querySelectorAll('meta[name="csrf-token"]');
 const csrf = metaElements.length > 0 ? metaElements[0].content : "";

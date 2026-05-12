@@ -1,6 +1,6 @@
 <?php
 return [
-    'paginate' => 15,
+    'paginate' => 12,
 
     'logo' => [
         'alt'    => 'Логотип',

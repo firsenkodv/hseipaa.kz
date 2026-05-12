@@ -26,7 +26,7 @@
   display: flex;
   justify-content: center;
   background: #fff;
-  border-radius: 4px;
+  border-radius: 50%;
   margin: 0 6px;
   position: relative;
 }
@@ -43,8 +43,8 @@
   transition: 0.2s;
 }
 .nav__pagination .pagination li.active, .nav__pagination .pagination li:hover {
-  background: #0870D8;
-  border: 1px solid #0870D8;
+  background: #EF533F;
+  border: 1px solid #EF533F;
 }
 .nav__pagination .pagination li.active a, .nav__pagination .pagination li.active span, .nav__pagination .pagination li:hover a, .nav__pagination .pagination li:hover span {
   color: #fff;
@@ -58,12 +58,13 @@
 
 .nav__pagination_previous {
   width: 100px;
+  margin-right: 5px;
 }
 .nav__pagination_previous li {
   width: 100px;
   height: 36px;
   background: #fff;
-  border-radius: 4px;
+  border-radius: 18px;
   justify-content: flex-start;
   align-items: center;
   border: 1px solid #ddd;
@@ -73,7 +74,7 @@
   color: #667085;
   text-decoration: none;
   display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
   height: 100%;
   width: 100%;
@@ -85,8 +86,8 @@
   top: 1px;
 }
 .nav__pagination_previous li:hover {
-  background: #0870D8;
-  border: 1px solid #0870D8;
+  background: #EF533F;
+  border: 1px solid #EF533F;
 }
 .nav__pagination_previous li:hover a, .nav__pagination_previous li:hover span {
   color: #fff;
@@ -94,12 +95,13 @@
 
 .nav__pagination_next {
   width: 100px;
+  margin-left: 5px;
 }
 .nav__pagination_next li {
   width: 100px;
   height: 36px;
   background: #fff;
-  border-radius: 4px;
+  border-radius: 18px;
   align-items: center;
   border: 1px solid #ddd;
   transition: 0.2s;
@@ -108,7 +110,7 @@
   color: #667085;
   text-decoration: none;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   height: 100%;
   width: 100%;
@@ -120,8 +122,8 @@
   top: 1px;
 }
 .nav__pagination_next li:hover {
-  background: #0870D8;
-  border: 1px solid #0870D8;
+  background: #EF533F;
+  border: 1px solid #EF533F;
 }
 .nav__pagination_next li:hover a, .nav__pagination_next li:hover span {
   color: #fff;

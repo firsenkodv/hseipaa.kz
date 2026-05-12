@@ -49,7 +49,7 @@ $maxWidth: 1440;
            display: flex;
            justify-content: center;
            background: #fff;
-           border-radius: 4px;
+           border-radius: 50%;
            margin: 0 6px;
            position: relative;
 
@@ -69,8 +69,8 @@ $maxWidth: 1440;
            }
 
            &.active, &:hover {
-               background: #0870D8;
-               border: 1px solid #0870D8;
+               background: $colorRed;
+               border: 1px solid $colorRed;
 
 
                a, span {
@@ -94,12 +94,12 @@ $maxWidth: 1440;
 
 .nav__pagination_previous {
     width: 100px;
-
+margin-right: 5px;
     li {
         width: 100px;
         height: 36px;
         background: #fff;
-        border-radius: 4px;
+        border-radius: 18px;
         justify-content: flex-start;
         align-items: center;
         border: 1px solid #ddd;
@@ -110,7 +110,7 @@ $maxWidth: 1440;
             color: $colorGrey;
             text-decoration: none;
             display: flex;
-            justify-content: start;
+            justify-content: center;
             align-items: center;
             height: 100%;
             width: 100%;
@@ -124,8 +124,8 @@ $maxWidth: 1440;
         }
 
         &:hover {
-            background: #0870D8;
-            border: 1px solid #0870D8;
+            background: $colorRed;
+            border: 1px solid $colorRed;
             a, span {
                 color: #fff;
 
@@ -137,12 +137,13 @@ $maxWidth: 1440;
 
 .nav__pagination_next {
     width: 100px;
+    margin-left: 5px;
 
     li {
         width: 100px;
         height: 36px;
         background: #fff;
-        border-radius: 4px;
+        border-radius: 18px;
         align-items: center;
         border: 1px solid #ddd;
         transition: 0.2s;
@@ -152,7 +153,7 @@ $maxWidth: 1440;
             color: $colorGrey;
             text-decoration: none;
             display: flex;
-            justify-content: flex-end;
+            justify-content: center;
             align-items: center;
             height: 100%;
             width: 100%;
@@ -165,8 +166,8 @@ $maxWidth: 1440;
             }
         }
         &:hover {
-            background: #0870D8;
-            border: 1px solid #0870D8;
+            background: $colorRed;
+            border: 1px solid $colorRed;
             a, span {
                 color: #fff;
 

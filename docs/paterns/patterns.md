@@ -12,10 +12,13 @@
 src/Domain/{Section}/ViewModels/{Model}ViewModel.php
 app/Http/Controllers/Pages/{Section}Controller.php
 app/Enums/Pages/PageTemplate.php
-app/Enums/ContentTemplate.php
-resources/views/pages/{section}/{method}.blade.php
-resources/views/pages/common/templates/{template}.blade.php
-resources/views/templates/common/{template}.blade.php
+app/Enums/Resources/TeaserTemplate.php
+app/Enums/Resources/FullTemplate.php
+resources/views/pages/resources/list.blade.php        ← единый шаблон списка
+resources/views/pages/resources/show.blade.php        ← единый шаблон детальной
+resources/views/pages/common/pages/templates/{template}.blade.php
+resources/views/pages/common/resourses/templates/teaser/{template}.blade.php
+resources/views/pages/common/resourses/templates/full/{template}.blade.php
 resources/views/components/seo/meta-paginated.blade.php
 routes/web.php
 routes/breadcrumbs.php
@@ -30,26 +33,16 @@ URL-адреса — транслитерация (уже проиндексир
 
 ```php
 // routes/web.php
-Route::get('/poleznoe/novosti', 'news')->name('resources.news');
+Route::get('/poleznoe/novosti',        'news')->name('resources.news');
 Route::get('/poleznoe/novosti/{slug}', 'newsShow')->name('resources.news.show');
 ```
 
 | URL | Имя маршрута |
 |-----|-------------|
-| `/onas` | `about` |
-| `/onas/team` | `about.team` |
-| `/onas/partnjory` | `about.partners` |
-| `/onas/dokumenty` | `about.documents` |
-| `/obuchenie` | `training` |
-| `/konsalting` | `consulting` |
-| `/distantcionno` | `remote` |
-| `/poleznoe` | `resources` |
-| `/poleznoe/zakony` | `resources.laws` |
 | `/poleznoe/novosti` | `resources.news` |
 | `/poleznoe/novosti/{slug}` | `resources.news.show` |
-| `/poleznoe/vazhnoe` | `resources.important` |
-| `/poleznoe/diplomy` | `resources.diplomas` |
-| `/poleznoe/seminar` | `resources.seminar` |
+
+> **Важно:** маршруты с `{slug}` на одном уровне с конкретными путями (например `/poleznoe/{slug}` и `/poleznoe/novosti`) должны стоять **после** конкретных маршрутов — иначе `{slug}` перехватит их раньше.
 
 ---
 
@@ -127,22 +120,21 @@ public function news(): View
     $items = $vm->getPublished();
     $page  = $vm->getPageData();
 
-    return view('pages.resources.news', [
-        'page'       => $page,
-        'items'      => $items,
-        'pageSuffix' => $this->pageSuffix($items),
-        'template'   => PageTemplate::from($page->page_template ?? PageTemplate::Width->value),
-        'section'    => 'resources.news',
-        'route'      => 'resources.news.show',
+    return view('pages.resources.list', [
+        'page'            => $page,
+        'items'           => $items,
+        'pageSuffix'      => $this->pageSuffix($items),
+        'template'        => PageTemplate::from($page->page_template ?? PageTemplate::Default->value),
+        'teaser_template' => TeaserTemplate::from($page->section_template ?? TeaserTemplate::Default->value),
+        'section'         => 'resources.news',
+        'route'           => 'resources.news.show',
     ]);
 }
 ```
 
 > `$items` сохраняется в переменную и передаётся — иначе `getPublished()` вызовется дважды и будет два запроса к БД.
 
-> `section` и `route` передаются из контроллера — вьюха ничего не знает о конкретной модели и маршруте. Это делает все вьюхи списков идентичными.
-
-> Для моделей без детальной страницы: `'route' => null`.
+> `section` и `route` передаются из контроллера — вьюха `list.blade.php` универсальна для всех моделей.
 
 ---
 
@@ -155,12 +147,15 @@ public function newsShow(string $slug): View
     $item = $vm->getBySlug($slug);
     $page = $vm->getPageData();
 
-    return view('pages.resources.news-show', [
-        'page' => $page,
-        'item' => $item,
+    return view('pages.resources.show', [
+        'page'     => $page,
+        'item'     => $item,
+        'resource' => 'news',
     ]);
 }
 ```
+
+> `$resource` — строка, передаётся в `$item->template->view($resource)` для поиска секционного переопределения шаблона.
 
 ---
 
@@ -191,167 +186,183 @@ public function newsShow(string $slug): View
 
 ---
 
-### Шаг 4б — Enum шаблонов вывода (PageTemplate)
+### Шаг 4б — Три Enum шаблонов
+
+Шаблоны разделены на три класса по назначению. Каждый Enum используется в своём контексте.
+
+---
+
+#### PageTemplate — шаблон блока страницы
 
 `app/Enums/Pages/PageTemplate.php`
 
 ```php
 enum PageTemplate: string
 {
-    case Width  = 'width';
-    case Column = 'column';
-
-    public function label(): string
-    {
-        return match($this) {
-            self::Width  => 'Во всю ширину',
-            self::Column => 'Колонками',
-        };
-    }
+    case Default = 'default';
 
     public function view(string $section): string
     {
-        $specific = "pages.{$section}.templates.{$this->value}";
-        $common   = "pages.common.templates.{$this->value}";
+        $specific = "pages.{$section}.pages.templates.{$this->value}";
+        $common   = "pages.common.pages.templates.{$this->value}";
 
         if (view()->exists($specific)) return $specific;
-        if (view()->exists($common))   return $common;
 
-        return "pages.common.templates." . self::Width->value;
-    }
-
-    public static function toOptions(): array
-    {
-        return array_column(
-            array_map(fn(self $case) => ['value' => $case->value, 'label' => $case->label()], self::cases()),
-            'label',
-            'value'
-        );
+        return $common;
     }
 }
 ```
 
-**Как работает `view(string $section)`:**
+**Используется:** в MoonShine Pages (поле `page_template`). Контроллер передаёт как `$template`.
+**Шаблоны:** `resources/views/pages/common/pages/templates/`
+**Вызов во вьюхе:** `@include($template->view($section))`
 
-Аргумент `$section` — это адрес для поиска секционного переопределения. Метод ищет шаблон в трёх местах по приоритету:
-
-1. Специфичный для секции: `pages/{section}/templates/{value}.blade.php`
-2. Общий: `pages/common/templates/{value}.blade.php`
-3. Дефолт: `pages/common/templates/width.blade.php`
-
-Секционный шаблон создаётся только если нужен особый вид именно для этого раздела. В остальных случаях автоматически используется общий.
-
-**Структура файлов:**
-```
-pages/
-    common/
-        templates/
-            width.blade.php    ← общий для всех моделей (с поддержкой $route)
-            column.blade.php   ← общий для всех моделей
-```
-
-> Добавить новый шаблон = создать файл в `common/templates/` + добавить `case` в Enum. Вьюха не меняется никогда.
+Приоритет поиска шаблона:
+1. Секционный: `pages/{section}/pages/templates/{value}.blade.php`
+2. Общий: `pages/common/pages/templates/{value}.blade.php`
 
 ---
 
-### Шаг 4в — Общий шаблон списка (width)
+#### TeaserTemplate — шаблон тизера (одного элемента списка)
 
-`resources/views/pages/common/templates/width.blade.php`
+`app/Enums/Resources/TeaserTemplate.php`
+
+```php
+enum TeaserTemplate: string
+{
+    case Default = 'default';
+
+    public function view(string $section): string
+    {
+        $specific = "pages.{$section}.resourses.templates.teaser.{$this->value}";
+        $common   = "pages.common.resourses.templates.teaser.{$this->value}";
+
+        if (view()->exists($specific)) return $specific;
+
+        return $common;
+    }
+}
+```
+
+**Используется:** в MoonShine Pages (поле `section_template`). Контроллер передаёт как `$teaser_template`.
+**Шаблоны:** `resources/views/pages/common/resourses/templates/teaser/`
+**Вызов во вьюхе:** `@include($teaser_template->view($section), ['item' => $item, 'route' => $route])`
+
+Приоритет поиска шаблона:
+1. Секционный: `pages/{section}/resourses/templates/teaser/{value}.blade.php`
+2. Общий: `pages/common/resourses/templates/teaser/{value}.blade.php`
+
+---
+
+#### FullTemplate — шаблон полной страницы записи
+
+`app/Enums/Resources/FullTemplate.php`
+
+```php
+enum FullTemplate: string
+{
+    case Default = 'default';
+
+    public function view(string $resource): string
+    {
+        $specific = "pages.resourses.{$resource}.templates.full.{$this->value}";
+        $common   = "pages.common.resourses.templates.full.{$this->value}";
+
+        if (view()->exists($specific)) return $specific;
+
+        return $common;
+    }
+}
+```
+
+**Используется:** в MoonShine Resources (поле `template` модели). Берётся из `$item->template`.
+**Шаблоны:** `resources/views/pages/common/resourses/templates/full/`
+**Вызов во вьюхе:** `@include($item->template->view($resource), ['item' => $item])`
+
+Приоритет поиска шаблона:
+1. Секционный: `pages/resourses/{resource}/templates/full/{value}.blade.php`
+2. Общий: `pages/common/resourses/templates/full/{value}.blade.php`
+
+> Добавить новый шаблон в любой Enum = создать файл в соответствующей папке + добавить `case` с именем файла. Вьюха не меняется.
+
+---
+
+### Шаг 4в — Шаблон блока страницы (PageTemplate::default)
+
+`resources/views/pages/common/pages/templates/default.blade.php`
 
 ```blade
-<ul>
-
-    @foreach($items as $item)
-        <li>
-            @isset($route)
-                <a href="{{ route($route, $item->slug) }}">{{ $item->title }}</a>
-            @else
-                {{ $item->title }}
-            @endisset
-        </li>
-    @endforeach
-
-</ul>
+@if($items->currentPage() === 1)
+    @if($page->desc)
+        <div class="desc">{!! $page->desc !!}</div>
+    @endif
+@endif
 ```
 
 **Правила:**
-- `$route` — опциональная переменная, передаётся из контроллера через вьюху
-- Если `$route` не передан (модель без детальной страницы) — выводится просто текст
-- Благодаря этому один файл шаблона покрывает все модели
+- Получает все переменные из родительской вьюхи через Blade scope inheritance
+- Отвечает только за контент уровня страницы (описание, доп. блоки)
+- Вывод описания — только на первой странице пагинации
 
 ---
 
-### Шаг 4г — Шаблон детальной страницы
+### Шаг 4г — Шаблон тизера (TeaserTemplate::default)
 
-`resources/views/templates/common/default.blade.php`
+`resources/views/pages/common/resourses/templates/teaser/default.blade.php`
 
 ```blade
-@if($item->img)
-    <div class="item-img">
-        <img src="{{ Storage::url($item->img) }}" alt="{{ $item->title }}">
-    </div>
-@endif
-
-@if($item->short_desc)
-    <div class="short-desc">{!! $item->short_desc !!}</div>
-@endif
-
-@if($item->desc)
-    <div class="desc">{!! $item->desc !!}</div>
-@endif
+<div class="default">
+    <a href="{{ route($route, $item->slug) }}" class="teaser">
+        <span class="teaser__title">{{ $item->title }}</span>
+    </a>
+</div>
 ```
 
-Используется через `ContentTemplate` enum (не `PageTemplate`). Разрешение шаблона: `$item->template->view('news')` — ищет `templates.news.default`, при отсутствии — `templates.common.default`.
+**Правила:**
+- Получает `$item` и `$route` явно из `@include`
+- Отвечает за вид одной карточки в списке
+- Имя файла = значение `case` в Enum
 
 ---
 
-### Шаг 5 — Вьюха списка
+### Шаг 5 — Единый шаблон списка
 
-`resources/views/pages/resources/news.blade.php`
+`resources/views/pages/resources/list.blade.php`
 
 ```blade
 @extends('layouts.layout')
 <x-seo.meta-paginated :page="$page" :items="$items" />
 @section('content')
-
     <div class="content_page">
         <div class="block">
-
             <div class="block_content__breadcrumbs">{{ Breadcrumbs::render(Route::currentRouteName()) }}</div>
-
             @if($page->title)
                 <h1 class="h1">{{ $page->title }}</h1>
             @endif
 
-            @include($template->view($section), ['items' => $items, 'route' => $route])
-
+            @foreach($items as $item)
+                @include($teaser_template->view($section), ['item' => $item, 'route' => $route])
+            @endforeach
             {{ $items->withQueryString()->links('pagination::default') }}
 
-            @if($items->currentPage() === 1)
-                @if($page->desc)
-                    <div class="desc">{!! $page->desc !!}</div>
-                @endif
-            @endif
-
+            @include($template->view($section))
         </div>
     </div>
-
 @endsection
 ```
 
 **Правила:**
-- Хлебные крошки: `Route::currentRouteName()` — имя маршрута определяется автоматически, строка не хардкодится
-- H1 и описание страницы — только на первой странице (`currentPage() === 1`)
-- SEO-мета — на всех страницах, с суффиксом начиная со второй
-- `withQueryString()` — сохраняет GET-параметры при переключении страниц
-- Пагинацию роботы индексируют — `noindex` не ставить
-- `$section` и `$route` приходят из контроллера — вьюха универсальна для всех моделей
+- Один файл для всех разделов — `news`, `laws`, `diplomas`, `seminar`, `important`, `resources`
+- `$teaser_template` — итерация элементов списка
+- `$template` — блок уровня страницы (описание и пр.) после пагинации
+- Хлебные крошки: `Route::currentRouteName()` — имя маршрута не хардкодится
+- `$section` и `$route` приходят из контроллера — вьюха универсальна
 
 ---
 
-### Шаг 5б — Вьюха детальной страницы
+### Шаг 5б — Единый шаблон детальной страницы
 
-`resources/views/pages/resources/news-show.blade.php`
+`resources/views/pages/resources/show.blade.php`
 
 ```blade
 @extends('layouts.layout')
@@ -366,12 +377,11 @@ pages/
         <div class="block">
 
             <div class="block_content__breadcrumbs">{{ Breadcrumbs::render(Route::currentRouteName(), $item) }}</div>
-
             @if($item->title)
                 <h1 class="h1">{{ $item->title }}</h1>
             @endif
 
-            @include($item->template->view('news'), ['item' => $item])
+            @include($item->template->view($resource), ['item' => $item])
 
         </div>
     </div>
@@ -380,10 +390,11 @@ pages/
 ```
 
 **Правила:**
+- Один файл для всех разделов — вместо отдельных `news-show`, `laws-show` и т.д.
+- `$resource` приходит из контроллера — строка (`'news'`, `'laws'`, `'diplomas'` и т.д.)
 - SEO использует поля самой записи (`$item->metatitle`, `$item->description`, `$item->keywords`)
-- `metatitle` имеет приоритет над `title`
-- Хлебные крошки получают `$item` вторым аргументом — для вывода названия записи в цепочке
-- Шаблон тела: `$item->template->view('news')` — определяется из поля `template` модели
+- `metatitle` имеет приоритет над `title` для SEO
+- Хлебные крошки получают `$item` вторым аргументом
 
 ---
 
@@ -414,3 +425,24 @@ Breadcrumbs::for('resources.news.show', function ($trail, $item) {
 - В вьюхе: `Breadcrumbs::render(Route::currentRouteName())` — имя берётся из текущего маршрута автоматически
 - Для детальной страницы `$item` передаётся вторым аргументом: `Breadcrumbs::render(Route::currentRouteName(), $item)`
 - Цепочка строится через `$trail->parent(...)` — каждый уровень ссылается на родителя
+
+---
+
+### Итоговая схема потока данных
+
+```
+MoonShine Pages (настройки)
+  page_template    → PageTemplate enum   → $template         → pages/common/pages/templates/
+  section_template → TeaserTemplate enum → $teaser_template  → pages/common/resourses/templates/teaser/
+
+MoonShine Resources (поле записи)
+  template         → FullTemplate enum   → $item->template   → pages/common/resourses/templates/full/
+
+pages/resources/list.blade.php  (один файл для всех разделов)
+  @foreach → @include($teaser_template->view($section))   ← один тизер
+  @include($template->view($section))                     ← блок страницы (desc и пр.)
+
+pages/resources/show.blade.php  (один файл для всех разделов)
+  @include($item->template->view($resource))              ← полная страница записи
+  $resource = 'news' | 'laws' | 'diplomas' | ...         ← приходит из контроллера
+```

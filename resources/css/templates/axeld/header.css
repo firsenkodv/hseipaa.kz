@@ -184,7 +184,7 @@
 .header-nav {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 15px;
 }
 
 .header-nav-link {
@@ -212,8 +212,8 @@
   align-items: center;
   gap: 6px;
   color: #f84e40;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 400;
   text-decoration: none;
   white-space: nowrap;
 }

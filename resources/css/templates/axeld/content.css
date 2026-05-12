@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .home_desc {
   padding: 0 0 30px 0;
 }
@@ -138,6 +139,8 @@
   max-width: 1000px;
 }
 
+/** default шаблон */
+/** ///default шаблон */
 @media screen and (max-width: 794px) {
   .desc {
     width: 100%;
@@ -145,6 +148,12 @@
   }
   .desc .bl_desc {
     padding: 0;
+  }
+}
+@media screen and (max-width: 568px) {
+  .content_page h1.h1 {
+    line-height: 1.1 !important;
+    font-size: 36px !important;
   }
 }
 

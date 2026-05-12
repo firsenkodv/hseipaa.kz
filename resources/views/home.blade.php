@@ -20,7 +20,7 @@
 
     <x-modules.actions_strip />
 
-    <x-modules.faq />
+    <x-modules.faq :items="$home['faq']" />
 
    <x-form.form-end-to-end.form-blue-component />
 

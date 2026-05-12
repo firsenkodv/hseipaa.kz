@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Pages\Pages;
 
-use App\Enums\ContentTemplate;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use MoonShine\Crud\JsonResponse;

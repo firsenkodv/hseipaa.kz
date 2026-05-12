@@ -30,7 +30,7 @@ final class TeamDetailPage extends DetailPage
             Text::make('Заголовок', 'title'),
             Text::make('Слаг', 'slug'),
             Text::make('Подзаголовок', 'subtitle'),
-            Textarea::make('Краткое описание', 'short_desc'),
+            Textarea::make('Анонс', 'short_desc'),
             Image::make('Изображение', 'img')->disk('public')->dir('content/images'),
             Textarea::make('Описание', 'desc'),
             Image::make('Изображение 2', 'img2')->disk('public')->dir('content/images'),

@@ -21,4 +21,9 @@ class RemoteViewModel
     {
         return Online::published()->paginate(config('site.constants.paginate'));
     }
+
+    public function getBySlug(string $slug): Online
+    {
+        return Online::published()->where('slug', $slug)->firstOrFail();
+    }
 }

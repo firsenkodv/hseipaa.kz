@@ -21,4 +21,9 @@ class AboutViewModel
     {
         return About::published()->paginate(config('site.constants.paginate'));
     }
+
+    public function getBySlug(string $slug): About
+    {
+        return About::published()->where('slug', $slug)->firstOrFail();
+    }
 }

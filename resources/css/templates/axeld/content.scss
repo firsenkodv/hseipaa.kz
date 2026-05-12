@@ -10,7 +10,8 @@ $colorYellow: #FF931E;
 $colorOrange: #FF732C;
 
 .home_desc {
-    padding:0 0  30px 0;
+    padding: 0 0 30px 0;
+
     h1.h1 {
         line-height: 1.2;
         padding: 10px 0 24px 0;
@@ -21,6 +22,7 @@ $colorOrange: #FF732C;
         max-width: 1000px;
     }
 }
+
 .desc {
     width: 100%;
     position: relative;
@@ -28,7 +30,7 @@ $colorOrange: #FF732C;
     .bl_desc {
         width: 100%;
         position: relative;
-        padding:0 0  10px 0;
+        padding: 0 0 10px 0;
     }
 
     .bl_desc2 {
@@ -144,6 +146,7 @@ $colorOrange: #FF732C;
     margin-bottom: 1rem;
     border: 1px solid #f5c2c7;
     border-radius: .25rem;
+
     a {
         color: #842029;
 
@@ -152,9 +155,11 @@ $colorOrange: #FF732C;
 
 .content_page {
     padding: 0 0 40px 0;
+
     .block_content__breadcrumbs {
         padding-top: 10px;
     }
+
     h1.h1 {
         line-height: 1.2;
         padding: 10px 0 24px 0;
@@ -166,7 +171,15 @@ $colorOrange: #FF732C;
     }
 }
 
-@media screen and (max-width: 794px){
+
+/** default шаблон */
+.content_page__default {
+
+}
+/** ///default шаблон */
+
+
+@media screen and (max-width: 794px) {
 
     .desc {
         width: 100%;
@@ -178,3 +191,11 @@ $colorOrange: #FF732C;
     }
 }
 
+@media screen and (max-width: 568px) {
+    .content_page {
+        h1.h1 {
+            line-height: 1.1 !important;
+            font-size: 36px !important;
+        }
+    }
+}

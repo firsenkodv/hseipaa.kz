@@ -1,0 +1,309 @@
+.content_page__training {
+
+    section {
+        margin-bottom: 16px;
+    }
+
+}
+
+
+.program-block {
+  width: min(1260px, 100%);
+  margin: 0 auto;
+  padding: 80px 60px 50px 60px;
+  border-radius: 40px;
+  background: #ffffff;
+}
+
+.program-block--soft {
+  background: #f6f5f4;
+}
+
+.program-section__intro {
+  display: grid;
+  gap: 16px;
+  max-width: 1118px;
+  margin: 0 auto 40px;
+
+  &--center {
+    text-align: center;
+  }
+
+  h2 {
+    margin: 0;
+    color: #212121;
+    font-size: 45px;
+    font-weight: 600;
+    line-height: 52px;
+  }
+
+  p {
+    margin: 0;
+    color: #212121;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.3;
+      padding-bottom: 30px;
+  }
+}
+
+.program-about__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.program-about-card {
+  min-width: 0;
+  padding: 24px;
+  border-radius: 24px;
+  display: grid;
+  gap: 16px;
+  justify-items: center;
+  text-align: center;
+  background: #ffffff;
+
+  &__icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: #ef533f;
+    display: grid;
+    place-items: center;
+
+    img {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  h3 {
+    margin: 0;
+    color: #212121;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  p {
+    margin: 0;
+    color: #212121;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0.1px;
+  }
+}
+
+// Что вы получите
+.program-block--green {
+  background: #d9ffd6;
+}
+
+.program-benefits__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.program-benefit-item {
+  min-height: 56px;
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #ffffff;
+
+  span {
+    min-width: 0;
+    color: #212121;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0.1px;
+  }
+}
+
+.program-check-icon {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: #2bb673;
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+// Преимущества
+.program-advantages__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.program-advantage-card {
+  min-height: 194px;
+  padding: 24px;
+  border-radius: 24px;
+  background: #ffffff;
+  display: grid;
+  gap: 16px;
+  justify-items: center;
+  text-align: center;
+
+  &__icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #ffe2de 0%, #ffd6d1 100%);
+    display: grid;
+    place-items: center;
+
+    img {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  h3 {
+    margin: 0;
+    color: #212121;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  p {
+    margin: 0;
+    color: #212121;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0.1px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .program-block {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .program-about__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1024px) {
+  .program-benefits__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .program-advantages__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .program-requirements__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .program-block {
+    padding: 40px 16px;
+    border-radius: 0;
+  }
+
+  .program-section__intro {
+    margin-bottom: 24px;
+
+    h2 {
+      font-size: 36px;
+      line-height: 36px;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 22px;
+    }
+  }
+
+  .program-about__grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .program-about-card {
+    padding: 24px;
+    gap: 8px;
+
+    h3 {
+      font-size: 20px;
+      line-height: 24px;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+
+  .program-requirements__grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .program-requirement-card {
+    min-height: 0;
+    padding: 24px;
+    gap: 16px;
+
+    p {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+}
+
+// Требования к кандидатам
+.program-requirements__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.program-requirement-card {
+  min-height: 262px;
+  padding: 24px;
+  border-radius: 24px;
+  background: #f6f5f4;
+  display: grid;
+  gap: 24px;
+  align-content: start;
+
+  img {
+    width: 48px;
+    height: 48px;
+  }
+
+  h3 {
+    margin: 0;
+    color: #212121;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+  }
+
+  p {
+    margin: 0;
+    color: #212121;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0.1px;
+  }
+}

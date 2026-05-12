@@ -21,4 +21,9 @@ class PartnerViewModel
     {
         return Partner::published()->paginate(config('site.constants.paginate'));
     }
+
+    public function getBySlug(string $slug): Partner
+    {
+        return Partner::published()->where('slug', $slug)->firstOrFail();
+    }
 }

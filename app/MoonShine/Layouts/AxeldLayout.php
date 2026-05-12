@@ -32,6 +32,7 @@ use App\MoonShine\Resources\Online\OnlineResource;
 use App\MoonShine\Resources\Partner\PartnerResource;
 use App\MoonShine\Resources\Team\TeamResource;
 use App\MoonShine\Resources\Training\TrainingResource;
+use App\MoonShine\Resources\TrainingCategory\TrainingCategoryResource;
 use App\MoonShine\Resources\Useful\UsefulResource;
 use App\MoonShine\Resources\Law\LawResource;
 use App\MoonShine\Resources\News\NewsResource;
@@ -117,15 +118,12 @@ final class AxeldLayout extends AppLayout
             ]),
 
            MenuGroup::make(static fn() => __('Обучение'), [
-               MenuGroup::make(static fn() => __('Обучение'), [
-                  MenuItem::make(TrainingResource::class, 'Страницы', 'folder-plus'),
-               ]),
+               MenuItem::make(TrainingCategoryResource::class, 'Категории', 'tag'),
+               MenuItem::make(TrainingResource::class, 'Страницы', 'folder-plus'),
            ]),
 
            MenuGroup::make(static fn() => __('Консалтинг'), [
-               MenuGroup::make(static fn() => __('Консалтинг'), [
                   MenuItem::make(ConsultingResource::class, 'Страницы', 'folder-plus'),
-               ]),
            ]),
 
            MenuGroup::make(static fn() => __('Полезное'), [
@@ -150,9 +148,7 @@ final class AxeldLayout extends AppLayout
            ]),
 
            MenuGroup::make(static fn() => __('Online'), [
-               MenuGroup::make(static fn() => __('Online'), [
                   MenuItem::make(OnlineResource::class, 'Страницы', 'folder-plus'),
-               ]),
            ]),
 /*            MenuGroup::make(static fn() => __('Страницы'), [
                 MenuItem::make(HomePage::class, 'Главная страница', 'building-library'),

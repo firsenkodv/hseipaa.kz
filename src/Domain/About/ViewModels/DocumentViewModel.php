@@ -21,4 +21,9 @@ class DocumentViewModel
     {
         return Document::published()->paginate(config('site.constants.paginate'));
     }
+
+    public function getBySlug(string $slug): Document
+    {
+        return Document::published()->where('slug', $slug)->firstOrFail();
+    }
 }

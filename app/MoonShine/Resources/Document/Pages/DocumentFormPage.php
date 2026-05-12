@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Resources\Document\Pages;
 
-use App\Enums\ContentTemplate;
+use App\Enums\Resources\FullTemplate;
 use App\Models\Document;
 use App\MoonShine\Resources\Document\DocumentResource;
 use Illuminate\Validation\Rule;
@@ -32,6 +32,8 @@ use MoonShine\UI\Fields\Select;
 use MoonShine\UI\Fields\Switcher;
 use MoonShine\UI\Fields\Text;
 use MoonShine\UI\Fields\Textarea;
+use App\Support\FileNaming;
+use Illuminate\Http\UploadedFile;
 use Throwable;
 
 /**
@@ -57,7 +59,7 @@ final class DocumentFormPage extends FormPage
                                 ]),
 
                                 Text::make('Подзаголовок', 'subtitle')->unescape(),
-                                TinyMce::make('Краткое описание', 'short_desc'),
+                                TinyMce::make('Анонс', 'short_desc'),
                             ])->columnSpan(9),
 
                             Column::make([
@@ -65,8 +67,8 @@ final class DocumentFormPage extends FormPage
                                     Switcher::make('Опубликовано', 'published')->default(1),
                                     Number::make('Сортировка', 'sorting')->default(1),
                                     Select::make('Шаблон', 'template')
-                                        ->options(ContentTemplate::toOptions())
-                                        ->default(ContentTemplate::Default->value)
+                                        ->options(FullTemplate::toOptions())
+                                        ->default(FullTemplate::Default->value)
                                         ->required(),
                                 ]),
                             ])->columnSpan(3),
@@ -84,10 +86,20 @@ final class DocumentFormPage extends FormPage
                                     ->removable(),
 
 
-                                File::make('Видео', 'video')
-                                    ->disk('public')
-                                    ->dir('content/video')
-                                    ->accept('video/*'),
+                                Collapse::make('Видео', [
+                                    Json::make('', 'video')->fields([
+                                        Image::make('Постер', 'poster')
+                                            ->disk('public')
+                                            ->dir('content/video/posters')
+                                            ->allowedExtensions(['jpg', 'png', 'jpeg', 'gif', 'svg'])
+                                            ->removable(),
+                                        File::make('Файл', 'file')
+                                            ->disk('public')
+                                            ->dir('content/video')
+                                            ->accept('video/*'),
+                                        Text::make('YouTube', 'url')->hint('Ссылка на YouTube'),
+                                    ])->vertical()->creatable(limit: 1)->removable(),
+                                ]),
 
 
                                 Collapse::make('Галерея', [
@@ -108,7 +120,9 @@ final class DocumentFormPage extends FormPage
                                         Text::make('', 'label')->hint('Заголовок'),
                                         File::make('', 'file')
                                             ->disk('public')
-                                            ->dir('content/files')->hint('Файл'),
+                                            ->dir('content/files')
+                                            ->customName(fn(UploadedFile $file) => FileNaming::deduplicate($file, 'content/files'))
+                                            ->hint('Файл'),
 
                                     ])->vertical()->creatable(limit: 100)
                                         ->removable(),

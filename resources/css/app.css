@@ -3,6 +3,8 @@
 @import 'general-style/width.scss';
 @import '@fontsource-variable/source-sans-3';
 @import '@fontsource-variable/roboto/wdth.css';
+@import '@fontsource/philosopher/cyrillic-700-italic.css';
+@import '@fontsource/philosopher/700-italic.css';
 @import 'fancybox/fancubox6.scss';
 @import 'message/flach_message.scss';
 @import 'loader_map.css';
@@ -20,8 +22,18 @@
 @import 'components/form/form-blue-component.scss';
 @import 'buttons/buttons.scss';
 @import 'templates/axeld/breadcrumbs.scss';
+@import 'templates/axeld/common/pages/about.scss';
+@import 'templates/axeld/common/pages/default.scss';
+@import 'templates/axeld/common/pages/training.scss';
+@import 'templates/axeld/common/resources/full/default.scss';
+@import 'templates/axeld/common/resources/full/full.scss';
+@import 'templates/axeld/common/resources/full/training.scss';
+@import 'templates/axeld/common/resources/teaser/default.scss';
+@import 'templates/axeld/common/resources/teaser/default.scss';
+@import 'templates/axeld/breadcrumbs.scss';
 @import 'templates/axeld/content.scss';
 @import 'templates/axeld/header.scss';
+@import 'templates/axeld/city-selector.scss';
 @import 'templates/axeld/footer.scss';
 @import 'style.scss';
 

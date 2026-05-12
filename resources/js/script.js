@@ -12,6 +12,7 @@ import {flash_message} from "./include/flash_message/flash_message";
 import {datepicker_accountant_ticket_date, datepicker_date_birthday} from "./include/datepicker/datepicker";
 import {trix} from "./include/editor/trix";
 import {faqAccordion} from "./include/site/faq";
+import {citySelector} from "./include/site/city-selector";
 
 
 
@@ -28,4 +29,5 @@ document.addEventListener('DOMContentLoaded', function () {
     datepicker_accountant_ticket_date() // календарик (Дата выдачи сертификата профессионального бухгалтера)
     trix() //редактор
     faqAccordion() // FAQ аккордеон
+    citySelector() // выбор города
 });

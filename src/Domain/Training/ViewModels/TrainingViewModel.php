@@ -17,8 +17,17 @@ class TrainingViewModel
         return new Fluent(Setting::getGroup('obuchenie')->data ?? []);
     }
 
-    public function getPublished(): LengthAwarePaginator
+    public function getPublished(?string $categorySlug = null, ?string $search = null): LengthAwarePaginator
     {
-        return Training::published()->paginate(config('site.constants.paginate'));
+        return Training::with('categories')
+            ->published()
+            ->when($categorySlug, fn($q) => $q->whereHas('categories', fn($q) => $q->where('training_categories.slug', $categorySlug)))
+            ->when($search, fn($q) => $q->where('title', 'like', '%' . $search . '%'))
+            ->paginate(config('site.constants.paginate'));
+    }
+
+    public function getBySlug(string $slug): Training
+    {
+        return Training::published()->where('slug', $slug)->firstOrFail();
     }
 }

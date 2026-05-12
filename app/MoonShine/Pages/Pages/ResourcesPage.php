@@ -22,6 +22,7 @@ use MoonShine\UI\Components\Tabs\Tab;
 use MoonShine\UI\Fields\ID;
 use MoonShine\UI\Fields\Json;
 use App\Enums\Pages\PageTemplate;
+use App\Enums\Resources\TeaserTemplate;
 use MoonShine\UI\Fields\Select;
 use MoonShine\UI\Fields\Switcher;
 use MoonShine\UI\Fields\Text;
@@ -63,6 +64,8 @@ class ResourcesPage extends Page
                                 Column::make([
                                     Box::make([
                                         Text::make('Заголовок', 'title')->required()->unescape(),
+                                        Text::make('Для меню', 'menu_title')->unescape(),
+                                        Textarea::make('Краткое описание', 'short_desc')->unescape(),
                                     ]),
                                 ])->columnSpan(9),
 
@@ -70,10 +73,14 @@ class ResourcesPage extends Page
                                     Box::make([
                                         Divider::make('Статус публикации'),
                                         Switcher::make('Опубликовано', 'published')->default(1),
-                                        Divider::make('Шаблон вывода материалов'),
+                                        Divider::make('Шаблон вывода'),
                                         Select::make('Шаблон', 'page_template')
                                             ->options(PageTemplate::toOptions())
-                                            ->default(PageTemplate::Width->value),
+                                            ->default(PageTemplate::Default->value),
+                                        Divider::make('Шаблон внутренних страниц'),
+                                        Select::make('Анонс', 'section_template')
+                                            ->options(TeaserTemplate::toOptions())
+                                            ->default(TeaserTemplate::Default->value),
                                     ]),
                                 ])->columnSpan(3),
                             ]),

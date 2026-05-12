@@ -21,4 +21,9 @@ class TeamViewModel
     {
         return Team::published()->paginate(config('site.constants.paginate'));
     }
+
+    public function getBySlug(string $slug): Team
+    {
+        return Team::published()->where('slug', $slug)->firstOrFail();
+    }
 }

@@ -26,6 +26,7 @@ use App\MoonShine\Resources\Consulting\ConsultingResource;
 use App\MoonShine\Resources\Document\DocumentResource;
 use App\MoonShine\Resources\Online\OnlineResource;
 use App\MoonShine\Resources\Training\TrainingResource;
+use App\MoonShine\Resources\TrainingCategory\TrainingCategoryResource;
 use App\MoonShine\Resources\Useful\UsefulResource;
 use MoonShine\Contracts\Core\DependencyInjection\CoreContract;
 use MoonShine\Laravel\DependencyInjection\MoonShine;
@@ -52,6 +53,7 @@ class MoonShineServiceProvider extends ServiceProvider
                 AboutResource::class,
                 DocumentResource::class,
                 TrainingResource::class,
+                TrainingCategoryResource::class,
                 ConsultingResource::class,
                 UsefulResource::class,
                 OnlineResource::class,

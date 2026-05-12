@@ -21,4 +21,9 @@ class ConsultingViewModel
     {
         return Consulting::published()->paginate(config('site.constants.paginate'));
     }
+
+    public function getBySlug(string $slug): Consulting
+    {
+        return Consulting::published()->where('slug', $slug)->firstOrFail();
+    }
 }

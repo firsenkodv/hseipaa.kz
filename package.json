@@ -17,6 +17,7 @@
         "@fancyapps/ui": "^6.1.14",
         "@fontsource-variable/roboto": "^5.2.10",
         "@fontsource-variable/source-sans-3": "^5.2.9",
+        "@fontsource/philosopher": "^5.2.8",
         "axios": "^1.16.0",
         "imask": "^7.6.1",
         "sass": "^1.99.0",

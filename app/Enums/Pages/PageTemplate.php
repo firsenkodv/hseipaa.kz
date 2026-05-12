@@ -6,27 +6,28 @@ namespace App\Enums\Pages;
 
 enum PageTemplate: string
 {
-    case Width = 'width';
-    case Column = 'column';
-
+    case Default = 'default';
+    case About = 'about';
+    case Training = 'training';
 
     public function label(): string
     {
         return match($this) {
-            self::Width => 'Во всю ширину',
-            self::Column => 'Колонками',
+            self::Default => 'Стандартный',
+            self::About => 'О нас',
+            self::Training => 'Обучение',
+
         };
     }
 
     public function view(string $section): string
     {
-        $specific = "pages.{$section}.templates.{$this->value}";
-        $common   = "pages.common.templates.{$this->value}";
+        $specific = "pages.{$section}.pages.templates.{$this->value}";
+        $common   = "pages.common.pages.templates.{$this->value}";
 
         if (view()->exists($specific)) return $specific;
-        if (view()->exists($common))   return $common;
 
-        return "pages.common.templates." . self::Width->value;
+        return $common;
     }
 
     public static function toOptions(): array

@@ -484,7 +484,7 @@ if (!function_exists('intervention')) {
 
         if (!$storage->exists($resultPaht)) {
 
-            $image = Image::read($storage->path($realPath));
+            $image = Image::decode($storage->path($realPath));
 
 
             [$w, $h] = explode('x', $size);

@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Resources\Training\Pages;
 
-use App\Enums\ContentTemplate;
+use App\Enums\Resources\FullTemplate;
 use App\Models\Training;
 use App\MoonShine\Resources\Training\TrainingResource;
 use MoonShine\Contracts\Core\TypeCasts\DataWrapperContract;
 use MoonShine\Contracts\UI\ComponentContract;
 use MoonShine\Contracts\UI\FieldContract;
 use MoonShine\Contracts\UI\FormBuilderContract;
+use App\MoonShine\Resources\TrainingCategory\TrainingCategoryResource;
+use MoonShine\Laravel\Fields\Relationships\BelongsToMany;
 use MoonShine\Laravel\Fields\Slug;
 use MoonShine\Laravel\Pages\Crud\FormPage;
 use MoonShine\Support\ListOf;
@@ -18,6 +20,7 @@ use MoonShine\TinyMce\Fields\TinyMce;
 use MoonShine\UI\Components\Collapse;
 use MoonShine\UI\Components\Layout\Box;
 use MoonShine\UI\Components\Layout\Column;
+use MoonShine\UI\Components\Layout\Divider;
 use MoonShine\UI\Components\Layout\Grid;
 use MoonShine\UI\Components\Tabs;
 use MoonShine\UI\Components\Tabs\Tab;
@@ -30,6 +33,8 @@ use MoonShine\UI\Fields\Select;
 use MoonShine\UI\Fields\Switcher;
 use MoonShine\UI\Fields\Text;
 use MoonShine\UI\Fields\Textarea;
+use App\Support\FileNaming;
+use Illuminate\Http\UploadedFile;
 use Throwable;
 
 /**
@@ -54,7 +59,7 @@ final class TrainingFormPage extends FormPage
                                     Slug::make('Slug', 'slug')->from('title')->unique()->locked(),
                                 ]),
                                 Text::make('Подзаголовок', 'subtitle')->unescape(),
-                                TinyMce::make('Краткое описание', 'short_desc'),
+                                TinyMce::make('Анонс', 'short_desc'),
                             ])->columnSpan(9),
 
                             Column::make([
@@ -62,9 +67,12 @@ final class TrainingFormPage extends FormPage
                                     Switcher::make('Опубликовано', 'published')->default(1),
                                     Number::make('Сортировка', 'sorting')->default(1),
                                     Select::make('Шаблон', 'template')
-                                        ->options(ContentTemplate::toOptions())
-                                        ->default(ContentTemplate::Default->value)
+                                        ->options(FullTemplate::toOptions())
+                                        ->default(FullTemplate::Default->value)
                                         ->required(),
+                                    BelongsToMany::make('Категории', 'categories', resource: TrainingCategoryResource::class)
+                                        ->selectMode()
+                                        ->searchable(),
                                 ]),
                             ])->columnSpan(3),
                         ]),
@@ -79,10 +87,20 @@ final class TrainingFormPage extends FormPage
                                     ->allowedExtensions(['jpg', 'png', 'jpeg', 'gif', 'svg'])
                                     ->removable(),
 
-                                File::make('Видео', 'video')
-                                    ->disk('public')
-                                    ->dir('content/video')
-                                    ->accept('video/*'),
+                                Collapse::make('Видео', [
+                                    Json::make('', 'video')->fields([
+                                        Image::make('Постер', 'poster')
+                                            ->disk('public')
+                                            ->dir('content/video/posters')
+                                            ->allowedExtensions(['jpg', 'png', 'jpeg', 'gif', 'svg'])
+                                            ->removable(),
+                                        File::make('Файл', 'file')
+                                            ->disk('public')
+                                            ->dir('content/video')
+                                            ->accept('video/*'),
+                                        Text::make('YouTube', 'url')->hint('Ссылка на YouTube'),
+                                    ])->vertical()->creatable(limit: 1)->removable(),
+                                ]),
 
                                 Collapse::make('Галерея', [
                                     Json::make('', 'gallery')->fields([
@@ -100,7 +118,9 @@ final class TrainingFormPage extends FormPage
                                         Text::make('', 'label')->hint('Заголовок'),
                                         File::make('', 'file')
                                             ->disk('public')
-                                            ->dir('content/files')->hint('Файл'),
+                                            ->dir('content/files')
+                                            ->customName(fn(UploadedFile $file) => FileNaming::deduplicate($file, 'content/files'))
+                                            ->hint('Файл'),
                                     ])->vertical()->creatable(limit: 100)->removable(),
                                 ]),
                             ])->columnSpan(9),
@@ -129,6 +149,64 @@ final class TrainingFormPage extends FormPage
                         Text::make('Ключевые слова', 'keywords')->unescape(),
                         Textarea::make('Скрипт', 'script')->unescape(),
                     ])->icon('magnifying-glass'),
+
+                    Tab::make('Курс', [
+                        Grid::make([
+
+
+                            Column::make([
+                                Divider::make('Покупка'),
+                                Collapse::make('', [
+                                    Text::make('Заголовок', 'buy_title')->unescape(),
+                                    Text::make('Краткое описание', 'buy_desc')->unescape(),
+                                    Text::make('Календарь', 'buy_calendar')->unescape(),
+                                    Text::make('Часы', 'buy_hours')->unescape(),
+                                    Text::make('Сертификат', 'buy_certificate')->unescape(),
+                                    Number::make('Старая цена', 'buy_old_price'),
+                                    Number::make('Новая цена', 'buy_new_price'),
+                                ]),
+                                Divider::make('О курсе'),
+
+                                Collapse::make('', [
+
+                                    Text::make('Название', 'course_title')->unescape(),
+                                    Text::make('Краткое описание', 'course_desc')->unescape(),
+                                    Json::make('Блоки', 'course_items')->fields([
+                                        Text::make('Заголовок', 'title'),
+                                        Textarea::make('Краткое описание', 'desc'),
+                                    ])->vertical()->creatable(limit: 20)->removable(),
+                                ]),
+                                Divider::make('Что вы получаете'),
+
+                                Collapse::make('Что вы получаете', [
+                                    Text::make('Заголовок', 'get_title')->unescape(),
+                                    Json::make('Пункты', 'get_items')->fields([
+                                        Text::make('Название', 'name'),
+                                    ])->vertical()->creatable(limit: 50)->removable(),
+                                ]),
+                                Divider::make('Преимущества'),
+
+                                Collapse::make('', [
+                                    Text::make('Заголовок', 'adv_title')->unescape(),
+                                    Text::make('Краткое описание', 'adv_desc')->unescape(),
+                                    Json::make('Карточки', 'adv_items')->fields([
+                                        Text::make('Заголовок', 'title'),
+                                        Textarea::make('Описание', 'desc'),
+                                    ])->vertical()->creatable(limit: 20)->removable(),
+                                ]),
+
+                                Divider::make('Требования к кандидатам'),
+                                Collapse::make('', [
+                                    Text::make('Заголовок', 'req_title')->unescape(),
+                                    Text::make('Краткое описание', 'req_desc')->unescape(),
+                                    Json::make('Карточки', 'req_items')->fields([
+                                        Text::make('Заголовок', 'title'),
+                                        Textarea::make('Описание', 'desc'),
+                                    ])->vertical()->creatable(limit: 20)->removable(),
+                                ]),
+                            ])->columnSpan(9),
+                        ]),
+                    ])->icon('academic-cap'),
 
                     Tab::make('Дополнительно', [
                         Column::make([

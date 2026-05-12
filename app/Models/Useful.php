@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enums\ContentTemplate;
+use App\Enums\Resources\FullTemplate;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -46,7 +46,8 @@ class Useful extends Model
         return [
             'published' => 'integer',
             'sorting'   => 'integer',
-            'template'  => ContentTemplate::class,
+            'template'  => FullTemplate::class,
+            'video'     => 'array',
             'gallery'   => 'array',
             'files'     => 'array',
             'faq'       => 'array',
