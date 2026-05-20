@@ -2,6 +2,7 @@
 
 namespace App\Jobs\Form;
 
+use App\Bitrix24\SaveContact;
 use App\Mail\Form\CallMeBlueMail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
@@ -17,6 +18,14 @@ class CallMeBlueJob implements ShouldQueue
 
     public function handle(): void
     {
+        SaveContact::make()->save([
+            'name'         => $this->data['ФИО'],
+            'phone'        => $this->data['Телефон'],
+            'email'        => $this->data['Email'],
+            'type'         => 'individual',
+            'organization' => '',
+        ]);
+
         $recipients = $this->emails();
 
         if (empty($recipients)) {

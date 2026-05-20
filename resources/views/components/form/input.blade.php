@@ -7,7 +7,7 @@
 
 <div class="input-group app_input_group">
     <input
-        class="input-group__input app_input_name"
+        class="input-group__input app_input_name {{ $type === 'tel' ? 'imask' : '' }}"
         name="{{ $name }}"
         type="{{ $type }}"
         placeholder=" "

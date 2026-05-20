@@ -158,6 +158,35 @@ class SocialPage extends Page
                             ]),
 
                         ])->icon('bars-3'),
+
+                        Tab::make('Битрикс24', [
+                            Grid::make([
+                                Column::make([
+
+
+                                                Text::make('', 'bx_webhook')->hint('BX_WEBHOOK')->locked(),
+                                                Text::make('', 'bx_resp_id')->hint('BX_RESP_ID')->locked(),
+                                                Text::make('', 'bx_email_to')->hint('Email')->locked(),
+
+                                                Box::make([
+                                                    Json::make('Формы', 'b24')->fields([
+                                                        Select::make('Опции', 'json_forms')
+                                                            ->options(
+                                                                [
+                                                                    'service'=> 'Услуги медиации',
+                                                                    'training'=> 'Обучение медиации',
+                                                                ]
+                                                            )->required(),
+                                                        Text::make('', 'bx_section_id')->hint('BX_SECTION_ID')->locked(),
+                                                    ])->creatable(limit: 2)
+                                                        ->removable(),
+                                                    ])
+
+                                ])->columnSpan(8),
+
+                            ]),
+
+                        ])->icon('bell-snooze'),
                     ]),
                 ]),
             ])
