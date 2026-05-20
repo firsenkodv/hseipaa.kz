@@ -14,7 +14,7 @@
                 <p class="banner-subtitle">мы занимаемся профессиональной подготовкой и повышением квалификации специалистов в области экономики и финансов.</p>
                 <div class="banner-buttons">
                     <a href="{{ route('training') }}" class="banner-btn-primary">Начать обучение</a>
-                    <a href="{{ route('consulting') }}" class="banner-btn-secondary">Получить консультацию</a>
+                    <a href="#" class="banner-btn-secondary open-fancybox" data-form="consult_me">Получить консультацию</a>
                 </div>
             </div>
             <div class="banner-right">

@@ -95,6 +95,33 @@ class TeamPage extends Page
                             ]),
                         ])->icon('photo'),
 
+                        Tab::make('Команда', [
+                            Text::make('Заголовок', 'komanda_title')->unescape(),
+                            Textarea::make('Описание', 'komanda_desc')->unescape(),
+                            Json::make('Список', 'komanda_items')->fields([
+                                Text::make('Заголовок', 'title')->unescape(),
+                                Textarea::make('Описание', 'desc')->unescape(),
+                            ])->vertical()->creatable()->removable(),
+                        ])->icon('user-group'),
+
+                        Tab::make('Как', [
+                            Text::make('Заголовок', 'kak_title')->unescape(),
+                            Textarea::make('Описание', 'kak_desc')->unescape(),
+                            Json::make('Список', 'kak_items')->fields([
+                                Text::make('Заголовок', 'title')->unescape(),
+                                Textarea::make('Описание', 'desc')->unescape(),
+                            ])->vertical()->creatable()->removable(),
+                        ])->icon('list-bullet'),
+
+                        Tab::make('Сила', [
+                            Text::make('Заголовок', 'sila_title')->unescape(),
+                            Textarea::make('Описание', 'sila_desc')->unescape(),
+                            Json::make('Список', 'sila_items')->fields([
+                                Text::make('Заголовок', 'title')->unescape(),
+                                Textarea::make('Описание', 'desc')->unescape(),
+                            ])->vertical()->creatable()->removable(),
+                        ])->icon('bolt'),
+
                         Tab::make('SEO', [
                             Text::make('Мета-заголовок', 'metatitle')->unescape(),
                             Text::make('Мета-описание', 'description')->unescape(),

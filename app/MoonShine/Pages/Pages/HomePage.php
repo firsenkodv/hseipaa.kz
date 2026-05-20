@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace App\MoonShine\Pages\Pages;
 
 use App\Models\Setting;
-use Illuminate\Http\Request;
 use MoonShine\Crud\JsonResponse;
-use MoonShine\Laravel\Fields\Slug;
 use MoonShine\Laravel\Pages\Page;
+use MoonShine\Laravel\TypeCasts\ModelCaster;
 use MoonShine\Support\Attributes\AsyncMethod;
 use MoonShine\Support\Enums\ToastType;
 use MoonShine\TinyMce\Fields\TinyMce;
@@ -20,12 +19,10 @@ use MoonShine\UI\Components\Layout\Divider;
 use MoonShine\UI\Components\Layout\Grid;
 use MoonShine\UI\Components\Tabs;
 use MoonShine\UI\Components\Tabs\Tab;
-use MoonShine\UI\Fields\File;
 use MoonShine\UI\Fields\ID;
 use MoonShine\UI\Fields\Image;
 use MoonShine\UI\Fields\Json;
 use MoonShine\UI\Fields\Number;
-use MoonShine\UI\Fields\Select;
 use MoonShine\UI\Fields\Switcher;
 use MoonShine\UI\Fields\Text;
 use MoonShine\UI\Fields\Textarea;
@@ -43,11 +40,9 @@ class HomePage extends Page
     }
 
     #[AsyncMethod]
-    public function store(Request $request): JsonResponse
+    public function store(): JsonResponse
     {
-        $setting = $this->getSetting();
-        $setting->data = $request->except(['_token', '_method']);
-        $setting->save();
+        $this->form()->apply(fn(Setting $item) => $item->save());
 
         return JsonResponse::make()->toast('Сохранено', ToastType::SUCCESS);
     }
@@ -56,7 +51,7 @@ class HomePage extends Page
     {
         return FormBuilder::make()
             ->asyncMethod('store')
-            ->fill($this->getSetting()->data ?? [])
+            ->fillCast($this->getSetting(), new ModelCaster(Setting::class))
             ->fields([
                 Box::make([
                     Tabs::make([
@@ -80,16 +75,35 @@ class HomePage extends Page
                             ]),
                         ])->icon('document-text'),
 
+                        Tab::make('Слайдер', [
+                            Json::make('Слайды', 'slider')->fields([
+                                Image::make('Изображение', 'img')
+                                    ->disk('public')
+                                    ->dir('images/slider/slides')
+                                    ->allowedExtensions(['jpg', 'jpeg', 'png', 'webp'])
+                                    ->removable(),
+                                Text::make('Ссылка', 'href')->unescape(),
+                            ])->vertical()->creatable()->removable(),
+                        ])->icon('photo'),
+
                         Tab::make('Медиа', [
                             Grid::make([
 
                                 Column::make([
+
+
+                                    Image::make(__('Изображение на всю ширину'), 'img2')
+                                        ->disk('public')
+                                        ->dir('content/images')
+                                        ->allowedExtensions(['jpg', 'png', 'jpeg', 'gif', 'svg'])
+                                        ->removable(),
+
                                     Divider::make('НЕ пишите заголовок h1 в описании'),
 
                                     TinyMce::make('Описание', 'desc'),
                                 ])->columnSpan(12),
                             ]),
-                        ])->icon('photo'),
+                        ])->icon('document-text'),
 
                         Tab::make('SEO', [
                             Text::make('Мета-заголовок', 'metatitle')->unescape(),

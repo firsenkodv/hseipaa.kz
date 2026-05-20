@@ -38,18 +38,26 @@
                 <a href="#" class="footer-link">Содержание CAP</a>
             </div>
             <div class="footer-col footer-col--contacts">
-                <a href="tel:+77272242121" class="footer-phone">+7 (727) 224 21 21</a>
-                <a href="mailto:sayhi@hseiipa.kz" class="footer-email">sayhi@hseiipa.kz</a>
+                @if(!empty($social['phone']))
+                <a href="tel:{{ $social['phone'] }}" class="footer-phone">{{ format_phone($social['phone']) }}</a>
+                @endif
+                @if(!empty($social['email']))
+                <a href="mailto:{{ $social['email'] }}" class="footer-email">{{ $social['email'] }}</a>
+                @endif
                 <x-socials.socials class="footer-social" btn-class="footer-social-btn" />
                 <div class="footer-apps">
-                    <a href="#" class="footer-app-link">
+                    @if(!empty($social['app_store']))
+                    <a href="{{ $social['app_store'] }}" class="footer-app-link" target="_blank" rel="noopener">
                         <img src="{{ Storage::url('/images/icons/footer/applestore.svg') }}" alt="App Store" class="footer-app-icon" />
                         Скачать в App Store
                     </a>
-                    <a href="#" class="footer-app-link">
+                    @endif
+                    @if(!empty($social['google_play']))
+                    <a href="{{ $social['google_play'] }}" class="footer-app-link" target="_blank" rel="noopener">
                         <img src="{{ Storage::url('/images/icons/footer/googlepay.svg') }}" alt="Google Play" class="footer-app-icon footer-app-icon--small" />
                         Скачать в Google Play
                     </a>
+                    @endif
                 </div>
             </div>
         </nav>
@@ -57,7 +65,7 @@
         <div class="footer-divider"></div>
 
         <div class="footer-bottom">
-            <p>© 2006 - 2021 «Высшая Школа Экономики Институт профессиональных бухгалтеров и аудиторов»</p>
+            <p>© 2006 - {{ date("Y") }} «Высшая Школа Экономики Институт профессиональных бухгалтеров и аудиторов»</p>
         </div>
 
     </div>

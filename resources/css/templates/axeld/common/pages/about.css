@@ -84,6 +84,7 @@
 }
 .banner-btn-primary:hover {
   opacity: 0.88;
+  color: #282828;
 }
 
 .banner-btn-secondary {

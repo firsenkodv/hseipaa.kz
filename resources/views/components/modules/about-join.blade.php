@@ -5,24 +5,30 @@
             <p>Станьте частью сообщества профессионалов. Получите качественное образование и откройте новые возможности для карьерного роста.</p>
             <div class="join-buttons">
                 <a href="{{ route('training') }}" class="join-btn-primary">Начать обучение</a>
-                <a href="{{ route('consulting') }}" class="join-btn-secondary">Получить консультацию</a>
+                <a href="#" class="join-btn-secondary open-fancybox" data-form="consult_me">Получить консультацию</a>
             </div>
         </div>
         <div class="join-divider"></div>
         <div class="join-contacts">
             <div class="join-phone">
                 <span>Связь с нами в один клик, звоните.</span>
-                <a href="tel:+77272242121">+7 (727) 224 21 21</a>
+                @if(!empty($social['phone']))
+                <a href="tel:{{ $social['phone'] }}">{{ format_phone($social['phone']) }}</a>
+                @endif
             </div>
             <div class="join-messengers">
                 <span>свяжитесь с нами в мессенджерах</span>
                 <div class="join-messenger-icons">
-                    <a href="#" class="join-messenger-btn" aria-label="WhatsApp">
+                    @if(!empty($social['whatsapp']))
+                    <a href="{{ $social['whatsapp'] }}" class="join-messenger-btn" aria-label="WhatsApp" target="_blank" rel="noopener">
                         <img src="{{ Storage::url('about/icons/whatsapp.svg') }}" alt="WhatsApp" width="46" height="46" />
                     </a>
-                    <a href="#" class="join-messenger-btn" aria-label="Telegram">
+                    @endif
+                    @if(!empty($social['telegram']))
+                    <a href="{{ $social['telegram'] }}" class="join-messenger-btn" aria-label="Telegram" target="_blank" rel="noopener">
                         <img src="{{ Storage::url('about/icons/telegram.svg') }}" alt="Telegram" width="46" height="46" />
                     </a>
+                    @endif
                 </div>
             </div>
         </div>

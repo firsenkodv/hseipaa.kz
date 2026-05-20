@@ -31,6 +31,7 @@
     </main>
 </div><!--.content_-->
 @include('templates.axeld.footer')
+<x-ui.toast-promo />
 </body>
 </html>
 

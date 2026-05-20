@@ -27,7 +27,7 @@ final class TrainingIndexPage extends IndexPage
             ID::make(),
             Image::make(__('Изображение'), 'img'),
             Text::make('Заголовок', 'title')->unescape()->updateOnPreview(),
-            Text::make('Шаблон', 'template', fn($item) => $item->template?->value ?? ''),
+            Text::make('Шаблон', 'template', fn($item) => $item->template?->label() ?? ''),
             Preview::make('Категории', 'categories', fn($item) => $item->categories->pluck('title')->implode(', ')),
             Switcher::make('Опубликовано', 'published')->updateOnPreview(),
             Text::make('Сортировка', 'sorting')->updateOnPreview(),

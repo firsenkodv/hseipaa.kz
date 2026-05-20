@@ -1,11 +1,11 @@
-.schedule {
+section.schedule {
   background: #575eef;
   color: #fff;
   padding: 52px 0;
   overflow: hidden;
   height: auto;
 }
-.schedule h2 {
+section.schedule h2 {
   margin: 0;
 }
 

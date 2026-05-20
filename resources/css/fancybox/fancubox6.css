@@ -3,6 +3,12 @@
   padding: 0 !important;
 }
 
+.f-iframe {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+}
+
 .modal-form-container {
   position: relative;
   max-width: 900px;
@@ -19,6 +25,9 @@
   width: 100%;
 }
 .modal-form-container .modal_padding {
+  padding: 0;
+}
+.modal-form-container .modal_content {
   padding: 24px;
 }
 .modal-form-container .form_title {
@@ -37,6 +46,11 @@
   font-size: 16px;
   line-height: 1.2em;
   padding: 0 0 5px 0;
+}
+.modal-form-container .form_title .form_title__sub {
+  color: #667085;
+  font-size: 16px;
+  line-height: 1.4em;
 }
 .modal-form-container .cabinet-msg-item {
   margin-bottom: 16px;
@@ -159,6 +173,52 @@
   .modal-form-container.mini {
     max-width: 742px;
     width: 100%;
+  }
+}
+.schedule-enroll-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 20px;
+  margin-bottom: 8px;
+  border-radius: 12px;
+  background: #fff8f6;
+  border: 1px solid rgba(239, 83, 63, 0.14);
+}
+.schedule-enroll-meta__item {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  font-size: 16px;
+  line-height: 22px;
+}
+.schedule-enroll-meta__item span {
+  flex: 0 0 90px;
+  color: #667085;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.schedule-enroll-meta__item strong {
+  flex: 1;
+  color: #282828;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 468px) {
+  .modal_content {
+    padding: 16px;
+  }
+  .form_title {
+    padding-bottom: 20px;
+  }
+  .form_title .form_title__h1 {
+    font-size: 22px;
+  }
+  .schedule-enroll-meta__item {
+    flex-direction: column;
+    gap: 2px;
   }
 }
 

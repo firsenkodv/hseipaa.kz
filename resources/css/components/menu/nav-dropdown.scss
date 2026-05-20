@@ -1,0 +1,219 @@
+// ============================================================
+// NAV DROPDOWN — выпадающее меню навигации
+// ============================================================
+
+$nd-brand:    #f84e40;
+$nd-dark:     #1f1f22;
+$nd-gray:     #7a7a7a;
+$nd-border:   #e8e8e8;
+$nd-bg-hover: #f5f5f7;
+
+// --- Обёртка пункта с дропдауном ---
+// По умолчанию static — мега-меню позиционируется относительно .header-inner (полная ширина)
+// Модификатор --simple возвращает relative — дропдаун открывается под конкретной вкладкой
+
+.header-nav-item {
+    position: static;
+}
+
+.has-dropdown--simple {
+    position: relative;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+}
+
+// Контейнер навбара становится точкой отсчёта для мега-меню
+
+.header-nav-bar .header-inner {
+    position: relative;
+}
+
+// --- Обёртка: ссылка + шеврон в одну строку ---
+
+.header-nav-link-wrap {
+    display: flex;
+    align-items: center;
+
+    // Активное состояние передаётся на вложенную ссылку
+    &.header-nav-link--active .header-nav-link {
+        color: #f84e40;
+        font-weight: 500;
+    }
+}
+
+// --- Кнопка-шеврон (только иконка, без оформления) ---
+
+.header-nav-chevron-btn {
+    display: flex;
+    align-items: center;
+    padding: 6px 4px 6px 2px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    line-height: 0;
+}
+
+// --- Шеврон ---
+
+.nav-dropdown-chevron {
+    flex-shrink: 0;
+    transition: transform 0.22s ease;
+}
+
+.has-dropdown.is-open .nav-dropdown-chevron,
+.has-dropdown:hover .nav-dropdown-chevron {
+    transform: rotate(180deg);
+}
+
+// --- Дропдаун-панель ---
+
+.nav-dropdown {
+    position: absolute;
+    top: calc(100% + 1px);
+    left: 0;
+    right: 0;
+    width: auto;
+    transform: translateY(8px) scale(0.99);
+    padding: 20px 20px 24px;
+    background: #fff;
+    border: 1px solid $nd-border;
+    border-top: none;
+    border-radius: 0 0 14px 14px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.10);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+    z-index: 100;
+}
+
+// Открытое состояние — по hover и по классу .is-open
+
+.has-dropdown:hover .nav-dropdown,
+.has-dropdown.is-open .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+// --- Сетка колонок (4 колонки = 4 категории в ряд) ---
+
+.nav-dropdown-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0 8px;
+}
+
+// --- Колонка (одна категория) ---
+
+.nav-dropdown-col {
+    display: flex;
+    flex-direction: column;
+    padding: 0 4px;
+
+    & + & {
+        border-left: 1px solid $nd-border;
+    }
+}
+
+// --- Заголовок категории ---
+
+.nav-dropdown-cat-title {
+    display: block;
+    padding: 8px 10px 10px;
+    font-size: 13px;
+    font-weight: 700;
+    color: $nd-gray;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    transition: color 0.15s;
+
+    &:hover {
+        color: $nd-brand;
+    }
+}
+
+// --- Простой дропдаун (О нас, Полезное) ---
+
+.nav-dropdown--simple {
+    left: 0;
+    right: auto;
+    width: 300px;
+    padding: 8px;
+    top: calc(100% + 9px);
+    border-top: 1px solid $nd-border;
+    border-radius: 0 0 12px 12px;
+}
+
+.nav-dropdown-link {
+    display: block;
+    padding: 9px 12px;
+    font-size: 15px;
+    font-weight: 400;
+    color: $nd-dark;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+
+    &:hover {
+        background: $nd-bg-hover;
+        color: $nd-brand;
+    }
+
+    &--active {
+        color: $nd-brand;
+        font-weight: 500;
+        background: #fe524414;
+    }
+}
+
+// --- Список ссылок внутри колонки ---
+
+.nav-dropdown-items {
+    display: flex;
+    flex-direction: column;
+    padding: 4px 0 8px;
+    margin: 0 0 6px 0;
+}
+
+// --- Пункт дропдауна (курс/программа) ---
+
+.nav-dropdown-item {
+    display: block;
+    padding: 7px 10px;
+    font-size: 15px;
+    font-weight: 400;
+    color: $nd-dark;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.15s, color 0.15s;
+    line-height: 1.4;
+
+    &:hover {
+        background: $nd-bg-hover;
+        color: $nd-brand;
+    }
+
+    &--active {
+        color: $nd-brand;
+        font-weight: 500;
+        background: #fe524414;
+    }
+}
+
+// ============================================================
+// MEDIA — скрываем дропдаун на мобильных (там работает бургер-меню)
+// ============================================================
+
+@media (max-width: 768px) {
+    .nav-dropdown {
+        display: none;
+    }
+
+    .nav-dropdown-chevron {
+        display: none;
+    }
+}

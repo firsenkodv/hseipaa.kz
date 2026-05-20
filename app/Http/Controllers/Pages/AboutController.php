@@ -4,10 +4,14 @@ namespace App\Http\Controllers\Pages;
 
 use App\Enums\Pages\PageTemplate;
 use App\Enums\Resources\TeaserTemplate;
+use Domain\About\ViewModels\AboutCompanyViewModel;
 use Domain\About\ViewModels\AboutViewModel;
+use Domain\About\ViewModels\ClientsViewModel;
+use Domain\About\ViewModels\CooperationViewModel;
 use Domain\About\ViewModels\DocumentViewModel;
 use Domain\About\ViewModels\PartnerViewModel;
 use Domain\About\ViewModels\TeamViewModel;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\View\View;
 
 class AboutController extends PageController
@@ -129,6 +133,54 @@ class AboutController extends PageController
             'page'     => $page,
             'item'     => $item,
             'resource' => 'documents',
+        ]);
+    }
+
+    public function clients(): View
+    {
+        $vm   = ClientsViewModel::make();
+        $page = $vm->getPageData();
+
+        return view('pages.about.list', [
+            'page'            => $page,
+            'items'           => new LengthAwarePaginator([], 0, 15),
+            'pageSuffix'      => '',
+            'template'        => PageTemplate::from($page->page_template ?? PageTemplate::Default->value),
+            'teaser_template' => TeaserTemplate::from($page->section_template ?? TeaserTemplate::Default->value),
+            'section'         => 'about.clients',
+            'route'           => null,
+        ]);
+    }
+
+    public function aboutCompany(): View
+    {
+        $vm   = AboutCompanyViewModel::make();
+        $page = $vm->getPageData();
+
+        return view('pages.about.list', [
+            'page'            => $page,
+            'items'           => new LengthAwarePaginator([], 0, 15),
+            'pageSuffix'      => '',
+            'template'        => PageTemplate::from($page->page_template ?? PageTemplate::Default->value),
+            'teaser_template' => TeaserTemplate::from($page->section_template ?? TeaserTemplate::Default->value),
+            'section'         => 'about.company',
+            'route'           => null,
+        ]);
+    }
+
+    public function cooperation(): View
+    {
+        $vm   = CooperationViewModel::make();
+        $page = $vm->getPageData();
+
+        return view('pages.about.list', [
+            'page'            => $page,
+            'items'           => new LengthAwarePaginator([], 0, 15),
+            'pageSuffix'      => '',
+            'template'        => PageTemplate::from($page->page_template ?? PageTemplate::Default->value),
+            'teaser_template' => TeaserTemplate::from($page->section_template ?? TeaserTemplate::Default->value),
+            'section'         => 'about.cooperation',
+            'route'           => null,
         ]);
     }
 }

@@ -23,11 +23,12 @@ use MoonShine\UI\Components\Layout\Flex;
 use MoonShine\UI\Components\Layout\Grid;
 use MoonShine\UI\Components\Tabs;
 use MoonShine\UI\Components\Tabs\Tab;
+use MoonShine\UI\Fields\Date;
 use MoonShine\UI\Fields\File;
 use MoonShine\UI\Fields\ID;
 use MoonShine\UI\Fields\Image;
 use MoonShine\UI\Fields\Json;
-use MoonShine\UI\Fields\Number;
+use MoonShine\UI\Fields\DateTime;
 use MoonShine\UI\Fields\Select;
 use MoonShine\UI\Fields\Switcher;
 use MoonShine\UI\Fields\Text;
@@ -65,7 +66,7 @@ final class DocumentFormPage extends FormPage
                             Column::make([
                                 Box::make([
                                     Switcher::make('Опубликовано', 'published')->default(1),
-                                    Number::make('Сортировка', 'sorting')->default(1),
+                                    Date::make('Дата', 'created_at')->format('d-m-Y'),
                                     Select::make('Шаблон', 'template')
                                         ->options(FullTemplate::toOptions())
                                         ->default(FullTemplate::Default->value)

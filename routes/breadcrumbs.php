@@ -46,6 +46,21 @@ Breadcrumbs::for('about.documents.show', function ($trail, $item) {
     $trail->push($item->title, route('about.documents.show', $item->slug));
 });
 
+Breadcrumbs::for('about.clients', function ($trail) {
+    $trail->parent('about');
+    $trail->push('Клиенты', route('about.clients'));
+});
+
+Breadcrumbs::for('about.company', function ($trail) {
+    $trail->parent('about');
+    $trail->push('О компании', route('about.company'));
+});
+
+Breadcrumbs::for('about.cooperation', function ($trail) {
+    $trail->parent('about');
+    $trail->push('Сотрудничество', route('about.cooperation'));
+});
+
 Breadcrumbs::for('training', function ($trail) {
     $trail->parent('home');
     $trail->push('Обучение', route('training'));
@@ -134,4 +149,19 @@ Breadcrumbs::for('resources.seminar.show', function ($trail, $item) {
 Breadcrumbs::for('resources.news.show', function ($trail, $item) {
     $trail->parent('resources.news');
     $trail->push($item->title, route('resources.news.show', $item->slug));
+});
+
+Breadcrumbs::for('schedule', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Расписание', route('schedule'));
+});
+
+Breadcrumbs::for('schedule.show', function ($trail, $item) {
+    $trail->parent('schedule');
+    $trail->push($item->title, route('schedule.show', $item->slug));
+});
+
+Breadcrumbs::for('contacts', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Контакты', route('contacts'));
 });

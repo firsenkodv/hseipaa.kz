@@ -56,7 +56,11 @@ final class TeamFormPage extends FormPage
                                     Slug::make('Slug', 'slug')->from('title')->unique()->locked(),
                                 ]),
 
-                                Text::make('Подзаголовок', 'subtitle')->unescape(),
+                                Text::make('Должность', 'subtitle')->unescape(),
+                                Json::make('Карточки', 'card_items')->fields([
+                                    Text::make('Заголовок', 'title')->unescape(),
+                                    Textarea::make('Описание', 'desc')->unescape(),
+                                ])->vertical()->creatable()->removable(),
                                 TinyMce::make('Анонс', 'short_desc'),
                             ])->columnSpan(9),
 

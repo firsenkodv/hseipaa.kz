@@ -8,6 +8,9 @@ use App\MoonShine\Pages\Pages\AboutPage;
 use App\MoonShine\Pages\Pages\ConsultingPage;
 use App\MoonShine\Pages\Pages\ContactPage;
 use App\MoonShine\Pages\Pages\DiplomasPage;
+use App\MoonShine\Pages\Pages\AboutCompanyPage;
+use App\MoonShine\Pages\Pages\ClientsPage;
+use App\MoonShine\Pages\Pages\CooperationPage;
 use App\MoonShine\Pages\Pages\DocumentsPage;
 use App\MoonShine\Pages\Pages\HomePage;
 use App\MoonShine\Pages\Pages\ImportantPage;
@@ -16,8 +19,11 @@ use App\MoonShine\Pages\Pages\NewsPage;
 use App\MoonShine\Pages\Pages\PartnersPage;
 use App\MoonShine\Pages\Pages\RemotePage;
 use App\MoonShine\Pages\Pages\ResourcesPage;
+use App\MoonShine\Pages\Pages\SchedulePage;
 use App\MoonShine\Pages\Pages\SeminarPage;
 use App\MoonShine\Pages\Pages\TeamPage;
+use App\MoonShine\Pages\Pages\SocialPage;
+use App\MoonShine\Pages\Pages\ToastPage;
 use App\MoonShine\Pages\Pages\TrainingPage;
 use Illuminate\Support\ServiceProvider;
 use App\MoonShine\Resources\About\AboutResource;
@@ -38,6 +44,8 @@ use App\MoonShine\Resources\News\NewsResource;
 use App\MoonShine\Resources\Important\ImportantResource;
 use App\MoonShine\Resources\Diploma\DiplomaResource;
 use App\MoonShine\Resources\Seminar\SeminarResource;
+use App\MoonShine\Resources\Schedule\ScheduleResource;
+use App\MoonShine\Resources\ScheduleCourse\ScheduleCourseResource;
 use App\MoonShine\Resources\MoonShineUser\MoonShineUserResource;
 use App\MoonShine\Resources\MoonShineUserRole\MoonShineUserRoleResource;
 
@@ -65,6 +73,8 @@ class MoonShineServiceProvider extends ServiceProvider
                 ImportantResource::class,
                 DiplomaResource::class,
                 SeminarResource::class,
+                ScheduleResource::class,
+                ScheduleCourseResource::class,
                 MoonShineUserResource::class,
                 MoonShineUserRoleResource::class,
             ])
@@ -76,6 +86,9 @@ class MoonShineServiceProvider extends ServiceProvider
                 TeamPage::class,
                 PartnersPage::class,
                 DocumentsPage::class,
+                ClientsPage::class,
+                AboutCompanyPage::class,
+                CooperationPage::class,
                 TrainingPage::class,
                 ConsultingPage::class,
                 RemotePage::class,
@@ -85,6 +98,9 @@ class MoonShineServiceProvider extends ServiceProvider
                 ImportantPage::class,
                 DiplomasPage::class,
                 SeminarPage::class,
+                SchedulePage::class,
+                ToastPage::class,
+                SocialPage::class,
             ])
         ;
     }

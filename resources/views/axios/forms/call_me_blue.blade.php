@@ -1,6 +1,6 @@
-<div class="form_form-blue-component">
+<div class="form_form-blue-component block">
     <section class="form_blue__padding">
-        <div class="block relative app_form_modal">
+        <div class="relative app_form_modal">
             <x-form.form-loader/>
             <x-form.form-response />
             <div class="app_form_data">
@@ -11,22 +11,11 @@
                     <div class="form_blue">
                         <div class="form_blue__flex">
 
-                            <div class="input-group">
-                                <input class="input-group__input app_input_name" name="Телефон" type="tel" placeholder=" " required>
-                                <label class="input-group__label">Телефон <span>*</span></label>
-                            </div>
+                            <x-form.input name="Телефон" label="Телефон" type="tel" required />
+                            <x-form.input name="ФИО" label="ФИО" required />
+                            <x-form.input name="Email" label="Email" type="email" required />
 
-                            <div class="input-group">
-                                <input class="input-group__input app_input_name" name="ФИО" type="text" placeholder=" " required>
-                                <label class="input-group__label">ФИО <span>*</span></label>
-                            </div>
-
-                            <div class="input-group">
-                                <input class="input-group__input app_input_name" name="Email" type="email" placeholder=" " required>
-                                <label class="input-group__label">Email <span>*</span></label>
-                            </div>
-
-                            <div class="input-button">
+                            <div class="input-group input-button">
                                 <button class="btn btn-big app_form_button" data-url="call-me-blue">Отправить</button>
                             </div>
 

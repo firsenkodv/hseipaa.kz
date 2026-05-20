@@ -30,6 +30,7 @@ class Document extends Model
         'keywords',
         'script',
         'sorting',
+        'created_at',
         'faq',
         'custom_field',
         'custom_field2',
@@ -38,7 +39,7 @@ class Document extends Model
 
     public function scopePublished(Builder $query): Builder
     {
-        return $query->where('published', 1)->orderBy('sorting');
+        return $query->where('published', 1)->orderBy('created_at', 'desc');
     }
 
     protected function casts(): array

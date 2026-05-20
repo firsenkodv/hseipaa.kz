@@ -8,15 +8,18 @@
                 <h1 class="h1">{{ $page->title }}</h1>
             @endif
             @include($template->view($section))
-            @include($teaser_template->view($section), ['route' => $route])
-
-
+            @if($items->count())
+                <!--Список-->
+                @include($teaser_template->view($section), ['items' => $items, 'route' => $route])
+              @endif
         </div>
         <div class="page-wrapper">
         <x-modules.about-platform />
+            @if($page->faq)
             <div class="pad_t20">
             <x-modules.faq :items="$page->faq" />
             </div>
+            @endif
         </div>
     </div>
 @endsection

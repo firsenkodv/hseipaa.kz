@@ -46,8 +46,7 @@ class Training extends Model
         'buy_calendar',
         'buy_hours',
         'buy_certificate',
-        'buy_old_price',
-        'buy_new_price',
+        'price',
         // О курсе
         'course_title',
         'course_desc',
@@ -63,6 +62,14 @@ class Training extends Model
         'req_title',
         'req_desc',
         'req_items',
+        // Кому подойдет
+        'aud_title',
+        'aud_items',
+        // Программа курса
+        'outline_title',
+        'outline_desc',
+        'outline_stats',
+        'outline_modules',
     ];
 
     public function scopePublished(Builder $query): Builder
@@ -82,10 +89,12 @@ class Training extends Model
             'faq'          => 'array',
             'course_items'  => 'array',
             'get_items'     => 'array',
-            'buy_old_price' => 'integer',
-            'buy_new_price' => 'integer',
+            'price' => 'array',
             'adv_items'     => 'array',
             'req_items'     => 'array',
+            'aud_items'     => 'array',
+            'outline_stats'   => 'array',
+            'outline_modules' => 'array',
         ];
     }
 }

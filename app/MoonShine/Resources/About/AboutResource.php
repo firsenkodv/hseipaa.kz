@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\MoonShine\Resources\About;
 
 use App\Models\About;
-use App\MoonShine\Resources\About\Pages\AboutDetailPage;
 use App\MoonShine\Resources\About\Pages\AboutFormPage;
 use App\MoonShine\Resources\About\Pages\AboutIndexPage;
 use MoonShine\Laravel\Resources\ModelResource;
@@ -14,7 +13,7 @@ use MoonShine\MenuManager\Attributes\Order;
 use MoonShine\Support\Attributes\Icon;
 
 /**
- * @extends ModelResource<About, AboutIndexPage, AboutFormPage, AboutDetailPage>
+ * @extends ModelResource<About, AboutIndexPage, AboutFormPage>
  */
 #[Icon('information-circle')]
 #[Group('Контент', 'document-text')]
@@ -37,7 +36,6 @@ class AboutResource extends ModelResource
         return [
             AboutIndexPage::class,
             AboutFormPage::class,
-            AboutDetailPage::class,
         ];
     }
 

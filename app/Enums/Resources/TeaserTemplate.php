@@ -10,6 +10,8 @@ enum TeaserTemplate: string
     case Colomns = 'colomns';
     case Training = 'training';
     case About = 'about';
+    case Team = 'team';
+    case Schedule = 'schedule';
 
 
     public function label(): string
@@ -19,6 +21,8 @@ enum TeaserTemplate: string
             self::Colomns => 'Колонки',
             self::Training => 'Обучение',
             self::About => 'О нас',
+            self::Team => 'Команда',
+            self::Schedule => 'Расписание',
 
         };
     }

@@ -26,7 +26,8 @@ final class CityIndexPage extends IndexPage
             Text::make('Город', 'title')->unescape()->updateOnPreview(),
             Text::make('Телефон', 'phone'),
             Text::make('Email', 'email'),
-            Text::make('Адрес', 'address'),
+            Text::make('Адрес', 'address')->updateOnPreview(),
+            Text::make('Координаты', 'coordinates')->updateOnPreview(),
             Switcher::make('Опубликовано', 'published')->updateOnPreview(),
             Text::make('Сортировка', 'sorting')->updateOnPreview(),
         ];

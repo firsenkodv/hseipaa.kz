@@ -1,6 +1,6 @@
-<div class="form_form-blue-component">
+<div class="form_form-blue-component block">
     <section class="form_blue__padding">
-        <div class="block relative app_form_modal">
+        <div class=" relative app_form_modal">
             <div class="app_form_data">
                 <div class="background_575EEF app_modal">
                     <h4 class="h2">Произошла ошибка</h4>

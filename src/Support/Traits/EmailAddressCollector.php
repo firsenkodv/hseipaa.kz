@@ -2,27 +2,28 @@
 
 namespace Support\Traits;
 
+use App\Models\Setting;
+
 trait EmailAddressCollector
 {
-
-
-    /** Метод создания массива для использования его в отправке ** */
-
-    public function emails():array
+    public function emails(): array
     {
+        $emails = [];
 
-        settype($emails, "array");
-        if (config2('moonshine.setting.json_emails')) {
-            $manager_emails = config2('moonshine.setting.json_emails');
-            foreach ($manager_emails as $e) {
-                $emails[] = $e['json_email'];
+        // Основной адрес из .env / конфига
+        $mailAdmin = env('MAIL_ADMIN', config('mail.from.address'));
+        if ($mailAdmin) {
+            $emails[] = $mailAdmin;
+        }
+
+        // Дополнительные адреса из админки (SocialPage → вкладка «E-mail адреса»)
+        $extra = Setting::getGroup('social')->data['emails'] ?? [];
+        foreach ($extra as $row) {
+            if (!empty($row['email'])) {
+                $emails[] = trim($row['email']);
             }
         }
-        array_push($emails, (config('app.mail_admin')) ?? []);
 
-        if (count($emails)) {
-            return $emails;
-        }
-        return [];
+        return array_values(array_unique(array_filter($emails)));
     }
 }

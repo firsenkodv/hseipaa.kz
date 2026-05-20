@@ -40,5 +40,25 @@
   padding: 7px 0 10px;
   position: relative;
 }
+.input-button .btn-big {
+  width: 100%;
+}
+
+.app_input_group .input-group__input._error {
+  border-color: #EF533F;
+}
+.app_input_group .input-group__input._error + label {
+  color: #EF533F;
+}
+.app_input_group .app_input_error {
+  position: absolute;
+  bottom: -9px;
+  left: 10px;
+  background: #fff;
+  padding: 0 4px;
+  font-size: 12px;
+  color: #EF533F;
+  line-height: 1.3;
+}
 
 /*# sourceMappingURL=form-input.css.map */

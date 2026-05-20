@@ -1,0 +1,680 @@
+// =============================================
+// Schedule Page — Hero Block
+// =============================================
+
+.schedule-hero-section {
+
+    margin-top: 24px;
+    padding: 56px 64px;
+    border-radius: 40px;
+    background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.84) 0%, rgba(255, 255, 255, 0) 34%),
+        linear-gradient(135deg, #ffe8e2 0%, #f7d6cd 44%, #fff7f4 100%);
+    box-shadow: 0 16px 60px rgba(0, 0, 0, 0.04);
+    .schedule-hero {
+        display: flex;
+        align-items: flex-end;
+        gap: 28px;
+    }
+    .selectElement {
+        margin: 40px auto 0 auto;
+    }
+}
+
+.schedule-hero__copy {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.schedule-hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    padding: 10px 16px;
+    border: 1px solid rgba(239, 83, 63, 0.18);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.66);
+    color: #ef533f;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 20px;
+}
+
+.schedule-hero__title {
+    margin: 0 0 16px;
+    font-size: 50px;
+    line-height: 62px;
+    letter-spacing: 0;
+    font-weight: 600;
+}
+
+.schedule-hero__copy p {
+    max-width: 720px;
+    margin: 0;
+    color: #4f4a48;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.schedule-hero__stats {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 14px;
+}
+
+.schedule-hero__stats article {
+    min-width: 128px;
+    padding: 18px 20px;
+    border: 1px solid rgba(239, 83, 63, 0.12);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.74);
+}
+
+.schedule-hero__stats strong {
+    display: block;
+    margin-bottom: 6px;
+    font-family: "Philosopher", serif;
+    font-size: 40px;
+    font-style: italic;
+    line-height: 1;
+}
+
+.schedule-hero__stats span {
+    display: block;
+    color: #5f5b58;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+// ── Results ──
+
+.schedule-results {
+    display: none;
+    flex-direction: column;
+    gap: 17px;
+    margin-top: 32px;
+
+    &__empty,
+    &__error {
+        color: #9d948f;
+        font-size: 15px;
+        text-align: center;
+        padding: 16px 0;
+    }
+
+    &__error { color: #ef533f; }
+
+    &__loader {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 28px 0;
+
+        span {
+            display: block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ef533f;
+            animation: schedule-bounce 1s ease-in-out infinite;
+
+            &:nth-child(1) { animation-delay: 0s; }
+            &:nth-child(2) { animation-delay: 0.18s; }
+            &:nth-child(3) { animation-delay: 0.36s; }
+        }
+    }
+}
+
+@keyframes schedule-bounce {
+    0%, 80%, 100% {
+        transform: scale(0.6);
+        opacity: 0.4;
+    }
+    40% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+.schedule-result-item {
+    position: relative;
+    padding: 20px 24px 24px 24px;
+    border: 1px solid rgba(239, 83, 63, 0.12);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.74);
+    margin-bottom: 0 !important;
+
+    &__close {
+        position: absolute;
+        top: 14px;
+        right: 16px;
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 22px;
+        line-height: 1;
+        color: #9d948f;
+        padding: 0;
+        transition: color 0.15s;
+
+        &:hover { color: #ef533f; }
+    }
+
+    &__city {
+        display: inline-block;
+        font-size: 19px;
+        font-weight: 700;
+        color: #ef533f;
+        margin-bottom: 12px;
+        text-decoration: none;
+
+        &:hover { text-decoration: underline; }
+    }
+
+    &__list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        li {
+            display: flex;
+            gap: 8px;
+            font-size: 17px;
+            color: #4f4a48;
+
+            span {
+                color: #9d948f;
+                flex-shrink: 0;
+
+                &::after { content: ':'; }
+            }
+
+            b {
+                font-weight: 600;
+                color: #282828;
+            }
+        }
+    }
+
+    &__footer {
+        margin-top: 18px;
+        padding-top: 16px;
+        border-top: 1px solid rgba(239, 83, 63, 0.15);
+    }
+
+    &__enroll {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        color: #ef533f;
+        font-size: 17px;
+        font-weight: 600;
+        text-decoration: underline;
+        text-decoration-color: rgba(239, 83, 63, 0.35);
+        text-underline-offset: 3px;
+        transition: text-decoration-color 0.15s;
+
+        &:hover {
+            text-decoration-color: #ef533f;
+        }
+    }
+}
+
+// =============================================
+// Schedule — Month Filter
+// =============================================
+
+.schedule-table-section {
+    margin-top: 40px;
+}
+
+.schedule-month-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 38px 15px;
+
+    &__btn {
+        padding: 9px 20px;
+        border: 1px solid rgba(239, 83, 63, 0.22);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.65);
+        color: #4f4a48;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 22px;
+        cursor: pointer;
+        transition: background 0.15s, border-color 0.15s, color 0.15s;
+
+        &:hover {
+            background: rgba(239, 83, 63, 0.08);
+            border-color: #ef533f;
+            color: #ef533f;
+        }
+
+        &.is-active {
+            background: #ef533f;
+            border-color: #ef533f;
+            color: #fff;
+        }
+    }
+}
+
+// =============================================
+// Schedule — Table
+// =============================================
+
+.schedule-table {
+    border: 1px solid #f0e3df;
+    border-radius: 28px;
+    overflow: hidden;
+}
+
+.schedule-table__head,
+.schedule-row {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.schedule-table__head {
+    padding: 18px 24px;
+    background: #f8f5f4;
+    color: #7f7976;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.schedule-row {
+    padding: 22px 24px;
+    border-top: 1px solid #f3e6e2;
+}
+
+.schedule-row__date strong {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 18px;
+    line-height: 24px;
+    color: #282828;
+}
+
+.schedule-row__course {
+    cursor: pointer;
+
+    strong {
+        display: block;
+        margin-bottom: 0;
+        font-size: 18px;
+        line-height: 24px;
+        color: #ef533f;
+        text-decoration: underline;
+        text-decoration-color: rgba(239, 83, 63, 0.4);
+        text-underline-offset: 4px;
+        text-decoration-thickness: 1px;
+        transition: text-decoration-color 0.15s;
+    }
+
+    &:hover strong {
+        text-decoration-color: #ef533f;
+    }
+}
+
+.schedule-row__date span,
+.schedule-row__note,
+.schedule-row__time,
+.schedule-row__hours {
+    color: #282828;
+    font-size: 16px;
+    line-height: 22px;
+    span {
+        display: none;
+    }
+}
+
+.schedule-row__price {
+    color: #ef533f;
+    font-size: 20px;
+    line-height: 26px;
+    font-weight: 700;
+}
+
+@media (min-width: 901px) {
+    .schedule-table__head span { min-width: 0; }
+
+    .schedule-table__head span:nth-child(1),
+    .schedule-row__date   { flex: 0 0 150px; }
+
+    .schedule-table__head span:nth-child(2),
+    .schedule-row__course { flex: 1 1 260px; min-width: 180px; }
+
+    .schedule-table__head span:nth-child(3),
+    .schedule-row__note   { flex: 1 1 160px; min-width: 120px; }
+
+    .schedule-table__head span:nth-child(4),
+    .schedule-row__time   { flex: 0 0 110px; text-align: center; white-space: nowrap; }
+
+    .schedule-table__head span:nth-child(5),
+    .schedule-row__price  { flex: 0 0 140px; text-align: right; white-space: nowrap; }
+
+    .schedule-table__head span:nth-child(6),
+    .schedule-row__hours  { flex: 0 0 80px; text-align: center; white-space: nowrap;
+    }
+
+    .schedule-row__course,
+    .schedule-row__note { overflow: hidden; text-overflow: ellipsis; }
+}
+
+.schedule-table-loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 36px 0;
+
+    span {
+        display: block;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #ef533f;
+        animation: schedule-bounce 1s ease-in-out infinite;
+
+        &:nth-child(1) { animation-delay: 0s; }
+        &:nth-child(2) { animation-delay: 0.18s; }
+        &:nth-child(3) { animation-delay: 0.36s; }
+    }
+}
+
+.schedule-courses-empty {
+    text-align: center;
+    padding: 28px 0;
+    color: #9d948f;
+    font-size: 15px;
+    margin: 0;
+}
+
+// ── ≤ 1200px ─────────────────────────────────────────────────────────────────
+
+@media (max-width: 1200px) {
+
+    .schedule-hero-section {
+        padding: 48px 48px;
+    }
+
+    .schedule-hero__title {
+        font-size: 44px;
+        line-height: 54px;
+    }
+
+    .schedule-hero__stats strong {
+        font-size: 34px;
+    }
+}
+
+// ── ≤ 1024px ─────────────────────────────────────────────────────────────────
+
+@media (max-width: 1024px) {
+
+    .schedule-hero-section {
+        padding: 40px 40px;
+        border-radius: 32px;
+    }
+
+    .schedule-hero__title {
+        font-size: 40px;
+        line-height: 50px;
+    }
+
+    .schedule-hero__stats strong {
+        font-size: 32px;
+    }
+}
+
+// ── ≤ 900px ──────────────────────────────────────────────────────────────────
+
+@media (max-width: 900px) {
+
+    // Hero — секция
+    .schedule-hero-section {
+        padding: 32px 24px;
+        border-radius: 24px;
+        margin-top: 16px;
+    }
+
+    // Hero — внутренний flex: переходим в колонку
+    .schedule-hero {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+    }
+
+    .schedule-hero__title {
+        font-size: 36px;
+        line-height: 44px;
+    }
+
+    .schedule-hero__copy p {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    // Статистика — переносится и занимает всю ширину
+    .schedule-hero__stats {
+        flex-wrap: wrap;
+        width: 100%;
+        gap: 12px;
+    }
+
+    .schedule-hero__stats article {
+        flex: 1 1 120px;
+    }
+
+    .schedule-hero__stats strong {
+        font-size: 30px;
+    }
+
+    // Таблица — превращаем строки в карточки
+    .schedule-table {
+        border: 0;
+        border-radius: 0;
+        overflow: visible;
+    }
+
+    .schedule-table__head {
+        display: none;
+    }
+
+    .schedule-row {
+        flex-wrap: wrap;
+        gap: 8px 16px;
+        padding: 18px;
+        border: 1px solid #f0e3df;
+        border-radius: 20px;
+        background: #fff;
+    }
+
+    .schedule-row + .schedule-row {
+        margin-top: 12px;
+    }
+
+    // Курс — на всю ширину первой строкой
+    .schedule-row__course { flex: 1 1 100%; }
+
+    // Дата и примечание — рядом
+    .schedule-row__date  { flex: 1 1 140px; }
+    .schedule-row__note  { flex: 1 1 140px; }
+
+    // Остальные — по содержимому
+    .schedule-row__time,
+    .schedule-row__price,
+    .schedule-row__hours { flex: 0 0 auto; }
+
+    .schedule-table-section {
+        margin-top: 28px;
+    }
+}
+
+// ── ≤ 640px ──────────────────────────────────────────────────────────────────
+
+@media (max-width: 640px) {
+
+    // Hero
+    .schedule-hero-section {
+        padding: 24px 16px;
+        border-radius: 20px;
+        margin-top: 12px;
+    }
+
+    .schedule-hero__badge {
+        font-size: 13px;
+        padding: 8px 14px;
+        margin-bottom: 14px;
+    }
+
+    .schedule-hero__title {
+        font-size: 28px;
+        line-height: 36px;
+        margin-bottom: 10px;
+    }
+
+    .schedule-hero__copy p {
+        font-size: 15px;
+        line-height: 22px;
+    }
+
+    // Статистика — компактнее
+    .schedule-hero__stats {
+        gap: 10px;
+    }
+
+    .schedule-hero__stats article {
+        flex: 1 1 90px;
+        padding: 14px 14px;
+        border-radius: 16px;
+    }
+
+    .schedule-hero__stats strong {
+        font-size: 26px;
+        margin-bottom: 4px;
+    }
+
+    .schedule-hero__stats span {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    // Фильтр месяцев
+    .schedule-month-filter {
+        gap: 8px;
+        padding: 20px 0;
+    }
+
+    .schedule-month-filter__btn {
+        padding: 7px 14px;
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    // Строки таблицы — дата и курс тоже на всю ширину
+    .schedule-row {
+        padding: 14px 16px;
+        border-radius: 16px;
+        gap: 6px 12px;
+    }
+
+    .schedule-row__date   { flex: 1 1 100%; }
+    .schedule-row__course { flex: 1 1 100%; }
+
+    .schedule-row__date strong,
+    .schedule-row__course strong {
+        font-size: 16px;
+        line-height: 22px;
+        margin-bottom: 2px;
+    }
+
+    .schedule-row__date span,
+    .schedule-row__note,
+    .schedule-row__time,
+    .schedule-row__hours {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .schedule-row__price {
+        font-size: 17px;
+        line-height: 22px;
+    }
+
+    .schedule-table-section {
+        margin-top: 20px;
+    }
+}
+
+// ── ≤ 468px ──────────────────────────────────────────────────────────────────
+
+@media (max-width: 468px) {
+
+    // Результаты поиска — опции складываются вертикально
+    .schedule-result-item__list li {
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    // Таблица расписания — все ячейки на всю ширину
+    .schedule-row__date,
+    .schedule-row__course,
+    .schedule-row__note,
+    .schedule-row__time,
+    .schedule-row__price,
+    .schedule-row__hours { flex: 1 1 100%; }
+
+    // Шрифт +2 кегля относительно ≤ 640px
+    .schedule-row__date strong,
+    .schedule-row__course strong {
+        font-size: 18px;
+        line-height: 24px;
+    }
+
+    .schedule-row__date span,
+    .schedule-row__note,
+    .schedule-row__time,
+    .schedule-row__hours {
+        font-size: 16px;
+        line-height: 22px;
+    }
+
+    .schedule-row__price {
+        font-size: 19px;
+        line-height: 24px;
+    }
+
+    // Подпись «Академические часы» — показываем на мобильных
+    .schedule-row__hours {
+        display: flex;
+        align-items: baseline;
+        gap: 6px;
+
+        span {
+            display: inline;
+            color: #9d948f;
+            font-size: 13px;
+            flex-shrink: 0;
+
+            &::after { content: ':'; }
+        }
+    }
+}

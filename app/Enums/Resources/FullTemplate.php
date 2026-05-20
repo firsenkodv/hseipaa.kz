@@ -8,6 +8,9 @@ enum FullTemplate: string
 {
     case Default = 'default';
     case Training = 'training';
+    case Team = 'team';
+    case Schedule = 'schedule';
+
 
 
     public function label(): string
@@ -15,6 +18,9 @@ enum FullTemplate: string
         return match($this) {
             self::Default => 'Стандартный',
             self::Training => 'Обучение',
+            self::Team => 'Команда',
+            self::Schedule => 'Расписание',
+
 
         };
     }

@@ -31,10 +31,16 @@
   width: 100%;
   height: 100%;
 }
-.block_3 .swiper-slide a span {
+.block_3 .swiper-slide a picture {
   display: block;
   width: 100%;
   height: 100%;
+}
+.block_3 .swiper-slide a img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .block_3 .flex_3 {
   display: flex;

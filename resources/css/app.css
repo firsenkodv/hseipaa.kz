@@ -20,20 +20,26 @@
 @import 'components/form/form-loader.scss';
 @import 'components/form/form-input.scss';
 @import 'components/form/form-blue-component.scss';
+@import 'components/form/slim-select.scss';
 @import 'buttons/buttons.scss';
 @import 'templates/axeld/breadcrumbs.scss';
 @import 'templates/axeld/common/pages/about.scss';
 @import 'templates/axeld/common/pages/default.scss';
 @import 'templates/axeld/common/pages/training.scss';
+@import 'templates/axeld/common/pages/team.scss';
 @import 'templates/axeld/common/resources/full/default.scss';
 @import 'templates/axeld/common/resources/full/full.scss';
 @import 'templates/axeld/common/resources/full/training.scss';
+@import 'templates/axeld/common/resources/full/schedule.scss';
 @import 'templates/axeld/common/resources/teaser/default.scss';
 @import 'templates/axeld/common/resources/teaser/default.scss';
 @import 'templates/axeld/breadcrumbs.scss';
 @import 'templates/axeld/content.scss';
+@import 'components/menu/nav-dropdown.scss';
+@import 'components/modules/toast-promo.scss';
 @import 'templates/axeld/header.scss';
 @import 'templates/axeld/city-selector.scss';
 @import 'templates/axeld/footer.scss';
 @import 'style.scss';
+@import 'components/modules/contacts.scss';
 

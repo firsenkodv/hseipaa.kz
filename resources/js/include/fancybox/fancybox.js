@@ -21,6 +21,13 @@ Fancybox.bind('[data-fancybox="gallery"]', {
     dragToClose: true,
 });
 
+Fancybox.bind('[data-fancybox="advantages-video"]', {
+    animated: false,
+    dragToClose: false,
+    closeButton: true,
+    backdropClick: 'close',
+});
+
 /** получаем csrf **/
 const metaElements = document.querySelectorAll('meta[name="csrf-token"]');
 const csrf = metaElements.length > 0 ? metaElements[0].content : "";
@@ -35,23 +42,30 @@ for (let fancyWindow of fancyWindows) {
 }
 
 
-async  function openFancyBox(e) {
+async function openFancyBox(e) {
     e.preventDefault()
+    const parentEl     = e.target.closest('.open-fancybox');
+    const formTemplate = parentEl.dataset.form;
+    const transferData = parentEl.dataset.transfer;
+    await openFancyboxForm(formTemplate, transferData)
+}
+
+/**
+ * Универсальная функция открытия модального окна через fancybox.
+ * Используется как обработчиком .open-fancybox, так и динамическими компонентами.
+ *
+ * @param {string} formTemplate — название blade-шаблона (например 'consult_me')
+ * @param {string|null} transferData — JSON-строка с дополнительными данными для шаблона
+ */
+export async function openFancyboxForm(formTemplate, transferData = null) {
     try {
-
-        /** в случае клика по-внутреннему тэгу, получим data-form в любом случае **/
-        const parentEl = e.target.closest('.open-fancybox');
-        const formTemplate = parentEl.dataset.form; /** название шаблона для blade **/
-        const transferData = parentEl.dataset.transfer; /** дополнительные данные в json для blade **/
         const template = { template: formTemplate, author: '@AxeldMaster', data: transferData };
-
-        console.log(template)
 
         const response = await fetch('/fancybox-ajax', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRF-Token': csrf
+                'X-CSRF-Token': csrf,
             },
             body: JSON.stringify(template),
         });
@@ -59,23 +73,18 @@ async  function openFancyBox(e) {
         if (!response.ok) {
             console.error(`Error: ${response.status}`);
         }
-        // const data = await response.json();
-        const data = await response.text(); // Важно использовать .text(), а не .json()
 
-        Fancybox.show([{
-            html: data,
+        const data = await response.text();
 
-        }],
-            {
-            dragToClose: false,       // Перетаскивание не закроет модалку
-            closeButton: true,         // Крестик закрытия включен
-            backdropClick: 'close'    // закрыть нажатием в свободную область
-        },
-            );
+        Fancybox.show([{ html: data }], {
+            dragToClose: false,
+            closeButton: true,
+            backdropClick: 'close',
+            touch: false,
+        });
 
-
-        asyncExecution();       // соберем эту форму
-        scrollCabinetMessages(); // скроллим до последнего сообщения
+        asyncExecution();
+        scrollCabinetMessages();
 
     } catch (err) {
         console.error('Ошибка AJAX:', err.message);

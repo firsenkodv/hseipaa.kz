@@ -6,6 +6,8 @@ use App\Http\Controllers\FancyBox\FancyBoxController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Pages\AboutController;
 use App\Http\Controllers\Pages\ConsultingController;
+use App\Http\Controllers\Pages\ScheduleController;
+use App\Http\Controllers\Pages\ContactController;
 use App\Http\Controllers\Pages\RemoteController;
 use App\Http\Controllers\Pages\ResourcesController;
 use App\Http\Controllers\Pages\TrainingController;
@@ -24,6 +26,9 @@ Route::controller(AboutController::class)->group(function () {
     Route::get('/onas/partnjory/{slug}', 'partnersShow')->name('about.partners.show');
     Route::get('/onas/dokumenty', 'documents')->name('about.documents');
     Route::get('/onas/dokumenty/{slug}', 'documentsShow')->name('about.documents.show');
+    Route::get('/onas/klienty', 'clients')->name('about.clients');
+    Route::get('/onas/obrashchenie', 'aboutCompany')->name('about.company');
+    Route::get('/onas/sotrudnichestvo', 'cooperation')->name('about.cooperation');
     Route::get('/onas/{slug}', 'indexShow')->name('about.show');
 });
 /** ///О нас **/
@@ -66,6 +71,19 @@ Route::controller(ResourcesController::class)->group(function () {
 });
 /** ///Полезное **/
 
+/** Расписание **/
+Route::controller(ScheduleController::class)->group(function () {
+    Route::get('/raspisani', 'index')->name('schedule');
+    Route::get('/raspisani/filter', 'filterByCourse')->name('schedule.filter');
+    Route::get('/raspisani/{slug}/months', 'filterByMonth')->name('schedule.filterByMonth');
+    Route::get('/raspisani/{slug}', 'indexShow')->name('schedule.show');
+});
+/** ///Расписание **/
+
+/** Контакты **/
+Route::get('/kontakty', [ContactController::class, 'index'])->name('contacts');
+/** ///Контакты **/
+
 /** Город (сессия) **/
 Route::post('/set-city', [CityController::class, 'setCity'])->name('city.set');
 /** ///Город (сессия) **/
@@ -80,5 +98,7 @@ Route::controller(FancyBoxController::class)->group(function () {
 Route::controller(AxiosController::class)->group(function () {
     Route::post('/upload-form-async', 'async');
     Route::post('/call-me-blue', 'callMeBlue');
+    Route::post('/consult-me', 'consultMe');
+    Route::post('/schedule-enroll', 'scheduleEnroll');
 });
 /** ///Axios async forms **/

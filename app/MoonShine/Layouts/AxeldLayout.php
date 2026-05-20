@@ -12,6 +12,9 @@ use App\MoonShine\Pages\Pages\AboutPage;
 use App\MoonShine\Pages\Pages\ConsultingPage;
 use App\MoonShine\Pages\Pages\ContactPage;
 use App\MoonShine\Pages\Pages\DiplomasPage;
+use App\MoonShine\Pages\Pages\AboutCompanyPage;
+use App\MoonShine\Pages\Pages\ClientsPage;
+use App\MoonShine\Pages\Pages\CooperationPage;
 use App\MoonShine\Pages\Pages\DocumentsPage;
 use App\MoonShine\Pages\Pages\HomePage;
 use App\MoonShine\Pages\Pages\ImportantPage;
@@ -20,8 +23,11 @@ use App\MoonShine\Pages\Pages\NewsPage;
 use App\MoonShine\Pages\Pages\PartnersPage;
 use App\MoonShine\Pages\Pages\RemotePage;
 use App\MoonShine\Pages\Pages\ResourcesPage;
+use App\MoonShine\Pages\Pages\SchedulePage;
 use App\MoonShine\Pages\Pages\SeminarPage;
 use App\MoonShine\Pages\Pages\TeamPage;
+use App\MoonShine\Pages\Pages\SocialPage;
+use App\MoonShine\Pages\Pages\ToastPage;
 use App\MoonShine\Pages\Pages\TrainingPage;
 use App\MoonShine\Resources\About\AboutResource;
 use App\MoonShine\Resources\City\CityResource;
@@ -38,6 +44,8 @@ use App\MoonShine\Resources\Law\LawResource;
 use App\MoonShine\Resources\News\NewsResource;
 use App\MoonShine\Resources\Important\ImportantResource;
 use App\MoonShine\Resources\Diploma\DiplomaResource;
+use App\MoonShine\Resources\Schedule\ScheduleResource;
+use App\MoonShine\Resources\ScheduleCourse\ScheduleCourseResource;
 use App\MoonShine\Resources\Seminar\SeminarResource;
 use MoonShine\AssetManager\Js;
 use MoonShine\Laravel\Layouts\AppLayout;
@@ -63,6 +71,7 @@ final class AxeldLayout extends AppLayout
         return [
             ...parent::assets(),
             new Js('/js/admin/tab-persist.js'),
+            new Js('/js/admin/schedule-courses.js'),
         ];
     }
 
@@ -81,20 +90,33 @@ final class AxeldLayout extends AppLayout
                 MenuItem::make(ContactPage::class, 'Контакты', 'phone'),
                 MenuDivider::make(),
                 MenuItem::make(AboutPage::class, 'О нас', 'document-text'),
-                MenuItem::make(TeamPage::class, 'Команда', 'document-text'),
-                MenuItem::make(PartnersPage::class, 'Партнёры', 'document-text'),
-                MenuItem::make(DocumentsPage::class, 'Документы', 'document-text'),
+                MenuGroup::make('Элементы', [
+                    MenuItem::make(TeamPage::class, 'Команда', 'document-text'),
+                    MenuItem::make(ClientsPage::class, 'Клиенты', 'document-text'),
+                    MenuItem::make(PartnersPage::class, 'Партнёры', 'document-text'),
+                    MenuItem::make(DocumentsPage::class, 'Документы', 'document-text'),
+                    MenuItem::make(AboutCompanyPage::class, 'О компании', 'document-text'),
+                    MenuItem::make(CooperationPage::class, 'Сотрудничество', 'document-text'),
+                ]),
                 MenuDivider::make(),
                 MenuItem::make(TrainingPage::class, 'Обучение', 'document-text'),
                 MenuItem::make(ConsultingPage::class, 'Консалтинг', 'document-text'),
                 MenuItem::make(RemotePage::class, 'Дистанционно', 'document-text'),
                 MenuDivider::make(),
+                MenuItem::make(SchedulePage::class, 'Расписание', 'document-text'),
+                MenuDivider::make(),
                 MenuItem::make(ResourcesPage::class, 'Полезное', 'document-text'),
-                MenuItem::make(LawsPage::class, 'Законы', 'document-text'),
-                MenuItem::make(NewsPage::class, 'Новости', 'document-text'),
-                MenuItem::make(ImportantPage::class, 'Важное', 'document-text'),
-                MenuItem::make(DiplomasPage::class, 'Дипломы', 'document-text'),
-                MenuItem::make(SeminarPage::class, 'Семинары', 'document-text'),
+
+                MenuGroup::make('Элементы', [
+                    MenuItem::make(LawsPage::class, 'Законы', 'document-text'),
+                    MenuItem::make(NewsPage::class, 'Новости', 'document-text'),
+                    MenuItem::make(ImportantPage::class, 'Важное', 'document-text'),
+                    MenuItem::make(DiplomasPage::class, 'Дипломы', 'document-text'),
+                    MenuItem::make(SeminarPage::class, 'Семинары', 'document-text'),
+                ]),
+
+
+
             ]),
 
 
@@ -126,6 +148,15 @@ final class AxeldLayout extends AppLayout
                   MenuItem::make(ConsultingResource::class, 'Страницы', 'folder-plus'),
            ]),
 
+            MenuGroup::make(static fn() => __('Online'), [
+                MenuItem::make(OnlineResource::class, 'Страницы', 'folder-plus'),
+            ]),
+
+            MenuGroup::make(static fn() => __('Расписание'), [
+                MenuItem::make(ScheduleCourseResource::class, 'Курсы', 'academic-cap'),
+                MenuItem::make(ScheduleResource::class, 'Страницы', 'folder-plus'),
+            ]),
+
            MenuGroup::make(static fn() => __('Полезное'), [
                MenuGroup::make(static fn() => __('Полезное'), [
                   MenuItem::make(UsefulResource::class, 'Страницы', 'folder-plus'),
@@ -145,11 +176,10 @@ final class AxeldLayout extends AppLayout
                MenuGroup::make(static fn() => __('Семинары'), [
                   MenuItem::make(SeminarResource::class, 'Страницы', 'folder-plus'),
                ]),
+
            ]),
 
-           MenuGroup::make(static fn() => __('Online'), [
-                  MenuItem::make(OnlineResource::class, 'Страницы', 'folder-plus'),
-           ]),
+
 /*            MenuGroup::make(static fn() => __('Страницы'), [
                 MenuItem::make(HomePage::class, 'Главная страница', 'building-library'),
                 MenuItem::make(PageResource::class, 'Страницы', 'check'),
@@ -161,6 +191,8 @@ final class AxeldLayout extends AppLayout
                 MenuItem::make(CityResource::class, 'Города', 'building-office-2'),
              /* MenuItem::make(SettingPage::class, 'Константы', 'adjustments-vertical'),*/
                 MenuItem::make(MediaManagerPage::class, 'Media', 'film'),
+                MenuItem::make(ToastPage::class, 'Toast', 'bell'),
+                MenuItem::make(SocialPage::class, 'Соцсети и константы', 'globe-alt'),
 /*                MenuItem::make(TaxationResource::class, 'Налоги', 'currency-dollar'),
                 MenuGroup::make(static fn() => __('Продавцы'), [
                     MenuItem::make(LegalEntityResource::class, 'Юр.Лица'),

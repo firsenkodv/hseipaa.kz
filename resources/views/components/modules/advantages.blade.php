@@ -25,13 +25,13 @@
             </div>
         </div>
 
-        <div class="advantages__media" >
-            <div class="advantages__background" style="background-image: url({{ Storage::url('/images/adv/video.jpg') }})">
+        <div class="advantages__media">
+            <div class="advantages__background" data-fancybox="advantages-video" data-src="https://www.youtube.com/watch?v={{ $youtubeVideoId }}" style="background-image: url({{ Storage::url('/images/adv/video.jpg') }}); cursor:pointer;">
             <button
                 class="video-card video-card--image"
                 type="button"
                 aria-label="Смотреть видео о Высшей Школе Экономики"
-                data-video-src="https://www.youtube.com/embed/9ofghOY94-4?autoplay=1"
+                data-video-src="https://www.youtube.com/embed/{{ $youtubeVideoId }}?autoplay=1"
                 style="background-image: url('{{ Storage::url('images/about-video.png') }}');"
             >
                 <div class="video-card__play"></div>

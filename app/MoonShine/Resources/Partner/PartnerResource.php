@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\MoonShine\Resources\Partner;
 
 use App\Models\Partner;
-use App\MoonShine\Resources\Partner\Pages\PartnerDetailPage;
 use App\MoonShine\Resources\Partner\Pages\PartnerFormPage;
 use App\MoonShine\Resources\Partner\Pages\PartnerIndexPage;
 use MoonShine\Laravel\Resources\ModelResource;
@@ -14,7 +13,7 @@ use MoonShine\MenuManager\Attributes\Order;
 use MoonShine\Support\Attributes\Icon;
 
 /**
- * @extends ModelResource<Partner, PartnerIndexPage, PartnerFormPage, PartnerDetailPage>
+ * @extends ModelResource<Partner, PartnerIndexPage, PartnerFormPage>
  */
 #[Icon('building-office')]
 #[Group('Контент', 'document-text')]
@@ -37,7 +36,6 @@ class PartnerResource extends ModelResource
         return [
             PartnerIndexPage::class,
             PartnerFormPage::class,
-            PartnerDetailPage::class,
         ];
     }
 

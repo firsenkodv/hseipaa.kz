@@ -3,6 +3,12 @@
 namespace App\Http\Controllers\Axios;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CallMeBlueRequest;
+use App\Http\Requests\ConsultMeRequest;
+use App\Http\Requests\ScheduleEnrollRequest;
+use App\Jobs\Form\CallMeBlueJob;
+use App\Jobs\Form\ConsultMeJob;
+use App\Jobs\Form\ScheduleEnrollJob;
 use Illuminate\Http\Request;
 
 class AxiosController extends Controller
@@ -16,9 +22,46 @@ class AxiosController extends Controller
         return view('axios.forms.error.error_form');
     }
 
-    public function callMeBlue(Request $request)
+    public function callMeBlue(CallMeBlueRequest $request)
     {
-        // stub — заглушка
+        $data = [
+            'ФИО'     => $request->input('ФИО'),
+            'Телефон' => $request->input('Телефон'),
+            'Email'   => $request->input('Email'),
+        ];
+
+        CallMeBlueJob::dispatch($data);
+
+        return response()->json(['response' => 'ok']);
+    }
+
+    public function consultMe(ConsultMeRequest $request)
+    {
+        $data = [
+            'Имя'     => $request->input('Имя'),
+            'Телефон' => $request->input('Телефон'),
+            'Email'   => $request->input('Email'),
+        ];
+
+        ConsultMeJob::dispatch($data);
+
+        return response()->json(['response' => 'ok']);
+    }
+
+    public function scheduleEnroll(ScheduleEnrollRequest $request)
+    {
+        $data = array_filter([
+            'Курс'           => $request->input('Курс'),
+            'Стоимость'      => $request->input('Стоимость'),
+            'Дата'           => $request->input('Дата'),
+            'Имя'            => $request->input('Имя'),
+            'Телефон'        => $request->input('Телефон'),
+            'Email'          => $request->input('Email'),
+            'Дата отправки'  => now()->format('d.m.Y H:i'),
+        ]);
+
+        ScheduleEnrollJob::dispatch($data);
+
         return response()->json(['response' => 'ok']);
     }
 }

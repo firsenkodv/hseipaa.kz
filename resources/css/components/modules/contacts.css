@@ -1,0 +1,133 @@
+.catalogContacts h1.h1 {
+  line-height: 1.2;
+  padding: 10px 0 24px;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 46px;
+  color: #282828;
+  max-width: 1000px;
+}
+.catalogContacts .contactTabs__top {
+  height: 48px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 20px 0 0;
+}
+.catalogContacts .contactTabs__top .contactTabs__tab {
+  padding: 0 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  color: #282828;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1em;
+  letter-spacing: 0.5px;
+  border-radius: 4px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.catalogContacts .contactTabs__top .contactTabs__tab.active, .catalogContacts .contactTabs__top .contactTabs__tab:hover {
+  background: rgba(239, 83, 63, 0.16);
+  color: #EF533F;
+}
+.catalogContacts .contactTabs__bottom {
+  padding: 24px 12px;
+  margin-bottom: 30px;
+}
+.catalogContacts .contactTabs__bottom .contactTabsBody__tab {
+  display: none;
+}
+.catalogContacts .contactTabs__bottom .contactTabsBody__tab.active {
+  display: block;
+  width: 100%;
+}
+.catalogContacts .contactTabs__bottom .contact_area__subtitle {
+  font-size: 16px;
+  color: #667085;
+  margin-bottom: 12px;
+}
+.catalogContacts .contactTabs__bottom .contact_area__flex {
+  display: flex;
+  justify-content: space-between;
+}
+.catalogContacts .contactTabs__bottom .contact_area__left {
+  width: 30%;
+  padding: 16px 16px 16px 0;
+}
+.catalogContacts .contactTabs__bottom .contact_area__left .contact_area__label {
+  padding: 0 0 16px;
+}
+.catalogContacts .contactTabs__bottom .contact_area__center {
+  width: 40%;
+  padding: 16px;
+}
+.catalogContacts .contactTabs__bottom .contact_area__center .contact_area__label {
+  padding: 0 0 16px;
+}
+.catalogContacts .contactTabs__bottom .contact_area__right {
+  width: 30%;
+  padding: 16px 0 16px 16px;
+}
+.catalogContacts .contactTabs__bottom .contact_area__right .contact_area__label {
+  padding: 0 0 16px;
+}
+.catalogContacts .contactTabs__bottom .property {
+  font-size: 24px;
+  line-height: 1.3em;
+  padding: 5px 0;
+}
+.catalogContacts .contactTabs__bottom .contact_area__desc {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #CCCCCC;
+}
+
+.JFormFieldMap_wrapper {
+  margin-top: 0;
+}
+
+.JFormFieldMap {
+  border-top: 1px solid #EF533F;
+}
+.JFormFieldMap h5 {
+  font-size: 22px;
+  color: #EF533F;
+  padding-bottom: 9px;
+  font-weight: 600;
+}
+.JFormFieldMap .jt_ph {
+  padding-bottom: 5px;
+  font-size: 14px;
+}
+
+@media (max-width: 868px) {
+  .catalogContacts .contactTabs__top {
+    height: auto;
+    min-height: 48px;
+  }
+  .catalogContacts .contactTabs__bottom {
+    padding: 24px 12px 0;
+    margin-bottom: 0;
+  }
+  .catalogContacts .contactTabs__bottom .contact_area__flex {
+    display: block;
+  }
+  .catalogContacts .contactTabs__bottom .contact_area__left,
+  .catalogContacts .contactTabs__bottom .contact_area__center,
+  .catalogContacts .contactTabs__bottom .contact_area__right {
+    width: 100%;
+    padding: 10px 0;
+  }
+}
+@media (max-width: 468px) {
+  .catalogContacts .property {
+    font-size: 18px;
+  }
+}
+
+/*# sourceMappingURL=contacts.css.map */

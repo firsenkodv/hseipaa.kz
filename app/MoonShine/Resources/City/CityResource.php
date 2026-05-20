@@ -11,6 +11,7 @@ use MoonShine\Laravel\Resources\ModelResource;
 use MoonShine\MenuManager\Attributes\Group;
 use MoonShine\MenuManager\Attributes\Order;
 use MoonShine\Support\Attributes\Icon;
+use MoonShine\Support\Enums\SortDirection;
 
 /**
  * @extends ModelResource<City, CityIndexPage, CityFormPage>
@@ -24,6 +25,7 @@ class CityResource extends ModelResource
 
     protected string $column = 'title';
     protected bool $simplePaginate = true;
+    protected SortDirection $sortDirection = SortDirection::ASC;
     protected string $sortColumn = 'sorting';
 
     public function getTitle(): string

@@ -12,7 +12,13 @@ import {flash_message} from "./include/flash_message/flash_message";
 import {datepicker_accountant_ticket_date, datepicker_date_birthday} from "./include/datepicker/datepicker";
 import {trix} from "./include/editor/trix";
 import {faqAccordion} from "./include/site/faq";
+import {programOutlineAccordion, programOutlineScroll} from "./include/site/program-outline";
 import {citySelector} from "./include/site/city-selector";
+import {navDropdown} from "./include/site/nav-dropdown";
+import {toastPromo} from "./include/site/toast-promo";
+import {slimSelect} from "./include/select/slim-select";
+import {scheduleMonthFilter} from "./include/schedule/schedule-month-filter";
+
 
 
 
@@ -29,5 +35,11 @@ document.addEventListener('DOMContentLoaded', function () {
     datepicker_accountant_ticket_date() // календарик (Дата выдачи сертификата профессионального бухгалтера)
     trix() //редактор
     faqAccordion() // FAQ аккордеон
+    programOutlineAccordion() // аккордеон программы курса
+    programOutlineScroll()    // плавный скролл к программе курса
     citySelector() // выбор города
+    navDropdown()  // выпадающее меню навигации
+    toastPromo()   // тост-уведомление
+    slimSelect() // select
+    scheduleMonthFilter() // фильтр по месяцам
 });

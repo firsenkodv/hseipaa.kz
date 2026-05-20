@@ -13,6 +13,7 @@ class Team extends Model
         'slug',
         'template',
         'subtitle',
+        'card_items',
         'short_desc',
         'img',
         'desc',
@@ -50,7 +51,8 @@ class Team extends Model
             'video'     => 'array',
             'gallery'   => 'array',
             'files'     => 'array',
-            'faq'       => 'array',
+            'card_items' => 'array',
+            'faq'        => 'array',
         ];
     }
 }

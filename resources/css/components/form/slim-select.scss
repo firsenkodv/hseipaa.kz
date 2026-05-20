@@ -1,0 +1,124 @@
+// ── SLIM SELECT — site theme ──
+
+.selectElement {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 52px;
+    padding: 6px 14px;
+    border: 1px solid rgba(239, 83, 63, 0.22);
+    border-radius: 16px;
+    background-color: rgba(255, 255, 255, 0.82);
+    font-size: 16px;
+    font-family: inherit;
+    color: #9d948f;
+    cursor: pointer;
+}
+
+.schedule-hero-section {
+    --ss-primary-color:     #ef533f;
+    --ss-bg-color:          #ffffff;
+    --ss-font-color:        #282828;
+    --ss-placeholder-color: #9d948f;
+    --ss-border-color:      rgba(239, 83, 63, 0.22);
+    --ss-disabled-color:    #f0ece9;
+    --ss-focus-color:       rgba(239, 83, 63, 0.35);
+    --ss-border-radius:     16px;
+    --ss-main-height:       52px;
+    --ss-search-height:     44px;
+
+    .ss-main {
+        font-size: 16px;
+        font-family: inherit;
+        background-color: rgba(255, 255, 255, 0.82);
+        padding: 6px 14px;
+        border: 1px solid var(--ss-border-color);
+        border-radius: var(--ss-border-radius);
+        transition: border-color 0.2s, box-shadow 0.2s;
+
+        &:focus {
+            box-shadow: 0 0 0 3px var(--ss-focus-color);
+            border-color: #ef533f;
+        }
+    }
+
+    .ss-content {
+        border-radius: var(--ss-border-radius);
+        border-color: var(--ss-border-color);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
+
+        &.ss-dir-below {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+        &.ss-dir-above {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+    }
+
+    .ss-content .ss-search input {
+        font-size: 15px;
+        font-family: inherit;
+        color: var(--ss-font-color);
+        background-color: var(--ss-bg-color);
+    }
+
+    .ss-content .ss-list .ss-option {
+        font-size: 15px;
+        color: var(--ss-font-color);
+
+        &:hover:not(.ss-disabled) {
+            background-color: rgba(239, 83, 63, 0.08);
+            color: #ef533f;
+            border-left-color: #ef533f;
+        }
+
+        &.ss-highlighted,
+        &:not(.ss-disabled).ss-selected {
+            background-color: #ef533f;
+            color: #ffffff;
+        }
+    }
+
+    .ss-main .ss-arrow path {
+        stroke: #9d948f;
+    }
+
+    .ss-main .ss-deselect {
+        padding: 0 10px;
+
+        svg {
+            width: 14px;
+            height: 14px;
+
+            path {
+                stroke: #9d948f;
+                stroke-width: 28;
+            }
+        }
+    }
+}
+
+.ss-content .ss-list .ss-option.ss-highlighted,
+.ss-content .ss-list .ss-option:not(.ss-disabled).ss-selected {
+    color: #000 !important;
+    background: rgba(254, 82, 68, 0.0784313725) !important;
+    transition: 0.2s;
+}
+.ss-content .ss-list .ss-option:hover:not(.ss-disabled) {
+    color: #000 !important;
+    background: rgba(254, 82, 68, 0.0784313725) !important;
+    border-left: 0 !important;
+    transition: border-left var(--ss-animation-timing) ease;
+}
+.ss-content .ss-list .ss-option {
+    padding-top:10px !important;
+    padding-bottom:10px !important;
+
+}
+.ss-content .ss-list .ss-option.ss-disabled {
+    cursor: not-allowed;
+    background-color: #f5f5f7 !important;
+}

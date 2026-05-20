@@ -56,7 +56,7 @@
   width: 100%;
   min-height: 200px;
   border-radius: 12px;
-  padding: 24px 30px 50px 30px;
+  padding: 24px 30px 26px 30px;
 }
 .form_form-blue-component .background_575EEF h4 {
   line-height: 1.2em;
@@ -67,20 +67,19 @@
   max-width: 550px;
 }
 .form_form-blue-component .background_575EEF .form_blue {
-  padding: 20px 0 0;
+  padding: 20px 0 0 0;
 }
 .form_form-blue-component .background_575EEF .form_blue .form_blue__flex {
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 .form_form-blue-component .background_575EEF .form_blue .form_blue__flex .input-group {
   width: 24%;
-  margin-bottom: 0;
 }
 .form_form-blue-component .background_575EEF .form_blue .form_blue__flex .input-button {
   width: 24%;
   padding: 0;
+  margin-bottom: 20px;
 }
 .form_form-blue-component .background_575EEF .form_blue .form_blue__flex .input-button .btn.btn-big {
   padding: 12px 20px 11px 20px;

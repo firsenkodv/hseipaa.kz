@@ -12,6 +12,7 @@ use MoonShine\Laravel\Resources\ModelResource;
 use MoonShine\MenuManager\Attributes\Group;
 use MoonShine\MenuManager\Attributes\Order;
 use MoonShine\Support\Attributes\Icon;
+use MoonShine\Support\Enums\SortDirection;
 
 /**
  * @extends ModelResource<Document, DocumentIndexPage, DocumentFormPage>
@@ -24,7 +25,8 @@ class DocumentResource extends ModelResource
     protected string $model = Document::class;
 
     protected string $column = 'title';
-    protected string $sortColumn = 'sorting';
+    protected string $sortColumn = 'created_at';
+    protected SortDirection $sortDirection = SortDirection::DESC;
     protected bool $simplePaginate = true;
 
     public function getTitle(): string

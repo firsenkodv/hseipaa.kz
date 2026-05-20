@@ -74,7 +74,7 @@
         width: 100%;
         min-height: 200px;
         border-radius: 12px;
-        padding: 24px 30px 50px 30px;
+        padding: 24px 30px 26px 30px;
 
         h4 {
             line-height: 1.2em;
@@ -86,21 +86,21 @@
         }
 
         .form_blue {
-            padding: 20px 0 0;
+            padding: 20px 0 0 0;
 
             .form_blue__flex {
                 display: flex;
                 justify-content: space-between;
-                align-items: center;
+
 
                 .input-group {
                     width: 24%;
-                    margin-bottom: 0;
                 }
 
                 .input-button {
                     width: 24%;
                     padding: 0;
+                    margin-bottom: 20px;
 
                     .btn.btn-big {
                         padding: 12px 20px 11px 20px;

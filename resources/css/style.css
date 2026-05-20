@@ -29,11 +29,19 @@ body footer {
   flex-shrink: 0;
 }
 
-.container, .block {
+.relative {
+  position: relative;
+}
+
+.container, .block, .content_page__default {
   max-width: 1200px;
   margin: 0 auto;
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.color_grey {
+  color: #667085;
 }
 
 hr {
@@ -116,8 +124,14 @@ a:hover {
 }
 
 .fancybox__dialog * {
-  user-select: auto !important; /* Включаем выделение текста */
-  cursor: default !important; /*Меняем курсор мыши на стандартный */
+  user-select: text !important;
+  cursor: default !important;
+}
+
+.fancybox__dialog button,
+.fancybox__dialog a,
+.fancybox__dialog [role=button] {
+  cursor: pointer !important;
 }
 
 .background_F5F5F7 {

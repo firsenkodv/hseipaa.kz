@@ -15,6 +15,7 @@
         "moonshine/moonshine": "^4.11",
         "moonshine/ru": "^1.0",
         "moonshine/tinymce": "^2.0",
+        "spatie/laravel-sitemap": "^8.0",
         "yurizoom/moonshine-media-manager": "^3.1"
     },
     "require-dev": {

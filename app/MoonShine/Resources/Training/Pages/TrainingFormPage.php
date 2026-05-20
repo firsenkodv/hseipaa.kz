@@ -162,8 +162,11 @@ final class TrainingFormPage extends FormPage
                                     Text::make('Календарь', 'buy_calendar')->unescape(),
                                     Text::make('Часы', 'buy_hours')->unescape(),
                                     Text::make('Сертификат', 'buy_certificate')->unescape(),
-                                    Number::make('Старая цена', 'buy_old_price'),
-                                    Number::make('Новая цена', 'buy_new_price'),
+                                    Json::make('Цены', 'price')->fields([
+                                        Number::make('Цена', 'value'),
+                                        Text::make('Пояснение', 'note'),
+                                    ])->vertical()->creatable(limit: 2)->removable()
+                                        ->hint('Заполняйте две цены: первая цена старая, вторая новая. Если заполнить одно поле, всегда будет выводиться новая цена.'),
                                 ]),
                                 Divider::make('О курсе'),
 
@@ -202,6 +205,31 @@ final class TrainingFormPage extends FormPage
                                     Json::make('Карточки', 'req_items')->fields([
                                         Text::make('Заголовок', 'title'),
                                         Textarea::make('Описание', 'desc'),
+                                    ])->vertical()->creatable(limit: 20)->removable(),
+                                ]),
+
+                                Divider::make('Программа курса'),
+                                Collapse::make('', [
+                                    Text::make('Заголовок', 'outline_title')->unescape(),
+                                    Textarea::make('Описание', 'outline_desc')->unescape(),
+                                    Json::make('Статистика', 'outline_stats')->fields([
+                                        Text::make('Значение', 'value'),
+                                        Text::make('Подпись', 'label'),
+                                    ])->vertical()->creatable(limit: 3)->removable(),
+                                    Json::make('Модули', 'outline_modules')->fields([
+                                        Text::make('Префикс', 'label')->hint('Например: Модуль 1.'),
+                                        Text::make('Заголовок', 'title'),
+                                        Json::make('Пункты', 'items')->fields([
+                                            Textarea::make('Текст', 'text'),
+                                        ])->vertical()->creatable(limit: 20)->removable(),
+                                    ])->vertical()->creatable(limit: 20)->removable(),
+                                ]),
+
+                                Divider::make('Кому подойдет'),
+                                Collapse::make('', [
+                                    Text::make('Заголовок', 'aud_title')->unescape(),
+                                    Json::make('Пункты', 'aud_items')->fields([
+                                        Text::make('Название', 'name'),
                                     ])->vertical()->creatable(limit: 20)->removable(),
                                 ]),
                             ])->columnSpan(9),

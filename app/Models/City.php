@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class City extends Model
@@ -30,5 +31,10 @@ class City extends Model
             'published' => 'integer',
             'sorting'   => 'integer',
         ];
+    }
+
+    public function scopePublished(Builder $query): Builder
+    {
+        return $query->where('published', 1)->orderBy('sorting');
     }
 }

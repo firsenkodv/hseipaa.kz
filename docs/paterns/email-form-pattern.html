@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Паттерн отправки e-mail через форму</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            max-width: 860px;
+            margin: 40px auto;
+            padding: 0 20px;
+            background: #f9f9f9;
+            color: #333;
+        }
+        h1 { color: #e3342f; }
+        h2 { margin-top: 40px; color: #e3342f; border-bottom: 2px solid #e3342f; padding-bottom: 6px; }
+        h3 { margin-top: 28px; color: #555; }
+        h4 { margin-top: 20px; color: #333; }
+        pre {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 14px 18px;
+            border-radius: 6px;
+            overflow-x: auto;
+        }
+        code { font-family: monospace; font-size: 14px; }
+        p code, li code, td code {
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 13px;
+            color: #c0392b;
+        }
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #f0ad4e;
+            padding: 10px 16px;
+            border-radius: 4px;
+            margin: 16px 0;
+        }
+        .rule {
+            background: #e8f5e9;
+            border-left: 4px solid #43a047;
+            padding: 10px 16px;
+            border-radius: 4px;
+            margin: 16px 0;
+        }
+        .schema {
+            background: #e3f2fd;
+            border-left: 4px solid #1976d2;
+            padding: 10px 16px;
+            border-radius: 4px;
+            margin: 16px 0;
+        }
+        ul li { margin-bottom: 6px; }
+        .path { color: #888; font-size: 13px; margin-bottom: 4px; }
+        table { border-collapse: collapse; width: 100%; margin: 16px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px 12px; text-align: left; }
+        th { background: #f0f0f0; }
+        .variant {
+            background: #f3f0ff;
+            border-left: 4px solid #7c3aed;
+            padding: 10px 16px;
+            border-radius: 4px;
+            margin: 20px 0 8px;
+            font-weight: 700;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Паттерны проекта</h1>
+
+<!-- ============================================================ -->
+<h2>2. Email Form Pattern — от формы до письма</h2>
+<p>Полный цикл отправки e-mail через форму на сайте. Два варианта: простая inline-форма на странице и форма в модальном окне Fancybox. Backend-инфраструктура одинакова для обоих вариантов.</p>
+
+<h3>Структура файлов</h3>
+<pre><code>app/Http/Requests/{FormName}Request.php            ← валидация полей
+app/Jobs/Form/{FormName}Job.php                    ← очередь, сбор получателей
+app/Mail/Form/{FormName}Mail.php                   ← Mailable, тема письма
+resources/views/html/email/{form_name}.blade.php   ← шаблон письма
+resources/views/html/email/layouts/layout_default_mail.blade.php  ← базовый layout письма
+
+── Простая форма ──
+resources/views/axios/forms/{form_name}.blade.php  ← шаблон формы (загружается по AJAX)
+app/Http/Controllers/Axios/AxiosController.php     ← метод обработки
+
+── Модальная форма ──
+resources/views/fancybox/forms/{form_name}.blade.php  ← шаблон формы в модальном окне
+app/Http/Controllers/FancyBox/FancyBoxController.php  ← регистрация шаблона
+app/Http/Controllers/Axios/AxiosController.php        ← метод обработки
+
+── Общий трейт ──
+src/Support/Traits/EmailAddressCollector.php          ← сбор e-mail получателей</code></pre>
+
+<!-- ============================================================ -->
+<div class="variant">Вариант A — Простая форма (inline)</div>
+<p>Пример: форма «Оставьте заявку» на главной странице (<code>call_me_blue</code>).</p>
+
+<h3>Шаг 1 — Маршруты</h3>
+<p class="path">routes/web.php</p>
+<pre><code>Route::controller(AxiosController::class)->group(function () {
+    Route::post('/upload-form-async', 'async');       // загрузка шаблона формы
+    Route::post('/call-me-blue', 'callMeBlue');       // отправка формы
+});</code></pre>
+
+<h3>Шаг 2 — Загрузка шаблона формы по AJAX</h3>
+<p class="path">app/Http/Controllers/Axios/AxiosController.php</p>
+<pre><code>public function async(Request $request)
+{
+    if ($request->template === 'call_me_blue') {
+        return view('axios.forms.call_me_blue');
+    }
+
+    return view('axios.forms.error.error_form');
+}</code></pre>
+<div class="note">Шаблон формы загружается через <code>POST /upload-form-async</code> с телом <code>{template: 'call_me_blue'}</code>. Контейнер формы на странице: <code>&lt;div class="axios__uploading_form" data-form="call_me_blue"&gt;</code>.</div>
+
+<h3>Шаг 3 — Шаблон формы</h3>
+<p class="path">resources/views/axios/forms/call_me_blue.blade.php</p>
+<pre><code>&lt;div class="form_form-blue-component block"&gt;
+    &lt;section class="form_blue__padding"&gt;
+        &lt;div class="relative app_form_modal"&gt;
+            &lt;x-form.form-loader/&gt;
+            &lt;x-form.form-response /&gt;
+            &lt;div class="app_form_data"&gt;
+                &lt;div class="background_575EEF app_modal"&gt;
+                    &lt;h4&gt;Оставьте заявку&lt;/h4&gt;
+                    &lt;div class="form_blue"&gt;
+                        &lt;div class="form_blue__flex"&gt;
+                            &lt;x-form.input name="Телефон" label="Телефон" type="tel" required /&gt;
+                            &lt;x-form.input name="ФИО" label="ФИО" required /&gt;
+                            &lt;x-form.input name="Email" label="Email" type="email" required /&gt;
+                            &lt;div class="input-group input-button"&gt;
+                                &lt;button class="btn btn-big app_form_button" data-url="call-me-blue"&gt;Отправить&lt;/button&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/section&gt;
+&lt;/div&gt;</code></pre>
+<div class="rule">
+    <strong>Правила:</strong>
+    <ul>
+        <li><code>app_form_modal</code> — корневой контейнер, относительно него позиционируется лоадер</li>
+        <li><code>app_form_data</code> — область данных формы</li>
+        <li><code>app_modal</code> — удаляется через <code>modal.remove()</code> при успешной отправке</li>
+        <li><code>app_input_name</code> — JS-хук на каждом <code>&lt;input&gt;</code>; атрибут <code>name</code> = ключ в объекте данных</li>
+        <li><code>app_form_button[data-url]</code> — кнопка отправки; <code>data-url</code> = путь без слэша (<code>call-me-blue</code> → <code>/call-me-blue</code>)</li>
+        <li><code>&lt;x-form.input&gt;</code> — анонимный компонент: пропсы <code>name</code>, <code>label</code>, <code>type</code>, <code>required</code></li>
+    </ul>
+</div>
+
+<h3>Шаг 4 — FormRequest</h3>
+<p class="path">app/Http/Requests/CallMeBlueRequest.php</p>
+<pre><code>class CallMeBlueRequest extends FormRequest
+{
+    public function authorize(): bool { return true; }
+
+    public function rules(): array
+    {
+        return [
+            'ФИО'     => ['required', 'string', 'min:2', 'max:100'],
+            'Телефон' => ['required', 'string', 'min:6', 'max:30'],
+            'Email'   => ['required', 'email', 'min:4', 'max:100'],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'ФИО.required'     => 'Необходимо ввести ФИО.',
+            'Телефон.required' => 'Необходимо ввести номер телефона.',
+            'Email.required'   => 'Электронная почта обязательна.',
+            'Email.email'      => 'Введите корректный email.',
+            // ...
+        ];
+    }
+}</code></pre>
+<div class="note">
+    При ошибке валидации Laravel возвращает <strong>422</strong> с JSON <code>{errors: {...}}</code>.
+    JS (<code>fieldErrors.js</code>) находит <code>.app_input_group</code> по <code>name</code> и пишет текст ошибки в <code>.app_input_error</code>.
+    Ошибка позиционируется абсолютно (<code>position: absolute; bottom: -9px</code>) — форма не растягивается в высоту.
+</div>
+
+<h3>Шаг 5 — Метод контроллера</h3>
+<p class="path">app/Http/Controllers/Axios/AxiosController.php</p>
+<pre><code>public function callMeBlue(CallMeBlueRequest $request)
+{
+    $data = [
+        'ФИО'     => $request->input('ФИО'),
+        'Телефон' => $request->input('Телефон'),
+        'Email'   => $request->input('Email'),
+    ];
+
+    CallMeBlueJob::dispatch($data);
+
+    return response()->json(['response' => 'ok']);
+}</code></pre>
+<div class="note">Ключи <code>$data</code> — русские слова; они используются в письме как заголовки столбцов.</div>
+
+<h3>Шаг 6 — Job</h3>
+<p class="path">app/Jobs/Form/CallMeBlueJob.php</p>
+<pre><code>class CallMeBlueJob implements ShouldQueue
+{
+    use Queueable;
+    use EmailAddressCollector;
+
+    public function __construct(public array $data) {}
+
+    public function handle(): void
+    {
+        $recipients = $this->emails();
+        if (empty($recipients)) return;
+
+        Mail::to($recipients)->send(new CallMeBlueMail($this->data));
+    }
+}</code></pre>
+<div class="rule">
+    <strong><code>EmailAddressCollector::emails()</code> собирает получателей из двух источников:</strong>
+    <ul>
+        <li><code>MAIL_ADMIN</code> из <code>.env</code> (или <code>mail.from.address</code> как fallback)</li>
+        <li>Список e-mail из AdminPanel: <code>Setting::getGroup('social')->data['emails']</code> — вкладка «E-mail адреса» в MoonShine</li>
+    </ul>
+</div>
+
+<h3>Шаг 7 — Mailable</h3>
+<p class="path">app/Mail/Form/CallMeBlueMail.php</p>
+<pre><code>class CallMeBlueMail extends Mailable
+{
+    use Queueable, SerializesModels;
+
+    public function __construct(public array $data) {}
+
+    public function envelope(): Envelope
+    {
+        return new Envelope(subject: 'Заявка с сайта — оставьте заявку');
+    }
+
+    public function content(): Content
+    {
+        return new Content(view: 'html.email.call_me_blue');
+    }
+}</code></pre>
+
+<h3>Шаг 8 — Шаблон письма</h3>
+<p class="path">resources/views/html/email/call_me_blue.blade.php</p>
+<pre><code>@extends('html.email.layouts.layout_default_mail')
+
+@section('title', 'Новая заявка с сайта')
+@section('description', 'Пользователь оставил заявку на обратный звонок.')
+
+@section('content')
+    @foreach($data as $label => $value)
+        &lt;table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom:10px;"&gt;
+            &lt;tr&gt;
+                &lt;td style="width:110px; padding:8px 12px 8px 0; vertical-align:top;"&gt;
+                    &lt;span style="font-size:12px; color:#888888; font-weight:600; text-transform:uppercase;"&gt;{{ $label }}&lt;/span&gt;
+                &lt;/td&gt;
+                &lt;td style="padding:8px 0; vertical-align:top; border-bottom:1px solid #eaecf0;"&gt;
+                    &lt;span style="font-size:15px; color:#282828; font-weight:500;"&gt;{{ $value }}&lt;/span&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    @endforeach
+@endsection</code></pre>
+<div class="rule">
+    <ul>
+        <li>Данные из <code>$data</code> итерируются — ключ становится лейблом, значение — содержимым</li>
+        <li>Базовый layout подключает логотип, цветной разделитель, заголовок и тело письма</li>
+        <li>Вёрстка письма — табличная (совместима с почтовыми клиентами); все стили инлайн</li>
+    </ul>
+</div>
+
+<!-- ============================================================ -->
+<div class="variant">Вариант B — Форма в модальном окне Fancybox</div>
+<p>Пример: форма «Получить консультацию» (<code>consult_me</code>), открывается из кнопки на странице <code>/onas</code>.</p>
+
+<h3>Шаг 1 — Кнопка-триггер</h3>
+<pre><code>&lt;a href="#" class="btn open-fancybox" data-form="consult_me"&gt;Получить консультацию&lt;/a&gt;</code></pre>
+<div class="rule">
+    <ul>
+        <li><code>open-fancybox</code> — JS-хук; обработчик клика вешается автоматически при загрузке страницы</li>
+        <li><code>data-form="consult_me"</code> — имя шаблона, запрашиваемого у сервера</li>
+    </ul>
+</div>
+
+<h3>Шаг 2 — Регистрация шаблона в FancyBoxController</h3>
+<p class="path">app/Http/Controllers/FancyBox/FancyBoxController.php</p>
+<pre><code>public function fancybox(Request $request)
+{
+    if ($request->template === 'consult_me') {
+        return view('fancybox.forms.consult_me');
+    }
+
+    return view('fancybox.forms.error.error_form');
+}</code></pre>
+<div class="note">При клике JS делает <code>POST /fancybox-ajax</code> с телом <code>{template: 'consult_me'}</code> и получает HTML формы. Затем <code>Fancybox.show([{html: data}])</code> открывает модальное окно. После открытия вызывается <code>asyncExecution()</code> — она находит кнопку внутри модала и вешает обработчик отправки.</div>
+
+<h3>Шаг 3 — Шаблон формы в модальном окне</h3>
+<p class="path">resources/views/fancybox/forms/consult_me.blade.php</p>
+<pre><code>&lt;div class="modal-form-container mini app_form_modal"&gt;
+    &lt;div class="modal_padding"&gt;
+
+        &lt;x-form.form-loader/&gt;
+        &lt;x-form.form-response /&gt;
+
+        &lt;div class="app_form_data"&gt;
+            &lt;div class="app_modal modal_content"&gt;
+
+                &lt;x-form.title
+                    title="Получить консультацию"
+                    sub="Оставьте заявку — мы свяжемся с вами в ближайшее время"
+                /&gt;
+
+                &lt;div style="padding: 20px 0 0;"&gt;
+                    &lt;x-form.input name="Имя" label="Имя" required /&gt;
+                    &lt;x-form.input name="Телефон" label="Телефон" type="tel" required /&gt;
+                    &lt;x-form.input name="Email" label="Email" type="email" required /&gt;
+                    &lt;div class="input-button"&gt;
+                        &lt;button class="btn btn-big app_form_button" data-url="consult-me"&gt;Отправить&lt;/button&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<div class="rule">
+    <strong>Правила:</strong>
+    <ul>
+        <li><code>modal-form-container</code> — ширина окна; модификаторы: <code>mini</code> = 600px, <code>middle</code> = 100%, без модификатора = 900px</li>
+        <li><code>modal_padding</code> — обёртка <strong>без паддинга</strong>; паддинг перенесён на <code>modal_content</code>, чтобы лоадер покрывал всю область</li>
+        <li><code>&lt;x-form.form-loader/&gt;</code> и <code>&lt;x-form.form-response/&gt;</code> — прямо в <code>modal_padding</code>, до <code>modal_content</code></li>
+        <li><code>&lt;x-form.title&gt;</code> — анонимный компонент: пропсы <code>title</code> и <code>sub</code> (опциональный)</li>
+        <li>Опция <code>touch: false</code> в <code>Fancybox.show()</code> — разрешает выделение текста мышью в модальном окне</li>
+    </ul>
+</div>
+
+<h3>Шаги 4–8 — Backend (идентично Варианту A)</h3>
+<table>
+    <tr><th>Файл</th><th>Аналог из Варианта A</th></tr>
+    <tr><td><code>app/Http/Requests/ConsultMeRequest.php</code></td><td><code>CallMeBlueRequest.php</code></td></tr>
+    <tr><td><code>AxiosController::consultMe()</code></td><td><code>callMeBlue()</code></td></tr>
+    <tr><td><code>app/Jobs/Form/ConsultMeJob.php</code></td><td><code>CallMeBlueJob.php</code></td></tr>
+    <tr><td><code>app/Mail/Form/ConsultMeMail.php</code></td><td><code>CallMeBlueMail.php</code></td></tr>
+    <tr><td><code>resources/views/html/email/consult_me.blade.php</code></td><td><code>call_me_blue.blade.php</code></td></tr>
+</table>
+<pre><code>// routes/web.php
+Route::post('/consult-me', 'consultMe');</code></pre>
+
+<!-- ============================================================ -->
+<h2>Трейт EmailAddressCollector</h2>
+<p class="path">src/Support/Traits/EmailAddressCollector.php</p>
+<pre><code>namespace Support\Traits;
+
+use App\Models\Setting;
+
+trait EmailAddressCollector
+{
+    public function emails(): array
+    {
+        $emails = [];
+
+        $mailAdmin = env('MAIL_ADMIN', config('mail.from.address'));
+        if ($mailAdmin) {
+            $emails[] = $mailAdmin;
+        }
+
+        $extra = Setting::getGroup('social')->data['emails'] ?? [];
+        foreach ($extra as $row) {
+            if (!empty($row['email'])) {
+                $emails[] = trim($row['email']);
+            }
+        }
+
+        return array_values(array_unique(array_filter($emails)));
+    }
+}</code></pre>
+<div class="rule">
+    <ul>
+        <li>Трейт подключается в Job через <code>use EmailAddressCollector</code></li>
+        <li>Адрес из <code>.env</code> (<code>MAIL_ADMIN</code>) — всегда первый</li>
+        <li>Дополнительные адреса добавляются из вкладки «E-mail адреса» в MoonShine → Настройки → Соцсети и константы</li>
+        <li><code>array_unique</code> + <code>array_filter</code> — дедупликация и удаление пустых значений</li>
+        <li>Если список пуст — <code>handle()</code> завершается без отправки</li>
+    </ul>
+</div>
+
+<!-- ============================================================ -->
+<h2>Итоговая схема потока данных</h2>
+<div class="schema">
+<pre style="background:transparent; color:#1a1a1a; padding:0; margin:0;"><code>Клик по кнопке
+  └─ [Простая форма]   data-form → POST /upload-form-async → axios.forms.{name}.blade.php
+  └─ [Модальная форма] data-form → POST /fancybox-ajax    → fancybox.forms.{name}.blade.php
+                                                               └─ Fancybox.show([{html}]) + asyncExecution()
+
+Ввод данных → asyncExecution() собирает .app_input_name поля
+  └─ POST /{route}  (data-url на кнопке)
+       ├─ FormRequest → 422 + errors → fieldErrors.js → .app_input_error (absolute, без сдвига формы)
+       └─ OK → Job::dispatch($data)
+                 └─ EmailAddressCollector::emails()
+                      ├─ MAIL_ADMIN (.env)
+                      └─ Setting::getGroup('social')->data['emails']  (AdminPanel)
+                 └─ Mail::to($recipients)->send(new {Name}Mail($data))
+                      └─ html.email.{name}.blade.php
+                           └─ @extends(html.email.layouts.layout_default_mail)
+       └─ response json ok → loader off → .app_form_response.active  (Спасибо)</code></pre>
+</div>
+
+</body>
+</html>
