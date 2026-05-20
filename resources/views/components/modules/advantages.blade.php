@@ -32,7 +32,6 @@
                 type="button"
                 aria-label="Смотреть видео о Высшей Школе Экономики"
                 data-video-src="https://www.youtube.com/embed/{{ $youtubeVideoId }}?autoplay=1"
-                style="background-image: url('{{ Storage::url('images/about-video.png') }}');"
             >
                 <div class="video-card__play"></div>
             </button>

@@ -42,4 +42,5 @@
 @import 'templates/axeld/footer.scss';
 @import 'style.scss';
 @import 'components/modules/contacts.scss';
+@import 'components/language/header-language-component.scss';
 

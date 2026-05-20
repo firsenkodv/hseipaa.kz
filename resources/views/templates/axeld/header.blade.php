@@ -4,17 +4,16 @@
     <div class="header-topbar">
         <div class="header-inner">
             <div class="header-sites">
-                <a href="#" class="header-site-link header-site-link--active">
+                <a href="{{ route('home') }}" class="header-site-link header-site-link--active">
                     <img src="{{ Storage::url('/images/ic_logo.svg') }}" alt="" class="header-site-icon" />
                     hseipaa.kz
                 </a>
-                <a href="#" class="header-site-link">
+                <a href="https://on.hseipaa.kz" class="header-site-link">
                     <img src="{{ Storage::url('/images/ic_logo.svg') }}" alt="" class="header-site-icon" />
-                    on.hseipaa.kz online
+                    online обучение
                 </a>
-                <a href="#" class="header-site-link">
-                    <img src="{{ Storage::url('/images/ic_logo.svg') }}" alt="" class="header-site-icon" />
-                    Портал бухгалтеров
+                <a href="https://in.hseipaa.kz" class="header-site-link">
+                    <img src="{{ Storage::url('/images/enpa.svg') }}" width="96" height="28"  alt="" class="header-site-icon header-site-icon-enpa" />
                 </a>
             </div>
             <x-contacts.city-selector />
@@ -28,9 +27,7 @@
             <div class="header-middle-right">
                 <x-socials.socials class="header-socials" btn-class="header-social-btn" />
                 <div class="header-lang">
-                    <a href="#" class="header-lang-btn">Қаз</a>
-                    <a href="#" class="header-lang-btn header-lang-btn--active">Рус</a>
-                    <a href="#" class="header-lang-btn">Eng</a>
+                    <x-language.header-language-component />
                 </div>
             </div>
         </div>

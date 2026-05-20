@@ -8,35 +8,17 @@
         <div class="footer-divider"></div>
 
         <nav class="footer-nav" aria-label="Навигация футера">
-            <div class="footer-col">
-                <a href="#" class="footer-link active">Online курсы</a>
-                <a href="#" class="footer-link">Главная</a>
-                <a href="#" class="footer-link">О нас</a>
-                <a href="#" class="footer-link">Контакты</a>
-                <a href="#" class="footer-link">Карта сайта</a>
-            </div>
-            <div class="footer-col">
-                <a href="#" class="footer-link">Обучение</a>
-                <a href="#" class="footer-link">Консалтинг</a>
-                <a href="#" class="footer-link">Расписание</a>
-                <a href="#" class="footer-link">Полезное</a>
-            </div>
-            <div class="footer-col">
-                <a href="#" class="footer-link">Вопросы</a>
-                <a href="#" class="footer-link">Оплата</a>
-                <a href="#" class="footer-link">Сертификация</a>
-                <a href="#" class="footer-link">Договор</a>
-            </div>
-            <div class="footer-col">
-                <a href="#" class="footer-link">Законы</a>
-                <a href="#" class="footer-link">Документы</a>
-                <a href="#" class="footer-link">Программы курсов</a>
-                <a href="#" class="footer-link">Задачники</a>
-            </div>
-            <div class="footer-col">
-                <a href="#" class="footer-link">Статус бухгалтера</a>
-                <a href="#" class="footer-link">Содержание CAP</a>
-            </div>
+            @foreach(['footer_col_1', 'footer_col_2', 'footer_col_3', 'footer_col_4', 'footer_col_5'] as $k=>$colKey)
+                @if(!empty($social[$colKey]))
+                    <div class="footer-col footer-col-{{++$k}}">
+                        @foreach($social[$colKey] as $item)
+                            @if(!empty($item['label']))
+                                <a href="{{ $item['url'] ?? '#' }}" class="footer-link">{{ $item['label'] }}</a>
+                            @endif
+                        @endforeach
+                    </div>
+                @endif
+            @endforeach
             <div class="footer-col footer-col--contacts">
                 @if(!empty($social['phone']))
                 <a href="tel:{{ $social['phone'] }}" class="footer-phone">{{ format_phone($social['phone']) }}</a>

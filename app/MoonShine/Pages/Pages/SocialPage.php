@@ -12,7 +12,9 @@ use MoonShine\Support\Attributes\AsyncMethod;
 use MoonShine\Support\Enums\ToastType;
 use MoonShine\UI\Components\FormBuilder;
 use MoonShine\UI\Components\Layout\Box;
+use MoonShine\UI\Components\Layout\Column;
 use MoonShine\UI\Components\Layout\Divider;
+use MoonShine\UI\Components\Layout\Grid;
 use MoonShine\UI\Components\Tabs;
 use MoonShine\UI\Components\Tabs\Tab;
 use MoonShine\UI\Fields\Json;
@@ -118,6 +120,44 @@ class SocialPage extends Page
                                     ->hint('Например: manager@hseiipa.kz'),
                             ])->vertical()->creatable()->removable(),
                         ])->icon('envelope'),
+
+                        Tab::make('Нижнее меню', [
+                            Grid::make([
+                                Column::make([
+                            Divider::make('Колонка 1'),
+                            Json::make('Колонка 1', 'footer_col_1')->fields([
+                                Text::make('Название', 'label'),
+                                Text::make('Ссылка', 'url'),
+                            ])->creatable()->removable(),
+
+                            Divider::make('Колонка 2'),
+                            Json::make('Колонка 2', 'footer_col_2')->fields([
+                                Text::make('Название', 'label'),
+                                Text::make('Ссылка', 'url'),
+                            ])->creatable()->removable(),
+
+                            Divider::make('Колонка 3'),
+                            Json::make('Колонка 3', 'footer_col_3')->fields([
+                                Text::make('Название', 'label'),
+                                Text::make('Ссылка', 'url'),
+                            ])->creatable()->removable(),
+
+                            Divider::make('Колонка 4'),
+                            Json::make('Колонка 4', 'footer_col_4')->fields([
+                                Text::make('Название', 'label'),
+                                Text::make('Ссылка', 'url'),
+                            ])->creatable()->removable(),
+                            Divider::make('Колонка 5'),
+                            Json::make('Колонка 5', 'footer_col_5')->fields([
+                                Text::make('Название', 'label'),
+                                Text::make('Ссылка', 'url'),
+                            ])->creatable()->removable(),
+
+                                ])->columnSpan(8),
+
+                            ]),
+
+                        ])->icon('bars-3'),
                     ]),
                 ]),
             ])

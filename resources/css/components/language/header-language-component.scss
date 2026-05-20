@@ -1,0 +1,41 @@
+body {
+    top: 0 !important;
+}
+.skiptranslate {
+    display: none !important;
+    height: 0;
+}
+
+.language_header-language-component {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+        font-size: 15px;
+
+
+
+    .language__img {
+        cursor: pointer;
+        color: #6F7893;
+        transition: color 0.15s;
+        font-size: 15px;
+
+        font {
+            font-size: 15px;
+        }
+        &.language__img_active {
+                color: #1f1f22;
+                text-underline-offset: 3px;
+                font-weight: 600;
+                text-decoration: underline;
+            font {
+                font-size: 15px;
+            }
+
+        }
+
+        &:hover {
+            color: #f84e40;
+        }
+    }
+}
