@@ -12,7 +12,7 @@
             <div class="desc">{!! $desc !!}</div>
         @endif
 </div>
-        <form method="GET" action="{{ route('resources.diplomas') }}">
+        <form method="GET" action="">
             <div class="diploma-search__form-row">
 
                 <div class="input-group">
