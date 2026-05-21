@@ -107,7 +107,7 @@ Route::controller(AxiosController::class)->group(function () {
 
 /** DEV: импорт дипломов из Joomla Zoo — удалить после использования **/
 Route::prefix('dev/diplomas')->controller(DiplomaImportController::class)->group(function () {
-    Route::get('/preview', 'preview');
-    Route::get('/import', 'import');
+ /*   Route::get('/preview', 'preview');
+    Route::get('/import', 'import');*/
 });
 /** ///DEV **/
