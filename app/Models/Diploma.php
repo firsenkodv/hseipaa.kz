@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Enums\Resources\FullTemplate;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,30 +9,11 @@ class Diploma extends Model
 {
     protected $fillable = [
         'title',
-        'slug',
-        'template',
-        'subtitle',
-        'short_desc',
-        'img',
-        'desc',
-        'img2',
-        'desc2',
-        'html',
-        'html2',
+        'fio',
+        'issued_at',
+        'discipline',
         'published',
-        'params',
-        'video',
-        'gallery',
-        'files',
-        'metatitle',
-        'description',
-        'keywords',
-        'script',
         'sorting',
-        'faq',
-        'custom_field',
-        'custom_field2',
-        'custom_field3',
     ];
 
     public function scopePublished(Builder $query): Builder
@@ -44,13 +24,9 @@ class Diploma extends Model
     protected function casts(): array
     {
         return [
+            'issued_at' => 'date',
             'published' => 'integer',
             'sorting'   => 'integer',
-            'template'  => FullTemplate::class,
-            'video'     => 'array',
-            'gallery'   => 'array',
-            'files'     => 'array',
-            'faq'       => 'array',
         ];
     }
 }

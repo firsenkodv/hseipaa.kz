@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace App\MoonShine\Layouts;
 
 
-
-
 use App\Models\Document;
 use App\MoonShine\Pages\Pages\AboutPage;
 use App\MoonShine\Pages\Pages\ConsultingPage;
@@ -82,128 +80,111 @@ final class AxeldLayout extends AppLayout
                 MenuItem::make(MoonShineUserResource::class, 'Админ', 'user'),
                 MenuDivider::make(),
 
-            ]),
+            ])->icon('users'),
 
 
-            MenuGroup::make(static fn() => __('Страницы'), [
+            MenuGroup::make(static fn() => __('Категории'), [
                 MenuItem::make(HomePage::class, 'Главная', 'home'),
                 MenuItem::make(ContactPage::class, 'Контакты', 'phone'),
                 MenuDivider::make(),
-                MenuItem::make(AboutPage::class, 'О нас', 'document-text'),
+                MenuItem::make(AboutPage::class, 'О нас', 'information-circle'),
                 MenuGroup::make('Элементы', [
-                    MenuItem::make(TeamPage::class, 'Команда', 'document-text'),
-                    MenuItem::make(ClientsPage::class, 'Клиенты', 'document-text'),
-                    MenuItem::make(PartnersPage::class, 'Партнёры', 'document-text'),
+                    MenuItem::make(TeamPage::class, 'Команда', 'user-group'),
+                    MenuItem::make(ClientsPage::class, 'Клиенты', 'users'),
+                    MenuItem::make(PartnersPage::class, 'Партнёры', 'link'),
                     MenuItem::make(DocumentsPage::class, 'Документы', 'document-text'),
-                    MenuItem::make(AboutCompanyPage::class, 'О компании', 'document-text'),
-                    MenuItem::make(CooperationPage::class, 'Сотрудничество', 'document-text'),
-                ]),
+                    MenuItem::make(AboutCompanyPage::class, 'О компании', 'building-office'),
+                    MenuItem::make(CooperationPage::class, 'Сотрудничество', 'arrows-right-left'),
+                ])->icon('squares-2x2'),
                 MenuDivider::make(),
-                MenuItem::make(TrainingPage::class, 'Обучение', 'document-text'),
-                MenuItem::make(ConsultingPage::class, 'Консалтинг', 'document-text'),
-                MenuItem::make(RemotePage::class, 'Дистанционно', 'document-text'),
+                MenuItem::make(TrainingPage::class, 'Обучение', 'academic-cap'),
+                MenuItem::make(ConsultingPage::class, 'Консалтинг', 'briefcase'),
+                MenuItem::make(RemotePage::class, 'Дистанционно', 'computer-desktop'),
                 MenuDivider::make(),
-                MenuItem::make(SchedulePage::class, 'Расписание', 'document-text'),
+                MenuItem::make(SchedulePage::class, 'Расписание', 'calendar-days'),
                 MenuDivider::make(),
-                MenuItem::make(ResourcesPage::class, 'Полезное', 'document-text'),
+                MenuItem::make(ResourcesPage::class, 'Полезное', 'light-bulb'),
 
                 MenuGroup::make('Элементы', [
-                    MenuItem::make(LawsPage::class, 'Законы', 'document-text'),
-                    MenuItem::make(NewsPage::class, 'Новости', 'document-text'),
-                    MenuItem::make(ImportantPage::class, 'Важное', 'document-text'),
-                    MenuItem::make(DiplomasPage::class, 'Дипломы', 'document-text'),
-                    MenuItem::make(SeminarPage::class, 'Семинары', 'document-text'),
-                ]),
+                    MenuItem::make(LawsPage::class, 'Законы', 'scale'),
+                    MenuItem::make(NewsPage::class, 'Новости', 'newspaper'),
+                    MenuItem::make(ImportantPage::class, 'Важное', 'exclamation-triangle'),
+                    MenuItem::make(DiplomasPage::class, 'Дипломы', 'trophy'),
+                    MenuItem::make(SeminarPage::class, 'Семинары', 'presentation-chart-bar'),
+                ])->icon('squares-2x2'),
 
 
+            ])->icon('rectangle-stack'),
 
-            ]),
+            MenuGroup::make(static fn() => __('Страницы'), [
 
+                MenuGroup::make(static fn() => __('О компании'), [
+                    MenuGroup::make(static fn() => __('О нас'), [
+                        MenuItem::make(AboutResource::class, 'Страницы', 'document-text'),
+                    ])->icon('information-circle'),
+                    MenuGroup::make(static fn() => __('Документы'), [
+                        MenuItem::make(DocumentResource::class, 'Страницы', 'document-text'),
+                    ])->icon('document-duplicate'),
+                    MenuGroup::make(static fn() => __('Партнеры'), [
+                        MenuItem::make(PartnerResource::class, 'Страницы', 'document-text'),
+                    ])->icon('link'),
+                    MenuGroup::make(static fn() => __('Команда'), [
+                        MenuItem::make(TeamResource::class, 'Страницы', 'document-text'),
+                    ])->icon('user-group'),
 
-            MenuGroup::make(static fn() => __('О компании'), [
-                MenuGroup::make(static fn() => __('О нас'), [
-                  MenuItem::make(AboutResource::class, 'Страницы', 'folder-plus'),
-                ]),
-               MenuGroup::make(static fn() => __('Документы'), [
-                  MenuItem::make(DocumentResource::class, 'Страницы', 'folder-plus'),
-                ]),
-               MenuGroup::make(static fn() => __('Партнеры'), [
-                  MenuItem::make(PartnerResource::class, 'Страницы', 'folder-plus'),
-                ]),
-               MenuGroup::make(static fn() => __('Команда'), [
-                  MenuItem::make(TeamResource::class, 'Страницы', 'folder-plus'),
-                ]),
+                    /*     MenuItem::make(ProductCategoryResource::class, 'Категории', 'squares-2x2'),
+                         MenuItem::make(ProductTagResource::class, 'Теги', 'hashtag'),
+                         MenuItem::make(ProductResource::class, 'Сертификаты', 'squares-plus'),*/
+                ])->icon('building-office'),
 
-           /*     MenuItem::make(ProductCategoryResource::class, 'Категории', 'squares-2x2'),
-                MenuItem::make(ProductTagResource::class, 'Теги', 'hashtag'),
-                MenuItem::make(ProductResource::class, 'Сертификаты', 'squares-plus'),*/
-            ]),
+                MenuGroup::make(static fn() => __('Обучение'), [
+                    MenuItem::make(TrainingCategoryResource::class, 'Категории', 'tag'),
+                    MenuItem::make(TrainingResource::class, 'Страницы', 'document-text'),
+                ])->icon('academic-cap'),
 
-           MenuGroup::make(static fn() => __('Обучение'), [
-               MenuItem::make(TrainingCategoryResource::class, 'Категории', 'tag'),
-               MenuItem::make(TrainingResource::class, 'Страницы', 'folder-plus'),
-           ]),
+                MenuGroup::make(static fn() => __('Консалтинг'), [
+                    MenuItem::make(ConsultingResource::class, 'Страницы', 'document-text'),
+                ])->icon('briefcase'),
 
-           MenuGroup::make(static fn() => __('Консалтинг'), [
-                  MenuItem::make(ConsultingResource::class, 'Страницы', 'folder-plus'),
-           ]),
+                MenuGroup::make(static fn() => __('Online'), [
+                    MenuItem::make(OnlineResource::class, 'Страницы', 'document-text'),
+                ])->icon('computer-desktop'),
 
-            MenuGroup::make(static fn() => __('Online'), [
-                MenuItem::make(OnlineResource::class, 'Страницы', 'folder-plus'),
-            ]),
+                MenuGroup::make(static fn() => __('Расписание'), [
+                    MenuItem::make(ScheduleCourseResource::class, 'Курсы', 'academic-cap'),
+                    MenuItem::make(ScheduleResource::class, 'Страницы', 'document-text'),
+                ])->icon('calendar-days'),
 
-            MenuGroup::make(static fn() => __('Расписание'), [
-                MenuItem::make(ScheduleCourseResource::class, 'Курсы', 'academic-cap'),
-                MenuItem::make(ScheduleResource::class, 'Страницы', 'folder-plus'),
-            ]),
+                MenuGroup::make(static fn() => __('Полезное'), [
+                    MenuGroup::make(static fn() => __('Полезное'), [
+                        MenuItem::make(UsefulResource::class, 'Страницы', 'document-text'),
+                    ])->icon('bookmark'),
+                    MenuGroup::make(static fn() => __('Законы'), [
+                        MenuItem::make(LawResource::class, 'Страницы', 'document-text'),
+                    ])->icon('scale'),
+                    MenuGroup::make(static fn() => __('Новости'), [
+                        MenuItem::make(NewsResource::class, 'Страницы', 'document-text'),
+                    ])->icon('newspaper'),
+                    MenuGroup::make(static fn() => __('Важное'), [
+                        MenuItem::make(ImportantResource::class, 'Страницы', 'document-text'),
+                    ])->icon('exclamation-triangle'),
 
-           MenuGroup::make(static fn() => __('Полезное'), [
-               MenuGroup::make(static fn() => __('Полезное'), [
-                  MenuItem::make(UsefulResource::class, 'Страницы', 'folder-plus'),
-               ]),
-               MenuGroup::make(static fn() => __('Законы'), [
-                  MenuItem::make(LawResource::class, 'Страницы', 'folder-plus'),
-               ]),
-               MenuGroup::make(static fn() => __('Новости'), [
-                  MenuItem::make(NewsResource::class, 'Страницы', 'folder-plus'),
-               ]),
-               MenuGroup::make(static fn() => __('Важное'), [
-                  MenuItem::make(ImportantResource::class, 'Страницы', 'folder-plus'),
-               ]),
-               MenuGroup::make(static fn() => __('Дипломы'), [
-                  MenuItem::make(DiplomaResource::class, 'Страницы', 'folder-plus'),
-               ]),
-               MenuGroup::make(static fn() => __('Семинары'), [
-                  MenuItem::make(SeminarResource::class, 'Страницы', 'folder-plus'),
-               ]),
+                    MenuGroup::make(static fn() => __('Семинары'), [
+                        MenuItem::make(SeminarResource::class, 'Страницы', 'document-text'),
+                    ])->icon('presentation-chart-bar'),
 
-           ]),
+                ])->icon('light-bulb'),
 
-
-/*            MenuGroup::make(static fn() => __('Страницы'), [
-                MenuItem::make(HomePage::class, 'Главная страница', 'building-library'),
-                MenuItem::make(PageResource::class, 'Страницы', 'check'),
-
-            ]),*/
-
+            ])->icon('folder-plus'),
 
             MenuGroup::make(static fn() => __('Настройки'), [
                 MenuItem::make(CityResource::class, 'Города', 'building-office-2'),
-             /* MenuItem::make(SettingPage::class, 'Константы', 'adjustments-vertical'),*/
                 MenuItem::make(MediaManagerPage::class, 'Media', 'film'),
                 MenuItem::make(ToastPage::class, 'Toast', 'bell'),
                 MenuItem::make(SocialPage::class, 'Соцсети и константы', 'globe-alt'),
-/*                MenuItem::make(TaxationResource::class, 'Налоги', 'currency-dollar'),
-                MenuGroup::make(static fn() => __('Продавцы'), [
-                    MenuItem::make(LegalEntityResource::class, 'Юр.Лица'),
-                    MenuItem::make(IndividualEntrepreneurResource::class, 'ИП'),
-                    MenuItem::make(SelfEmployedResource::class, 'Самозанятые'),*/
 
-                ]),
-
-
-
-
+            ])->icon('cog-6-tooth'),
+            MenuItem::make(DiplomaResource::class, 'Список дипломов', 'trophy'),
         ];
     }
 

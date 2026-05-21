@@ -11,6 +11,8 @@ enum PageTemplate: string
     case Training = 'training';
     case Team = 'team';
     case Schedule = 'schedule';
+    case Diploma = 'diploma';
+
 
     public function label(): string
     {
@@ -20,6 +22,7 @@ enum PageTemplate: string
             self::Training => 'Обучение',
             self::Team => 'Команда',
             self::Schedule => 'Расписание',
+            self::Diploma => 'Поиск диплома',
 
         };
     }

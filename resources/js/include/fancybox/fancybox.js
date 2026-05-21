@@ -2,6 +2,7 @@ import { Fancybox } from "@fancyapps/ui/dist/fancybox/";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import {asyncExecution} from "../form_async/async_execution";
 import {scrollCabinetMessages} from "./cabinet_message";
+import {mzSelectInit} from "../select/mz-select";
 
 
 /*Fancybox.bind('[data-fancybox]', {
@@ -77,17 +78,37 @@ export async function openFancyboxForm(formTemplate, transferData = null) {
         const data = await response.text();
 
         Fancybox.show([{ html: data }], {
+            Carousel: { touch: false },
             dragToClose: false,
             closeButton: true,
             backdropClick: 'close',
             touch: false,
+            userSelectableContent: true,
         });
 
         asyncExecution();
         scrollCabinetMessages();
+        mzSelectInit(document);
+        initRecordFormRadios();
 
     } catch (err) {
         console.error('Ошибка AJAX:', err.message);
         alert('Ошибка при получении данных');
     }
+}
+
+function initRecordFormRadios() {
+    const radios = document.querySelectorAll('input[name="_person_type"]');
+    if (!radios.length) return;
+
+    const companyWrap = document.querySelector('.record-form__company');
+    const typeInput   = document.querySelector('input[name="Тип"]');
+
+    radios.forEach(function (radio) {
+        radio.addEventListener('change', function () {
+            const isLegal = this.value === 'legal';
+            companyWrap.classList.toggle('display_none', !isLegal);
+            typeInput.value = isLegal ? 'Юридическое лицо' : 'Физическое лицо';
+        });
+    });
 }

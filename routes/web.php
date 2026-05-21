@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dev\DiplomaImportController;
 use App\Http\Controllers\Ajax\CityController;
 use App\Http\Controllers\Axios\AxiosController;
 use App\Http\Controllers\FancyBox\FancyBoxController;
@@ -99,6 +100,14 @@ Route::controller(AxiosController::class)->group(function () {
     Route::post('/upload-form-async', 'async');
     Route::post('/call-me-blue', 'callMeBlue');
     Route::post('/consult-me', 'consultMe');
+    Route::post('/record-me', 'recordMe');
     Route::post('/schedule-enroll', 'scheduleEnroll');
 });
 /** ///Axios async forms **/
+
+/** DEV: импорт дипломов из Joomla Zoo — удалить после использования **/
+Route::prefix('dev/diplomas')->controller(DiplomaImportController::class)->group(function () {
+    Route::get('/preview', 'preview');
+    Route::get('/import', 'import');
+});
+/** ///DEV **/

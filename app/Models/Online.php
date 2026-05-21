@@ -10,6 +10,7 @@ class Online extends Model
 {
     protected $fillable = [
         'title',
+        'menu_title',
         'slug',
         'template',
         'subtitle',

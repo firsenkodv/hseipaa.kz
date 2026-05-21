@@ -10,6 +10,7 @@
 @import 'loader_map.css';
 @import 'trix/trix.scss';
 @import 'components/modules/banner.scss';
+@import 'materialize-select/select.scss';
 @import 'components/modules/programs.scss';
 @import 'components/modules/slider.scss';
 @import 'components/modules/schedule.scss';
@@ -20,6 +21,7 @@
 @import 'components/form/form-loader.scss';
 @import 'components/form/form-input.scss';
 @import 'components/form/form-blue-component.scss';
+@import 'components/form/record-form.scss';
 @import 'components/form/slim-select.scss';
 @import 'buttons/buttons.scss';
 @import 'templates/axeld/breadcrumbs.scss';
@@ -36,6 +38,7 @@
 @import 'templates/axeld/breadcrumbs.scss';
 @import 'templates/axeld/content.scss';
 @import 'components/menu/nav-dropdown.scss';
+@import 'components/modules/diploma-search.scss';
 @import 'components/modules/toast-promo.scss';
 @import 'templates/axeld/header.scss';
 @import 'templates/axeld/city-selector.scss';

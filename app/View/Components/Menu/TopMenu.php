@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Menu;
 
+use App\Models\Online;
 use App\Models\Schedule;
 use App\Models\TrainingCategory;
 use Closure;
@@ -13,6 +14,7 @@ class TopMenu extends Component
     public array $navItems;
     public $trainingCategories;
     public $schedules;
+    public $onlines;
 
     public function __construct()
     {
@@ -28,7 +30,7 @@ class TopMenu extends Component
             ]],
             ['label' => 'Обучение',   'route' => 'training',   'pattern' => 'training*', 'hasDropdown' => true],
             ['label' => 'Консалтинг', 'route' => 'consulting', 'pattern' => 'consulting*'],
-            ['label' => 'Online',     'route' => 'remote',     'pattern' => 'remote*'],
+            ['label' => 'Online',     'route' => 'remote',     'pattern' => 'remote*', 'hasOnlineDropdown' => true],
             ['label' => 'Расписание', 'route' => 'schedule',    'pattern' => 'schedule*', 'hasScheduleDropdown' => true],
             ['label' => 'Полезное',   'route' => 'resources',  'pattern' => 'resources*', 'dropdown' => [
                 ['label' => 'Законы',    'route' => 'resources.laws',      'pattern' => 'resources.laws*'],
@@ -45,6 +47,7 @@ class TopMenu extends Component
         }])->orderBy('sorting')->get();
 
         $this->schedules = Schedule::published()->get();
+        $this->onlines = Online::published()->get();
     }
 
     public function render(): View|Closure|string

@@ -2,7 +2,7 @@
 <x-seo.meta-paginated :page="$page" :items="$items"/>
 @section('content')
     <div class="content_page">
-        <div class="block">
+        <div class="block pad_b20">
             <div class="block_content__breadcrumbs">{{ Breadcrumbs::render(Route::currentRouteName()) }}</div>
 
             @if($template === \App\Enums\Pages\PageTemplate::Default)
@@ -13,6 +13,7 @@
                     <div class="short_desc desc">{!!  $page->short_desc  !!}</div>
                 @endif
             @endif
+
 
             @if($items->count())
                 <!--Список-->

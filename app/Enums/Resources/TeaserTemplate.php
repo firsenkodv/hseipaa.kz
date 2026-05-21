@@ -6,6 +6,7 @@ namespace App\Enums\Resources;
 
 enum TeaserTemplate: string
 {
+    case No = 'no';
     case Default = 'default';
     case Colomns = 'colomns';
     case Training = 'training';
@@ -17,6 +18,7 @@ enum TeaserTemplate: string
     public function label(): string
     {
         return match($this) {
+            self::No => 'Не выводить!',
             self::Default => 'Стандартный',
             self::Colomns => 'Колонки',
             self::Training => 'Обучение',

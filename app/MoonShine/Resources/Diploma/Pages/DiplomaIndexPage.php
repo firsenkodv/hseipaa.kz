@@ -7,8 +7,7 @@ namespace App\MoonShine\Resources\Diploma\Pages;
 use App\MoonShine\Resources\Diploma\DiplomaResource;
 use MoonShine\Contracts\UI\FieldContract;
 use MoonShine\Laravel\Pages\Crud\IndexPage;
-use MoonShine\UI\Fields\ID;
-use MoonShine\UI\Fields\Image;
+use MoonShine\UI\Fields\Date;
 use MoonShine\UI\Fields\Switcher;
 use MoonShine\UI\Fields\Text;
 
@@ -23,14 +22,12 @@ final class DiplomaIndexPage extends IndexPage
     protected function fields(): iterable
     {
         return [
-            ID::make(),
-            Image::make(__('Изображение'), 'img'),
-            Text::make('Title', 'title')->unescape()->updateOnPreview(),
-            Switcher::make('Published', 'published')->updateOnPreview(),
-            Text::make('Sorting', 'sorting')->updateOnPreview(),
-            Switcher::make('Metatitle', 'metatitle'),
-            Switcher::make('Description', 'description'),
-            Switcher::make('Keywords', 'keywords'),
+            Text::make('Заголовок', 'title'),
+            Text::make('ФИО', 'fio')->updateOnPreview(),
+            Date::make('Дата выдачи', 'issued_at')->format('d.m.Y'),
+            Text::make('Дисциплина', 'discipline')->updateOnPreview(),
+            Switcher::make('Опубликовано', 'published')->updateOnPreview(),
+           // Text::make('Сортировка', 'sorting')->updateOnPreview(),
         ];
     }
 }

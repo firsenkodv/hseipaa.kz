@@ -53,6 +53,7 @@ final class OnlineFormPage extends FormPage
                             Column::make([
                                 Box::make([
                                     Text::make('Заголовок', 'title')->required()->unescape(),
+                                    Text::make('Для меню', 'menu_title')->unescape(),
                                     Slug::make('Slug', 'slug')->from('title')->unique()->locked(),
                                 ]),
                                 Text::make('Подзаголовок', 'subtitle')->unescape(),

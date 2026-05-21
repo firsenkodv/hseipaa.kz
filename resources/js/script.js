@@ -18,6 +18,7 @@ import {navDropdown} from "./include/site/nav-dropdown";
 import {toastPromo} from "./include/site/toast-promo";
 import {slimSelect} from "./include/select/slim-select";
 import {scheduleMonthFilter} from "./include/schedule/schedule-month-filter";
+import {mzSelect} from "./include/select/mz-select";
 
 
 
@@ -41,5 +42,6 @@ document.addEventListener('DOMContentLoaded', function () {
     navDropdown()  // выпадающее меню навигации
     toastPromo()   // тост-уведомление
     slimSelect() // select
+    mzSelect() // select
     scheduleMonthFilter() // фильтр по месяцам
 });

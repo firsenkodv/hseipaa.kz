@@ -1,0 +1,85 @@
+// =============================================
+// Record Form Component
+// =============================================
+
+$rf-border:    #E0E0E0;
+$rf-secondary: #667085;
+$rf-indigo:    #575EEF;
+
+// ——— Карточка ———
+.record-form__card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 40px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+// ——— Переключатель тип лица (radio2) ———
+.radio2 {
+    width: 100%;
+    position: relative;
+    padding: 0 0 20px 0;
+
+    .radio2-inputs {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        border-radius: 0.5rem;
+        background-color: #EEE;
+        box-sizing: border-box;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06);
+        padding: 0.25rem;
+        width: 100%;
+
+        label {
+            flex: 1 1 auto;
+            text-align: center;
+
+            input { display: none; }
+
+            .name {
+                display: flex;
+                cursor: pointer;
+                align-items: center;
+                justify-content: center;
+                border-radius: 0.5rem;
+                border: none;
+                padding: .4rem 0;
+                color: rgba(51, 65, 85, 1);
+                transition: all .15s ease-in-out;
+
+                i {
+                    display: block;
+                    font-style: normal;
+                }
+
+                i:last-child { display: none; }
+            }
+
+            input:checked + .name {
+                background-color: #fff;
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .record-form__grid .radio2 label .name i:first-child { display: none !important; }
+    .record-form__grid .radio2 label .name i:last-child  { display: block !important; }
+}
+
+// ——— Сетка полей (2 колонки) ———
+.record-form__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 20px;
+}
+
+
+// ——— Адаптив ———
+@media (max-width: 600px) {
+    .record-form__grid {
+        grid-template-columns: 1fr;
+    }
+}

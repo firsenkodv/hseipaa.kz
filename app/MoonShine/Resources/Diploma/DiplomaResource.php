@@ -24,7 +24,7 @@ class DiplomaResource extends ModelResource
 
     protected string $column = 'title';
     protected string $sortColumn = 'sorting';
-    protected bool $simplePaginate = true;
+    protected bool $simplePaginate = false;
 
     public function getTitle(): string
     {
@@ -44,7 +44,8 @@ class DiplomaResource extends ModelResource
         return [
             'id',
             'title',
-            'slug',
+            'fio',
+            'discipline',
         ];
     }
 }

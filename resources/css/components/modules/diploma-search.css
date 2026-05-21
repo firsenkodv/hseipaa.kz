@@ -1,0 +1,157 @@
+.diploma-search {
+  padding: 30px 0 50px;
+}
+
+.diploma-search__card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 40px rgba(0, 0, 0, 0.08);
+  padding: 40px 48px;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.diploma-search__wrap {
+  margin: 0 0 28px;
+}
+
+.diploma-search__title {
+  font-size: 33px;
+  font-weight: 600;
+  color: #282828;
+  margin: 0 0 6px;
+}
+
+.diploma-search__hint {
+  color: #667085;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.diploma-search__form-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.diploma-search__form-row .input-group {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.diploma-search__actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+  padding-top: 0;
+}
+.diploma-search__actions .btn {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.diploma-search__result {
+  margin-top: 30px;
+  border-top: 1px solid #E0E0E0;
+  padding-top: 24px;
+}
+
+.diploma-search__result-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #667085;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 16px;
+}
+
+.diploma-search__result-rows {
+  border: 1px solid #E0E0E0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.diploma-search__result-row {
+  display: flex;
+  align-items: stretch;
+}
+.diploma-search__result-row + .diploma-search__result-row {
+  border-top: 1px solid #E0E0E0;
+}
+
+.diploma-search__result-key,
+.diploma-search__result-val {
+  padding: 14px 20px;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.diploma-search__result-key {
+  width: 200px;
+  flex-shrink: 0;
+  background: #F5F5F7;
+  color: #667085;
+  font-weight: 400;
+  border-right: 1px solid #E0E0E0;
+}
+
+.diploma-search__result-val {
+  color: #282828;
+  font-weight: 600;
+  flex: 1;
+}
+
+.diploma-search__not-found {
+  margin-top: 24px;
+  background: #fff8f0;
+  border: 1px solid #FF931E;
+  border-radius: 4px;
+  padding: 14px 20px;
+  color: #282828;
+  font-size: 15px;
+}
+.diploma-search__not-found strong {
+  color: #EF533F;
+}
+
+@media (max-width: 780px) {
+  .diploma-search__card {
+    padding: 28px 24px;
+  }
+}
+@media (max-width: 600px) {
+  .diploma-search__form-row {
+    flex-direction: column;
+  }
+  .diploma-search__form-row .input-group {
+    width: 100%;
+    margin-bottom: 0;
+  }
+  .diploma-search__actions {
+    width: 100%;
+  }
+  .diploma-search__actions .btn {
+    flex: 1;
+    text-align: center;
+  }
+  .diploma-search__result-key {
+    width: 130px;
+  }
+}
+@media (max-width: 400px) {
+  .diploma-search__result-row {
+    flex-direction: column;
+  }
+  .diploma-search__result-key {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #E0E0E0;
+    padding-bottom: 6px;
+  }
+  .diploma-search__result-val {
+    padding-top: 8px;
+  }
+}
+
+/*# sourceMappingURL=diploma-search.css.map */

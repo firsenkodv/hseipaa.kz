@@ -1,0 +1,190 @@
+// =============================================
+// Diploma Search Component
+// =============================================
+
+$ds-text:        #282828;
+$ds-secondary:   #667085;
+$ds-border:      #E0E0E0;
+$ds-bg-page:     #F5F5F7;
+$ds-bg-card:     #ffffff;
+$ds-red:         #EF533F;
+$ds-green:       #0f6567;
+$ds-green-light: #43D38B;
+$ds-orange:      #FF931E;
+$ds-shadow:      0 2px 40px rgba(0, 0, 0, 0.08);
+$ds-radius-lg:   12px;
+$ds-radius-sm:   4px;
+
+// ——— Обёртка ———
+.diploma-search {
+    padding: 30px 0 50px;
+}
+
+// ——— Карточка ———
+.diploma-search__card {
+    background: $ds-bg-card;
+    border-radius: $ds-radius-lg;
+    box-shadow: $ds-shadow;
+    padding: 40px 48px;
+    max-width: 780px;
+    margin: 0 auto;
+}
+.diploma-search__wrap {
+    margin: 0 0 28px;
+}
+// ——— Шапка ———
+.diploma-search__title {
+    font-size: 33px;
+    font-weight: 600;
+    color: $ds-text;
+    margin: 0 0 6px;
+}
+
+.diploma-search__hint {
+    color: $ds-secondary;
+    font-size: 16px;
+    margin-bottom: 6px;
+
+}
+
+// ——— Форма ———
+.diploma-search__form-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+
+    .input-group {
+        flex: 1;
+        margin-bottom: 0;
+    }
+}
+
+.diploma-search__actions {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+    padding-top: 0;
+
+    .btn {
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+// ——— Результат ———
+.diploma-search__result {
+    margin-top: 30px;
+    border-top: 1px solid $ds-border;
+    padding-top: 24px;
+}
+
+.diploma-search__result-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: $ds-secondary;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 0 0 16px;
+}
+
+.diploma-search__result-rows {
+    border: 1px solid $ds-border;
+    border-radius: $ds-radius-lg;
+    overflow: hidden;
+}
+
+.diploma-search__result-row {
+    display: flex;
+    align-items: stretch;
+
+    & + & {
+        border-top: 1px solid $ds-border;
+    }
+}
+
+.diploma-search__result-key,
+.diploma-search__result-val {
+    padding: 14px 20px;
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+.diploma-search__result-key {
+    width: 200px;
+    flex-shrink: 0;
+    background: $ds-bg-page;
+    color: $ds-secondary;
+    font-weight: 400;
+    border-right: 1px solid $ds-border;
+}
+
+.diploma-search__result-val {
+    color: $ds-text;
+    font-weight: 600;
+    flex: 1;
+}
+
+// ——— Не найден ———
+.diploma-search__not-found {
+    margin-top: 24px;
+    background: #fff8f0;
+    border: 1px solid $ds-orange;
+    border-radius: $ds-radius-sm;
+    padding: 14px 20px;
+    color: $ds-text;
+    font-size: 15px;
+
+    strong {
+        color: $ds-red;
+    }
+}
+
+// ——— Адаптив ———
+@media (max-width: 780px) {
+    .diploma-search__card {
+        padding: 28px 24px;
+    }
+}
+
+@media (max-width: 600px) {
+    .diploma-search__form-row {
+        flex-direction: column;
+
+        .input-group {
+            width: 100%;
+            margin-bottom: 0;
+        }
+    }
+
+    .diploma-search__actions {
+        width: 100%;
+
+        .btn {
+            flex: 1;
+            text-align: center;
+        }
+    }
+
+    .diploma-search__result-key {
+        width: 130px;
+    }
+}
+
+@media (max-width: 400px) {
+    .diploma-search__result-row {
+        flex-direction: column;
+    }
+
+    .diploma-search__result-key {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid $ds-border;
+        padding-bottom: 6px;
+    }
+
+    .diploma-search__result-val {
+        padding-top: 8px;
+    }
+}

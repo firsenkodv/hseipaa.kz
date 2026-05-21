@@ -96,6 +96,7 @@
 }
 .desc ol li {
   padding: 5px 5px 5px 5px;
+  margin-left: 29px;
   font-size: 16px;
   position: relative;
   line-height: 1.4rem;

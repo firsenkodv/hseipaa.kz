@@ -15,6 +15,18 @@ $colorOrange: #FF732C;
     padding: 0 !important;
 }
 
+// FancyBox ставит cursor:grab на viewport — сбрасываем для содержимого форм
+// !important нужен чтобы перебить .fancybox__dialog * { cursor: default !important }
+.fancybox__content {
+    cursor: auto;
+
+    button, label, a, select { cursor: pointer !important; }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"]  { cursor: text !important; }
+}
+
 .f-iframe {
     background: #fff;
     border-radius: 12px;

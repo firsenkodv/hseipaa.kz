@@ -3,6 +3,18 @@
   padding: 0 !important;
 }
 
+.fancybox__content {
+  cursor: auto;
+}
+.fancybox__content button, .fancybox__content label, .fancybox__content a, .fancybox__content select {
+  cursor: pointer !important;
+}
+.fancybox__content input[type=text],
+.fancybox__content input[type=email],
+.fancybox__content input[type=tel] {
+  cursor: text !important;
+}
+
 .f-iframe {
   background: #fff;
   border-radius: 12px;
