@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\MoonShine\Pages\Pages;
 
 use App\Models\Setting;
-use Illuminate\Http\Request;
 use MoonShine\Crud\JsonResponse;
 use MoonShine\Laravel\Pages\Page;
+use MoonShine\Laravel\TypeCasts\ModelCaster;
 use MoonShine\Support\Attributes\AsyncMethod;
 use MoonShine\Support\Enums\ToastType;
 use MoonShine\TinyMce\Fields\TinyMce;
@@ -20,6 +20,7 @@ use MoonShine\UI\Components\Layout\Grid;
 use MoonShine\UI\Components\Tabs;
 use MoonShine\UI\Components\Tabs\Tab;
 use MoonShine\UI\Fields\ID;
+use MoonShine\UI\Fields\Image;
 use MoonShine\UI\Fields\Json;
 use App\Enums\Pages\PageTemplate;
 use App\Enums\Resources\TeaserTemplate;
@@ -41,11 +42,9 @@ class DiplomasPage extends Page
     }
 
     #[AsyncMethod]
-    public function store(Request $request): JsonResponse
+    public function store(): JsonResponse
     {
-        $setting = $this->getSetting();
-        $setting->data = $request->except(['_token', '_method']);
-        $setting->save();
+        $this->form()->apply(fn(Setting $item) => $item->save());
 
         return JsonResponse::make()->toast('Сохранено', ToastType::SUCCESS);
     }
@@ -54,7 +53,7 @@ class DiplomasPage extends Page
     {
         return FormBuilder::make()
             ->asyncMethod('store')
-            ->fill($this->getSetting()->data ?? [])
+            ->fillCast($this->getSetting(), new ModelCaster(Setting::class))
             ->fields([
                 Box::make([
                     Tabs::make([
@@ -89,9 +88,24 @@ class DiplomasPage extends Page
                         Tab::make('Медиа', [
                             Grid::make([
                                 Column::make([
+
+                                    Collapse::make('Галерея', [
+                                        Json::make('', 'gallery')->fields([
+                                            Text::make('', 'label')->hint('Заголовок изображения'),
+                                            Image::make(__('Изображение'), 'image')
+                                                ->disk('public')
+                                                ->dir('content/gallery')
+                                                ->allowedExtensions(['jpg', 'png', 'jpeg', 'gif', 'svg'])
+                                                ->removable(),
+                                        ])->vertical()->creatable(limit: 100)
+                                            ->removable(),
+                                    ]),
+                                ])->columnSpan(8),
+                                Column::make([
                                     Divider::make('НЕ пишите заголовок h1 в описании'),
                                     TinyMce::make('Описание', 'desc'),
                                 ])->columnSpan(12),
+
                             ]),
                         ])->icon('photo'),
 

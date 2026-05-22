@@ -12,6 +12,7 @@ enum FullTemplate: string
     case Schedule = 'schedule';
     case Diploma = 'diploma';
     case Record = 'record';
+    case Diploma2 = 'diploma2';
 
 
 
@@ -23,6 +24,7 @@ enum FullTemplate: string
             self::Team => 'Команда',
             self::Schedule => 'Расписание',
             self::Diploma => 'Поиск диплома',
+            self::Diploma2 => 'Страница с  дипломами',
             self::Record => 'Запись на курс',
 
 
