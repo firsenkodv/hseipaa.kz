@@ -2,7 +2,7 @@
 // Block 3 — Hero Slider + News
 // =============================================
 
-$block3-height: 420px;
+$block3-height: 411px;
 $block3-height-mob: 260px;
 $block3-news-width: 367px;
 
@@ -38,7 +38,7 @@ $block3-news-width: 367px;
 
 
     .swiper-slide {
-        background: #ccc;
+     //  background: #ccc;
 
         a {
             display: block;
@@ -65,6 +65,7 @@ $block3-news-width: 367px;
         align-items: stretch;
         max-width: 1200px;
         margin: 0 auto;
+        gap:24px
     }
 
     // ——— SLIDER ———
@@ -75,7 +76,7 @@ $block3-news-width: 367px;
 
         .block3-swiper {
             width: 100%;
-            max-width: 800px;
+            max-width: 779px;
             height: $block3-height;
             overflow: hidden;
 
@@ -144,7 +145,7 @@ $block3-news-width: 367px;
         height: $block3-height;
 
         .scroll-block {
-            height: 400px;
+            height: 386px;
             padding: 10px 14px 16px 14px;
             overflow-y: auto;
         }

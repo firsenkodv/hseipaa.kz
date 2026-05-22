@@ -11,7 +11,7 @@
                         @if(!empty($slide['href']))
                         <a href="{{ $slide['href'] }}">
                             <x-picture.responsive
-                                :sizes="['480x260', '800x420']"
+                                :sizes="['480x260', '779x409']"
                                 :src="$slide['img']"
                                 alt=""
                                 dir="slider"
@@ -21,7 +21,7 @@
                         </a>
                         @else
                         <x-picture.responsive
-                            :sizes="['480x260', '800x420']"
+                            :sizes="['480x260', '779x409']"
                             :src="$slide['img']"
                             alt=""
                             dir="slider"
