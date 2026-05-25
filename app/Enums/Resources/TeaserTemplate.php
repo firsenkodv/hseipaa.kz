@@ -13,19 +13,19 @@ enum TeaserTemplate: string
     case About = 'about';
     case Team = 'team';
     case Schedule = 'schedule';
-
+    case Consulting = 'consulting';
 
     public function label(): string
     {
         return match($this) {
-            self::No => 'Не выводить!',
-            self::Default => 'Стандартный',
-            self::Colomns => 'Колонки',
-            self::Training => 'Обучение',
-            self::About => 'О нас',
-            self::Team => 'Команда',
-            self::Schedule => 'Расписание',
-
+            self::No        => 'Не выводить!',
+            self::Default   => 'Стандартный',
+            self::Colomns   => 'Колонки',
+            self::Training  => 'Обучение',
+            self::Consulting => 'Консалтинг',
+            self::About     => 'О нас',
+            self::Team      => 'Команда',
+            self::Schedule  => 'Расписание',
         };
     }
 

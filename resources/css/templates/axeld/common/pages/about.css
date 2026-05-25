@@ -1,8 +1,6 @@
 .page-wrapper {
   padding-top: 20px;
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
 }
 .page-wrapper section {
   margin-bottom: 16px;
@@ -276,26 +274,26 @@
   line-height: 1.3;
 }
 
-.page-wrapper .programs-section {
+.programs-section {
   width: 100%;
   padding: 80px 24px 0;
 }
-.page-wrapper .programs-inner {
+.programs-section .programs-inner {
   width: min(1146px, 100%);
   margin: 0 auto;
   text-align: center;
 }
-.page-wrapper .programs-header {
+.programs-section .programs-header {
   margin-bottom: 42px;
 }
-.page-wrapper .programs-header h2 {
+.programs-section .programs-header h2 {
   margin: 0 0 17px;
   color: #1f1f22;
   font-size: 44px;
   font-weight: 800;
   line-height: 1.15;
 }
-.page-wrapper .programs-header p {
+.programs-section .programs-header p {
   max-width: 780px;
   margin: 0 auto;
   color: #222225;
@@ -303,14 +301,15 @@
   font-weight: 700;
   line-height: 1.35;
 }
-.page-wrapper .programs-tabs {
+.programs-section .programs-tabs {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
   margin-bottom: 39px;
 }
-.page-wrapper .programs-tabs span {
+.programs-section .programs-tabs span,
+.programs-section .programs-tabs a {
   display: inline-flex;
   align-items: center;
   min-height: 39px;
@@ -321,8 +320,17 @@
   font-size: 16px;
   font-weight: 400;
   white-space: nowrap;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
 }
-.page-wrapper .program-cards {
+.programs-section .programs-tabs span:hover,
+.programs-section .programs-tabs a:hover {
+  background: #f84e40;
+  color: #fff;
+}
+
+.programs-section .program-cards,
+.useful-page section .program-cards {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
@@ -330,7 +338,8 @@
   margin-bottom: 40px;
   text-align: left;
 }
-.page-wrapper .program-card {
+.programs-section .program-card,
+.useful-page section .program-card {
   flex: 0 0 calc((100% - 32px) / 3);
   overflow: hidden;
   min-height: 464px;
@@ -340,12 +349,14 @@
   position: static;
   isolation: auto;
 }
-.page-wrapper .card-top {
+.programs-section .card-top,
+.useful-page section .card-top {
   min-height: 156px;
   padding: 25px 25px 17px;
   background: #ffe8e5;
 }
-.page-wrapper .card-top h3 {
+.programs-section .card-top h3,
+.useful-page section .card-top h3 {
   max-width: 315px;
   margin: 0 0 7px;
   color: #272727;
@@ -354,7 +365,8 @@
   line-height: 1.25;
   overflow-wrap: anywhere;
 }
-.page-wrapper .card-top p {
+.programs-section .card-top p,
+.useful-page section .card-top p {
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;
@@ -364,14 +376,17 @@
   font-size: 14px;
   line-height: 1.45;
 }
-.page-wrapper .card-body {
+.programs-section .card-body,
+.useful-page section .card-body {
   padding: 16px 25px 23px;
 }
-.page-wrapper .details-box {
+.programs-section .details-box,
+.useful-page section .details-box {
   border-radius: 11px;
   background: #fff;
 }
-.page-wrapper .details-list {
+.programs-section .details-list,
+.useful-page section .details-list {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -379,7 +394,8 @@
   margin-bottom: 16px;
   padding: 15px 16px 13px;
 }
-.page-wrapper .details-list p {
+.programs-section .details-list p,
+.useful-page section .details-list p {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -388,7 +404,8 @@
   font-size: 14px;
   line-height: 1;
 }
-.page-wrapper .details-list svg {
+.programs-section .details-list svg,
+.useful-page section .details-list svg {
   width: 18px;
   height: 18px;
   flex: 0 0 18px;
@@ -398,7 +415,8 @@
   stroke-linecap: round;
   stroke-linejoin: round;
 }
-.page-wrapper .meta-box {
+.programs-section .meta-box,
+.useful-page section .meta-box {
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -406,43 +424,59 @@
   margin-bottom: 18px;
   padding: 17px 16px;
 }
-.page-wrapper .meta-box div {
+.programs-section .meta-box div,
+.useful-page section .meta-box div {
   display: flex;
   justify-content: space-between;
   gap: 16px;
 }
-.page-wrapper .meta-box span {
+.programs-section .meta-box span,
+.useful-page section .meta-box span {
   color: #5f5f5f;
   font-size: 13px;
   font-weight: 500;
 }
-.page-wrapper .meta-box strong {
+.programs-section .meta-box strong,
+.useful-page section .meta-box strong {
   color: #222;
   font-size: 14px;
   font-weight: 800;
   white-space: nowrap;
 }
-.page-wrapper .meta-box .price {
+.programs-section .meta-box .price,
+.useful-page section .meta-box .price {
   color: #ff493c;
 }
-.page-wrapper .card-button,
-.page-wrapper .all-programs {
+.programs-section .card-button,
+.programs-section .all-programs,
+.useful-page section .card-button,
+.useful-page section .all-programs {
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
 }
-.page-wrapper .card-button {
+.programs-section .card-button,
+.useful-page section .card-button {
   width: 100%;
   min-height: 48px;
   border-radius: 10px;
   color: #fff;
   background: #f84e40;
+  border: 1px solid #f84e40;
   font-size: 16px;
   font-weight: 800;
   line-height: 1;
+  transition: 0.3s;
+  text-decoration: none !important;
 }
-.page-wrapper .all-programs {
+.programs-section .card-button:hover,
+.useful-page section .card-button:hover {
+  background: #fff;
+  color: #f84e40;
+}
+.programs-section .all-programs,
+.useful-page section .all-programs {
   width: 156px;
   min-height: 49px;
   margin: 0 auto;
@@ -973,7 +1007,7 @@
   .programs-section {
     padding: 64px 20px;
   }
-  .page-wrapper .program-card {
+  .programs-section .program-card {
     flex-basis: calc((100% - 16px) / 2);
   }
   .education-benefits-section {
@@ -1132,38 +1166,39 @@
   .programs-section {
     padding: 48px 0;
   }
-  .programs-header {
+  .programs-section .programs-header {
     margin-bottom: 30px;
   }
-  .programs-header h1 {
+  .programs-section .programs-header h1 {
     font-size: 34px;
   }
-  .programs-header p {
+  .programs-section .programs-header p {
     font-size: 18px;
   }
-  .programs-tabs {
+  .programs-section .programs-tabs {
     justify-content: flex-start;
     gap: 8px;
     margin-bottom: 28px;
   }
-  .programs-tabs span {
+  .programs-section .programs-tabs span,
+  .programs-section .programs-tabs a {
     min-height: 36px;
     padding: 0 14px;
     font-size: 14px;
   }
-  .page-wrapper .program-card {
+  .programs-section .program-card {
     flex-basis: 100%;
     min-height: 0;
     border-radius: 18px;
   }
-  .card-top {
+  .programs-section .card-top {
     min-height: 0;
     padding: 22px 20px 18px;
   }
-  .card-top h3 {
+  .programs-section .card-top h3 {
     font-size: 25px;
   }
-  .card-body {
+  .programs-section .card-body {
     padding: 16px 20px 20px;
   }
   .meta-box div {

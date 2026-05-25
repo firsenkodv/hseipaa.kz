@@ -7,10 +7,12 @@ namespace App\MoonShine\Resources\Consulting\Pages;
 use App\Enums\Resources\FullTemplate;
 use App\Models\Consulting;
 use App\MoonShine\Resources\Consulting\ConsultingResource;
+use App\MoonShine\Resources\ConsultingCategory\ConsultingCategoryResource;
 use MoonShine\Contracts\Core\TypeCasts\DataWrapperContract;
 use MoonShine\Contracts\UI\ComponentContract;
 use MoonShine\Contracts\UI\FieldContract;
 use MoonShine\Contracts\UI\FormBuilderContract;
+use MoonShine\Laravel\Fields\Relationships\BelongsToMany;
 use MoonShine\Laravel\Fields\Slug;
 use MoonShine\Laravel\Pages\Crud\FormPage;
 use MoonShine\Support\ListOf;
@@ -18,6 +20,7 @@ use MoonShine\TinyMce\Fields\TinyMce;
 use MoonShine\UI\Components\Collapse;
 use MoonShine\UI\Components\Layout\Box;
 use MoonShine\UI\Components\Layout\Column;
+use MoonShine\UI\Components\Layout\Divider;
 use MoonShine\UI\Components\Layout\Grid;
 use MoonShine\UI\Components\Tabs;
 use MoonShine\UI\Components\Tabs\Tab;
@@ -67,6 +70,9 @@ final class ConsultingFormPage extends FormPage
                                         ->options(FullTemplate::toOptions())
                                         ->default(FullTemplate::Default->value)
                                         ->required(),
+                                    BelongsToMany::make('Категории', 'categories', resource: ConsultingCategoryResource::class)
+                                        ->selectMode()
+                                        ->searchable(),
                                 ]),
                             ])->columnSpan(3),
                         ]),
@@ -143,6 +149,90 @@ final class ConsultingFormPage extends FormPage
                         Text::make('Ключевые слова', 'keywords')->unescape(),
                         Textarea::make('Скрипт', 'script')->unescape(),
                     ])->icon('magnifying-glass'),
+
+                    Tab::make('Курс', [
+                        Grid::make([
+                            Column::make([
+                                Divider::make('Покупка'),
+                                Collapse::make('', [
+                                    Text::make('Заголовок', 'buy_title')->unescape(),
+                                    Text::make('Краткое описание', 'buy_desc')->unescape(),
+                                    Text::make('Календарь', 'buy_calendar')->unescape(),
+                                    Text::make('Часы', 'buy_hours')->unescape(),
+                                    Text::make('Сертификат', 'buy_certificate')->unescape(),
+                                    Text::make('Формат', 'format')->unescape(),
+                                    Json::make('Цены', 'price')->fields([
+                                        Number::make('Цена', 'value'),
+                                        Text::make('Пояснение', 'note'),
+                                    ])->vertical()->creatable(limit: 2)->removable()
+                                        ->hint('Заполняйте две цены: первая цена старая, вторая новая. Если заполнить одно поле, всегда будет выводиться новая цена.'),
+                                ]),
+
+                                Divider::make('О курсе'),
+                                Collapse::make('', [
+                                    Text::make('Название', 'course_title')->unescape(),
+                                    Text::make('Краткое описание', 'course_desc')->unescape(),
+                                    Json::make('Блоки', 'course_items')->fields([
+                                        Text::make('Заголовок', 'title'),
+                                        Textarea::make('Краткое описание', 'desc'),
+                                    ])->vertical()->creatable(limit: 20)->removable(),
+                                ]),
+
+                                Divider::make('Что вы получаете'),
+                                Collapse::make('Что вы получаете', [
+                                    Text::make('Заголовок', 'get_title')->unescape(),
+                                    Json::make('Пункты', 'get_items')->fields([
+                                        Text::make('Название', 'name'),
+                                    ])->vertical()->creatable(limit: 50)->removable(),
+                                ]),
+
+                                Divider::make('Преимущества'),
+                                Collapse::make('', [
+                                    Text::make('Заголовок', 'adv_title')->unescape(),
+                                    Text::make('Краткое описание', 'adv_desc')->unescape(),
+                                    Json::make('Карточки', 'adv_items')->fields([
+                                        Text::make('Заголовок', 'title'),
+                                        Textarea::make('Описание', 'desc'),
+                                    ])->vertical()->creatable(limit: 20)->removable(),
+                                ]),
+
+                                Divider::make('Требования к кандидатам'),
+                                Collapse::make('', [
+                                    Text::make('Заголовок', 'req_title')->unescape(),
+                                    Text::make('Краткое описание', 'req_desc')->unescape(),
+                                    Json::make('Карточки', 'req_items')->fields([
+                                        Text::make('Заголовок', 'title'),
+                                        Textarea::make('Описание', 'desc'),
+                                    ])->vertical()->creatable(limit: 20)->removable(),
+                                ]),
+
+                                Divider::make('Программа курса'),
+                                Collapse::make('', [
+                                    Text::make('Заголовок', 'outline_title')->unescape(),
+                                    Textarea::make('Описание', 'outline_desc')->unescape(),
+                                    Json::make('Статистика', 'outline_stats')->fields([
+                                        Text::make('Значение', 'value'),
+                                        Text::make('Подпись', 'label'),
+                                    ])->vertical()->creatable(limit: 3)->removable(),
+                                    Json::make('Модули', 'outline_modules')->fields([
+                                        Text::make('Префикс', 'label')->hint('Например: Модуль 1.'),
+                                        Text::make('Заголовок', 'title'),
+                                        Json::make('Пункты', 'items')->fields([
+                                            Textarea::make('Текст', 'text'),
+                                        ])->vertical()->creatable(limit: 20)->removable(),
+                                    ])->vertical()->creatable(limit: 20)->removable(),
+                                ]),
+
+                                Divider::make('Кому подойдет'),
+                                Collapse::make('', [
+                                    Text::make('Заголовок', 'aud_title')->unescape(),
+                                    Json::make('Пункты', 'aud_items')->fields([
+                                        Text::make('Название', 'name'),
+                                    ])->vertical()->creatable(limit: 20)->removable(),
+                                ]),
+                            ])->columnSpan(9),
+                        ]),
+                    ])->icon('academic-cap'),
 
                     Tab::make('Дополнительно', [
                         Column::make([

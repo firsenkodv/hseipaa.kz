@@ -1,76 +1,97 @@
-<div class="diploma-search">
-    <div class="diploma-search__card">
-<div class="diploma-search__wrap">
-        <h3 class="diploma-search__title">Поиск диплома</h3>
-        <p class="diploma-search__hint">Введите номер диплома для проверки подлинности</p>
+<div class="diploma-page">
 
-        @if($short_desc)
-            <div class="short_desc desc">{!! $short_desc !!}</div>
-        @endif
+    {{-- Hero --}}
+    <section class="diploma-hero">
+        <div class="container">
+            <div class="diploma-hero__inner">
 
-        @if($desc)
-            <div class="desc">{!! $desc !!}</div>
-        @endif
-</div>
-        <form method="GET" action="">
-            <div class="diploma-search__form-row">
-
-                <div class="input-group">
-                    <input
-                        class="input-group__input"
-                        type="text"
-                        name="number"
-                        value="{{ $number }}"
-                        placeholder=" "
-                        autocomplete="off"
-                    >
-                    <label class="input-group__label">Номер диплома</label>
-                </div>
-
-                <div class="diploma-search__actions">
-                    <button class="btn btn-big" type="submit">Найти</button>
-                    @if($searched)
-                        <a class="btn btn_grey btn-big"
-                           href="{{ route('resources.diplomas') }}">Сбросить</a>
+                <div class="diploma-hero__copy">
+                    @if($title)
+                        <h1>{{ $title }}</h1>
+                    @endif
+                    @if($short_desc)
+                        <div>{!! $short_desc !!}</div>
+                    @endif
+                    @if($desc)
+                        <div>{!! $desc !!}</div>
                     @endif
                 </div>
 
+                <form class="diploma-search-form" method="GET" action="">
+                    <div class="diploma-search-form__field">
+                        <label for="diploma-number">Номер диплома</label>
+                        <input
+                            id="diploma-number"
+                            type="text"
+                            name="number"
+                            value="{{ $number }}"
+                            placeholder="Например, HSE-2026-00125"
+                            autocomplete="off"
+                        >
+                    </div>
+                    <div class="diploma-search-form__actions">
+                        <button type="submit" class="diploma-search-form__submit">Найти диплом</button>
+                        @if($searched)
+                            <a class="diploma-search-form__reset" href="{{ request()->url() }}">Очистить</a>
+                        @endif
+                    </div>
+                </form>
+
             </div>
-        </form>
+        </div>
+    </section>
 
-        @if($searched)
+    {{-- Results --}}
+    <section class="diploma-results">
+        <div class="">
 
-            @if($diploma)
-                <div class="diploma-search__result">
-                    <p class="diploma-search__result-label">Результат проверки</p>
-                    <div class="diploma-search__result-rows">
-                        <div class="diploma-search__result-row">
-                            <span class="diploma-search__result-key">Номер диплома</span>
-                            <span class="diploma-search__result-val">{{ $diploma->title }}</span>
+            @if(!$searched)
+                <div class="diploma-results__empty">
+                    <h2>Результаты поиска</h2>
+                    <p>Введите номер диплома, чтобы проверить документ в базе HSEIPAA.</p>
+                </div>
+
+            @elseif($diploma)
+                <div class="diploma-results__list">
+                    <div class="diploma-card">
+                        <div class="diploma-card__head">
+                            <div>
+                                <h3>{{ $diploma->title }}</h3>
+                                @if($diploma->discipline)
+                                    <p>{{ $diploma->discipline }}</p>
+                                @endif
+                            </div>
+                            <span class="diploma-card__status">Подтверждён</span>
                         </div>
-                        <div class="diploma-search__result-row">
-                            <span class="diploma-search__result-key">Владелец</span>
-                            <span class="diploma-search__result-val">{{ $diploma->fio }}</span>
-                        </div>
-                        <div class="diploma-search__result-row">
-                            <span class="diploma-search__result-key">Дисциплина</span>
-                            <span class="diploma-search__result-val">{{ $diploma->discipline }}</span>
-                        </div>
-                        <div class="diploma-search__result-row">
-                            <span class="diploma-search__result-key">Дата выдачи</span>
-                            <span class="diploma-search__result-val">
-                                {{ $diploma->issued_at?->format('d.m.Y') ?? '—' }}
-                            </span>
+                        <div class="diploma-card__grid">
+                            <div class="diploma-card__item">
+                                <span>Владелец</span>
+                                <strong>{{ $diploma->fio ?? '—' }}</strong>
+                            </div>
+                            <div class="diploma-card__item">
+                                <span>Дисциплина</span>
+                                <strong>{{ $diploma->discipline ?? '—' }}</strong>
+                            </div>
+                            <div class="diploma-card__item">
+                                <span>Дата выдачи</span>
+                                <strong>{{ $diploma->issued_at?->format('d.m.Y') ?? '—' }}</strong>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             @else
-                <div class="diploma-search__not-found">
-                    Диплом с номером <strong>{{ $number }}</strong> не найден в базе данных.
+                <div class="diploma-results__not-found">
+                    <h3>Документ не найден</h3>
+                    <p>
+                        Диплом с номером <strong>{{ $number }}</strong> не найден в базе данных.
+                        Проверьте написание. Если документ выдан недавно — отправьте скан на
+                        <a href="mailto:info@hseipaa.kz">info@hseipaa.kz</a>.
+                    </p>
                 </div>
             @endif
 
-        @endif
+        </div>
+    </section>
 
-    </div>
 </div>

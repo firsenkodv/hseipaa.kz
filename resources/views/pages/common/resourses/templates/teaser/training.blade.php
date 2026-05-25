@@ -12,61 +12,70 @@
     </div>
 @endif
 
+@php
+    $currencyCode   = \App\Models\Setting::getGroup('social')->data['currency'] ?? 'KZT';
+    $currencySymbol = config('currency.currency.' . $currencyCode, '₸');
+@endphp
+
 <div class="useful-page">
     <section>
-        <div class="useful-cards useful-cards--columns">
+        <div class="program-cards" aria-label="Популярные программы">
             @foreach($items as $item)
-                <div class="useful-card useful-card--rose default">
-                    <div class="useful-card__categories">
-                        @forelse($item->categories as $category)
-                            <span class="useful-card__category useful-card__kicker">{{ $category->title }}</span>
-                        @empty
-                            <span class="useful-card__category useful-card__kicker">Обучение</span>
-                        @endforelse
+                @php
+                    $prices   = collect($item->price ?? [])->filter(fn($p) => !empty($p['value']));
+                    $priceNew = $prices->count() >= 2 ? $prices->last() : $prices->first();
+                @endphp
+                <article class="program-card">
+                    <div class="card-top">
+                        <h3>{{ $item->title }}</h3>
+                        @if($item->subtitle)
+                            <p>{{ $item->subtitle }}</p>
+                        @endif
                     </div>
-                    <h3><a class="h3_teaser" href="{{ route($route, $item->slug) }}">{{ $item->title }}</a></h3>
-                    {!! $item->short_desc !!}
-                    <a class="useful-card__link teaser" href="{{ route($route, $item->slug) }}">Подробнее</a>
-                </div>
+                    <div class="card-body">
+                        <div class="details-box details-list">
+                            @if($item->buy_hours)
+                                <p>
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l4 2"></path></svg>
+                                    <span>{{ $item->buy_hours }}</span>
+                                </p>
+                            @endif
+                            @if($item->buy_calendar)
+                                <p>
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"></rect><path d="M16 2v4"></path><path d="M8 2v4"></path><path d="M3 10h18"></path></svg>
+                                    <span>{{ $item->buy_calendar }}</span>
+                                </p>
+                            @endif
+                            @if($item->buy_certificate)
+                                <p>
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                                    <span>{{ $item->buy_certificate }}</span>
+                                </p>
+                            @endif
+                        </div>
+                        @if($item->format || $priceNew)
+                            <div class="details-box meta-box">
+                                @if($item->format)
+                                    <div>
+                                        <span>Формат</span>
+                                        <strong>{{ $item->format }}</strong>
+                                    </div>
+                                @endif
+                                @if($priceNew)
+                                    <div>
+                                        <span>Стоимость</span>
+                                        <strong class="price">{{ price($priceNew['value']) }} {{ $currencySymbol }}</strong>
+                                    </div>
+                                @endif
+                            </div>
+                        @endif
+                        <a href="{{ route('training.show', $item->slug) }}" class="card-button">Подробнее</a>
+                    </div>
+                </article>
             @endforeach
-            {{ $items->withQueryString()->links('pagination::default') }}
         </div>
+        {{ $items->withQueryString()->links('pagination::default') }}
     </section>
 </div>
 
-<section class="edu-section edu-steps" aria-labelledby="steps-title">
-    <div class="edu-section__heading edu-section__heading--center">
-        <h2 id="steps-title">Как проходит обучение</h2>
-        <p>Простой и понятный процесс от регистрации до получения сертификата</p>
-    </div>
-
-    <div class="edu-steps__grid">
-        <article class="edu-step">
-            <strong>01</strong>
-            <div class="edu-step__icon"><img src="{{ asset('images/education/step-register.svg') }}" alt=""></div>
-            <h3>Регистрация</h3>
-            <p>Выберите программу и оформите заявку онлайн или по телефону</p>
-        </article>
-        <span class="edu-step__line" aria-hidden="true"></span>
-        <article class="edu-step">
-            <strong>02</strong>
-            <div class="edu-step__icon"><img src="{{ asset('images/education/step-study.svg') }}" alt=""></div>
-            <h3>Обучение</h3>
-            <p>Изучайте материалы, смотрите лекции и выполняйте практические задания</p>
-        </article>
-        <span class="edu-step__line" aria-hidden="true"></span>
-        <article class="edu-step">
-            <strong>03</strong>
-            <div class="edu-step__icon"><img src="{{ asset('images/education/step-practice.svg') }}" alt=""></div>
-            <h3>Практика</h3>
-            <p>Отработка навыков на реальных кейсах под руководством экспертов</p>
-        </article>
-        <span class="edu-step__line" aria-hidden="true"></span>
-        <article class="edu-step">
-            <strong>04</strong>
-            <div class="edu-step__icon"><img src="{{ asset('images/education/step-certify.svg') }}" alt=""></div>
-            <h3>Сертификация</h3>
-            <p>Сдайте итоговый экзамен и получите документ о квалификации</p>
-        </article>
-    </div>
-</section>
+<x-modules.program-edu-steps />

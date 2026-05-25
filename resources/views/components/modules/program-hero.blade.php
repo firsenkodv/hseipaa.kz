@@ -13,10 +13,10 @@
 
 <section class="program-block program-hero" aria-labelledby="program-title">
     <div class="program-hero__copy">
-        <h1 id="program-title">{{ $item->course_title }}</h1>
+        <h1 id="program-title">{{ ($item->buy_title)??$item->title }}</h1>
 
-        @if($item->course_desc)
-            <p>{{ $item->course_desc }}</p>
+        @if($item->buy_desc)
+            <p>{{ $item->buy_desc }}</p>
         @endif
 
         @if($item->buy_calendar || $item->buy_hours || $item->buy_certificate)

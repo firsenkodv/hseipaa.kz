@@ -162,6 +162,7 @@ final class TrainingFormPage extends FormPage
                                     Text::make('Календарь', 'buy_calendar')->unescape(),
                                     Text::make('Часы', 'buy_hours')->unescape(),
                                     Text::make('Сертификат', 'buy_certificate')->unescape(),
+                                    Text::make('Формат', 'format')->unescape(),
                                     Json::make('Цены', 'price')->fields([
                                         Number::make('Цена', 'value'),
                                         Text::make('Пояснение', 'note'),

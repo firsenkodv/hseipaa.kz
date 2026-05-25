@@ -13,21 +13,19 @@ enum FullTemplate: string
     case Diploma = 'diploma';
     case Record = 'record';
     case Diploma2 = 'diploma2';
-
-
+    case Consulting = 'consulting';
 
     public function label(): string
     {
         return match($this) {
-            self::Default => 'Стандартный',
-            self::Training => 'Обучение',
-            self::Team => 'Команда',
-            self::Schedule => 'Расписание',
-            self::Diploma => 'Поиск диплома',
-            self::Diploma2 => 'Страница с  дипломами',
-            self::Record => 'Запись на курс',
-
-
+            self::Default   => 'Стандартный',
+            self::Training  => 'Обучение',
+            self::Consulting => 'Консалтинг',
+            self::Team      => 'Команда',
+            self::Schedule  => 'Расписание',
+            self::Diploma   => 'Поиск диплома',
+            self::Diploma2  => 'Страница с дипломами',
+            self::Record    => 'Запись на курс',
         };
     }
 

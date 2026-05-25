@@ -12,7 +12,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 40px;
-  padding-top: 56px;
+  padding-top: 46px !important;
 }
 
 .program-hero__copy {

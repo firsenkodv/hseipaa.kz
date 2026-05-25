@@ -17,9 +17,13 @@ class ConsultingViewModel
         return new Fluent(Setting::getGroup('konsalting')->data ?? []);
     }
 
-    public function getPublished(): LengthAwarePaginator
+    public function getPublished(?string $categorySlug = null, ?string $search = null): LengthAwarePaginator
     {
-        return Consulting::published()->paginate(config('site.constants.paginate'));
+        return Consulting::with('categories')
+            ->published()
+            ->when($categorySlug, fn($q) => $q->whereHas('categories', fn($q) => $q->where('consulting_categories.slug', $categorySlug)))
+            ->when($search, fn($q) => $q->where('title', 'like', '%' . $search . '%'))
+            ->paginate(config('site.constants.paginate'));
     }
 
     public function getBySlug(string $slug): Consulting

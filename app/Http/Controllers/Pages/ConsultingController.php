@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Pages;
 
 use App\Enums\Pages\PageTemplate;
 use App\Enums\Resources\TeaserTemplate;
+use App\Models\ConsultingCategory;
 use Domain\Consulting\ViewModels\ConsultingViewModel;
 use Illuminate\Contracts\View\View;
 
@@ -12,12 +13,18 @@ class ConsultingController extends PageController
     public function index(): View
     {
         $vm    = ConsultingViewModel::make();
-        $items = $vm->getPublished();
+        $items = $vm->getPublished(
+            request()->string('category')->toString() ?: null,
+            request()->string('search')->toString() ?: null,
+        );
         $page  = $vm->getPageData();
+
+        $categories = ConsultingCategory::orderBy('sorting')->get();
 
         return view('pages.consulting.list', [
             'page'            => $page,
             'items'           => $items,
+            'categories'      => $categories,
             'pageSuffix'      => $this->pageSuffix($items),
             'template'        => PageTemplate::from($page->page_template ?? PageTemplate::Default->value),
             'teaser_template' => TeaserTemplate::from($page->section_template ?? TeaserTemplate::Default->value),

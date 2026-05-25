@@ -1,28 +1,26 @@
+@if(!empty($categories) && $categories->isNotEmpty())
+    <div class="useful-wrap useful-library useful-tabs" id="consulting-results">
+        <a href="{{ route('consulting') }}" class="useful-tab {{ !request('category') ? 'useful-tab--active' : '' }}">Все</a>
+        @foreach($categories as $category)
+            @if($category->slug)
+                <a href="{{ route('consulting', ['category' => $category->slug]) }}#consulting-results"
+                   class="useful-tab {{ request('category') === $category->slug ? 'useful-tab--active' : '' }}">
+                    {{ $category->title }}
+                </a>
+            @endif
+        @endforeach
+    </div>
+@endif
+
 @php
-    $programs   = \App\Models\Training::published()->take(3)->get();
-    $categories = \App\Models\TrainingCategory::orderBy('sorting')->get();
     $currencyCode   = \App\Models\Setting::getGroup('social')->data['currency'] ?? 'KZT';
     $currencySymbol = config('currency.currency.' . $currencyCode, '₸');
 @endphp
 
-@if($programs->isNotEmpty())
-<section class="programs-section">
-    <div class="programs-inner">
-        <header class="programs-header">
-            <h2>Наши программы</h2>
-            <p>Мы создали комплексную программу обучения, которая сочетает теоретические знания с практическими навыками.</p>
-        </header>
-
-        @if($categories->isNotEmpty())
-            <nav class="programs-tabs" aria-label="Категории программ">
-                @foreach($categories as $category)
-                    <a href="{{ route('training', ['category' => $category->slug]) }}">{{ $category->title }}</a>
-                @endforeach
-            </nav>
-        @endif
-
-        <section class="program-cards" aria-label="Популярные программы">
-            @foreach($programs as $item)
+<div class="useful-page">
+    <section>
+        <div class="program-cards" aria-label="Консалтинг">
+            @foreach($items as $item)
                 @php
                     $prices   = collect($item->price ?? [])->filter(fn($p) => !empty($p['value']));
                     $priceNew = $prices->count() >= 2 ? $prices->last() : $prices->first();
@@ -71,13 +69,13 @@
                                 @endif
                             </div>
                         @endif
-                        <a href="{{ route('training.show', $item->slug) }}" class="card-button btn">Подробнее</a>
+                        <a href="{{ route('consulting.show', $item->slug) }}" class="card-button">Подробнее</a>
                     </div>
                 </article>
             @endforeach
-        </section>
+        </div>
+        {{ $items->withQueryString()->links('pagination::default') }}
+    </section>
+</div>
 
-        <a href="{{ route('training') }}" class="all-programs">Все программы</a>
-    </div>
-</section>
-@endif
+<x-modules.program-edu-steps />

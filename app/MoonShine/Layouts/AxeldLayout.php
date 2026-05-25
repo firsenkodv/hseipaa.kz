@@ -30,6 +30,7 @@ use App\MoonShine\Pages\Pages\TrainingPage;
 use App\MoonShine\Resources\About\AboutResource;
 use App\MoonShine\Resources\City\CityResource;
 use App\MoonShine\Resources\Consulting\ConsultingResource;
+use App\MoonShine\Resources\ConsultingCategory\ConsultingCategoryResource;
 use App\MoonShine\Resources\Document\DocumentResource;
 use App\MoonShine\Resources\MoonShineUser\MoonShineUserResource;
 use App\MoonShine\Resources\Online\OnlineResource;
@@ -143,6 +144,7 @@ final class AxeldLayout extends AppLayout
                 ])->icon('academic-cap'),
 
                 MenuGroup::make(static fn() => __('Консалтинг'), [
+                    MenuItem::make(ConsultingCategoryResource::class, 'Категории', 'tag'),
                     MenuItem::make(ConsultingResource::class, 'Страницы', 'document-text'),
                 ])->icon('briefcase'),
 

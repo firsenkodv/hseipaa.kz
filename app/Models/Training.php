@@ -46,6 +46,7 @@ class Training extends Model
         'buy_calendar',
         'buy_hours',
         'buy_certificate',
+        'format',
         'price',
         // О курсе
         'course_title',

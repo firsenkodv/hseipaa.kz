@@ -9,6 +9,7 @@ enum PageTemplate: string
     case Default = 'default';
     case About = 'about';
     case Training = 'training';
+    case Consulting = 'consulting';
     case Team = 'team';
     case Schedule = 'schedule';
     case Diploma = 'diploma';
@@ -21,6 +22,7 @@ enum PageTemplate: string
             self::Default => 'Стандартный',
             self::About => 'О нас',
             self::Training => 'Обучение',
+            self::Consulting => 'Консалтинг',
             self::Team => 'Команда',
             self::Schedule => 'Расписание',
             self::Diploma => 'Поиск диплома',

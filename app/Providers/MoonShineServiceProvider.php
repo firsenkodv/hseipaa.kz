@@ -29,6 +29,7 @@ use Illuminate\Support\ServiceProvider;
 use App\MoonShine\Resources\About\AboutResource;
 use App\MoonShine\Resources\City\CityResource;
 use App\MoonShine\Resources\Consulting\ConsultingResource;
+use App\MoonShine\Resources\ConsultingCategory\ConsultingCategoryResource;
 use App\MoonShine\Resources\Document\DocumentResource;
 use App\MoonShine\Resources\Online\OnlineResource;
 use App\MoonShine\Resources\Training\TrainingResource;
@@ -63,6 +64,7 @@ class MoonShineServiceProvider extends ServiceProvider
                 TrainingResource::class,
                 TrainingCategoryResource::class,
                 ConsultingResource::class,
+                ConsultingCategoryResource::class,
                 UsefulResource::class,
                 OnlineResource::class,
                 CityResource::class,

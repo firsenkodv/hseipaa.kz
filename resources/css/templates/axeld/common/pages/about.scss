@@ -3,8 +3,6 @@
 .page-wrapper {
     padding-top: 20px;
     width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
 
     section {
         margin-bottom: 16px;
@@ -293,11 +291,9 @@
 }
 
 // ===================== PROGRAMS =====================
-.page-wrapper {
-    .programs-section {
-        width: 100%;
-        padding: 80px 24px 0;
-    }
+.programs-section {
+    width: 100%;
+    padding: 80px 24px 0;
 
     .programs-inner {
         width: min(1146px, 100%);
@@ -333,7 +329,8 @@
         gap: 10px;
         margin-bottom: 39px;
 
-        span {
+        span,
+        a {
             display: inline-flex;
             align-items: center;
             min-height: 39px;
@@ -344,8 +341,21 @@
             font-size: 16px;
             font-weight: 400;
             white-space: nowrap;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+
+            &:hover {
+                background: #f84e40;
+                color: #fff;
+            }
         }
     }
+
+} // .programs-section layout
+
+// Карточки программ — работают и на странице «О нас», и на странице обучения
+.programs-section,
+.useful-page section {
 
     .program-cards {
         display: flex;
@@ -479,9 +489,17 @@
         border-radius: 10px;
         color: #fff;
         background: #f84e40;
+        border: 1px solid #f84e40;
         font-size: 16px;
         font-weight: 800;
         line-height: 1;
+        transition: 0.3s;
+        text-decoration: none !important;
+
+        &:hover {
+            background: #fff;
+            color: #f84e40;
+        }
     }
 
     .all-programs {
@@ -494,7 +512,8 @@
         font-size: 16px;
         font-weight: 800;
     }
-}
+} // card styles
+
 
 // ===================== BENEFITS =====================
 .education-benefits-section {
@@ -1047,9 +1066,10 @@
 
     .programs-section {
         padding: 64px 20px;
-    }
-    .page-wrapper .program-card {
-        flex-basis: calc((100% - 16px) / 2);
+
+        .program-card {
+            flex-basis: calc((100% - 16px) / 2);
+        }
     }
 
     .education-benefits-section {
@@ -1215,40 +1235,42 @@
 
     .programs-section {
         padding: 48px 0;
-    }
-    .programs-header {
-        margin-bottom: 30px;
-    }
-    .programs-header h1 {
-        font-size: 34px;
-    }
-    .programs-header p {
-        font-size: 18px;
-    }
-    .programs-tabs {
-        justify-content: flex-start;
-        gap: 8px;
-        margin-bottom: 28px;
-    }
-    .programs-tabs span {
-        min-height: 36px;
-        padding: 0 14px;
-        font-size: 14px;
-    }
-    .page-wrapper .program-card {
-        flex-basis: 100%;
-        min-height: 0;
-        border-radius: 18px;
-    }
-    .card-top {
-        min-height: 0;
-        padding: 22px 20px 18px;
-    }
-    .card-top h3 {
-        font-size: 25px;
-    }
-    .card-body {
-        padding: 16px 20px 20px;
+
+        .programs-header {
+            margin-bottom: 30px;
+        }
+        .programs-header h1 {
+            font-size: 34px;
+        }
+        .programs-header p {
+            font-size: 18px;
+        }
+        .programs-tabs {
+            justify-content: flex-start;
+            gap: 8px;
+            margin-bottom: 28px;
+        }
+        .programs-tabs span,
+        .programs-tabs a {
+            min-height: 36px;
+            padding: 0 14px;
+            font-size: 14px;
+        }
+        .program-card {
+            flex-basis: 100%;
+            min-height: 0;
+            border-radius: 18px;
+        }
+        .card-top {
+            min-height: 0;
+            padding: 22px 20px 18px;
+        }
+        .card-top h3 {
+            font-size: 25px;
+        }
+        .card-body {
+            padding: 16px 20px 20px;
+        }
     }
     .meta-box div {
         align-items: flex-start;
