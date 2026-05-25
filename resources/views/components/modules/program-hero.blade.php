@@ -64,7 +64,7 @@
         @endif
 
         <div class="program-hero__actions">
-            <button type="button" class="program-hero__btn program-hero__btn--primary">
+            <button type="button" class="program-hero__btn program-hero__btn--primary open-fancybox" data-form="consult_me">
                 Начать обучение
             </button>
             @if($item->outline_title || !empty($item->outline_modules))
