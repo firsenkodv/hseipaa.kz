@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Axios;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CallMeBlueRequest;
 use App\Http\Requests\ConsultMeRequest;
+use App\Http\Requests\ProgramEnrollRequest;
 use App\Http\Requests\RecordMeRequest;
 use App\Http\Requests\ScheduleEnrollRequest;
 use App\Jobs\Form\CallMeBlueJob;
 use App\Jobs\Form\ConsultMeJob;
+use App\Jobs\Form\ProgramEnrollJob;
 use App\Jobs\Form\RecordMeJob;
 use App\Jobs\Form\ScheduleEnrollJob;
 use Illuminate\Http\Request;
@@ -81,6 +83,20 @@ class AxiosController extends Controller
         ]);
 
         ScheduleEnrollJob::dispatch($data);
+
+        return response()->json(['response' => 'ok']);
+    }
+
+    public function programEnroll(ProgramEnrollRequest $request)
+    {
+        $data = array_filter([
+            'Имя'      => $request->input('Имя'),
+            'Телефон'  => $request->input('Телефон'),
+            'Email'    => $request->input('Email'),
+            'Страница' => $request->input('Страница'),
+        ]);
+
+        ProgramEnrollJob::dispatch($data);
 
         return response()->json(['response' => 'ok']);
     }

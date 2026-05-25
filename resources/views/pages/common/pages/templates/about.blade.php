@@ -1,5 +1,7 @@
-<div class="page-wrapper">
+<div class="pad_t20">
 <x-modules.about-banner />
+</div>
+<div class="page-wrapper">
 <x-modules.about-advantages />
 <x-modules.about-programs />
 <x-modules.about-benefits />

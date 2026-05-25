@@ -102,6 +102,7 @@ Route::controller(AxiosController::class)->group(function () {
     Route::post('/consult-me', 'consultMe');
     Route::post('/record-me', 'recordMe');
     Route::post('/schedule-enroll', 'scheduleEnroll');
+    Route::post('/program-enroll', 'programEnroll');
 });
 /** ///Axios async forms **/
 

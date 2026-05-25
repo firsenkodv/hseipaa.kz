@@ -19,6 +19,8 @@ import {toastPromo} from "./include/site/toast-promo";
 import {slimSelect} from "./include/select/slim-select";
 import {scheduleMonthFilter} from "./include/schedule/schedule-month-filter";
 import {mzSelect} from "./include/select/mz-select";
+import {headerScroll} from "./include/site/header-scroll";
+import {programInlineForm} from "./include/site/program-inline-form";
 
 
 
@@ -44,4 +46,6 @@ document.addEventListener('DOMContentLoaded', function () {
     slimSelect() // select
     mzSelect() // select
     scheduleMonthFilter() // фильтр по месяцам
+    headerScroll()        // скрытие топбара при скролле
+    programInlineForm()  // inline-форма записи на курс
 });

@@ -2,7 +2,7 @@
 <x-seo.meta-paginated :page="$page" :items="$items" />
 @section('content')
     <div class="content_page">
-        <div class="block">
+        <div class="block about_block">
             <div class="block_content__breadcrumbs">{{ Breadcrumbs::render(Route::currentRouteName()) }}</div>
 
             @if($template === \App\Enums\Pages\PageTemplate::Default)
@@ -23,8 +23,8 @@
             @include($template->view($section))
 
         </div>
-        <div class="page-wrapper">
-            <x-modules.about-platform />
+        <div class="page-wrapper pad_t0_important">
+           {{-- <x-modules.about-platform />--}}
             @if($page->faq)
             <div class="pad_t20">
                 <x-modules.faq :items="$page->faq" />

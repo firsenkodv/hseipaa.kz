@@ -11,6 +11,8 @@
 @import 'trix/trix.scss';
 @import 'components/modules/banner.scss';
 @import 'materialize-select/select.scss';
+@import 'components/modules/program-review.scss';
+@import 'components/modules/program-price.scss';
 @import 'components/modules/programs.scss';
 @import 'components/modules/slider.scss';
 @import 'components/modules/schedule.scss';

@@ -3,7 +3,7 @@
     $bannerMobile  = Storage::url('about/banner2.png');
     $gradient      = 'linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.3) 50%, transparent 100%)';
 @endphp
-<section class="banner-section">
+<section class="about-banner banner-section">
     <div class="banner-inner js-banner-bg"
          data-desktop="{{ $bannerDesktop }}"
          data-mobile="{{ $bannerMobile }}"

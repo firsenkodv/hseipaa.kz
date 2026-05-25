@@ -1,8 +1,14 @@
+@props([
+    'title' => 'Удобная платформа для обучения',
+    'desc' => 'Современный личный кабинет с интуитивным интерфейсом. Управляйте своим обучением, отслеживайте прогресс и общайтесь с преподавателями в одном месте.',
+
+])
+
 <section class="platform-section" aria-labelledby="platform-title">
     <div class="platform-inner">
         <header class="platform-header">
-            <h2 id="platform-title">Удобная платформа для обучения</h2>
-            <p>Современный личный кабинет с интуитивным интерфейсом. Управляйте своим обучением, отслеживайте прогресс и общайтесь с преподавателями в одном месте.</p>
+            <h2 id="platform-title">{{ $title }}</h2>
+            <p>{{ $desc }}</p>
         </header>
 
         <div class="platform-features">

@@ -12,7 +12,7 @@
 @endphp
 
 @if($item->adv_title || !empty($item->adv_items))
-<section class="program-block" aria-labelledby="advantages-title">
+<section class="program-block advantages-title" aria-labelledby="advantages-title">
     @if($item->adv_title || $item->adv_desc)
         <div class="program-section__intro program-section__intro--center">
             @if($item->adv_title)

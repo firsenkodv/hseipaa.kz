@@ -7,6 +7,8 @@
     $prices   = collect($item->price ?? [])->filter(fn($p) => !empty($p['value']));
     $priceOld = $prices->count() >= 2 ? $prices->first() : null;
     $priceNew = $prices->count() >= 2 ? $prices->last() : $prices->first();
+    $currencyCode   = \App\Models\Setting::getGroup('social')->data['currency'] ?? 'KZT';
+    $currencySymbol = config('currency.currency.' . $currencyCode, '₸');
 @endphp
 
 <section class="program-block program-hero" aria-labelledby="program-title">
@@ -44,17 +46,17 @@
             <div class="program-hero__price">
                 @if(!empty($priceOld['value']))
                     <div class="program-hero__old">
-                        <span>{{ price($priceOld['value']) }} ₸</span>
+                        <span>{{ price($priceOld['value']) }} <i>{{ $currencySymbol }}</i></span>
                         @if(!empty($priceOld['note']))
-                            <small>{{ $priceOld['note'] }}</small>
+                            <small class="hero_old">{{ $priceOld['note'] }}</small>
                         @endif
                     </div>
                 @endif
                 @if(!empty($priceNew['value']))
                     <div class="program-hero__new">
-                        <span>{{ price($priceNew['value']) }} ₸</span>
+                        <span>{{ price($priceNew['value']) }} <i>{{ $currencySymbol }}</i></span>
                         @if(!empty($priceNew['note']))
-                            <small>{{ $priceNew['note'] }}</small>
+                            <small class="hero_new">{{ $priceNew['note'] }}</small>
                         @endif
                     </div>
                 @endif

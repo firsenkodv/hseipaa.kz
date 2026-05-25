@@ -13,9 +13,18 @@ $topbar-bg:    #f5f5f7;
 // --- Базовые стили ---
 
 .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
     width: 100%;
     background: #fff;
     font-size: 16px;
+}
+
+.main_class {
+    padding-top: 165px;
 }
 
 .header-inner {
@@ -32,9 +41,24 @@ $topbar-bg:    #f5f5f7;
 .header-topbar {
     border-bottom: 1px solid $border;
     background: $topbar-bg;
+    overflow: hidden;
+    max-height: 41px;
+    transition: max-height 0.25s ease;
 
     .header-inner {
         height: 40px;
+    }
+}
+
+.site-header.scrolled {
+    .header-topbar {
+        max-height: 0;
+    }
+}
+
+@media (min-width: 1025px) {
+    .site-header.scrolled ~ .main_class {
+        padding-top: 125px;
     }
 }
 
@@ -373,9 +397,17 @@ $topbar-bg:    #f5f5f7;
         font-size: 14px;
         padding: 6px 7px;
     }
+
+    .main_class {
+        padding-top: 125px;
+    }
 }
 
 @media (max-width: 768px) {
+    .main_class {
+        padding-top: 109px;
+    }
+
     .header-middle .header-inner {
         height: 60px;
     }
@@ -423,6 +455,10 @@ $topbar-bg:    #f5f5f7;
 
     .header-nav-bar {
         display: none;
+    }
+
+    .main_class {
+        padding-top: 61px;
     }
 }
 

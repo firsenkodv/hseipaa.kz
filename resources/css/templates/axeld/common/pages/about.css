@@ -142,6 +142,8 @@
 }
 
 .banner-author {
+  border-top: 1px solid rgba(230, 224, 236, 0.71);
+  padding: 20px 0 0 0;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -658,6 +660,7 @@
   flex-wrap: wrap;
   gap: 12px;
   margin-bottom: 16px;
+  max-width: 316px;
 }
 
 .app-store-btn {
@@ -701,6 +704,8 @@
   padding: 14px 18px;
   border-radius: 14px;
   background: #fff;
+  max-width: 316px;
+  width: 100%;
 }
 .app-qr span {
   max-width: 160px;
@@ -924,6 +929,7 @@
   display: flex;
   gap: 14px;
   align-items: center;
+  justify-content: center;
   padding-top: 5px;
 }
 
@@ -967,7 +973,7 @@
   .programs-section {
     padding: 64px 20px;
   }
-  .program-card {
+  .page-wrapper .program-card {
     flex-basis: calc((100% - 16px) / 2);
   }
   .education-benefits-section {
@@ -1145,7 +1151,7 @@
     padding: 0 14px;
     font-size: 14px;
   }
-  .program-card {
+  .page-wrapper .program-card {
     flex-basis: 100%;
     min-height: 0;
     border-radius: 18px;
@@ -1292,6 +1298,17 @@
   }
 }
 @media (max-width: 565px) {
+  .join-buttons a {
+    width: 100%;
+  }
+  .block.about_block {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .page-wrapper .programs-section {
+    padding-right: 0;
+    padding-left: 0;
+  }
   .banner-inner {
     border-radius: 0 !important;
     min-height: 855px;

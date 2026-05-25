@@ -57,10 +57,10 @@ class SocialPage extends Page
                                 ->hint('Полная ссылка, например: https://t.me/username')
                                 ->nullable()
                                 ->unescape(),
-   /*                         Text::make('WhatsApp', 'whatsapp')
+                            Text::make('WhatsApp', 'whatsapp')
                                 ->hint('Полная ссылка, например: https://wa.me/77001234567')
                                 ->nullable()
-                                ->unescape(),*/
+                                ->unescape(),
                             Text::make('Instagram', 'instagram')
                                 ->hint('Полная ссылка, например: https://instagram.com/username')
                                 ->nullable()
@@ -77,10 +77,10 @@ class SocialPage extends Page
 
                         Tab::make('Константы', [
                             Divider::make('Контактные данные'),
-   /*                         Text::make('Телефон', 'phone')
-                                ->hint('Формат для ссылки tel:, например: +77272242121')
+                            Text::make('Телефон', 'phone')
+                                ->hint('Формат для ссылки tel:, например: 77272242121')
                                 ->nullable()
-                                ->unescape(),*/
+                                ->unescape(),
                             Text::make('Email', 'email')
                                 ->hint('Например: sayhi@hseiipa.kz')
                                 ->nullable()
