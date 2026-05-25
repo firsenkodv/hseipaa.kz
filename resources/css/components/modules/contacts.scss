@@ -75,6 +75,10 @@ $colorOrange: #FF732C;
         .contact_area__flex {
             display: flex;
             justify-content: space-between;
+
+            &--no-address {
+                justify-content: flex-start;
+            }
         }
 
         .contact_area__left {

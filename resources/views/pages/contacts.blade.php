@@ -36,7 +36,7 @@
                                     <div class="contact_area__subtitle">{{ $city->subtitle }}</div>
                                 @endif
 
-                                <div class="contact_area__flex">
+                                <div class="contact_area__flex {{ !$city->address ? 'contact_area__flex--no-address' : '' }}">
                                     <div class="contact_area__left">
                                         <div class="color_grey_16 color_grey contact_area__label">Телефон:</div>
                                         @if($city->phone)

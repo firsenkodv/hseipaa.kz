@@ -55,6 +55,9 @@
   display: flex;
   justify-content: space-between;
 }
+.catalogContacts .contactTabs__bottom .contact_area__flex--no-address {
+  justify-content: flex-start;
+}
 .catalogContacts .contactTabs__bottom .contact_area__left {
   width: 30%;
   padding: 16px 16px 16px 0;
