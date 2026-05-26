@@ -32,7 +32,7 @@ class ImportantPage extends Page
 {
     public function getTitle(): string
     {
-        return 'Важное';
+        return 'Статьи';
     }
 
     private function getSetting(): Setting
