@@ -26,6 +26,7 @@ final class OnlineIndexPage extends IndexPage
             ID::make(),
             Image::make(__('Изображение'), 'img'),
             Text::make('Заголовок', 'title')->unescape()->updateOnPreview(),
+            Text::make('Slug', 'slug'),
             Switcher::make('Опубликовано', 'published')->updateOnPreview(),
             Text::make('Сортировка', 'sorting')->updateOnPreview(),
         ];

@@ -35,6 +35,7 @@ final class TrainingIndexPage extends IndexPage
             ID::make(),
             Image::make(__('Изображение'), 'img'),
             Text::make('Заголовок', 'title')->unescape()->updateOnPreview(),
+            Text::make('Slug', 'slug'),
             Text::make('Шаблон', 'template', fn($item) => $item->template?->label() ?? ''),
             InlineSelectField::make('Категории', 'categories')
                 ->options(fn() => TrainingCategory::orderBy('title')->pluck('title', 'id'))
