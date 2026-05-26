@@ -38,7 +38,7 @@ class Law extends Model
 
     public function scopePublished(Builder $query): Builder
     {
-        return $query->where('published', 1)->orderBy('sorting');
+        return $query->where('published', 1)->orderBy('sorting', 'desc');
     }
 
     protected function casts(): array
