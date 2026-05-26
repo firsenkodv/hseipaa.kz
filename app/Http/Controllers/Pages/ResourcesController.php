@@ -151,9 +151,13 @@ class ResourcesController extends PageController
 
     public function importantShow(string $slug): View
     {
+
+
         $vm   = ImportantViewModel::make();
         $item = $vm->getBySlug($slug);
         $page = $vm->getPageData();
+
+    //    dd($item);
 
         return view('pages.resources.show', [
             'page'     => $page,

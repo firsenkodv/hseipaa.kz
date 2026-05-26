@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Resources\Training\Pages;
 
+use App\Models\Training;
+use App\Models\TrainingCategory;
+use App\MoonShine\Fields\InlineSelectField;
 use App\MoonShine\Resources\Training\TrainingResource;
 use Illuminate\Database\Eloquent\Model;
 use MoonShine\Contracts\Core\DependencyInjection\CrudRequestContract;
@@ -15,7 +18,6 @@ use MoonShine\Support\ListOf;
 use MoonShine\UI\Components\ActionButton;
 use MoonShine\UI\Fields\ID;
 use MoonShine\UI\Fields\Image;
-use MoonShine\UI\Fields\Preview;
 use MoonShine\UI\Fields\Switcher;
 use MoonShine\UI\Fields\Text;
 
@@ -34,7 +36,9 @@ final class TrainingIndexPage extends IndexPage
             Image::make(__('Изображение'), 'img'),
             Text::make('Заголовок', 'title')->unescape()->updateOnPreview(),
             Text::make('Шаблон', 'template', fn($item) => $item->template?->label() ?? ''),
-            Preview::make('Категории', 'categories', fn($item) => $item->categories->pluck('title')->implode(', ')),
+            InlineSelectField::make('Категории', 'categories')
+                ->options(fn() => TrainingCategory::orderBy('title')->pluck('title', 'id'))
+                ->saveUrl(fn(Training $item) => route('training.categories.update', $item->id)),
             Switcher::make('Опубликовано', 'published')->updateOnPreview(),
             Text::make('Сортировка', 'sorting')->updateOnPreview(),
         ];
@@ -51,7 +55,6 @@ final class TrainingIndexPage extends IndexPage
             );
     }
 
-
     #[AsyncMethod]
     public static function duplicateRow(CrudRequestContract $request, JsonResponse $response)
     {
@@ -63,9 +66,6 @@ final class TrainingIndexPage extends IndexPage
         $newItem->slug = $newItem->slug . time();
         $newItem->save();
 
-        $url = $resource?->getFormPageUrl($newItem->id);
-
-        //return $response->redirect($url);
         return redirect()->back();
     }
 }

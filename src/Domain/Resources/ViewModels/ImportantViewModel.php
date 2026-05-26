@@ -23,8 +23,8 @@ class ImportantViewModel
         return Important::published()->paginate(config('site.constants.paginate'));
     }
 
-    public function getBySlug(string $slug): News
+    public function getBySlug(string $slug): Important
     {
-        return News::published()->where('slug', $slug)->firstOrFail();
+        return Important::published()->where('slug', $slug)->firstOrFail();
     }
 }

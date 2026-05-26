@@ -22,7 +22,7 @@ class ScheduleCourseResource extends ModelResource
     protected string $column = 'title';
     protected string $sortColumn = 'sorting';
     protected SortDirection $sortDirection = SortDirection::ASC;
-    protected bool $simplePaginate = true;
+    protected bool $simplePaginate = false;
 
     public function getTitle(): string
     {

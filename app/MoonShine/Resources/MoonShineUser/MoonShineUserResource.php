@@ -28,7 +28,7 @@ class MoonShineUserResource extends ModelResource
 
     protected array $with = ['moonshineUserRole'];
 
-    protected bool $simplePaginate = true;
+    protected bool $simplePaginate = false;
 
     public function getTitle(): string
     {

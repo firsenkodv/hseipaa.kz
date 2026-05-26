@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Resources\Consulting\Pages;
 
+use App\Models\Consulting;
+use App\Models\ConsultingCategory;
+use App\MoonShine\Fields\InlineSelectField;
 use App\MoonShine\Resources\Consulting\ConsultingResource;
 use Illuminate\Database\Eloquent\Model;
 use MoonShine\Contracts\Core\DependencyInjection\CrudRequestContract;
@@ -15,7 +18,6 @@ use MoonShine\Support\ListOf;
 use MoonShine\UI\Components\ActionButton;
 use MoonShine\UI\Fields\ID;
 use MoonShine\UI\Fields\Image;
-use MoonShine\UI\Fields\Preview;
 use MoonShine\UI\Fields\Switcher;
 use MoonShine\UI\Fields\Text;
 
@@ -34,7 +36,9 @@ final class ConsultingIndexPage extends IndexPage
             Image::make(__('Изображение'), 'img'),
             Text::make('Заголовок', 'title')->unescape()->updateOnPreview(),
             Text::make('Шаблон', 'template', fn($item) => $item->template?->label() ?? ''),
-            Preview::make('Категории', 'categories', fn($item) => $item->categories->pluck('title')->implode(', ')),
+            InlineSelectField::make('Категории', 'categories')
+                ->options(fn() => ConsultingCategory::orderBy('title')->pluck('title', 'id'))
+                ->saveUrl(fn(Consulting $item) => route('consulting.categories.update', $item->id)),
             Switcher::make('Опубликовано', 'published')->updateOnPreview(),
             Text::make('Сортировка', 'sorting')->updateOnPreview(),
         ];

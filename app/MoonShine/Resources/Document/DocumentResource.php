@@ -27,7 +27,7 @@ class DocumentResource extends ModelResource
     protected string $column = 'title';
     protected string $sortColumn = 'created_at';
     protected SortDirection $sortDirection = SortDirection::DESC;
-    protected bool $simplePaginate = true;
+    protected bool $simplePaginate = false;
 
     public function getTitle(): string
     {

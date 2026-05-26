@@ -24,7 +24,7 @@ class CityResource extends ModelResource
     protected string $model = City::class;
 
     protected string $column = 'title';
-    protected bool $simplePaginate = true;
+    protected bool $simplePaginate = false;
     protected SortDirection $sortDirection = SortDirection::ASC;
     protected string $sortColumn = 'sorting';
 

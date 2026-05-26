@@ -24,7 +24,7 @@ class NewsResource extends ModelResource
 
     protected string $column = 'title';
     protected string $sortColumn = 'created_at';
-    protected bool $simplePaginate = true;
+    protected bool $simplePaginate = false;
 
     public function getTitle(): string
     {

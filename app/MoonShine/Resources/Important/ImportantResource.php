@@ -24,7 +24,7 @@ class ImportantResource extends ModelResource
 
     protected string $column = 'title';
     protected string $sortColumn = 'sorting';
-    protected bool $simplePaginate = true;
+    protected bool $simplePaginate = false;
 
     public function getTitle(): string
     {

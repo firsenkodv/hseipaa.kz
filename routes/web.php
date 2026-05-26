@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dev\DiplomaImportController;
+use App\Http\Controllers\Dev\ContentImportController;
 use App\Http\Controllers\Ajax\CityController;
 use App\Http\Controllers\Axios\AxiosController;
 use App\Http\Controllers\FancyBox\FancyBoxController;
@@ -12,6 +13,9 @@ use App\Http\Controllers\Pages\ContactController;
 use App\Http\Controllers\Pages\RemoteController;
 use App\Http\Controllers\Pages\ResourcesController;
 use App\Http\Controllers\Pages\TrainingController;
+use App\Models\Consulting;
+use App\Models\Training;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /** Главная **/
@@ -62,8 +66,8 @@ Route::controller(ResourcesController::class)->group(function () {
     Route::get('/poleznoe/zakony/{slug}', 'lawsShow')->name('resources.laws.show');
     Route::get('/poleznoe/novosti',       'news')->name('resources.news');
     Route::get('/poleznoe/novosti/{slug}','newsShow')->name('resources.news.show');
-    Route::get('/poleznoe/vazhnoe',       'important')->name('resources.important');
-    Route::get('/poleznoe/vazhnoe/{slug}','importantShow')->name('resources.important.show');
+    Route::get('/poleznoe/stati',       'important')->name('resources.important');
+    Route::get('/poleznoe/stati/{slug}','importantShow')->name('resources.important.show');
     Route::get('/poleznoe/diplomy',       'diplomas')->name('resources.diplomas');
     Route::get('/poleznoe/diplomy/{slug}','diplomasShow')->name('resources.diplomas.show');
     Route::get('/poleznoe/seminar',       'seminar')->name('resources.seminar');
@@ -106,9 +110,26 @@ Route::controller(AxiosController::class)->group(function () {
 });
 /** ///Axios async forms **/
 
+/** Admin AJAX **/
+Route::post('/admin-ajax/training/{training}/categories', function (Request $request, Training $training) {
+    $training->categories()->sync($request->input('categories', []));
+    return response()->json(['ok' => true]);
+})->name('training.categories.update');
+
+Route::post('/admin-ajax/consulting/{consulting}/categories', function (Request $request, Consulting $consulting) {
+    $consulting->categories()->sync($request->input('categories', []));
+    return response()->json(['ok' => true]);
+})->name('consulting.categories.update');
+/** ///Admin AJAX **/
+
 /** DEV: импорт дипломов из Joomla Zoo — удалить после использования **/
 Route::prefix('dev/diplomas')->controller(DiplomaImportController::class)->group(function () {
  /*   Route::get('/preview', 'preview');
     Route::get('/import', 'import');*/
+});
+/** DEV: импорт контента из Joomla (catid=25) — удалить после использования **/
+Route::prefix('dev/contents')->controller(ContentImportController::class)->group(function () {
+    Route::get('/preview', 'preview');
+    Route::get('/import', 'import');
 });
 /** ///DEV **/
