@@ -28,7 +28,7 @@ class ImportantResource extends ModelResource
 
     public function getTitle(): string
     {
-        return 'Важное';
+        return 'Статьи';
     }
 
     protected function pages(): array
