@@ -27,7 +27,7 @@ final class SeminarIndexPage extends IndexPage
             ID::make(),
             Image::make(__('Изображение'), 'img'),
             Text::make('Title', 'title')->unescape()->updateOnPreview(),
-            Text::make('Slug', 'slug'),
+            Text::make('Title', 'title')->unescape()->updateOnPreview(),
             Switcher::make('Published', 'published')->updateOnPreview(),
             Date::make('Дата', 'created_at')->format("d.m.Y")->updateOnPreview(),
             Switcher::make('Metatitle', 'metatitle'),

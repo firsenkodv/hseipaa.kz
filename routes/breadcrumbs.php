@@ -103,7 +103,7 @@ Breadcrumbs::for('resources.show', function ($trail, $item) {
 
 Breadcrumbs::for('resources.important', function ($trail) {
     $trail->parent('resources');
-    $trail->push('Важное', route('resources.important'));
+    $trail->push('Статьи', route('resources.important'));
 });
 
 Breadcrumbs::for('resources.important.show', function ($trail, $item) {

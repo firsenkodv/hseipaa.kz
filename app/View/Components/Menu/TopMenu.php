@@ -35,7 +35,7 @@ class TopMenu extends Component
             ['label' => 'Полезное',   'route' => 'resources',  'pattern' => 'resources*', 'dropdown' => [
                 ['label' => 'Законы',    'route' => 'resources.laws',      'pattern' => 'resources.laws*'],
                 ['label' => 'Новости',   'route' => 'resources.news',      'pattern' => 'resources.news*'],
-                ['label' => 'Важное',    'route' => 'resources.important', 'pattern' => 'resources.important*'],
+                ['label' => 'Статьи',    'route' => 'resources.important', 'pattern' => 'resources.important*'],
                 ['label' => 'Дипломы',   'route' => 'resources.diplomas',  'pattern' => 'resources.diplomas*'],
                 ['label' => 'Семинары',  'route' => 'resources.seminar',   'pattern' => 'resources.seminar*'],
             ]],
