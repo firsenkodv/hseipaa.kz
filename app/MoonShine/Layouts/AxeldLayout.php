@@ -109,7 +109,7 @@ final class AxeldLayout extends AppLayout
                 MenuGroup::make('Элементы', [
                     MenuItem::make(LawsPage::class, 'Законы', 'scale'),
                     MenuItem::make(NewsPage::class, 'Новости', 'newspaper'),
-                    MenuItem::make(ImportantPage::class, 'Важное', 'exclamation-triangle'),
+                    MenuItem::make(ImportantPage::class, 'Статьи', 'exclamation-triangle'),
                     MenuItem::make(DiplomasPage::class, 'Дипломы', 'trophy'),
                     MenuItem::make(SeminarPage::class, 'Семинары', 'presentation-chart-bar'),
                 ])->icon('squares-2x2'),
@@ -167,7 +167,7 @@ final class AxeldLayout extends AppLayout
                     MenuGroup::make(static fn() => __('Новости'), [
                         MenuItem::make(NewsResource::class, 'Страницы', 'document-text'),
                     ])->icon('newspaper'),
-                    MenuGroup::make(static fn() => __('Важное'), [
+                    MenuGroup::make(static fn() => __('Статьи'), [
                         MenuItem::make(ImportantResource::class, 'Страницы', 'document-text'),
                     ])->icon('exclamation-triangle'),
 
