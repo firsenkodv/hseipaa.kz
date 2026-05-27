@@ -139,6 +139,14 @@ $nd-bg-hover: #f5f5f7;
     }
 }
 
+// --- Training dropdown — у каждой колонки border-left ---
+
+.nav-dropdown--training {
+    .nav-dropdown-col {
+        border-left: 1px solid $nd-border;
+    }
+}
+
 // --- Дропдаун консалтинга (2 колонки, ~50% ширины) ---
 
 .nav-dropdown--consulting {

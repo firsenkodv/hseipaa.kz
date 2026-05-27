@@ -102,6 +102,10 @@
   color: #f84e40;
 }
 
+.nav-dropdown--training .nav-dropdown-col {
+  border-left: 1px solid #e8e8e8;
+}
+
 .nav-dropdown--consulting {
   left: 0;
   right: auto;
