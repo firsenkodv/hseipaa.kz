@@ -102,8 +102,9 @@
   color: #f84e40;
 }
 
-.nav-dropdown--training .nav-dropdown-col {
-  border-left: 1px solid #e8e8e8;
+.nav-dropdown--training .nav-dropdown-col:nth-child(5),
+.nav-dropdown--training .nav-dropdown-col:nth-child(9) {
+  border-left: none;
 }
 
 .nav-dropdown--consulting {

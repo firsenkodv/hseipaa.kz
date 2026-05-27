@@ -139,11 +139,12 @@ $nd-bg-hover: #f5f5f7;
     }
 }
 
-// --- Training dropdown — у каждой колонки border-left ---
+// --- Training dropdown — border-left нет у 1-й, 5-й и 9-й колонок ---
 
 .nav-dropdown--training {
-    .nav-dropdown-col {
-        border-left: 1px solid $nd-border;
+    .nav-dropdown-col:nth-child(5),
+    .nav-dropdown-col:nth-child(9) {
+        border-left: none;
     }
 }
 
