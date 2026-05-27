@@ -19,7 +19,7 @@
                                 </button>
                             </div>
 
-                            <div class="nav-dropdown">
+                            <div class="nav-dropdown nav-dropdown--training">
                                 <div class="nav-dropdown-grid">
                                     {{-- Колонка = одна категория обучения со списком программ --}}
                                     @foreach($trainingCategories as $category)
