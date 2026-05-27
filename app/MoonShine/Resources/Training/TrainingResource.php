@@ -26,7 +26,7 @@ class TrainingResource extends ModelResource
     protected string $column = 'title';
     protected array $with = ['categories'];
     protected string $sortColumn = 'sorting';
-    protected SortDirection $sortDirection = SortDirection::ASC;
+   // protected SortDirection $sortDirection = SortDirection::ASC;
     protected bool $simplePaginate = false;
 
     public function getTitle(): string

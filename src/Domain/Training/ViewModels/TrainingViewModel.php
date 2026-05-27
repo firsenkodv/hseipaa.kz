@@ -23,6 +23,7 @@ class TrainingViewModel
             ->published()
             ->when($categorySlug, fn($q) => $q->whereHas('categories', fn($q) => $q->where('training_categories.slug', $categorySlug)))
             ->when($search, fn($q) => $q->where('title', 'like', '%' . $search . '%'))
+            ->reorder('sorting', 'desc')
             ->paginate(config('site.constants.paginate'));
     }
 

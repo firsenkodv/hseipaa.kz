@@ -1,0 +1,59 @@
+// ============================================================
+// CONTENT TABLE — стилизованная таблица
+// ============================================================
+
+// border-collapse: separate позволяет задавать border-radius каждой ячейке.
+// border-spacing: 3px — небольшой зазор между ячейками.
+
+.content-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 3px;
+
+    // --- Все ячейки ---
+
+    th,
+    td {
+        padding: 10px 16px;
+        border: 1px solid #e8e8e8;
+        border-radius: 6px;
+        font-size: 15px;
+        line-height: 1.5;
+        text-align: left;
+        vertical-align: top;
+        color: #1f1f22;
+        background: #fff;
+    }
+
+    // --- Заголовочные ячейки ---
+
+    th {
+        background: #f5f5f7;
+        font-weight: 600;
+        color: #1f1f22;
+    }
+
+    // --- Чётные строки tbody (зебра) ---
+
+    tbody tr:nth-child(even) td {
+        background: #fafafa;
+    }
+
+    // --- Hover по строке ---
+
+    tbody tr:hover td {
+        background: #f0f0f2;
+        border-color: #d4d4d4;
+        transition: background 0.15s, border-color 0.15s;
+    }
+
+    // --- Мобильные: горизонтальный скролл ---
+    // display: block на <table> сохраняет вёрстку строк и ячеек,
+    // но позволяет overflow-x работать как у обычного блока.
+
+    @media (max-width: 768px) {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}

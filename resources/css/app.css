@@ -18,6 +18,7 @@
 @import 'components/modules/schedule.scss';
 @import 'components/modules/advantages.scss';
 @import 'components/modules/consulting.scss';
+@import 'components/modules/content-table.scss';
 @import 'components/modules/actions_script.scss';
 @import 'components/modules/faq.scss';
 @import 'components/form/form-loader.scss';

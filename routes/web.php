@@ -129,7 +129,7 @@ Route::prefix('dev/diplomas')->controller(DiplomaImportController::class)->group
 });
 /** DEV: импорт контента из Joomla (catid=25) — удалить после использования **/
 Route::prefix('dev/contents')->controller(ContentImportController::class)->group(function () {
-    Route::get('/preview', 'preview');
-    Route::get('/import', 'import');
+/*    Route::get('/preview', 'preview');
+    Route::get('/import', 'import');*/
 });
 /** ///DEV **/
