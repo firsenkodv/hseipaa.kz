@@ -26,6 +26,7 @@ final class AboutIndexPage extends IndexPage
             ID::make(),
             Image::make(__('Изображение'), 'img'),
             Text::make('Title', 'title')->unescape()->updateOnPreview(),
+            Text::make('Slug', 'slug')->updateOnPreview(),
             Switcher::make('Published', 'published')->updateOnPreview(),
             Text::make('Sorting', 'sorting')->updateOnPreview(),
             Switcher::make('Metatitle', 'metatitle'),

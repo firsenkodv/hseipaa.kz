@@ -74,6 +74,9 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 0 8px;
 }
+.nav-dropdown-grid--2col {
+  grid-template-columns: repeat(2, 1fr);
+}
 
 .nav-dropdown-col {
   display: flex;
@@ -97,6 +100,17 @@
 }
 .nav-dropdown-cat-title:hover {
   color: #f84e40;
+}
+
+.nav-dropdown--consulting {
+  left: 0;
+  right: auto;
+  width: 50%;
+}
+@media (max-width: 968px) {
+  .nav-dropdown--consulting {
+    width: 100%;
+  }
 }
 
 .nav-dropdown--simple {
@@ -159,6 +173,9 @@
 }
 
 @media (max-width: 768px) {
+  .header-nav-bar {
+    display: none;
+  }
   .nav-dropdown {
     display: none;
   }

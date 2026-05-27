@@ -35,7 +35,7 @@ final class ConsultingIndexPage extends IndexPage
             ID::make(),
             Image::make(__('Изображение'), 'img'),
             Text::make('Заголовок', 'title')->unescape()->updateOnPreview(),
-            Text::make('Slug', 'slug'),
+            Text::make('Slug', 'slug')->updateOnPreview(),
             Text::make('Шаблон', 'template', fn($item) => $item->template?->label() ?? ''),
             InlineSelectField::make('Категории', 'categories')
                 ->options(fn() => ConsultingCategory::orderBy('title')->pluck('title', 'id'))

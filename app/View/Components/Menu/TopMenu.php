@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Menu;
 
+use App\Models\ConsultingCategory;
 use App\Models\Online;
 use App\Models\Schedule;
 use App\Models\TrainingCategory;
@@ -13,6 +14,7 @@ class TopMenu extends Component
 {
     public array $navItems;
     public $trainingCategories;
+    public $consultingCategories;
     public $schedules;
     public $onlines;
 
@@ -29,7 +31,7 @@ class TopMenu extends Component
                 ['label' => 'Сотрудничество', 'route' => 'about.cooperation','pattern' => 'about.cooperation*'],
             ]],
             ['label' => 'Обучение',   'route' => 'training',   'pattern' => 'training*', 'hasDropdown' => true],
-            ['label' => 'Консалтинг', 'route' => 'consulting', 'pattern' => 'consulting*'],
+            ['label' => 'Консалтинг', 'route' => 'consulting', 'pattern' => 'consulting*', 'hasConsultingDropdown' => true],
             ['label' => 'Online',     'route' => 'remote',     'pattern' => 'remote*', 'hasOnlineDropdown' => true],
             ['label' => 'Расписание', 'route' => 'schedule',    'pattern' => 'schedule*', 'hasScheduleDropdown' => true],
             ['label' => 'Полезное',   'route' => 'resources',  'pattern' => 'resources*', 'dropdown' => [
@@ -43,6 +45,10 @@ class TopMenu extends Component
         ];
 
         $this->trainingCategories = TrainingCategory::with(['trainings' => function ($q) {
+            $q->published()->orderBy('sorting');
+        }])->orderBy('sorting')->get();
+
+        $this->consultingCategories = ConsultingCategory::with(['consultings' => function ($q) {
             $q->published()->orderBy('sorting');
         }])->orderBy('sorting')->get();
 
