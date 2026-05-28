@@ -20,6 +20,7 @@
 @import 'components/modules/consulting.scss';
 @import 'components/modules/content-table.scss';
 @import 'components/modules/actions_script.scss';
+@import 'components/modules/credit-calc.scss';
 @import 'components/modules/faq.scss';
 @import 'components/form/form-loader.scss';
 @import 'components/form/form-input.scss';

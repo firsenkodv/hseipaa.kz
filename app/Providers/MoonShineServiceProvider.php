@@ -22,6 +22,7 @@ use App\MoonShine\Pages\Pages\ResourcesPage;
 use App\MoonShine\Pages\Pages\SchedulePage;
 use App\MoonShine\Pages\Pages\SeminarPage;
 use App\MoonShine\Pages\Pages\TeamPage;
+use App\MoonShine\Pages\Pages\CreditPage;
 use App\MoonShine\Pages\Pages\SocialPage;
 use App\MoonShine\Pages\Pages\ToastPage;
 use App\MoonShine\Pages\Pages\TrainingPage;
@@ -103,6 +104,7 @@ class MoonShineServiceProvider extends ServiceProvider
                 SchedulePage::class,
                 ToastPage::class,
                 SocialPage::class,
+                CreditPage::class,
             ])
         ;
     }

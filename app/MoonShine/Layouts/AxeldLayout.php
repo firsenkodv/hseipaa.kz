@@ -24,6 +24,7 @@ use App\MoonShine\Pages\Pages\ResourcesPage;
 use App\MoonShine\Pages\Pages\SchedulePage;
 use App\MoonShine\Pages\Pages\SeminarPage;
 use App\MoonShine\Pages\Pages\TeamPage;
+use App\MoonShine\Pages\Pages\CreditPage;
 use App\MoonShine\Pages\Pages\SocialPage;
 use App\MoonShine\Pages\Pages\ToastPage;
 use App\MoonShine\Pages\Pages\TrainingPage;
@@ -184,6 +185,7 @@ final class AxeldLayout extends AppLayout
                 MenuItem::make(MediaManagerPage::class, 'Media', 'film'),
                 MenuItem::make(ToastPage::class, 'Toast', 'bell'),
                 MenuItem::make(SocialPage::class, 'Соцсети и константы', 'globe-alt'),
+                MenuItem::make(CreditPage::class, 'Кредитный калькулятор', 'calculator'),
 
             ])->icon('cog-6-tooth'),
             MenuItem::make(DiplomaResource::class, 'Список дипломов', 'trophy'),

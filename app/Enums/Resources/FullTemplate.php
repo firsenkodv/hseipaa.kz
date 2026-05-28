@@ -14,6 +14,7 @@ enum FullTemplate: string
     case Record = 'record';
     case Diploma2 = 'diploma2';
     case Consulting = 'consulting';
+    case Credit = 'credit';
 
     public function label(): string
     {
@@ -26,6 +27,7 @@ enum FullTemplate: string
             self::Diploma   => 'Поиск диплома',
             self::Diploma2  => 'Страница с дипломами',
             self::Record    => 'Запись на курс',
+            self::Credit    => 'Обучение в кредит',
         };
     }
 

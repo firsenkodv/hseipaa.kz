@@ -9,25 +9,19 @@
                     @foreach($slides as $slide)
                     <div class="swiper-slide">
                         @if(!empty($slide['href']))
-                        <a href="{{ $slide['href'] }}">
-                            <x-picture.responsive
+                        <a class="picture-responsive" style="background-image: url({{Storage::url($slide['img'])}})" href="{{ $slide['href'] }}">
+                   {{--         <x-picture.responsive
                                 :sizes="['480x260', '779x409']"
                                 :src="$slide['img']"
                                 alt=""
                                 dir="slider"
                                 method="cover"
                                 class="block3-slide-img"
-                            />
+                            />--}}
                         </a>
                         @else
-                        <x-picture.responsive
-                            :sizes="['480x260', '779x409']"
-                            :src="$slide['img']"
-                            alt=""
-                            dir="slider"
-                            method="cover"
-                            class="block3-slide-img"
-                        />
+                            <div class="picture-responsive"  style="background-image: url({{Storage::url($slide['img'])}})"></div>
+
                         @endif
                     </div>
                     @endforeach
