@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    {{--  {!!   config('google.google_tag.head') !!}--}}
+     {!!   config('google.google_tag.head') !!}
     <meta name="csrf-token" content="{{{ csrf_token() }}}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite([
@@ -21,7 +21,7 @@
 </head>
 <body>
 <div id="back-to-top"></div>
-{{--  {!!  config('google.google_tag.body') !!}  --}}
+  {!!  config('google.google_tag.body') !!}
 <div class="content_  @yield('class')  {{ route_name() }}">
     <x-message.message/>
     <x-message.message_error/>

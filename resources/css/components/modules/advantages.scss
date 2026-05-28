@@ -36,8 +36,8 @@
 
 .advantages__media {
     align-self: start;
-    flex: 0 0 300px;
-    width: 300px;
+    flex: 0 0 350px;
+    width: 350px;
     font-size: 18px;
     font-style: italic;
     background-size: cover;
@@ -50,7 +50,7 @@
     padding: 30px 6px 10px 10px;
     text-decoration: none;
     text-underline-offset: 3px;
-    color: #282828;
+    color: #667085;
     a {
         color: #ef533f;
 
@@ -80,7 +80,7 @@
         font-size: 32px;
         line-height: 1.1;
         display: block;
-        font-weight: 500;
+        font-weight: 700;
     }
 
     p {
@@ -123,6 +123,7 @@
     padding: 24px;
     border: 6px solid #ef533f;
     transition: .2s;
+    height: 426px;
     &:hover {
         border-color:#575eef ;
     }
@@ -157,12 +158,12 @@
 }
 
 .advantages__media .video-card__play {
-    width: 48px;
-    height: 48px;
+    width: 58px;
+    height: 58px;
 
     &::after {
-        left: 20px;
-        top: 14px;
+        left: 24px;
+        top: 18px;
         border-left-width: 15px;
         border-top-width: 10px;
         border-bottom-width: 10px;
