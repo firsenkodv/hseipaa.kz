@@ -73,6 +73,12 @@
   width: 100%;
   height: 100%;
 }
+.block_3 .block_3_slider .swiper-button-prev {
+  left: 0;
+}
+.block_3 .block_3_slider .swiper-button-next {
+  right: 0;
+}
 .block_3 .block_3_slider .swiper-button-prev,
 .block_3 .block_3_slider .swiper-button-next {
   appearance: none;
