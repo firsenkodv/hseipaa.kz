@@ -218,11 +218,11 @@
   gap: 3px;
   padding: 6px 10px;
   color: #1f1f22;
-  font-size: 16px;
   font-weight: 400;
   text-decoration: none;
   white-space: nowrap;
   transition: color 0.15s;
+  font-size: 18px;
 }
 .header-nav-link:hover {
   color: #f84e40;

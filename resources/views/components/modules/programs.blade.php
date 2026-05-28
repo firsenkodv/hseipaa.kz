@@ -7,7 +7,7 @@
         <div class="programs__layout">
             <div class="programs__grid" aria-label="Популярные направления">
                 <article class="program-card program-card--green">
-                    <a class="program-card__link" href="#">
+                    <a class="program-card__link" href="/obuchenie/mediator">
                         <h3>Обучение<br />Медиаторов</h3>
                         <span class="program-card__cta">
                   <span>Обучение за 5 дней</span>
@@ -17,7 +17,7 @@
                     </a>
                 </article>
                 <article class="program-card program-card--orange">
-                    <a class="program-card__link" href="#">
+                    <a class="program-card__link" href="/obuchenie/prof-bukhgalter-rk">
                         <h3>Проф.<br />бухгалтер</h3>
                         <span class="program-card__cta">
                   <span>Сдача до 90% студентов</span>
@@ -27,7 +27,7 @@
                     </a>
                 </article>
                 <article class="program-card program-card--blue">
-                    <a class="program-card__link" href="#">
+                    <a class="program-card__link" href="/obuchenie/kursy-cap-i-cipa">
                         <h3>CAP/CIPA</h3>
                         <span class="program-card__cta">
                   <span>Лучшие лекторы Алматы</span>
@@ -37,7 +37,7 @@
                     </a>
                 </article>
                 <article class="program-card program-card--red">
-                    <a class="program-card__link" href="#">
+                    <a class="program-card__link" href="/obuchenie/dipifr">
                         <h3>ДИПИФР</h3>
                         <span class="program-card__cta">
                   <span>Теория и практика</span>
@@ -49,7 +49,7 @@
             </div>
             <aside class="programs__aside" aria-label="Расписание">
                 <article class="program-card program-card--dark">
-                    <a class="program-card__link" href="#">
+                    <a class="program-card__link" href="/raspisani/almaty">
                         <h3>Расписание</h3>
                         <span class="program-card__cta">
                   <span>Подберите удобное время</span>

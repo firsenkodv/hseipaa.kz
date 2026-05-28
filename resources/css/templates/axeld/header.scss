@@ -255,11 +255,11 @@ $topbar-bg:    #f5f5f7;
     gap: 3px;
     padding: 6px 10px;
     color: $dark;
-    font-size: 16px;
     font-weight: 400;
     text-decoration: none;
     white-space: nowrap;
     transition: color 0.15s;
+    font-size: 18px;
 
     &:hover {
         color: $brand;
