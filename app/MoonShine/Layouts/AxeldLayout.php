@@ -27,6 +27,7 @@ use App\MoonShine\Pages\Pages\TeamPage;
 use App\MoonShine\Pages\Pages\CreditPage;
 use App\MoonShine\Pages\Pages\SocialPage;
 use App\MoonShine\Pages\Pages\ToastPage;
+use App\MoonShine\Pages\Pages\PromoModalPage;
 use App\MoonShine\Pages\Pages\TrainingPage;
 use App\MoonShine\Resources\About\AboutResource;
 use App\MoonShine\Resources\City\CityResource;
@@ -184,6 +185,7 @@ final class AxeldLayout extends AppLayout
                 MenuItem::make(CityResource::class, 'Города', 'building-office-2'),
                 MenuItem::make(MediaManagerPage::class, 'Media', 'film'),
                 MenuItem::make(ToastPage::class, 'Toast', 'bell'),
+                MenuItem::make(PromoModalPage::class, 'Форма заявки (авто)', 'cursor-arrow-rays'),
                 MenuItem::make(SocialPage::class, 'Соцсети и константы', 'globe-alt'),
                 MenuItem::make(CreditPage::class, 'Кредитный калькулятор', 'calculator'),
 

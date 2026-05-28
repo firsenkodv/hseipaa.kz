@@ -25,6 +25,7 @@ use App\MoonShine\Pages\Pages\TeamPage;
 use App\MoonShine\Pages\Pages\CreditPage;
 use App\MoonShine\Pages\Pages\SocialPage;
 use App\MoonShine\Pages\Pages\ToastPage;
+use App\MoonShine\Pages\Pages\PromoModalPage;
 use App\MoonShine\Pages\Pages\TrainingPage;
 use Illuminate\Support\ServiceProvider;
 use App\MoonShine\Resources\About\AboutResource;
@@ -103,6 +104,7 @@ class MoonShineServiceProvider extends ServiceProvider
                 SeminarPage::class,
                 SchedulePage::class,
                 ToastPage::class,
+                PromoModalPage::class,
                 SocialPage::class,
                 CreditPage::class,
             ])

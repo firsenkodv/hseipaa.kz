@@ -16,6 +16,7 @@ import {programOutlineAccordion, programOutlineScroll} from "./include/site/prog
 import {citySelector} from "./include/site/city-selector";
 import {navDropdown} from "./include/site/nav-dropdown";
 import {toastPromo} from "./include/site/toast-promo";
+import {promoModal} from "./include/site/promo-modal";
 import {slimSelect} from "./include/select/slim-select";
 import {scheduleMonthFilter} from "./include/schedule/schedule-month-filter";
 import {mzSelect} from "./include/select/mz-select";
@@ -43,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
     citySelector() // выбор города
     navDropdown()  // выпадающее меню навигации
     toastPromo()   // тост-уведомление
+    promoModal()   // автооткрытие формы заявки
     slimSelect() // select
     mzSelect() // select
     scheduleMonthFilter() // фильтр по месяцам

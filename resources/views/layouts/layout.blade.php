@@ -32,6 +32,7 @@
 </div><!--.content_-->
 @include('templates.axeld.footer')
 <x-ui.toast-promo />
+<x-ui.promo-modal />
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script src="//translate.google.com/translate_a/element.js?cb=TranslateInit"></script>
     <script src="/js/language/google-translate.js"></script>

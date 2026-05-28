@@ -41,9 +41,11 @@ $topbar-bg:    #f5f5f7;
 .header-topbar {
     border-bottom: 1px solid $border;
     background: $topbar-bg;
-    overflow: hidden;
+    position: relative;
+    z-index: 1;
     max-height: 41px;
-    transition: max-height 0.25s ease;
+    clip-path: inset(0 0 -400px 0);
+    transition: max-height 0.25s ease, clip-path 0.25s ease;
 
     .header-inner {
         height: 40px;
@@ -53,6 +55,7 @@ $topbar-bg:    #f5f5f7;
 .site-header.scrolled {
     .header-topbar {
         max-height: 0;
+        clip-path: inset(0 0 0 0);
     }
 }
 
