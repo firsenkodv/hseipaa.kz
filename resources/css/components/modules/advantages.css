@@ -29,6 +29,7 @@
 }
 
 .advantages__media {
+  margin: 120px 0 0 0;
   align-self: start;
   flex: 0 0 350px;
   width: 350px;

@@ -6,6 +6,7 @@ use App\Models\News;
 use App\Models\Setting;
 use Closure;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
@@ -18,8 +19,16 @@ class SliderNews extends Component
     {
         $homeData = Setting::getGroup('home')->data ?? [];
 
-        $this->slides   = collect($homeData['slider'] ?? [])
-            ->filter(fn($s) => !empty($s['img']));
+        $this->slides = collect($homeData['slider'] ?? [])
+            ->filter(fn($s) => !empty($s['img_desktop']))
+            ->map(fn($s) => (object) [
+                'bg'    => Storage::url($s['img_desktop']),
+                'href'  => $s['href'] ?? null,
+                'tag'   => !empty($s['href']) ? 'a' : 'div',
+                'title' => $s['заголовок'] ?? null,
+                'desc'  => $s['описание'] ?? null,
+                'html'  => $s['html'] ?? null,
+            ]);
 
         $this->newsList = News::published()->get();
     }

@@ -4,7 +4,7 @@
   padding: 30px 0;
 }
 .block_3 .scroll-block {
-  height: 364px;
+  height: 344px;
   width: 100%;
   overflow-y: scroll;
 }
@@ -42,7 +42,7 @@
 .block_3 .flex_3 {
   display: flex;
   align-items: stretch;
-  max-width: 1200px;
+  max-width: 1216px;
   margin: 0 auto;
   gap: 24px;
 }
@@ -53,7 +53,7 @@
 }
 .block_3 .block_3_slider .block3-swiper {
   width: 100%;
-  max-width: 779px;
+  max-width: 795px;
   height: 380px;
   overflow: hidden;
 }
@@ -61,11 +61,10 @@
   display: flex;
   flex-wrap: nowrap;
 }
-.block_3 .block_3_slider .block3-swiper .swiper-wrapper .picture-responsive {
+.block_3 .block_3_slider .block3-swiper .swiper-wrapper .slide-bg {
   position: relative;
-  width: 750px;
-  height: 380px;
-  background: #999;
+  width: 795px;
+  height: 410px;
   border-radius: 8px;
 }
 .block_3 .block_3_slider .block3-swiper .swiper-slide {
@@ -162,6 +161,34 @@
   height: 1px;
   background: #dedede;
   margin: 8px 0;
+}
+
+.slide-content {
+  padding: 38px 10px 10px 100px;
+}
+.slide-content .slide-title {
+  font-size: 36px;
+  line-height: 1.1;
+  font-weight: 600;
+  color: #000;
+  padding-bottom: 20px;
+}
+.slide-content .slide-desc {
+  font-size: 18px;
+  line-height: 1.4;
+}
+.slide-content .slide-html {
+  padding: 15px 0 0 0;
+}
+.slide-content .slide-html a {
+  text-decoration: none;
+  display: inline-block;
+  width: 149px;
+  margin: 0 6px 0 0;
+}
+.slide-content .slide-html img.shop {
+  width: 149px;
+  height: 48px;
 }
 
 @media (max-width: 1278px) {

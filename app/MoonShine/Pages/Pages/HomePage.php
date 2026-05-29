@@ -77,12 +77,20 @@ class HomePage extends Page
 
                         Tab::make('Слайдер', [
                             Json::make('Слайды', 'slider')->fields([
-                                Image::make('Изображение', 'img')
+                                Image::make('Изображение desktop', 'img_desktop')
+                                    ->disk('public')
+                                    ->dir('images/slider/slides')
+                                    ->allowedExtensions(['jpg', 'jpeg', 'png', 'webp'])
+                                    ->removable(),
+                                Image::make('Изображение mobile', 'img_mobile')
                                     ->disk('public')
                                     ->dir('images/slider/slides')
                                     ->allowedExtensions(['jpg', 'jpeg', 'png', 'webp'])
                                     ->removable(),
                                 Text::make('Ссылка', 'href')->unescape(),
+                                Text::make('Заголовок')->unescape(),
+                                Text::make('Описание')->unescape(),
+                                Textarea::make('HTML')->unescape(),
                             ])->vertical()->creatable()->removable(),
                         ])->icon('photo'),
 

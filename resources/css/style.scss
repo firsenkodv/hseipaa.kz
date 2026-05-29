@@ -61,8 +61,6 @@ body {
 .container,.block, .content_page__default {
     max-width: 1200px;
     margin: 0 auto;
-    padding-left: 15px;
-    padding-right: 15px;
 }
 
 main {
@@ -168,10 +166,14 @@ a:hover {
 
 .scroll-block {
     width: 100%;
-    overflow-y: scroll
+    overflow-y: scroll;
+   // overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: #ef533f #f0f1f5;
 }
 
-.scroll-block::-webkit-scrollbar-track {
+/*.scroll-block::-webkit-scrollbar-track {
     border-radius: 4px
 }
 
@@ -186,4 +188,12 @@ a:hover {
 
 .scroll-block:hover::-webkit-scrollbar-thumb {
     background: #ebebed
+}*/
+
+
+@media (max-width: 1200px) {
+    .container,.block, .content_page__default {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
 }

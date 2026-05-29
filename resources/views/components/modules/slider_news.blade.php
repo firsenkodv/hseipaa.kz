@@ -8,21 +8,28 @@
 
                     @foreach($slides as $slide)
                     <div class="swiper-slide">
-                        @if(!empty($slide['href']))
-                        <a class="picture-responsive" style="background-image: url({{Storage::url($slide['img'])}})" href="{{ $slide['href'] }}">
-                   {{--         <x-picture.responsive
-                                :sizes="['480x260', '779x409']"
-                                :src="$slide['img']"
-                                alt=""
-                                dir="slider"
-                                method="cover"
-                                class="block3-slide-img"
-                            />--}}
-                        </a>
-                        @else
-                            <div class="picture-responsive"  style="background-image: url({{Storage::url($slide['img'])}})"></div>
+                        <{{ $slide->tag }}
+                            class="slide-bg"
+                            style="background-image: url('{{ $slide->bg }}')"
+                            @if($slide->href) href="{{ $slide->href }}" @endif
+                        >
+                            @if($slide->title || $slide->desc || $slide->html)
+                            <div class="slide-content">
+                                @if($slide->title)
+                                    <h2 class="slide-title">{!! $slide->title !!}</h2>
+                                @endif
+                                @if($slide->desc)
+                                    <p class="slide-desc">{!! $slide->desc !!}</p>
+                                @endif
 
-                        @endif
+
+
+                                @if($slide->html)
+                                    <div class="slide-html">{!! $slide->html !!}</div>
+                                @endif
+                            </div>
+                            @endif
+                        </{{ $slide->tag }}>
                     </div>
                     @endforeach
 

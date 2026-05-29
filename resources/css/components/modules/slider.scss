@@ -12,7 +12,7 @@ $block3-news-width: 397px;
     padding: 30px 0;
 
     .scroll-block {
-        height: 364px;
+        height: 344px;
         width: 100%;
         overflow-y: scroll;
     }
@@ -63,7 +63,7 @@ $block3-news-width: 397px;
     .flex_3 {
         display: flex;
         align-items: stretch;
-        max-width: 1200px;
+        max-width: 1216px;
         margin: 0 auto;
         gap: 24px
     }
@@ -74,9 +74,10 @@ $block3-news-width: 397px;
         min-width: 0;
         position: relative;
 
+
         .block3-swiper {
             width: 100%;
-            max-width: 779px;
+            max-width: 795px;
             height: $block3-height;
             overflow: hidden;
 
@@ -84,12 +85,14 @@ $block3-news-width: 397px;
                 display: flex;
                 flex-wrap: nowrap;
 
-                .picture-responsive {
+                .slide-bg {
                     position: relative;
-                    width: 750px;
-                    height: 380px;
-                    background: #999;
+                    width: 795px;
+                    height: 410px;
+                    //  background: #999;
                     border-radius: 8px;
+
+
                 }
             }
 
@@ -213,6 +216,39 @@ $block3-news-width: 397px;
         }
     }
 }
+
+// ——— CONTENT ———
+.slide-content {
+    padding:38px 10px 10px 100px ;
+    .slide-title {
+font-size: 36px;
+        line-height: 1.1;
+        font-weight: 600;
+        color: #000;
+        padding-bottom: 20px;
+    }
+
+    .slide-desc {
+        font-size: 18px;
+        line-height: 1.4;
+
+    }
+    .slide-html {
+        padding: 15px 0 0 0;
+a {
+    text-decoration: none;
+    display: inline-block;
+    width: 149px;
+    margin: 0 6px 0 0;
+}
+        img.shop {
+            width: 149px;
+            height: 48px;
+        }
+    }
+}
+
+// ——— CONTENT ———
 
 // ——— RESPONSIVE ———
 @media (max-width: 1278px) {

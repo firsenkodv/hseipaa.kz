@@ -36,8 +36,6 @@ body footer {
 .container, .block, .content_page__default {
   max-width: 1200px;
   margin: 0 auto;
-  padding-left: 15px;
-  padding-right: 15px;
 }
 
 .color_grey {
@@ -142,23 +140,32 @@ a:hover {
 .scroll-block {
   width: 100%;
   overflow-y: scroll;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #ef533f #f0f1f5;
 }
 
-.scroll-block::-webkit-scrollbar-track {
-  border-radius: 4px;
+/*.scroll-block::-webkit-scrollbar-track {
+    border-radius: 4px
 }
 
 .scroll-block::-webkit-scrollbar {
-  width: 6px;
+    width: 6px
 }
 
 .scroll-block::-webkit-scrollbar-thumb {
-  border-radius: 4px;
-  background: #fff;
+    border-radius: 4px;
+    background: #fff
 }
 
 .scroll-block:hover::-webkit-scrollbar-thumb {
-  background: #ebebed;
+    background: #ebebed
+}*/
+@media (max-width: 1200px) {
+  .container, .block, .content_page__default {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
