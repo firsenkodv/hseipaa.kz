@@ -127,7 +127,7 @@ $block3-news-width: 397px;
             margin: 0;
             background-size: 100% 200%;
             background-repeat: no-repeat;
-            background-position: top center;
+            background-position: bottom center;
             transition: background-position 0.25s ease;
             color: transparent;
 
@@ -137,7 +137,7 @@ $block3-news-width: 397px;
             }
 
             &:hover {
-                background-position: bottom center;
+                background-position: top center;
             }
         }
 

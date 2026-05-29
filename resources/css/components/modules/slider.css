@@ -93,7 +93,7 @@
   margin: 0;
   background-size: 100% 200%;
   background-repeat: no-repeat;
-  background-position: top center;
+  background-position: bottom center;
   transition: background-position 0.25s ease;
   color: transparent;
 }
@@ -103,7 +103,7 @@
 }
 .block_3 .block_3_slider .swiper-button-prev:hover,
 .block_3 .block_3_slider .swiper-button-next:hover {
-  background-position: bottom center;
+  background-position: top center;
 }
 .block_3 .block_3_slider .swiper-button-prev {
   background-image: url("/storage/images/slider/Left.jpg");
