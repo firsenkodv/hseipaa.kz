@@ -7,10 +7,19 @@
                 <div class="swiper-wrapper">
 
                     @foreach($slides as $slide)
+                    @php $sid = 'slide-' . $loop->index; @endphp
+                    <style>
+                        #{{ $sid }} { background-image: url('{{ $slide->bg }}'); }
+                        @if($slide->bg_mobile)
+                        @media (max-width: 794px) {
+                            #{{ $sid }} { background-image: url('{{ $slide->bg_mobile }}'); }
+                        }
+                        @endif
+                    </style>
                     <div class="swiper-slide">
                         <{{ $slide->tag }}
+                            id="{{ $sid }}"
                             class="slide-bg"
-                            style="background-image: url('{{ $slide->bg }}')"
                             @if($slide->href) href="{{ $slide->href }}" @endif
                         >
                             @if($slide->title || $slide->desc || $slide->html)
@@ -21,9 +30,6 @@
                                 @if($slide->desc)
                                     <p class="slide-desc">{!! $slide->desc !!}</p>
                                 @endif
-
-
-
                                 @if($slide->html)
                                     <div class="slide-html">{!! $slide->html !!}</div>
                                 @endif

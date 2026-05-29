@@ -22,12 +22,13 @@ class SliderNews extends Component
         $this->slides = collect($homeData['slider'] ?? [])
             ->filter(fn($s) => !empty($s['img_desktop']))
             ->map(fn($s) => (object) [
-                'bg'    => Storage::url($s['img_desktop']),
-                'href'  => $s['href'] ?? null,
-                'tag'   => !empty($s['href']) ? 'a' : 'div',
-                'title' => $s['заголовок'] ?? null,
-                'desc'  => $s['описание'] ?? null,
-                'html'  => $s['html'] ?? null,
+                'bg'        => Storage::url($s['img_desktop']),
+                'bg_mobile' => !empty($s['img_mobile']) ? Storage::url($s['img_mobile']) : null,
+                'href'      => $s['href'] ?? null,
+                'tag'       => !empty($s['href']) ? 'a' : 'div',
+                'title'     => $s['заголовок'] ?? null,
+                'desc'      => $s['описание'] ?? null,
+                'html'      => $s['html'] ?? null,
             ]);
 
         $this->newsList = News::published()->get();

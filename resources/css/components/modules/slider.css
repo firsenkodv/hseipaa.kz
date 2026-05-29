@@ -66,6 +66,9 @@
   width: 795px;
   height: 410px;
   border-radius: 8px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .block_3 .block_3_slider .block3-swiper .swiper-slide {
   flex-shrink: 0;
@@ -204,9 +207,10 @@
     height: 380px;
     max-width: 1000px;
     border-radius: 12px;
+    width: 100%;
   }
-  .block_3 .block_3_slider .block3-swiper img {
-    border-radius: 12px;
+  .block_3 .block_3_slider .block3-swiper .slide-bg {
+    width: 100% !important;
   }
   .block_3 .block_3_slider .o_left h2 {
     font-size: 22px;
@@ -222,6 +226,47 @@
   }
   .block_3 .block_3_news .scroll-block {
     height: 280px;
+  }
+}
+@media (max-width: 794px) {
+  .block_3 .block_3_slider .block3-swiper {
+    height: auto;
+  }
+  .slide-bg {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 535px !important;
+  }
+  .slide-content {
+    padding: 30px 20px;
+  }
+  .slide-content .slide-title {
+    font-size: 26px;
+    line-height: 1.1;
+    font-weight: 600;
+    color: #000;
+    padding-bottom: 20px;
+  }
+  .slide-content .slide-title br {
+    display: none;
+  }
+  .slide-content .slide-desc {
+    font-size: 15px;
+    line-height: 1.4;
+  }
+  .slide-content .slide-html {
+    padding: 15px 0 0 0;
+  }
+  .slide-content .slide-html a {
+    text-decoration: none;
+    display: inline-block;
+    width: 149px;
+    margin: 0 6px 0 0;
+  }
+  .slide-content .slide-html img.shop {
+    width: 149px;
+    height: 48px;
   }
 }
 
