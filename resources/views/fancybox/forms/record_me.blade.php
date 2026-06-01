@@ -1,4 +1,7 @@
-<div class="modal-form-container app_form_modal">
+<div class="modal-form-container app_form_modal{{ !empty($promoImage) ? ' has-promo-image' : '' }}">
+    @if(!empty($promoImage))
+        <div class="modal-promo-image" style="background-image: url('{{ Storage::url($promoImage) }}')"></div>
+    @endif
     <div class="modal_padding">
 
         <x-form.form-loader />

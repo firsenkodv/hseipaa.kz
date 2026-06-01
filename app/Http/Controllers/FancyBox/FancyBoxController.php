@@ -6,6 +6,7 @@ namespace App\Http\Controllers\FancyBox;
 
 use App\Http\Controllers\Controller;
 use App\Models\City;
+use App\Models\Setting;
 use App\Models\Training;
 use Illuminate\Http\Request;
 
@@ -26,9 +27,11 @@ class FancyBoxController extends Controller
         }
 
         if ($request->template === 'record_me') {
+            $promoData = Setting::getGroup('promo_modal')->data ?? [];
             return view('fancybox.forms.record_me', [
-                'trainings' => Training::published()->get(['id', 'title']),
-                'cities'    => City::published()->get(['id', 'title']),
+                'trainings'  => Training::published()->get(['id', 'title']),
+                'cities'     => City::published()->get(['id', 'title']),
+                'promoImage' => $promoData['promo_modal_image'] ?? null,
             ]);
         }
 

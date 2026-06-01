@@ -48,6 +48,24 @@ $colorOrange: #FF732C;
         width: 100%;
     }
 
+    &.has-promo-image {
+        max-width: 900px;
+        width: 900px;
+        display: flex;
+
+        .modal-promo-image {
+            flex: 0 0 40%;
+            background-size: cover;
+            background-position: center;
+            border-radius: 12px 0 0 12px;
+        }
+
+        > .modal_padding {
+            flex: 0 0 60%;
+            min-width: 0;
+        }
+    }
+
     .modal_padding {
         padding: 0;
     }
@@ -233,6 +251,18 @@ padding: 10px 0 0 0;
     .modal-form-container {
         position: relative;
         width: 100%;
+
+        &.has-promo-image .modal-promo-image {
+            flex: 0 0 40%;
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .modal-form-container.has-promo-image {
+        .modal-promo-image {
+            display: none;
+        }
     }
 }
 
