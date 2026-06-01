@@ -65,14 +65,16 @@ class AboutController extends PageController
 
     public function teamShow(string $slug): View
     {
-        $vm   = TeamViewModel::make();
-        $item = $vm->getBySlug($slug);
-        $page = $vm->getPageData();
+        $vm     = TeamViewModel::make();
+        $item   = $vm->getBySlug($slug);
+        $page   = $vm->getPageData();
+        $others = $vm->getOthers($item);
 
         return view('pages.about.show', [
             'page'     => $page,
             'item'     => $item,
             'resource' => 'team',
+            'others'   => $others,
         ]);
     }
 
