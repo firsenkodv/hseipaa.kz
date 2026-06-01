@@ -78,4 +78,9 @@
     </section>
 </div>
 
+<x-modules.program-format />
+
+
 <x-modules.program-edu-steps />
+
+<x-modules.program-format-doc />

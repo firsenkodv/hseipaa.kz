@@ -12,6 +12,7 @@
 @import 'components/modules/banner.scss';
 @import 'materialize-select/select.scss';
 @import 'components/modules/program-review.scss';
+@import 'components/modules/program-format.scss';
 @import 'components/modules/program-price.scss';
 @import 'components/modules/programs.scss';
 @import 'components/modules/slider.scss';

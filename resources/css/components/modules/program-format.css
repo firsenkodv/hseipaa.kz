@@ -1,0 +1,366 @@
+@charset "UTF-8";
+:root {
+  --page-text: #212121;
+  --page-muted: #666666;
+  --page-surface: #ffffff;
+  --page-soft: #f6f5f4;
+  --accent: #ef533f;
+  --accent-soft: #fff1ee;
+}
+
+.education-page--figma {
+  padding: 32px 0 80px;
+}
+
+.education-wrap-sila.education-wrap {
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 80px 80px;
+  border-radius: 40px;
+}
+
+/* Блок 1: "Форматы обучения" */
+.edu-section {
+  margin-bottom: 32px;
+}
+
+.edu-section__heading {
+  max-width: 1118px;
+  margin: 0 auto 40px;
+}
+
+.edu-section__heading--center {
+  text-align: center;
+}
+
+.edu-section__heading h2 {
+  margin: 0 0 16px;
+  font-size: 45px;
+  line-height: 52px;
+  font-weight: 600;
+}
+
+.edu-section__heading p {
+  margin: 0;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.edu-format-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.edu-format-card {
+  min-width: 0;
+  padding: 24px;
+  border-radius: 24px;
+  background: var(--page-surface);
+}
+
+.edu-format-card__icon {
+  width: 56px;
+  height: 56px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background: var(--accent);
+}
+
+.edu-format-card__icon img {
+  width: 28px;
+  height: 28px;
+}
+
+.edu-format-card h3 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  line-height: 36px;
+  font-weight: 600;
+}
+
+.edu-format-card p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.edu-format-card__list {
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.edu-format-card__list li {
+  position: relative;
+  padding-left: 14px;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.edu-format-card__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* Блок 2: "Официальные документы и сертификаты" */
+.edu-cert {
+  margin-bottom: 32px;
+  padding: 20px 80px 30px 80px;
+  display: grid;
+  grid-template-columns: minmax(320px, 1fr) minmax(0, 1fr);
+  gap: 40px;
+  align-items: center;
+}
+
+.edu-cert__visual {
+  position: relative;
+  min-height: 360px;
+  height: 479px;
+  border-radius: 40px;
+}
+
+.edu-cert__bg,
+.edu-cert__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 32px;
+  object-fit: cover;
+}
+
+.edu-cert__photo {
+  z-index: 1;
+}
+
+.edu-cert__badge {
+  position: absolute;
+  right: 24px;
+  bottom: -24px;
+  z-index: 2;
+  width: min(220px, 100% - 48px);
+  padding: 24px;
+  border-radius: 24px;
+  background: radial-gradient(circle at top left, #ef533f 0%, #f77f20 63%, #ffab00 100%);
+  color: #ffffff;
+  box-shadow: 0 10px 60px rgba(0, 0, 0, 0.1);
+}
+
+.edu-cert__shield {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 12px;
+}
+
+.edu-cert__badge strong,
+.edu-cert__badge span {
+  display: block;
+}
+
+.edu-cert__badge strong {
+  margin-bottom: 4px;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.edu-cert__badge span {
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.edu-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 600;
+}
+
+.edu-badge img {
+  width: 20px;
+  height: 20px;
+}
+
+.edu-cert__content h2 {
+  margin: 20px 0 16px;
+  font-size: 45px;
+  line-height: 52px;
+  font-weight: 600;
+}
+
+.edu-cert__content p {
+  margin: 0;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.edu-checks {
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 18px;
+}
+
+.edu-checks li {
+  flex: 1 1 230px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.edu-checks li img {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 auto;
+}
+
+@media (max-width: 1240px) {
+  .edu-section--soft,
+  .edu-cert {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+}
+@media (max-width: 900px) {
+  .edu-section--soft,
+  .edu-cert {
+    padding: 32px 24px;
+  }
+  .edu-section__heading h2,
+  .edu-cert__content h2 {
+    font-size: 36px;
+    line-height: 42px;
+  }
+  .edu-section__heading p,
+  .edu-cert__content p {
+    font-size: 18px;
+    line-height: 26px;
+  }
+  .edu-format-grid {
+    grid-template-columns: 1fr;
+  }
+  .edu-cert {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .education-page--figma {
+    padding: 12px 0 48px;
+  }
+  .education-wrap {
+    width: calc(100% - 24px);
+  }
+  .edu-section--soft {
+    padding: 40px 16px;
+    border-radius: 24px;
+  }
+  .edu-section__heading {
+    margin-bottom: 24px;
+  }
+  .edu-section__heading h2,
+  .edu-cert__content h2 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  .edu-section__heading p,
+  .edu-cert__content p {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .edu-format-grid {
+    gap: 8px;
+  }
+  .edu-format-card {
+    padding: 16px;
+    border-radius: 16px;
+  }
+  .edu-format-card__icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 24px;
+    border-radius: 12px;
+  }
+  .edu-format-card__icon img {
+    width: 24px;
+    height: 24px;
+  }
+  .edu-format-card h3 {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  .edu-format-card p,
+  .edu-format-card__list li,
+  .edu-checks li {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .edu-cert {
+    padding: 24px 16px;
+    gap: 40px;
+  }
+  .edu-cert__visual {
+    min-height: 208px;
+    height: 208px;
+    border-radius: 24px;
+  }
+  .edu-cert__bg,
+  .edu-cert__photo {
+    border-radius: 24px;
+  }
+  .edu-cert__badge {
+    left: 16px;
+    right: auto;
+    bottom: -24px;
+    width: 128px;
+    padding: 12px;
+    border-radius: 16px;
+  }
+  .edu-cert__shield {
+    width: 28px;
+    height: 28px;
+    margin-bottom: 8px;
+  }
+  .edu-cert__badge strong {
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .edu-cert__badge span {
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .edu-badge {
+    padding: 8px 16px;
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .edu-cert__content h2 {
+    margin-top: 16px;
+  }
+  .edu-checks {
+    gap: 8px;
+  }
+}
+
+/*# sourceMappingURL=program-format.css.map */
