@@ -10,6 +10,12 @@
         </div>
     @endif
 
+        @if($item->html)
+            <div class="content_page__html">
+                {!! $item->html !!}
+            </div>
+        @endif
+
     @if($item->desc)
         <div class="content_page__desc desc">
             {!! $item->desc !!}
@@ -21,10 +27,15 @@
             <img src="{{ Storage::url($item->img2) }}" alt="{{ $item->title }}">
         </div>
     @endif
-        @if($item->html)
-            <div class="content_page__html">
-                {!! $item->html !!}
-            </div>
+        @if(!empty($item->video))
+            @php $video = $item->video[0] ?? []; @endphp
+            @if(!empty($video['url']) || !empty($video['file']))
+                <x-media.video
+                    :src="$video['file'] ?? null"
+                    :poster="$video['poster'] ?? null"
+                    :url="$video['url'] ?? null"
+                />
+            @endif
         @endif
     @if($item->desc2)
         <div class="content_page__desc desc">
@@ -33,6 +44,10 @@
     @endif
 
 
+        @if(!empty($item->gallery))
+            <x-gallery.grid :items="$item->gallery" />
+        @endif
+
 
     @if($item->html2)
         <div class="content_page__html">
@@ -40,20 +55,7 @@
         </div>
     @endif
 
-    @if(!empty($item->video))
-        @php $video = $item->video[0] ?? []; @endphp
-        @if(!empty($video['url']) || !empty($video['file']))
-            <x-media.video
-                :src="$video['file'] ?? null"
-                :poster="$video['poster'] ?? null"
-                :url="$video['url'] ?? null"
-            />
-        @endif
-    @endif
 
-    @if(!empty($item->gallery))
-        <x-gallery.grid :items="$item->gallery" />
-    @endif
 
     @if(!empty($item->files))
         <x-files.download :files="$item->files" />
