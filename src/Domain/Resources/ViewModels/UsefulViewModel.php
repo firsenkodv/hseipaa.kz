@@ -2,7 +2,6 @@
 
 namespace Domain\Resources\ViewModels;
 
-use App\Models\News;
 use App\Models\Useful;
 use App\Models\Setting;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -22,8 +21,8 @@ class UsefulViewModel
     {
         return Useful::published()->paginate(config('site.constants.paginate'));
     }
-    public function getBySlug(string $slug): News
+    public function getBySlug(string $slug): Useful
     {
-        return News::published()->where('slug', $slug)->firstOrFail();
+        return Useful::published()->where('slug', $slug)->firstOrFail();
     }
 }
