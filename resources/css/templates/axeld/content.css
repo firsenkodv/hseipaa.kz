@@ -85,6 +85,9 @@
   left: -4px;
   top: 12px;
 }
+.desc ol li:before {
+  display: none;
+}
 .desc ul li {
   padding: 5px 5px 5px 25px;
   font-size: 16px;
