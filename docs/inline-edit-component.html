@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>inline-edit — документация компонента</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 15px;
+            line-height: 1.65;
+            color: #1a1a2e;
+            background: #f5f6fa;
+        }
+
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ── Sidebar ── */
+        nav {
+            width: 240px;
+            flex-shrink: 0;
+            background: #1e2235;
+            padding: 32px 0;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        nav .nav-logo {
+            font-size: 13px;
+            font-weight: 700;
+            color: #8892b0;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            padding: 0 24px 24px;
+            border-bottom: 1px solid #2d3250;
+        }
+
+        nav ul { list-style: none; padding: 16px 0; }
+
+        nav ul li a {
+            display: block;
+            padding: 8px 24px;
+            color: #a8b2d8;
+            text-decoration: none;
+            font-size: 14px;
+            border-left: 3px solid transparent;
+            transition: color .15s, border-color .15s;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: #fff;
+            border-left-color: #EF533F;
+        }
+
+        /* ── Main ── */
+        main {
+            flex: 1;
+            padding: 48px 56px;
+            max-width: 860px;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #667085;
+            margin-bottom: 40px;
+            font-size: 16px;
+        }
+
+        h2 {
+            font-size: 19px;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 40px 0 14px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e8eaf0;
+        }
+
+        h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #334155;
+            margin: 24px 0 8px;
+        }
+
+        p { margin-bottom: 12px; color: #374151; }
+
+        /* ── Tables ── */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        th {
+            background: #1e2235;
+            color: #a8b2d8;
+            text-align: left;
+            padding: 10px 14px;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+        }
+
+        td {
+            padding: 10px 14px;
+            border-bottom: 1px solid #e8eaf0;
+            vertical-align: top;
+        }
+
+        tr:last-child td { border-bottom: none; }
+        tr:nth-child(even) td { background: #f9fafb; }
+
+        td code, th code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+
+        /* ── Code blocks ── */
+        pre {
+            background: #0d1117;
+            border-radius: 10px;
+            padding: 20px 24px;
+            overflow-x: auto;
+            margin: 12px 0 20px;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        pre code {
+            font-family: 'Consolas', 'Courier New', monospace;
+            color: #c9d1d9;
+            background: none;
+            padding: 0;
+            border-radius: 0;
+            font-size: 13px;
+        }
+
+        /* Syntax highlighting */
+        .kw  { color: #ff7b72; }   /* keywords */
+        .str { color: #a5d6ff; }   /* strings */
+        .cmt { color: #8b949e; }   /* comments */
+        .fn  { color: #d2a8ff; }   /* functions */
+        .var { color: #79c0ff; }   /* variables */
+        .tag { color: #7ee787; }   /* html tags */
+        .atr { color: #ff7b72; }   /* attributes */
+        .val { color: #a5d6ff; }   /* values */
+        .php { color: #ffa657; }   /* php */
+
+        code {
+            background: #e8eaf0;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+            color: #d63384;
+        }
+
+        /* ── Badges ── */
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .badge-red    { background: #fee2e2; color: #b91c1c; }
+        .badge-green  { background: #dcfce7; color: #166534; }
+        .badge-blue   { background: #dbeafe; color: #1d4ed8; }
+        .badge-grey   { background: #f1f5f9; color: #64748b; }
+
+        /* ── Flow diagram ── */
+        .flow {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0;
+            margin: 16px 0 24px;
+            font-size: 13px;
+        }
+
+        .flow-step {
+            background: #1e2235;
+            color: #a8b2d8;
+            border-radius: 8px;
+            padding: 10px 16px;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .flow-step strong { display: block; color: #fff; font-size: 13px; margin-bottom: 2px; }
+        .flow-step span   { font-size: 11px; color: #8892b0; }
+
+        .flow-arrow {
+            color: #EF533F;
+            font-size: 18px;
+            padding: 0 6px;
+            font-weight: 700;
+        }
+
+        /* ── Security card ── */
+        .security-card {
+            background: #fff;
+            border: 1px solid #e8eaf0;
+            border-left: 4px solid #EF533F;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+        }
+
+        .security-card strong { color: #0f172a; }
+        .security-card p { margin: 4px 0 0; color: #667085; font-size: 14px; }
+
+        /* ── Files list ── */
+        .file-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .file-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #fff;
+            border: 1px solid #e8eaf0;
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-size: 14px;
+        }
+
+        .file-list .file-icon {
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .file-list code { background: none; color: #0d1117; font-size: 13px; padding: 0; font-weight: 600; }
+        .file-list .file-desc { color: #667085; font-size: 13px; margin-left: auto; }
+    </style>
+</head>
+<body>
+<div class="layout">
+
+    <nav>
+        <div class="nav-logo">inline-edit</div>
+        <ul>
+            <li><a href="#overview" class="active">Обзор</a></li>
+            <li><a href="#files">Файлы</a></li>
+            <li><a href="#install">Подключение</a></li>
+            <li><a href="#usage">Использование</a></li>
+            <li><a href="#flow">Как работает</a></li>
+            <li><a href="#security">Безопасность</a></li>
+            <li><a href="#extend">Расширение</a></li>
+            <li><a href="#adapt">Адаптация</a></li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <h1>x-admin.inline-edit</h1>
+        <p class="subtitle">
+            Компонент фронтендного редактирования HTML-полей без входа в админ-панель.<br>
+            Видим только залогиненному администратору MoonShine.
+        </p>
+
+        <!-- Overview -->
+        <h2 id="overview">Обзор</h2>
+        <p>
+            Оборачивает любой блок контента. При наведении администратор видит кнопку-карандаш.
+            Клик открывает модалку с <code>&lt;textarea&gt;</code> и исходным HTML. После сохранения
+            контент обновляется прямо в DOM — без перезагрузки страницы.
+        </p>
+
+        <!-- Files -->
+        <h2 id="files">Файлы</h2>
+        <ul class="file-list">
+            <li>
+                <span class="file-icon">🐘</span>
+                <code>app/Http/Controllers/Admin/InlineEditController.php</code>
+                <span class="file-desc">Backend: авторизация, whitelist, сохранение</span>
+            </li>
+            <li>
+                <span class="file-icon">🔀</span>
+                <code>routes/web.php</code>
+                <span class="file-desc">POST /admin-inline-edit</span>
+            </li>
+            <li>
+                <span class="file-icon">🖼</span>
+                <code>resources/views/components/admin/inline-edit.blade.php</code>
+                <span class="file-desc">Blade-компонент</span>
+            </li>
+            <li>
+                <span class="file-icon">🎨</span>
+                <code>resources/css/components/admin/inline-edit.scss</code>
+                <span class="file-desc">Стили кнопки и модалки</span>
+            </li>
+            <li>
+                <span class="file-icon">⚡</span>
+                <code>resources/js/include/site/inline-edit.js</code>
+                <span class="file-desc">Vanilla JS: модалка, fetch, обновление DOM</span>
+            </li>
+        </ul>
+
+        <!-- Install -->
+        <h2 id="install">Подключение</h2>
+
+        <h3>app.css</h3>
+        <pre><code><span class="kw">@import</span> <span class="str">'components/admin/inline-edit.scss'</span>;</code></pre>
+
+        <h3>script.js</h3>
+        <pre><code><span class="kw">import</span> { <span class="fn">initInlineEdit</span> } <span class="kw">from</span> <span class="str">"./include/site/inline-edit"</span>;
+
+document.<span class="fn">addEventListener</span>(<span class="str">'DOMContentLoaded'</span>, () => {
+    <span class="fn">initInlineEdit</span>();
+});</code></pre>
+
+        <h3>routes/web.php</h3>
+        <pre><code>Route::<span class="fn">post</span>(<span class="str">'/admin-inline-edit'</span>, [InlineEditController::class, <span class="str">'update'</span>])
+    -><span class="fn">name</span>(<span class="str">'admin.inline-edit'</span>);</code></pre>
+
+        <!-- Usage -->
+        <h2 id="usage">Использование</h2>
+        <pre><code><span class="tag">&lt;x-admin.inline-edit</span> <span class="atr">:model</span>=<span class="str">"$item"</span> <span class="atr">field</span>=<span class="str">"desc"</span> <span class="atr">label</span>=<span class="str">"Описание"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="atr">class</span>=<span class="str">"content_page__desc desc"</span><span class="tag">&gt;</span>
+        {!! $item->desc !!}
+    <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/x-admin.inline-edit&gt;</span></code></pre>
+
+        <h3>Props</h3>
+        <table>
+            <thead>
+                <tr><th>Prop</th><th>Тип</th><th>Обязательный</th><th>Описание</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>model</code></td>
+                    <td>Eloquent model</td>
+                    <td><span class="badge badge-red">да</span></td>
+                    <td>Экземпляр модели (<code>:model="$item"</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>field</code></td>
+                    <td>string</td>
+                    <td><span class="badge badge-red">да</span></td>
+                    <td>Имя поля: <code>desc</code>, <code>html</code>, <code>desc2</code>, <code>html2</code>, <code>short_desc</code></td>
+                </tr>
+                <tr>
+                    <td><code>label</code></td>
+                    <td>string</td>
+                    <td><span class="badge badge-grey">нет</span></td>
+                    <td>Заголовок в модалке (по умолчанию — имя поля)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Flow -->
+        <h2 id="flow">Как работает</h2>
+
+        <div class="flow">
+            <div class="flow-step"><strong>Наведение</strong><span>появляется ✏️</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><strong>Клик</strong><span>открывается модалка</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><strong>Редактирование</strong><span>HTML в textarea</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><strong>Сохранить</strong><span>POST /admin-inline-edit</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><strong>DOM update</strong><span>через 1 сек, без reload</span></div>
+        </div>
+
+        <p>Модель и поле передаются через <code>data</code>-атрибуты кнопки. JS читает их, формирует JSON-запрос с CSRF-токеном из <code>&lt;meta name="csrf-token"&gt;</code> и обновляет <code>innerHTML</code> первого дочернего элемента контентного блока.</p>
+
+        <!-- Security -->
+        <h2 id="security">Безопасность</h2>
+
+        <div class="security-card">
+            <strong>auth('moonshine')</strong>
+            <p>Проверка на бэкенде при каждом запросе. Незалогиненный получает 403.</p>
+        </div>
+        <div class="security-card">
+            <strong>Whitelist моделей — <code>$modelMap</code></strong>
+            <p>Клиент передаёт alias (<code>training</code>, <code>news</code>…). Контроллер маппит на класс. Произвольный класс передать невозможно.</p>
+        </div>
+        <div class="security-card">
+            <strong>Whitelist полей — <code>$allowedFields</code></strong>
+            <p>Можно сохранять только в разрешённые поля. Запись в <code>password</code>, <code>slug</code> и другие невозможна.</p>
+        </div>
+
+        <!-- Extend -->
+        <h2 id="extend">Расширение whitelist</h2>
+
+        <h3>Новая модель</h3>
+        <pre><code><span class="php">protected array</span> <span class="var">$modelMap</span> = [
+    <span class="cmt">// ... существующие ...</span>
+    <span class="str">'page'</span> => \App\Models\Page::class,
+];</code></pre>
+
+        <h3>Новое поле</h3>
+        <pre><code><span class="php">protected array</span> <span class="var">$allowedFields</span> = [
+    <span class="str">'desc'</span>, <span class="str">'html'</span>, <span class="str">'desc2'</span>, <span class="str">'html2'</span>, <span class="str">'short_desc'</span>,
+    <span class="str">'content'</span>, <span class="cmt">// добавить</span>
+];</code></pre>
+
+        <!-- Adapt -->
+        <h2 id="adapt">Адаптация для другого проекта</h2>
+        <table>
+            <thead>
+                <tr><th>Что изменить</th><th>Где</th><th>На что заменить</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Guard администратора</td>
+                    <td><code>InlineEditController</code> + компонент</td>
+                    <td><code>auth('admin')</code>, <code>auth()->user()->isAdmin()</code> и т.д.</td>
+                </tr>
+                <tr>
+                    <td>Список моделей</td>
+                    <td><code>$modelMap</code></td>
+                    <td>Модели нового проекта</td>
+                </tr>
+                <tr>
+                    <td>Список полей</td>
+                    <td><code>$allowedFields</code></td>
+                    <td>Поля нового проекта</td>
+                </tr>
+                <tr>
+                    <td>JS-сборка</td>
+                    <td><code>script.js / app.js</code></td>
+                    <td>Импорт под структуру проекта</td>
+                </tr>
+                <tr>
+                    <td>CSS-сборка</td>
+                    <td><code>app.css</code></td>
+                    <td>Импорт SCSS под структуру проекта</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Зависимости</h3>
+        <p>
+            <span class="badge badge-blue">Laravel 10+</span>&nbsp;
+            <span class="badge badge-blue">MoonShine v4 (или другой guard)</span>&nbsp;
+            <span class="badge badge-green">Vanilla JS</span>&nbsp;
+            <span class="badge badge-green">SCSS / Vite</span>
+        </p>
+
+    </main>
+</div>
+</body>
+</html>

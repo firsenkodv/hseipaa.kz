@@ -11,15 +11,19 @@
     @endif
 
         @if($item->html)
-            <div class="content_page__html">
-                {!! $item->html !!}
-            </div>
+            <x-admin.inline-edit :model="$item" field="html" label="HTML (верх)">
+                <div class="content_page__html">
+                    {!! $item->html !!}
+                </div>
+            </x-admin.inline-edit>
         @endif
 
     @if($item->desc)
-        <div class="content_page__desc desc">
-            {!! $item->desc !!}
-        </div>
+        <x-admin.inline-edit :model="$item" field="desc" label="Описание">
+            <div class="content_page__desc desc">
+                {!! $item->desc !!}
+            </div>
+        </x-admin.inline-edit>
     @endif
 
     @if($item->img2)
@@ -38,9 +42,11 @@
             @endif
         @endif
     @if($item->desc2)
-        <div class="content_page__desc desc">
-            {!! $item->desc2 !!}
-        </div>
+        <x-admin.inline-edit :model="$item" field="desc2" label="Описание 2">
+            <div class="content_page__desc desc">
+                {!! $item->desc2 !!}
+            </div>
+        </x-admin.inline-edit>
     @endif
 
 
@@ -50,9 +56,11 @@
 
 
     @if($item->html2)
-        <div class="content_page__html">
-            {!! $item->html2 !!}
-        </div>
+        <x-admin.inline-edit :model="$item" field="html2" label="HTML (низ)">
+            <div class="content_page__html">
+                {!! $item->html2 !!}
+            </div>
+        </x-admin.inline-edit>
     @endif
 
 

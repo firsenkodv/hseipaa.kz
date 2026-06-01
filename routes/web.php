@@ -110,6 +110,11 @@ Route::controller(AxiosController::class)->group(function () {
 });
 /** ///Axios async forms **/
 
+/** Admin Inline Edit **/
+Route::post('/admin-inline-edit', [\App\Http\Controllers\Admin\InlineEditController::class, 'update'])
+    ->name('admin.inline-edit');
+/** ///Admin Inline Edit **/
+
 /** Admin AJAX **/
 Route::post('/admin-ajax/training/{training}/categories', function (Request $request, Training $training) {
     $training->categories()->sync($request->input('categories', []));

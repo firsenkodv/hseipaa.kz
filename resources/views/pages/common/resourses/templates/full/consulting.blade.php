@@ -25,9 +25,11 @@
 <div class="block pad_t20">
 
     @if($item->desc)
-        <div class="content_page__desc desc">
-            {!! $item->desc !!}
-        </div>
+        <x-admin.inline-edit :model="$item" field="desc" label="Описание">
+            <div class="content_page__desc desc">
+                {!! $item->desc !!}
+            </div>
+        </x-admin.inline-edit>
     @endif
     <div class="modules-about-join-wrap pad_t20">
         <x-modules.about-join

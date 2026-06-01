@@ -12,6 +12,7 @@
 <section class="seo-section about">
     <div class="seo-inner">
         @if($items->currentPage() === 1)
+
             @if($page->desc)
                 <div class="desc">{!! $page->desc !!}</div>
             @endif

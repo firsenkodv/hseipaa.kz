@@ -1,0 +1,207 @@
+@charset "utf-8";
+// ── Inline Edit — обёртка вокруг редактируемого контента ─────────────────────
+
+$color: #282828;
+$colorRed: #EF533F;
+$colorCCC: #CCCCCC;
+$colorGrey: #667085;
+$colorBlue2: #03a9f4;
+$colorGreen: #0f6567;
+$colorYellow: #FF931E;
+$colorOrange: #FF732C;
+
+.inline-edit-wrap {
+    position: relative;
+}
+
+.inline-edit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -36px;
+    right: 6px;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    border: none;
+    background: $colorRed;
+    color: #fff;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.18s, background 0.18s;
+    z-index: 20;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+
+    &:hover {
+        background: red;
+    }
+}
+
+.inline-edit-wrap--admin:hover .inline-edit-btn {
+    opacity: 1;
+}
+
+// ── Модальное окно ────────────────────────────────────────────────────────────
+
+.inline-edit-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9500;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+
+    &.is-open {
+        display: flex;
+    }
+
+    &__backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        cursor: pointer;
+    }
+
+    &__box {
+        position: relative;
+        z-index: 1;
+        background: #fff;
+        border-radius: 12px;
+        width: 100%;
+        max-width: 860px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.22);
+        max-height: calc(100vh - 32px);
+    }
+
+    &__head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 20px;
+        border-bottom: 1px solid #e8e8e8;
+        gap: 12px;
+    }
+
+    &__title {
+        font-size: 16px;
+        font-weight: 600;
+        color: #282828;
+    }
+
+    &__close {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border: none;
+        background: none;
+        cursor: pointer;
+        color: #667085;
+        border-radius: 6px;
+        flex-shrink: 0;
+        transition: background 0.15s, color 0.15s;
+
+        &:hover {
+            background: #f0f0f0;
+            color: #282828;
+        }
+    }
+
+    &__textarea {
+        flex: 1;
+        min-height: 420px;
+        resize: vertical;
+        border: none;
+        border-bottom: 1px solid #e8e8e8;
+        padding: 16px 20px;
+        font-family: 'Consolas', 'Courier New', 'Lucida Console', monospace;
+        font-size: 13px;
+        line-height: 1.6;
+        color: #1a1a2e;
+        background: #f8f9fb;
+        outline: none;
+        white-space: pre-wrap;
+        overflow-y: auto;
+
+        &:focus {
+            background: #fff;
+        }
+    }
+
+    &__foot {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 20px;
+    }
+
+    &__save,
+    &__cancel {
+        appearance: none;
+        -webkit-appearance: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+        border-radius: 8px;
+        padding: 9px 22px;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1;
+        cursor: pointer;
+        transition: none;
+        text-decoration: none !important;
+
+        &:hover,
+        &:focus,
+        &:active,
+        &:focus-visible {
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+            text-decoration: none !important;
+        }
+    }
+
+    &__save {
+        background: $colorRed !important;
+        color: #fff !important;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background: $colorRed !important;
+            color: #fff !important;
+        }
+
+        &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    }
+
+    &__cancel {
+        background: #f0f0f0 !important;
+        color: #282828 !important;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background: #f0f0f0 !important;
+            color: #282828 !important;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .inline-edit-modal__textarea {
+        min-height: 260px;
+    }
+}

@@ -2,9 +2,11 @@
 
 
     @if($item->desc)
-        <div class="content_page__desc desc">
-            {!! $item->desc !!}
-        </div>
+        <x-admin.inline-edit :model="$item" field="desc" label="Описание">
+            <div class="content_page__desc desc">
+                {!! $item->desc !!}
+            </div>
+        </x-admin.inline-edit>
     @endif
 
         @if($item->html)
@@ -20,9 +22,11 @@
 
 
     @if($item->desc2)
-        <div class="content_page__desc desc">
-            {!! $item->desc2 !!}
-        </div>
+            <x-admin.inline-edit :model="$item" field="desc2" label="Описание2">
+                <div class="content_page__desc desc">
+                    {!! $item->desc2 !!}
+                </div>
+            </x-admin.inline-edit>
     @endif
 
 

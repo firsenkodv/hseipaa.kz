@@ -22,6 +22,7 @@ import {scheduleMonthFilter} from "./include/schedule/schedule-month-filter";
 import {mzSelect} from "./include/select/mz-select";
 import {headerScroll} from "./include/site/header-scroll";
 import {programInlineForm} from "./include/site/program-inline-form";
+import {initInlineEdit} from "./include/site/inline-edit";
 
 
 
@@ -50,4 +51,5 @@ document.addEventListener('DOMContentLoaded', function () {
     scheduleMonthFilter() // фильтр по месяцам
     headerScroll()        // скрытие топбара при скролле
     programInlineForm()  // inline-форма записи на курс
+    initInlineEdit()     // inline-редактирование контента для админа
 });

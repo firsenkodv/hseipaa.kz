@@ -5,7 +5,11 @@
     <div class="content_page__subtitle">{{ $item->subtitle }}</div>
 @endif
 @if($item->desc)
-    <div class="desc">{!! $item->desc !!}</div>
+    <x-admin.inline-edit :model="$item" field="desc" label="Описание">
+        <div class="desc">
+            {!! $item->desc !!}
+        </div>
+    </x-admin.inline-edit>
 @endif
 <br>
 <button class="btn btn-big open-fancybox" data-form="record_me">
