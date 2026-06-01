@@ -18,6 +18,6 @@
         $title = $seo_title;
     @endphp
 @endif
-@section('title', ($title)?:null)
-@section('description', ($description)?:null)
-@section('keywords', ($keywords)?:null)
+@section('title', $title ? html_entity_decode($title, ENT_QUOTES | ENT_HTML5, 'UTF-8') : null)
+@section('description', $description ? html_entity_decode($description, ENT_QUOTES | ENT_HTML5, 'UTF-8') : null)
+@section('keywords', $keywords ? html_entity_decode($keywords, ENT_QUOTES | ENT_HTML5, 'UTF-8') : null)
