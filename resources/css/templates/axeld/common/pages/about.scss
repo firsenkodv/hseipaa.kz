@@ -815,6 +815,13 @@
 }
 
 // ===================== PLATFORM =====================
+.platform-section-wrap
+{
+    position: relative;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
 .platform-section {
     width: 100%;
     padding: 80px 24px 0;
@@ -1415,10 +1422,7 @@
             width: 100%;
         }
     }
-    .block.about_block {
-        padding-left: 0;
-        padding-right: 0;
-    }
+
     .page-wrapper {
         .programs-section {
             padding-right: 0;

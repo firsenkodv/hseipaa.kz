@@ -9,7 +9,9 @@ export function promoModal() {
     const dismissDays = parseInt(el.dataset.dismissDays ?? '3', 10);
     const delay       = parseInt(el.dataset.delay ?? '4', 10) * 1000;
 
-    if (dismissDays > 0) {
+    if (dismissDays === 0) {
+        localStorage.removeItem(STORAGE_KEY);
+    } else {
         const dismissedUntil = localStorage.getItem(STORAGE_KEY);
         if (dismissedUntil && Date.now() < Number(dismissedUntil)) return;
     }

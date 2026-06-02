@@ -23,6 +23,7 @@ import {mzSelect} from "./include/select/mz-select";
 import {headerScroll} from "./include/site/header-scroll";
 import {programInlineForm} from "./include/site/program-inline-form";
 import {initInlineEdit} from "./include/site/inline-edit";
+import {cancheContacts} from "./include/site/canche_contacts";
 
 
 
@@ -52,4 +53,6 @@ document.addEventListener('DOMContentLoaded', function () {
     headerScroll()        // скрытие топбара при скролле
     programInlineForm()  // inline-форма записи на курс
     initInlineEdit()     // inline-редактирование контента для админа
+    cancheContacts() // кнопка и стрелка на верх
+
 });

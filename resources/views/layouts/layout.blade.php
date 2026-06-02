@@ -31,6 +31,8 @@
     </main>
 </div><!--.content_-->
 @include('templates.axeld.footer')
+@include('include.connect.connect')
+
 <x-ui.toast-promo />
 <x-ui.promo-modal />
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>

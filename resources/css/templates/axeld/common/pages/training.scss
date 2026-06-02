@@ -168,16 +168,8 @@ $edu-max-width:  1260px;
     }
 
     .edu-hero__copy {
-        max-width: 330px;
+        max-width: 100%;
 
-        h1 {
-            max-width: 320px;
-            margin-left: auto;
-            margin-right: auto;
-            font-size: 36px;
-            line-height: 36px;
-            font-weight: 700;
-        }
 
         p { font-size: 16px; line-height: 22px; }
     }

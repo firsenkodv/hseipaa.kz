@@ -3,7 +3,7 @@
     'desc' => 'Современный личный кабинет с интуитивным интерфейсом. Управляйте своим обучением, отслеживайте прогресс и общайтесь с преподавателями в одном месте.',
 
 ])
-
+<div class="platform-section-wrap">
 <section class="platform-section" aria-labelledby="platform-title">
     <div class="platform-inner">
         <header class="platform-header">
@@ -50,3 +50,4 @@
         </div>
     </div>
 </section>
+</div>

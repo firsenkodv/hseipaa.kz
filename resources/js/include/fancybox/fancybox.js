@@ -59,6 +59,8 @@ async function openFancyBox(e) {
  * @param {string|null} transferData — JSON-строка с дополнительными данными для шаблона
  */
 export async function openFancyboxForm(formTemplate, transferData = null) {
+    if (Fancybox.getInstance()) return;
+
     try {
         const template = { template: formTemplate, author: '@AxeldMaster', data: transferData };
 

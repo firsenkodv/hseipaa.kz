@@ -1,0 +1,137 @@
+@import url("reset.css");
+* {
+  box-sizing: border-box;
+}
+
+@media (max-width: 1268px) {
+  .header-topbar, .header-middle {
+    padding: 0 15px;
+  }
+  .header-login {
+    padding-right: 15px;
+  }
+}
+@media (max-width: 1068px) {
+  .top_menu .header-nav-link {
+    font-size: 15px;
+  }
+  .top_menu .nav-dropdown-link {
+    font-size: 15px;
+  }
+  .header-nav {
+    gap: 6px;
+  }
+}
+@media (max-width: 1100px) {
+  .advantages__media {
+    margin-top: 30px;
+  }
+  .advantages__background {
+    background-size: cover;
+  }
+}
+@media (max-width: 1024px) {
+  .programs-section .program-card,
+  .useful-page section .program-card {
+    flex: 0 0 calc((100% - 16px) / 2);
+  }
+}
+@media (max-width: 900px) {
+  .top_menu {
+    display: none;
+  }
+  .main_class {
+    padding-top: 61px;
+  }
+  .block_3 .block_3_slider {
+    max-width: 100%;
+  }
+  .edu-format-card {
+    padding: 24px;
+  }
+  .edu-format-card p, .edu-format-card .edu-format-card__list li {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .education-wrap-sila.education-wrap {
+    padding: 40px 20px;
+  }
+  .programs-section .card-top h3, .useful-page section .card-top h3 {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+  .platform-header h2,
+  .cc__title,
+  .schedule-hero__title {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  .schedule-hero__copy p {
+    font-size: 20px;
+    line-height: 1.4;
+  }
+  .schedule-hero__stats span {
+    font-size: 15px;
+    line-height: 1.3;
+  }
+  .cc__header {
+    padding: 10px;
+  }
+  .cc__body {
+    padding: 10px;
+  }
+  .cc__field {
+    margin: 10px 10px;
+  }
+  .cc__field .mz-select {
+    margin: 0;
+  }
+}
+@media (max-width: 794px) {
+  .team-structure__card {
+    min-height: auto;
+  }
+  .team-section-head h2 {
+    line-height: 1.2;
+  }
+  .team-wrap,
+  .education-wrap {
+    width: 100%;
+  }
+  .content_.schedule {
+    padding: 0;
+  }
+  .schedule-enroll-meta__item span {
+    flex: 0 0 28px;
+  }
+}
+@media (max-width: 568px) {
+  .programs-section .program-card,
+  .useful-page section .program-card {
+    flex: 0 0 100%;
+  }
+  .schedule-enroll-meta__item {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+@media (max-width: 468px) {
+  .site-header .header-middle {
+    padding: 0;
+  }
+  .site-header .header-middle img {
+    width: 100%;
+    height: auto;
+  }
+  .footer-top {
+    position: relative;
+  }
+  .footer-top img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/*# sourceMappingURL=media.css.map */

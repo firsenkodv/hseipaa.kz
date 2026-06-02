@@ -9,6 +9,9 @@
 @import 'message/flach_message.scss';
 @import 'loader_map.css';
 @import 'trix/trix.scss';
+
+@import 'connect/connect.scss';
+@import 'connect/scrollTopBtn.scss';
 @import 'components/modules/banner.scss';
 @import 'materialize-select/select.scss';
 @import 'components/modules/program-review.scss';
@@ -52,4 +55,5 @@
 @import 'components/modules/contacts.scss';
 @import 'components/language/header-language-component.scss';
 @import 'components/admin/inline-edit.scss';
+@import 'media.scss';
 

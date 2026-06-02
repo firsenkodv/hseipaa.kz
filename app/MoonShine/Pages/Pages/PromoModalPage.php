@@ -33,22 +33,18 @@ class PromoModalPage extends Page
     #[AsyncMethod]
     public function store(Request $request): JsonResponse
     {
-        $setting = $this->getSetting();
+        $setting  = $this->getSetting();
+        $existing = $setting->data ?? [];
 
-        // Exclude image field from request data — UploadedFile cannot be serialized to JSON
-        $data = $request->except(['_token', '_method', 'promo_modal_image']);
+        $data = $request->except(['_token', '_method', '_component_name', 'method', 'promo_modal_image']);
 
         if ($request->hasFile('promo_modal_image')) {
-            $old = $setting->data['promo_modal_image'] ?? null;
-            if ($old) {
-                Storage::disk('public')->delete($old);
-            }
+            $old = $existing['promo_modal_image'] ?? null;
+            if ($old) Storage::disk('public')->delete($old);
             $data['promo_modal_image'] = $request->file('promo_modal_image')
                 ->store('pages/promo', 'public');
         } else {
-            // Non-empty string = existing path sent back by MoonShine hidden input
-            // Empty/null = image was removed by user
-            $data['promo_modal_image'] = $request->input('promo_modal_image') ?: null;
+            $data['promo_modal_image'] = $existing['promo_modal_image'] ?? null;
         }
 
         $setting->data = $data;
