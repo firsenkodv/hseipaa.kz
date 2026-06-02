@@ -1,63 +1,45 @@
 import {slideToggle} from '../../methods/slideToggle';
+import {slideUp} from '../../methods/slideUp';
 
 export function mobileMenuComponent() {
-//app_top_menu
 
-    const appTopMenus = Array.from(document.querySelectorAll('.app_top_menu'))
-    const bottomMenuContainer = document.querySelector('.app_bottom_menu')
-    const appMobileMenu = document.querySelector('.app_mobile_menu')
+    const appMobileMenu    = document.querySelector('.app_mobile_menu')
     const appMobileContent = document.querySelector('.app_mobile_content')
-    const appMobileClose = document.querySelector('.app_mobile_close')
+    const appMobileClose   = document.querySelector('.app_mobile_close')
 
-    /** получаем все верхние меню на сайте  **/
-    for (let menu of appTopMenus) {
-        // Клонируем каждое меню, чтобы избежать удаления оригиналов
-        let clonedMenu = menu.cloneNode(true);
+    if (!appMobileMenu) return
 
-        // Добавляем клонов в контейнер
-        bottomMenuContainer.appendChild(clonedMenu);
-    }
-// Найдем все иконки стрелок '.arrow' на странице
-    const arrows = document.querySelectorAll('.arrow');
-
-// Перебираем каждую стрелку и назначаем ей обработчик события
-    arrows.forEach((arrow) => {
-        arrow.addEventListener('click', arrowMenu);
-    });
-
-
+    // ── Открытие / закрытие оверлея ──────────────────────
     appMobileMenu.addEventListener('click', toggleMenu)
     appMobileClose.addEventListener('click', closeMenu)
 
     function toggleMenu(e) {
-
-        const parentEl = e.target.closest('.app_mobile_menu');
-        parentEl.classList.toggle('active');
-        slideToggle(appMobileContent, 500);
-
+        const btn = e.target.closest('.app_mobile_menu')
+        btn.classList.toggle('active')
+        slideToggle(appMobileContent, 400)
     }
 
     function closeMenu() {
-
-        appMobileMenu.classList.toggle('active');
-        slideToggle(appMobileContent, 500);
-
+        appMobileMenu.classList.remove('active')
+        slideToggle(appMobileContent, 400)
     }
 
-    function arrowMenu(e) {
+    // ── Аккордеон mobile-nav ──────────────────────────────
+    document.querySelectorAll('.mobile-nav__chevron-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const group   = btn.closest('.mobile-nav__group')
+            const submenu = group.querySelector('.mobile-nav__submenu')
+            const isOpen  = group.classList.contains('is-open')
 
-        e.preventDefault()
-        const parentEl = e.target.closest('.parent');
-        e.target.classList.toggle('active');
-        const subMenu = parentEl.querySelector('.submenu')
-        slideToggle(subMenu, 500);
+            // Закрыть остальные открытые группы
+            document.querySelectorAll('.mobile-nav__group.is-open').forEach(other => {
+                if (other === group) return
+                other.classList.remove('is-open')
+                slideUp(other.querySelector('.mobile-nav__submenu'), 300)
+            })
 
-    }
-    /** получим мобильное меню и откроем активные элементы **/
-    bottomMenuContainer.querySelectorAll('.parent.active').forEach((activeItem) => {
-        activeItem.querySelector('.submenu').style.display = 'block'
+            group.classList.toggle('is-open', !isOpen)
+            slideToggle(submenu, 300)
+        })
     })
-
-
-
 }

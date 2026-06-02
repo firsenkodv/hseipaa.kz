@@ -55,5 +55,6 @@
 @import 'components/modules/contacts.scss';
 @import 'components/language/header-language-component.scss';
 @import 'components/admin/inline-edit.scss';
+@import 'components/mobile/mobile-menu-component.scss';
 @import 'media.scss';
 
