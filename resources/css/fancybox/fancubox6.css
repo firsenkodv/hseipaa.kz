@@ -185,6 +185,9 @@
 }
 
 @media screen and (max-width: 968px) {
+  .f-html {
+    width: auto !important;
+  }
   .modal-form-container {
     position: relative;
     width: 100%;
@@ -192,16 +195,18 @@
   .modal-form-container.has-promo-image .modal-promo-image {
     flex: 0 0 40%;
   }
-}
-@media screen and (max-width: 767px) {
-  .modal-form-container.has-promo-image .modal-promo-image {
-    display: none;
+  .modal-form-container.has-promo-image {
+    width: 100%;
+  }
+  .modal-promo-image {
+    display: none !important;
+  }
+  .modal-form-container.has-promo-image > .modal_padding {
+    flex: none;
+    min-width: 0;
   }
 }
 @media screen and (max-width: 742px) {
-  .f-html {
-    width: 96%;
-  }
   .modal-form-container {
     position: relative;
   }
@@ -254,6 +259,9 @@
   .schedule-enroll-meta__item {
     flex-direction: column;
     gap: 2px;
+  }
+  .modal-form-container.has-promo-image {
+    display: block;
   }
 }
 
