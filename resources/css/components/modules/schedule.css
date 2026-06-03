@@ -110,6 +110,7 @@ section.schedule h2 {
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 10px;
+  padding-bottom: 40px;
 }
 .course-card__body p {
   margin: 24px 0 20px;
