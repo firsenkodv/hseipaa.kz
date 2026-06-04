@@ -26,11 +26,20 @@
 <div class="block pad_t20">
 
     @if($item->desc)
+
         <x-admin.inline-edit :model="$item" field="desc" label="Описание">
-            <div class="content_page__desc desc">
-                {!! $item->desc !!}
+            <div class="desc-collapse-wrap" id="desc-collapse-wrap">
+                <div class="content_page__desc desc">
+                    {!! $item->desc !!}
+                </div>
+                <div class="desc-collapse-fade" id="desc-collapse-fade"></div>
             </div>
+
         </x-admin.inline-edit>
+
+        <x-buttons.button-more />
+
+
     @endif
     <div class="modules-about-join-wrap pad_t20">
         <x-modules.about-join

@@ -109,6 +109,7 @@ $maxWidth: 1440;
     background-color: #fff;
     width: 56px;
     height: 56px;
+    border: 1px solid #eee;
     border-radius: 50%;
     background-position: center;
     background-repeat: no-repeat;
@@ -176,6 +177,44 @@ $maxWidth: 1440;
 
 
 
+}
+
+.mobile_contacts_items {
+    padding: 16px 24px 30px;
+
+    .con_item {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        text-decoration: none;
+        color: $color;
+        gap: 12px;
+        margin-bottom: 16px;
+
+        &:last-child { margin-bottom: 0; }
+
+        .con_item__right {
+            order: -1;
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+
+            > div {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        .con_item__left span {
+            color: $color;
+            background: none;
+            padding: 0;
+            margin: 0;
+            font-size: 15px;
+            font-weight: 500;
+            border-radius: 0;
+        }
+    }
 }
 
 .connection {

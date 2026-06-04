@@ -214,13 +214,15 @@ $colorGrey: #667085;
         // Заголовок-разделитель категории (для мегаменю)
         &__cat-title {
             display: block;
-            padding: 10px 16px 3px 16px;
-            font-size: 11px;
+            padding: 6px 16px 6px 16px;
+            font-size: 12px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             color: #6F7893;
             text-decoration: none;
+            background: #fff;
+            border-bottom: 1px solid #EBEBEB;
 
             &:hover { color: $colorRed; }
         }
@@ -229,8 +231,8 @@ $colorGrey: #667085;
             display: flex;
             align-items: center;
             min-height: 40px;
-            padding: 8px 16px 8px 24px;
-            font-size: 14px;
+            padding: 11px 16px 11px 24px;
+            font-size: 14.5px;
             text-decoration: none;
             color: $color;
             border-bottom: 1px solid #EBEBEB;

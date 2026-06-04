@@ -350,6 +350,22 @@
     padding-top: 125px;
   }
 }
+@media (max-width: 794px) {
+  .mobile_header_sites {
+    padding: 10px 20px 20px 20px;
+  }
+  .mobile_header_sites .header-site-link {
+    background: #F5F5F7;
+    border: 1px solid #F5F5F7;
+    border-radius: 12px !important;
+    height: 44px;
+    margin-bottom: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #f84e40;
+  }
+}
 @media (max-width: 768px) {
   .main_class {
     padding-top: 61px;

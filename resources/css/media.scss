@@ -221,3 +221,34 @@ $maxWidth: 1200;
         }
     }
 }
+
+.mobile_socials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 24px;
+    border-top: 1px solid #eaeaea;
+
+    .mobile-social-btn {
+        text-decoration: none;
+        display: flex;
+    }
+}
+
+.header-login-mobile {
+    display: none;
+}
+
+@media (max-width: 565px) {
+    .header-login-mobile {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+
+        img {
+            width: 24px;
+            height: 24px;
+        }
+    }
+}

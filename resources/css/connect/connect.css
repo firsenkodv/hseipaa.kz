@@ -67,6 +67,7 @@
   background-color: #fff;
   width: 56px;
   height: 56px;
+  border: 1px solid #eee;
   border-radius: 50%;
   background-position: center;
   background-repeat: no-repeat;
@@ -121,6 +122,41 @@
   background-position: center;
   background-repeat: no-repeat;
   background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAxOCAxNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEuMTQ2NDcgNi43NTU2NEMyLjgzOTc2IDUuODIyOTYgNC43Mjk5MyA1LjA0NDQ5IDYuNDk2MDEgNC4yNjIwNkM5LjUzNDM1IDIuOTgwNSAxMi41ODQ4IDEuNzIxMTUgMTUuNjY2IDAuNTQ4NzE2QzE2LjI2NTQgMC4zNDg5NTYgMTcuMzQyNiAwLjE1MzYyNyAxNy40NDgyIDEuMDQyQzE3LjM5MDMgMi4yOTk1NCAxNy4xNTI0IDMuNTQ5NzEgMTYuOTg5MyA0Ljc5OTg4QzE2LjU3NTEgNy41NDkxMyAxNi4wOTYzIDEwLjI4OSAxNS42Mjk1IDEzLjAyOTJDMTUuNDY4NiAxMy45NDE5IDE0LjMyNTIgMTQuNDE0NCAxMy41OTM2IDEzLjgzMDNDMTEuODM1NCAxMi42NDI3IDEwLjA2MzYgMTEuNDY2NiA4LjMyNzg2IDEwLjI1MTRDNy43NTkyNyA5LjY3MzY2IDguMjg2NTMgOC44NDM5NSA4Ljc5NDM0IDguNDMxMzdDMTAuMjQyNSA3LjAwNDI0IDExLjc3ODIgNS43OTE3MyAxMy4xNTA3IDQuMjkwODVDMTMuNTIwOSAzLjM5Njg3IDEyLjQyNyA0LjE1MDI4IDEyLjA2NjIgNC4zODExNUMxMC4wODM3IDUuNzQ3MzMgOC4xNDk3MyA3LjE5NjkxIDYuMDU5NTUgOC4zOTc1OUM0Ljk5MTg5IDguOTg1MzEgMy43NDc1MSA4LjQ4MzA2IDIuNjgwMzMgOC4xNTUxMkMxLjcyMzQ5IDcuNzU4OTUgMC4zMjEzMzcgNy4zNTk4IDEuMTQ2MzggNi43NTU3NkwxLjE0NjQ3IDYuNzU1NjRaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K");
+}
+
+.mobile_contacts_items {
+  padding: 16px 24px 30px;
+}
+.mobile_contacts_items .con_item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-decoration: none;
+  color: #282828;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.mobile_contacts_items .con_item:last-child {
+  margin-bottom: 0;
+}
+.mobile_contacts_items .con_item .con_item__right {
+  order: -1;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+.mobile_contacts_items .con_item .con_item__right > div {
+  width: 40px;
+  height: 40px;
+}
+.mobile_contacts_items .con_item .con_item__left span {
+  color: #282828;
+  background: none;
+  padding: 0;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 0;
 }
 
 .connection {
