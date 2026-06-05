@@ -127,6 +127,40 @@
                     <div class="cc__result-val" id="cc-total">—</div>
                 </div>
             </div>
+
+            {{-- Форма отправки результатов --}}
+            <div class="cc__send-form">
+                <div class="form_title" id="ccSendTitle">
+                    <div class="form_title__h1">Результат</div>
+                    <p class="form_title__sub cc__send-title">Отправить расчёт — мы свяжемся и ответим на вопросы</p>
+                </div>
+                <div class="relative" id="ccSendModal">
+                    <x-form.form-loader />
+                    <x-form.form-response />
+                    <div class="app_form_data app_modal" id="ccSendData">
+
+                        {{-- Скрытые поля с результатами расчёта --}}
+                        <input type="hidden" class="app_input_name" name="Банк"               id="cc-hidden-bank">
+                        <input type="hidden" class="app_input_name" name="Курс"               id="cc-hidden-course">
+                        <input type="hidden" class="app_input_name" name="Сумма"              id="cc-hidden-cost">
+                        <input type="hidden" class="app_input_name" name="Срок"               id="cc-hidden-term">
+                        <input type="hidden" class="app_input_name" name="Ежемесячный платёж" id="cc-hidden-monthly">
+                        <input type="hidden" class="app_input_name" name="Переплата"          id="cc-hidden-overpay">
+                        <input type="hidden" class="app_input_name" name="Итого"              id="cc-hidden-total">
+
+                        <div class="cc__send-fields">
+                            <x-form.input name="ФИО"     label="Ваше имя"  required />
+                            <x-form.input name="Телефон" label="Телефон"   type="tel" required />
+                            <x-form.input name="Email"   label="Email"     type="email" required />
+                        </div>
+
+                        <button type="button" class="cc__btn" id="cc-send-btn">
+                            Отправить заявку
+                        </button>
+
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -171,11 +205,21 @@
         const total   = monthly * activeMonths;
         const overpay = total - price;
 
+        const termLabel = terms[String(activeMonths)];
+
         document.getElementById('cc-rate').textContent    = bank.procent + '%';
-        document.getElementById('cc-term').textContent    = terms[String(activeMonths)];
+        document.getElementById('cc-term').textContent    = termLabel;
         document.getElementById('cc-monthly').textContent = fmt(monthly);
         document.getElementById('cc-overpay').textContent = fmt(overpay);
         document.getElementById('cc-total').textContent   = fmt(total);
+
+        document.getElementById('cc-hidden-bank').value    = bank.title || bankSel.options[bankSel.selectedIndex].text;
+        document.getElementById('cc-hidden-course').value  = courseSel.options[courseSel.selectedIndex].text;
+        document.getElementById('cc-hidden-cost').value    = fmt(price);
+        document.getElementById('cc-hidden-term').value    = termLabel;
+        document.getElementById('cc-hidden-monthly').value = fmt(monthly);
+        document.getElementById('cc-hidden-overpay').value = fmt(overpay);
+        document.getElementById('cc-hidden-total').value   = fmt(total);
 
         formEl.style.display    = 'none';
         footerEl.style.display  = 'none';
@@ -186,6 +230,58 @@
         formEl.style.display    = 'block';
         footerEl.style.display  = 'block';
         resultsEl.style.display = 'none';
+    });
+
+    // Отправка формы с результатами расчёта
+    const csrf      = (document.querySelector('meta[name="csrf-token"]') || {}).content || '';
+    const sendModal = document.getElementById('ccSendModal');
+    const sendBtn   = document.getElementById('cc-send-btn');
+    const ccLoader  = sendModal.querySelector('.app_loader');
+    const ccResp    = sendModal.querySelector('.app_form_response');
+    const ccData    = document.getElementById('ccSendData');
+
+    sendBtn.addEventListener('click', async () => {
+        const inputs = Array.from(sendModal.querySelectorAll('.app_form_data .app_input_name'));
+        const data   = {};
+        inputs.forEach(input => { data[input.name] = input.value; });
+
+        ccLoader.classList.add('active');
+
+        try {
+            const res  = await fetch('/credit-calc', {
+                method:  'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept':       'application/json',
+                    'X-CSRF-Token': csrf,
+                },
+                body: JSON.stringify(data),
+            });
+
+            const json = await res.json();
+            ccLoader.classList.remove('active');
+
+            if (json.errors) {
+                const groups = Array.from(sendModal.querySelectorAll('.app_input_group'));
+                groups.forEach(group => {
+                    const input  = group.querySelector('.app_input_name');
+                    const errDiv = group.querySelector('.app_input_error');
+                    if (input && json.errors[input.name]) {
+                        input.classList.add('_error');
+                        errDiv.textContent = json.errors[input.name][0];
+                    } else if (input) {
+                        input.classList.remove('_error');
+                        errDiv.textContent = '';
+                    }
+                });
+            } else {
+                ccResp.classList.add('active');
+                ccData.remove();
+                document.getElementById('ccSendTitle').remove();
+            }
+        } catch (e) {
+            ccLoader.classList.remove('active');
+        }
     });
 })();
 </script>

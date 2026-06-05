@@ -33,6 +33,33 @@ $colorOrange: #FF732C;
     padding: 24px;
 }
 
+.form_title {
+    padding: 3px 0 30px 0;
+    position: relative;
+    cursor: pointer !important;
+
+    .form_title__h1 {
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 1.2em;
+        padding: 0 0 8px 0;
+
+    }
+
+    .form_title__h2 {
+        color: $colorGrey;
+        font-size: 16px;
+        line-height: 1.2em;
+        padding: 0 0 5px 0;
+    }
+
+    .form_title__sub {
+        color: $colorGrey;
+        font-size: 16px;
+        line-height: 1.4em;
+    }
+
+}
 .modal-form-container {
     position: relative;
     max-width: 900px;
@@ -74,33 +101,7 @@ $colorOrange: #FF732C;
         padding: 24px;
     }
 
-    .form_title {
-        padding: 3px 0 30px 0;
-        position: relative;
-        cursor: pointer !important;
 
-        .form_title__h1 {
-            font-size: 30px;
-            font-weight: 700;
-            line-height: 1.2em;
-            padding: 0 0 8px 0;
-
-        }
-
-        .form_title__h2 {
-            color: $colorGrey;
-            font-size: 16px;
-            line-height: 1.2em;
-            padding: 0 0 5px 0;
-        }
-
-        .form_title__sub {
-            color: $colorGrey;
-            font-size: 16px;
-            line-height: 1.4em;
-        }
-
-    }
 /** message_body **/
     .cabinet-msg-item {
         margin-bottom: 16px;
@@ -241,6 +242,13 @@ padding: 10px 0 0 0;
         font-weight: 700;
         color: $color;
         white-space: nowrap;
+    }
+}
+
+.cc__send-form {
+    padding: 24px;
+    .cc__send-fields {
+        padding-bottom: 20px;
     }
 }
 

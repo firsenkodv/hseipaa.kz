@@ -103,6 +103,7 @@ Route::controller(FancyBoxController::class)->group(function () {
 Route::controller(AxiosController::class)->group(function () {
     Route::post('/upload-form-async', 'async');
     Route::post('/call-me-blue', 'callMeBlue');
+    Route::post('/credit-calc', 'creditCalc');
     Route::post('/consult-me', 'consultMe');
     Route::post('/record-me', 'recordMe');
     Route::post('/schedule-enroll', 'scheduleEnroll');

@@ -21,6 +21,29 @@
   padding: 24px;
 }
 
+.form_title {
+  padding: 3px 0 30px 0;
+  position: relative;
+  cursor: pointer !important;
+}
+.form_title .form_title__h1 {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.2em;
+  padding: 0 0 8px 0;
+}
+.form_title .form_title__h2 {
+  color: #667085;
+  font-size: 16px;
+  line-height: 1.2em;
+  padding: 0 0 5px 0;
+}
+.form_title .form_title__sub {
+  color: #667085;
+  font-size: 16px;
+  line-height: 1.4em;
+}
+
 .modal-form-container {
   position: relative;
   max-width: 900px;
@@ -56,28 +79,6 @@
 }
 .modal-form-container .modal_content {
   padding: 24px;
-}
-.modal-form-container .form_title {
-  padding: 3px 0 30px 0;
-  position: relative;
-  cursor: pointer !important;
-}
-.modal-form-container .form_title .form_title__h1 {
-  font-size: 30px;
-  font-weight: 700;
-  line-height: 1.2em;
-  padding: 0 0 8px 0;
-}
-.modal-form-container .form_title .form_title__h2 {
-  color: #667085;
-  font-size: 16px;
-  line-height: 1.2em;
-  padding: 0 0 5px 0;
-}
-.modal-form-container .form_title .form_title__sub {
-  color: #667085;
-  font-size: 16px;
-  line-height: 1.4em;
 }
 .modal-form-container .cabinet-msg-item {
   margin-bottom: 16px;
@@ -182,6 +183,13 @@
   font-weight: 700;
   color: #282828;
   white-space: nowrap;
+}
+
+.cc__send-form {
+  padding: 24px;
+}
+.cc__send-form .cc__send-fields {
+  padding-bottom: 20px;
 }
 
 @media screen and (max-width: 968px) {

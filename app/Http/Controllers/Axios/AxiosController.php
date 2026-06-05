@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Axios;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CallMeBlueRequest;
 use App\Http\Requests\ConsultMeRequest;
+use App\Http\Requests\CreditCalcRequest;
 use App\Http\Requests\ProgramEnrollRequest;
 use App\Http\Requests\RecordMeRequest;
 use App\Http\Requests\ScheduleEnrollRequest;
 use App\Jobs\Form\CallMeBlueJob;
 use App\Jobs\Form\ConsultMeJob;
+use App\Jobs\Form\CreditCalcJob;
 use App\Jobs\Form\ProgramEnrollJob;
 use App\Jobs\Form\RecordMeJob;
 use App\Jobs\Form\ScheduleEnrollJob;
@@ -35,6 +37,27 @@ class AxiosController extends Controller
         ];
 
         CallMeBlueJob::dispatch($data);
+
+        return response()->json(['response' => 'ok']);
+    }
+
+    public function creditCalc(CreditCalcRequest $request)
+    {
+        $data = array_filter([
+            'ФИО'                => $request->input('ФИО'),
+            'Телефон'            => $request->input('Телефон'),
+            'Email'              => $request->input('Email'),
+            'Банк'               => $request->input('Банк'),
+            'Курс'               => $request->input('Курс'),
+            'Сумма'              => $request->input('Сумма'),
+            'Срок'               => $request->input('Срок'),
+            'Ежемесячный платёж' => $request->input('Ежемесячный платёж'),
+            'Переплата'          => $request->input('Переплата'),
+            'Итого'              => $request->input('Итого'),
+            'Дата отправки'      => now()->format('d.m.Y H:i'),
+        ]);
+
+        CreditCalcJob::dispatch($data);
 
         return response()->json(['response' => 'ok']);
     }
