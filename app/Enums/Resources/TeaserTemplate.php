@@ -14,6 +14,7 @@ enum TeaserTemplate: string
     case Team = 'team';
     case Schedule = 'schedule';
     case Consulting = 'consulting';
+    case Partners = 'partners';
 
     public function label(): string
     {
@@ -26,6 +27,7 @@ enum TeaserTemplate: string
             self::About     => 'О нас',
             self::Team      => 'Команда',
             self::Schedule  => 'Расписание',
+            self::Partners  => 'Партнёры',
         };
     }
 
