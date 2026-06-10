@@ -638,7 +638,7 @@ background: rgba(246, 245, 244, 1);
 
     .program-hero h1 {
         font-size: 36px;
-        line-height: 36px;
+        line-height: 1.2;
     }
 
     .program-hero__copy > p {
@@ -798,7 +798,7 @@ background: rgba(246, 245, 244, 1);
         }
     }
     .program-hero {
-        padding: 20px 16px !important;
+        padding:0 16px 20px 16px !important;
     }
 
 }
