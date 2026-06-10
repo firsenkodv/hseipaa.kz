@@ -48,6 +48,7 @@ class Training extends Model
         'buy_certificate',
         'format',
         'price',
+        'installment_percent',
         // О курсе
         'course_title',
         'course_desc',
@@ -81,8 +82,9 @@ class Training extends Model
     protected function casts(): array
     {
         return [
-            'published' => 'integer',
-            'sorting'   => 'integer',
+            'published'           => 'integer',
+            'sorting'             => 'integer',
+            'installment_percent' => 'integer',
             'template'  => FullTemplate::class,
             'video'     => 'array',
             'gallery'   => 'array',

@@ -6,9 +6,10 @@
     $priceNew          = $prices->count() >= 2 ? $prices->last() : $prices->first();
     $currencyCode      = \App\Models\Setting::getGroup('social')->data['currency'] ?? 'KZT';
     $currencySymbol    = config('currency.currency.' . $currencyCode, '₸');
-    $installmentMonths = 12;
-    $installmentNew    = $priceNew  ? (int) round($priceNew['value']  / $installmentMonths) : null;
-    $installmentOld    = $priceOld  ? (int) round($priceOld['value']  / $installmentMonths) : null;
+    $installmentMonths   = 12;
+    $installmentMarkup   = 1 + (($item->installment_percent ?? 15) / 100);
+    $installmentNew      = $priceNew ? (int) round(($priceNew['value'] / $installmentMonths) * $installmentMarkup) : null;
+    $installmentOld      = $priceOld ? (int) round(($priceOld['value'] / $installmentMonths) * $installmentMarkup) : null;
     $discount          = ($priceOld && $priceNew && $priceOld['value'] > 0)
                              ? (int) round((1 - $priceNew['value'] / $priceOld['value']) * 100)
                              : null;

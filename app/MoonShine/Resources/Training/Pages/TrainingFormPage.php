@@ -168,6 +168,9 @@ final class TrainingFormPage extends FormPage
                                         Text::make('Пояснение', 'note'),
                                     ])->vertical()->creatable(limit: 2)->removable()
                                         ->hint('Заполняйте две цены: первая цена старая, вторая новая. Если заполнить одно поле, всегда будет выводиться новая цена.'),
+                                    Number::make('Процент рассрочки (%)', 'installment_percent')
+                                        ->default(15)
+                                        ->hint('Наценка на ежемесячный платёж. По умолчанию 15%.'),
                                 ]),
                                 Divider::make('О курсе'),
 
