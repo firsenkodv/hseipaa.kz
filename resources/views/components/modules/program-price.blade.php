@@ -7,12 +7,10 @@
     $currencyCode      = \App\Models\Setting::getGroup('social')->data['currency'] ?? 'KZT';
     $currencySymbol    = config('currency.currency.' . $currencyCode, '₸');
     $installmentMonths   = 12;
-    $installmentMarkup   = 1 + (($item->installment_percent ?? 15) / 100);
+    $installmentPercent  = $item->installment_percent ?? 15;
+    $installmentMarkup   = 1 + ($installmentPercent / 100);
     $installmentNew      = $priceNew ? (int) round(($priceNew['value'] / $installmentMonths) * $installmentMarkup) : null;
     $installmentOld      = $priceOld ? (int) round(($priceOld['value'] / $installmentMonths) * $installmentMarkup) : null;
-    $discount          = ($priceOld && $priceNew && $priceOld['value'] > 0)
-                             ? (int) round((1 - $priceNew['value'] / $priceOld['value']) * 100)
-                             : null;
 @endphp
 @if($priceNew)
 <section class="program-price-shell">
@@ -38,8 +36,8 @@
                         <small>{{ $currencySymbol }}/мес</small>
                     </div>
                     <p>Рассрочка на {{ $installmentMonths }} месяцев</p>
-                    @if($discount)
-                        <div class="program-price-card__badge">{{ $discount }}%</div>
+                    @if($installmentPercent)
+                        <div class="program-price-card__badge">{{ $installmentPercent }}%</div>
                     @endif
                 </div>
             </div>
