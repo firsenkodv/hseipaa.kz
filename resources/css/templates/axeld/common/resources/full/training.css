@@ -12,7 +12,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 40px;
-  padding-top: 46px !important;
+  padding: 21px 45px !important;
 }
 
 .program-hero__copy {
@@ -678,6 +678,9 @@
   .program-requirement-card p {
     font-size: 14px;
     line-height: 20px;
+  }
+  .program-hero {
+    padding: 20px 16px !important;
   }
 }
 
