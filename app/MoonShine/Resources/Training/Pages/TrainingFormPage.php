@@ -171,6 +171,9 @@ final class TrainingFormPage extends FormPage
                                     Number::make('Процент рассрочки (%)', 'installment_percent')
                                         ->default(15)
                                         ->hint('Наценка на ежемесячный платёж. По умолчанию 15%.'),
+                                    Text::make('Текст таймера акции', 'promo_timer')
+                                        ->placeholder('Учитесь сейчас, оплачивайте потом!')
+                                        ->hint('Если не заполнено — выводится значение по умолчанию.'),
                                 ]),
                                 Divider::make('О курсе'),
 

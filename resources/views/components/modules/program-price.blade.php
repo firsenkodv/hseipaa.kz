@@ -25,7 +25,7 @@
             <img class="program-price-card__coins" src="{{ Storage::url('/images/img/price-coins.png') }}" alt="" />
             @if($priceOld && $installmentOld && $installmentNew)
             <div class="program-price-card__payment">
-                <div class="program-price-card__timer">Акция действует 2 дня 8 часов 56 минут</div>
+                <div class="program-price-card__timer">{{ $item->promo_timer ?: 'Учитесь сейчас, оплачивайте потом!' }}</div>
                 <div class="program-price-card__panel">
                     <div class="program-price-card__old">
                         <span data-program-old-price>{{ price($installmentOld) }} {{ $currencySymbol }}</span>

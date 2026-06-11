@@ -49,6 +49,7 @@ class Training extends Model
         'format',
         'price',
         'installment_percent',
+        'promo_timer',
         // О курсе
         'course_title',
         'course_desc',
