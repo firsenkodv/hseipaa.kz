@@ -29,6 +29,26 @@ class TrainingViewModel
 
     public function getBySlug(string $slug): Training
     {
-        return Training::published()->where('slug', $slug)->firstOrFail();
+        $training = Training::published()->where('slug', $slug)->firstOrFail();
+        return $this->applyDefaults($training);
+    }
+
+    private function applyDefaults(Training $training): Training
+    {
+        $defaults = Setting::getGroup('obuchenie')->data ?? [];
+
+        $fallbackFields = [
+            'get_title', 'get_items',
+            'req_title', 'req_desc', 'req_items',
+            'outline_title', 'outline_desc', 'outline_stats', 'outline_modules',
+        ];
+
+        foreach ($fallbackFields as $field) {
+            if (blank($training->getAttribute($field)) && !blank($defaults[$field] ?? null)) {
+                $training->setAttribute($field, $defaults[$field]);
+            }
+        }
+
+        return $training;
     }
 }

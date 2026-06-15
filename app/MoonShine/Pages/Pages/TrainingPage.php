@@ -102,6 +102,45 @@ class TrainingPage extends Page
                             Textarea::make('Скрипт', 'script')->unescape(),
                         ])->icon('magnifying-glass'),
 
+                        Tab::make('Курс', [
+                            Column::make([
+                                Divider::make('Что вы получаете'),
+                                Collapse::make('', [
+                                    Text::make('Заголовок', 'get_title')->unescape(),
+                                    Json::make('Пункты', 'get_items')->fields([
+                                        Text::make('Название', 'name'),
+                                    ])->vertical()->creatable(limit: 50)->removable(),
+                                ]),
+
+                                Divider::make('Требования к кандидатам'),
+                                Collapse::make('', [
+                                    Text::make('Заголовок', 'req_title')->unescape(),
+                                    Text::make('Краткое описание', 'req_desc')->unescape(),
+                                    Json::make('Карточки', 'req_items')->fields([
+                                        Text::make('Заголовок', 'title'),
+                                        Textarea::make('Описание', 'desc'),
+                                    ])->vertical()->creatable(limit: 20)->removable(),
+                                ]),
+
+                                Divider::make('Программа курса'),
+                                Collapse::make('', [
+                                    Text::make('Заголовок', 'outline_title')->unescape(),
+                                    Textarea::make('Описание', 'outline_desc')->unescape(),
+                                    Json::make('Статистика', 'outline_stats')->fields([
+                                        Text::make('Значение', 'value'),
+                                        Text::make('Подпись', 'label'),
+                                    ])->vertical()->creatable(limit: 3)->removable(),
+                                    Json::make('Модули', 'outline_modules')->fields([
+                                        Text::make('Префикс', 'label')->hint('Например: Модуль 1.'),
+                                        Text::make('Заголовок', 'title'),
+                                        Json::make('Пункты', 'items')->fields([
+                                            Textarea::make('Текст', 'text'),
+                                        ])->vertical()->creatable(limit: 20)->removable(),
+                                    ])->vertical()->creatable(limit: 20)->removable(),
+                                ]),
+                            ]),
+                        ])->icon('academic-cap'),
+
                         Tab::make('Дополнительно', [
                             Column::make([
                                 Collapse::make('Вопрос/Ответ', [
