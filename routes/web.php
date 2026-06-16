@@ -1,5 +1,4 @@
 <?php
-
 use App\Http\Controllers\Dev\DiplomaImportController;
 use App\Http\Controllers\Dev\ContentImportController;
 use App\Http\Controllers\Ajax\CityController;
