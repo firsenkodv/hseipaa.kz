@@ -165,12 +165,77 @@
    // max-width: 486px;
     border-radius: 40px;
     overflow: hidden;
+    position: relative;
 
     img {
         width: 100%;
         height: 100%;
         object-fit: cover;
     }
+}
+
+.program-hero__likes {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    z-index: 2;
+}
+
+.program-hero__like-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(6px);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s ease, background 0.15s ease;
+
+    &:hover {
+        transform: scale(1.08);
+        background: rgba(255, 255, 255, 1);
+    }
+
+    &:active {
+        transform: scale(0.92);
+    }
+}
+
+.program-hero__like-icon {
+    width: 26px;
+    height: 26px;
+    fill: #d0cece;
+    transition: fill 0.2s ease;
+    pointer-events: none;
+}
+
+.program-hero__like-btn--active .program-hero__like-icon {
+    fill: #e53935;
+    animation: like-pop 0.3s ease;
+}
+
+@keyframes like-pop {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.35); }
+    70%  { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
+
+.program-hero__like-count {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1;
+    color: #ffffff;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+    min-width: 20px;
+    text-align: center;
 }
 
 .program-block {

@@ -42,6 +42,10 @@ Route::controller(TrainingController::class)->group(function () {
     Route::get('/obuchenie', 'index')->name('training');
     Route::get('/obuchenie/{slug}', 'indexShow')->name('training.show');
 });
+Route::post('/obuchenie/{training}/like', function (Training $training) {
+    $training->increment('likes');
+    return response()->json(['likes' => $training->likes]);
+})->name('training.like');
 /** ///Обучение **/
 
 /** Консалтинг **/

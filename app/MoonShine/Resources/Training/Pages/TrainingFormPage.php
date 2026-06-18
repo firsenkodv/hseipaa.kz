@@ -66,6 +66,7 @@ final class TrainingFormPage extends FormPage
                                 Box::make([
                                     Switcher::make('Опубликовано', 'published')->default(1),
                                     Number::make('Сортировка', 'sorting')->default(1),
+                                    Number::make('Лайки', 'likes')->default(0),
                                     Select::make('Шаблон', 'template')
                                         ->options(FullTemplate::toOptions())
                                         ->default(FullTemplate::Default->value)

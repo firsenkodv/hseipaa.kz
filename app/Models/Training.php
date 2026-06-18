@@ -73,6 +73,8 @@ class Training extends Model
         'outline_desc',
         'outline_stats',
         'outline_modules',
+        // Лайки
+        'likes',
     ];
 
     public function scopePublished(Builder $query): Builder
@@ -86,6 +88,7 @@ class Training extends Model
             'published'           => 'integer',
             'sorting'             => 'integer',
             'installment_percent' => 'integer',
+            'likes'               => 'integer',
             'template'  => FullTemplate::class,
             'video'     => 'array',
             'gallery'   => 'array',
