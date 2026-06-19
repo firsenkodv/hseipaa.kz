@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Setting;
+use App\Observers\SettingObserver;
 use App\View\Components\Modules\Advantages;
 use App\View\Components\Modules\AboutJoin;
 use App\View\Components\Socials\Socials;
@@ -26,6 +27,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Setting::observe(SettingObserver::class);
+
         Password::defaults(function () {
             return Password::min(5)
                 /*      ->letters()

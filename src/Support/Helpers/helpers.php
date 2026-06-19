@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Seo;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -14,6 +15,18 @@ use Intervention\Image\Laravel\Facades\Image;
 use Support\Flash\Flash;
 use Illuminate\Support\Facades\Route;
 use \Support\Traits\Upload;
+
+if (!function_exists('seo_override')) {
+
+    function seo_override(string $key): ?Seo
+    {
+        try {
+            return Seo::where('key', $key)->first();
+        } catch (\Throwable $e) {
+            return null;
+        }
+    }
+}
 
 if (!function_exists('flash')) {
 

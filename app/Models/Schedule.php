@@ -3,12 +3,15 @@
 namespace App\Models;
 
 use App\Enums\Resources\FullTemplate;
+use App\Models\Concerns\HasSeo;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Schedule extends Model
 {
+    use HasSeo;
+
     protected $fillable = [
         'title',
         'menu_title',

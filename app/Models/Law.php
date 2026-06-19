@@ -3,11 +3,14 @@
 namespace App\Models;
 
 use App\Enums\Resources\FullTemplate;
+use App\Models\Concerns\HasSeo;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Law extends Model
 {
+    use HasSeo;
+
     protected $fillable = [
         'title',
         'slug',

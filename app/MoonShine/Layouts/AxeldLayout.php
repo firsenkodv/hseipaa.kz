@@ -35,6 +35,7 @@ use App\MoonShine\Resources\Consulting\ConsultingResource;
 use App\MoonShine\Resources\ConsultingCategory\ConsultingCategoryResource;
 use App\MoonShine\Resources\Document\DocumentResource;
 use App\MoonShine\Resources\MoonShineUser\MoonShineUserResource;
+use App\MoonShine\Resources\Seo\SeoResource;
 use App\MoonShine\Resources\Online\OnlineResource;
 use App\MoonShine\Resources\Partner\PartnerResource;
 use App\MoonShine\Resources\Team\TeamResource;
@@ -191,6 +192,7 @@ final class AxeldLayout extends AppLayout
 
             ])->icon('cog-6-tooth'),
             MenuItem::make(DiplomaResource::class, 'Список дипломов', 'trophy'),
+            MenuItem::make(SeoResource::class, 'SEO', 'magnifying-glass'),
         ];
     }
 
