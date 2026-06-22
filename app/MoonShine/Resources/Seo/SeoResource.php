@@ -6,8 +6,11 @@ namespace App\MoonShine\Resources\Seo;
 
 use App\Models\Seo;
 use App\Models\Setting;
+use App\MoonShine\Resources\Seo\Pages\SeoIndexPage;
 use Illuminate\Contracts\Database\Eloquent\Builder;
-use MoonShine\Laravel\Enums\Action;
+use MoonShine\Contracts\Core\TypeCasts\DataWrapperContract;
+use MoonShine\Laravel\Pages\Crud\FormPage;
+use MoonShine\Support\Enums\Action;
 use MoonShine\Laravel\Resources\ModelResource;
 use MoonShine\Support\ListOf;
 use MoonShine\UI\Fields\ID;
@@ -24,6 +27,14 @@ class SeoResource extends ModelResource
     protected string $title = 'SEO';
 
     protected string $column = 'label';
+
+    protected function pages(): array
+    {
+        return [
+            SeoIndexPage::class,
+            FormPage::class,
+        ];
+    }
 
     public function search(): array
     {
@@ -78,38 +89,41 @@ class SeoResource extends ModelResource
         ')->orderBy('id');
     }
 
-    protected function afterUpdated(mixed $item): mixed
+    protected function afterUpdated(DataWrapperContract $item): DataWrapperContract
     {
-        if (empty($item->model_class)) {
+        /** @var Seo $seo */
+        $seo = $item->getOriginal();
+
+        if (empty($seo->model_class)) {
             return $item;
         }
 
-        $parts = explode(':', $item->key, 2);
+        $parts = explode(':', $seo->key, 2);
 
-        if ($item->model_class === Setting::class) {
+        if ($seo->model_class === Setting::class) {
             $group = $parts[1] ?? null;
             if (! $group) {
                 return $item;
             }
 
             $model = Setting::getGroup($group);
-            Setting::withoutEvents(function () use ($model, $item) {
-                $model->metatitle   = $item->title;
-                $model->description = $item->description;
-                $model->keywords    = $item->keywords;
+            Setting::withoutEvents(function () use ($model, $seo) {
+                $model->metatitle   = $seo->title;
+                $model->description = $seo->description;
+                $model->keywords    = $seo->keywords;
                 $model->save();
             });
         } else {
             $id         = last($parts);
-            $modelClass = $item->model_class;
+            $modelClass = $seo->model_class;
             $model      = $modelClass::find($id);
 
             if ($model) {
-                $modelClass::withoutEvents(function () use ($model, $item) {
+                $modelClass::withoutEvents(function () use ($model, $seo) {
                     $model->update([
-                        'metatitle'   => $item->title,
-                        'description' => $item->description,
-                        'keywords'    => $item->keywords,
+                        'metatitle'   => $seo->title,
+                        'description' => $seo->description,
+                        'keywords'    => $seo->keywords,
                     ]);
                 });
             }

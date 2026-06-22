@@ -189,10 +189,10 @@ final class AxeldLayout extends AppLayout
                 MenuItem::make(PromoModalPage::class, 'Форма заявки (авто)', 'cursor-arrow-rays'),
                 MenuItem::make(SocialPage::class, 'Соцсети и константы', 'globe-alt'),
                 MenuItem::make(CreditPage::class, 'Кредитный калькулятор', 'calculator'),
+                MenuItem::make(SeoResource::class, 'SEO', 'magnifying-glass'),
 
             ])->icon('cog-6-tooth'),
             MenuItem::make(DiplomaResource::class, 'Список дипломов', 'trophy'),
-            MenuItem::make(SeoResource::class, 'SEO', 'magnifying-glass'),
         ];
     }
 
