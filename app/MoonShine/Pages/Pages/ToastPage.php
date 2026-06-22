@@ -14,6 +14,7 @@ use MoonShine\UI\Components\FormBuilder;
 use MoonShine\UI\Components\Layout\Box;
 use MoonShine\UI\Components\Layout\Divider;
 use MoonShine\UI\Fields\Number;
+use MoonShine\UI\Fields\Switcher;
 use MoonShine\UI\Fields\Text;
 use MoonShine\UI\Fields\Textarea;
 
@@ -47,6 +48,9 @@ class ToastPage extends Page
             ->fields([
                 Box::make([
                     Divider::make('Toast-уведомление'),
+
+                    Switcher::make('Показывать уведомление', 'toast_enabled')
+                        ->default(true),
 
                     Textarea::make('Текст', 'toast_text')
                         ->hint('Текст уведомления, допустимы HTML-теги')

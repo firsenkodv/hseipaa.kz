@@ -1,11 +1,12 @@
 @php
     $toastData    = \App\Models\Setting::getGroup('toast')->data ?? [];
+    $toastEnabled = (bool) ($toastData['toast_enabled'] ?? true);
     $toastText    = $toastData['toast_text'] ?? null;
     $toastLink    = !empty($toastData['toast_link']) ? $toastData['toast_link'] : '#';
     $dismissDays  = isset($toastData['toast_dismiss_days']) ? (int) $toastData['toast_dismiss_days'] : 3;
 @endphp
 
-@if($toastText)
+@if($toastEnabled && $toastText)
 <div class="toast-promo" id="toastPromo" role="alert" aria-live="polite"
      data-dismiss-days="{{ $dismissDays }}">
     <button class="toast-promo__close" id="toastPromoClose" aria-label="Закрыть">
