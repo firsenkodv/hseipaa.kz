@@ -1,26 +1,39 @@
+@props([
+    'title'        => '',
+    'subtitle'     => '',
+    'btn1'         => 'Начать обучение',
+    'btn2'         => 'Получить консультацию',
+    'quote'        => '',
+    'authorName'   => '',
+    'authorRole'   => '',
+    'bannerDesktop' => 'about/banner.jpg',
+    'bannerMobile'  => 'about/banner2.png',
+])
+
 @php
-    $bannerDesktop = Storage::url('about/banner.jpg');
-    $bannerMobile  = Storage::url('about/banner2.png');
-    $gradient      = 'linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.3) 50%, transparent 100%)';
+    $desktopUrl = Storage::url($bannerDesktop);
+    $mobileUrl  = Storage::url($bannerMobile);
+    $gradient   = 'linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.3) 50%, transparent 100%)';
 @endphp
+
 <section class="about-banner banner-section">
     <div class="banner-inner js-banner-bg"
-         data-desktop="{{ $bannerDesktop }}"
-         data-mobile="{{ $bannerMobile }}"
-         style="background-image: {{ $gradient }}, url('{{ $bannerDesktop }}')">
+         data-desktop="{{ $desktopUrl }}"
+         data-mobile="{{ $mobileUrl }}"
+         style="background-image: {{ $gradient }}, url('{{ $desktopUrl }}')">
         <div class="banner-inside">
             <div class="banner-left">
-                <h1 class="banner-title">Добро пожаловать в наш образовательный центр!</h1>
-                <p class="banner-subtitle">мы занимаемся профессиональной подготовкой и повышением квалификации специалистов в области экономики и финансов.</p>
+                <h1 class="banner-title">{{ $title }}</h1>
+                <p class="banner-subtitle">{{ $subtitle }}</p>
                 <div class="banner-buttons">
-                    <a href="{{ route('training') }}" class="banner-btn-primary">Начать обучение</a>
-                    <a href="#" class="banner-btn-secondary open-fancybox" data-form="consult_me">Получить консультацию</a>
+                    <a href="{{ route('training') }}" class="banner-btn-primary">{{ $btn1 }}</a>
+                    <a href="#" class="banner-btn-secondary open-fancybox" data-form="consult_me">{{ $btn2 }}</a>
                 </div>
             </div>
             <div class="banner-right">
                 <div class="banner-quote">
                     <span class="banner-quote-mark banner-quote-mark--open">&ldquo;</span>
-                    <p class="banner-quote-text">Наша миссия — предоставить качественное образование, соответствующее современным требованиям рынка труда и международным стандартам.</p>
+                    <p class="banner-quote-text">{{ $quote }}</p>
                     <span class="banner-quote-mark banner-quote-mark--close">&rdquo;</span>
                 </div>
                 <div class="banner-author">
@@ -31,8 +44,8 @@
                         </svg>
                     </div>
                     <div class="banner-author-info">
-                        <span class="banner-author-name">Дмитрий Фирсенко</span>
-                        <span class="banner-author-role">Генеральный директор Центра Образования</span>
+                        <span class="banner-author-name">{{ $authorName }}</span>
+                        <span class="banner-author-role">{{ $authorRole }}</span>
                     </div>
                 </div>
             </div>

@@ -21,18 +21,12 @@
         </form>
 
         <div class="edu-hero__stats">
-            <div class="edu-stat">
-                <strong>50+</strong>
-                <span>Программ</span>
-            </div>
-            <div class="edu-stat">
-                <strong>5 000+</strong>
-                <span>Выпускников</span>
-            </div>
-            <div class="edu-stat">
-                <strong>12</strong>
-                <span>Направлений</span>
-            </div>
+            @foreach($page->hero_stats ?? [] as $stat)
+                <div class="edu-stat">
+                    <strong>{{ $stat['value'] ?? '' }}</strong>
+                    <span>{{ $stat['label'] ?? '' }}</span>
+                </div>
+            @endforeach
         </div>
 
     </div>

@@ -84,6 +84,21 @@ class TrainingPage extends Page
                                     ]),
                                 ])->columnSpan(3),
                             ]),
+                            Collapse::make('Статистика в шапке', [
+                                Json::make('', 'hero_stats')
+                                    ->fields([
+                                        Text::make('Значение', 'value'),
+                                        Text::make('Подпись', 'label'),
+                                    ])
+                                    ->default([
+                                        ['value' => '50+',    'label' => 'Программ'],
+                                        ['value' => '5 000+', 'label' => 'Выпускников'],
+                                        ['value' => '12',     'label' => 'Направлений'],
+                                    ])
+                                    ->vertical()
+                                    ->creatable()
+                                    ->removable(),
+                            ]),
                         ])->icon('document-text'),
 
                         Tab::make('Медиа', [
