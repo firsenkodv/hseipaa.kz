@@ -1,5 +1,5 @@
 @if($items->currentPage() === 1)
-<section class="edu-hero" aria-labelledby="consulting-title">
+    <section class="edu-hero" aria-labelledby="consulting-title">
     <div class="edu-hero__inner">
         <div class="edu-hero__copy">
             @if($page->title)

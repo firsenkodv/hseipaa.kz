@@ -15,6 +15,7 @@
                 @include($teaser_template->view($section), ['items' => $items, 'route' => $route])
             @endif
         </div>
+
         <div class="page-wrapper">
             <x-modules.about-platform />
             @if($page->faq)

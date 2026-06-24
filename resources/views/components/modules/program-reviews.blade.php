@@ -1,17 +1,39 @@
+@props(['page' => null, 'reviewsKey' => null])
+
+@php
+    if ($reviewsKey === 'consulting') {
+        $title   = $page?->konsalt_reviews_title ?? 'Отзывы клиентов';
+        $desc    = $page?->konsalt_reviews_desc  ?? 'Стать востребованным профессионалом может каждый';
+        $reviews = $page?->konsalt_reviews_items ?? [];
+    } else {
+        $title   = $page?->edu_reviews_title ?? 'Отзывы клиентов';
+        $desc    = $page?->edu_reviews_desc  ?? 'Стать востребованным профессионалом может каждый';
+        $reviews = $page?->edu_reviews_items ?? [];
+    }
+
+    if (empty($reviews)) {
+        $reviews = [
+            ['name' => 'Данияр Сейітов',    'role' => 'Руководитель проекта',            'cover' => 'images/img/review-card-1.jpg', 'avatar' => 'images/img/review-author-1.png', 'video_url' => 'https://www.youtube.com/embed/9ofghOY94-4?autoplay=1&rel=0'],
+            ['name' => 'Арман Ашимов',       'role' => 'Инженер-программист',             'cover' => 'images/img/review-card-2.jpg', 'avatar' => 'images/img/review-author-2.png', 'video_url' => 'https://www.youtube.com/embed/9ofghOY94-4?autoplay=1&rel=0'],
+            ['name' => 'Аружан Нұрсұлтан',  'role' => 'Дизайнер пользовательского опыта','cover' => 'images/img/review-card-3.jpg', 'avatar' => 'images/img/review-author-3.png', 'video_url' => 'https://www.youtube.com/embed/9ofghOY94-4?autoplay=1&rel=0'],
+            ['name' => 'Ерлан Тұрар',        'role' => 'Аналитик данных',                 'cover' => 'images/img/review-card-4.jpg', 'avatar' => 'images/img/review-author-4.png', 'video_url' => 'https://www.youtube.com/embed/9ofghOY94-4?autoplay=1&rel=0'],
+            ['name' => 'Айгерим Садыкова',   'role' => 'Кредитный аналитик',              'cover' => 'images/img/review-card-2.jpg', 'avatar' => 'images/img/review-author-1.png', 'video_url' => 'https://www.youtube.com/embed/9ofghOY94-4?autoplay=1&rel=0'],
+        ];
+    }
+@endphp
+
 <section class="program-reviews">
 <div class="program-reviews-shell">
     <div class="program-block program-reviews">
         <div class="program-reviews__header">
             <div class="program-section__intro">
-                <h2>Отзывы клиентов</h2>
-                <p>Стать востребованным профессионалом может каждый</p>
+                <h2>{{ $title }}</h2>
+                @if($desc)<p>{{ $desc }}</p>@endif
             </div>
             <div class="program-reviews__avatars">
-                <img src="{{ Storage::url('images/img/review-author-1.png') }}" alt="" draggable="false" />
-                <img src="{{ Storage::url('images/img/review-author-2.png') }}" alt="" draggable="false" />
-                <img src="{{ Storage::url('images/img/review-author-3.png') }}" alt="" draggable="false" />
-                <img src="{{ Storage::url('images/img/review-author-4.png') }}" alt="" draggable="false" />
-                <img src="{{ Storage::url('images/img/review-author-1.png') }}" alt="" draggable="false" />
+                @foreach($reviews as $review)
+                    <img src="{{ Storage::url($review['avatar'] ?? 'images/img/review-author-1.png') }}" alt="" draggable="false" />
+                @endforeach
                 <button class="program-reviews__arrow" type="button" aria-label="Следующий отзыв" data-reviews-next>
                     <img class="program-reviews__arrow-full" src="{{ Storage::url('images/img/review-arrow-custom.svg') }}" alt="" draggable="false" />
                 </button>
@@ -20,85 +42,23 @@
 
         <div class="program-reviews__viewport" data-reviews-viewport>
             <div class="program-reviews__track">
-                <article class="program-review-card" data-review-index="0">
-                    <div class="program-review-card__video">
-                        <img class="program-review-card__cover" src="{{ Storage::url('images/img/review-card-1.jpg') }}" alt="" draggable="false" />
-                        <button class="program-review-card__play" type="button" aria-label="Смотреть отзыв">
-                            <img src="{{ Storage::url('images/img/review-play.svg') }}" alt="" draggable="false" />
-                        </button>
-                    </div>
-                    <div class="program-review-card__author">
-                        <img src="{{ Storage::url('images/img/review-author-1.png') }}" alt="" draggable="false" />
-                        <div>
-                            <strong>Данияр Сейітов</strong>
-                            <span>Руководитель проекта</span>
+                @foreach($reviews as $i => $review)
+                    <article class="program-review-card{{ $i === 1 ? ' program-review-card--gradient' : '' }}" data-review-index="{{ $i }}">
+                        <div class="program-review-card__video">
+                            <img class="program-review-card__cover" src="{{ Storage::url($review['cover'] ?? 'images/img/review-card-1.jpg') }}" alt="" draggable="false" />
+                            <button class="program-review-card__play" type="button" aria-label="Смотреть отзыв">
+                                <img src="{{ Storage::url('images/img/review-play.svg') }}" alt="" draggable="false" />
+                            </button>
                         </div>
-                    </div>
-                </article>
-
-                <article class="program-review-card program-review-card--gradient" data-review-index="1">
-                    <div class="program-review-card__video">
-                        <img class="program-review-card__cover" src="{{ Storage::url('images/img/review-card-2.jpg') }}" alt="" draggable="false" />
-                        <button class="program-review-card__play" type="button" aria-label="Смотреть отзыв">
-                            <img src="{{ Storage::url('images/img/review-play.svg') }}" alt="" draggable="false" />
-                        </button>
-                    </div>
-                    <div class="program-review-card__author">
-                        <img src="{{ Storage::url('images/img/review-author-2.png') }}" alt="" draggable="false" />
-                        <div>
-                            <strong>Арман Ашимов</strong>
-                            <span>Инженер-программист</span>
+                        <div class="program-review-card__author">
+                            <img src="{{ Storage::url($review['avatar'] ?? 'images/img/review-author-1.png') }}" alt="" draggable="false" />
+                            <div>
+                                <strong>{{ $review['name'] ?? '' }}</strong>
+                                <span>{{ $review['role'] ?? '' }}</span>
+                            </div>
                         </div>
-                    </div>
-                </article>
-
-                <article class="program-review-card" data-review-index="2">
-                    <div class="program-review-card__video">
-                        <img class="program-review-card__cover" src="{{ Storage::url('images/img/review-card-3.jpg') }}" alt="" draggable="false" />
-                        <button class="program-review-card__play" type="button" aria-label="Смотреть отзыв">
-                            <img src="{{ Storage::url('images/img/review-play.svg') }}" alt="" draggable="false" />
-                        </button>
-                    </div>
-                    <div class="program-review-card__author">
-                        <img src="{{ Storage::url('images/img/review-author-3.png') }}" alt="" draggable="false" />
-                        <div>
-                            <strong>Аружан Нұрсұлтан</strong>
-                            <span>Дизайнер пользовательского опыта</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="program-review-card" data-review-index="3">
-                    <div class="program-review-card__video">
-                        <img class="program-review-card__cover" src="{{ Storage::url('images/img/review-card-4.jpg') }}" alt="" draggable="false" />
-                        <button class="program-review-card__play" type="button" aria-label="Смотреть отзыв">
-                            <img src="{{ Storage::url('images/img/review-play.svg') }}" alt="" draggable="false" />
-                        </button>
-                    </div>
-                    <div class="program-review-card__author">
-                        <img src="{{ Storage::url('images/img/review-author-4.png') }}" alt="" draggable="false" />
-                        <div>
-                            <strong>Ерлан Тұрар</strong>
-                            <span>Аналитик данных</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="program-review-card" data-review-index="4">
-                    <div class="program-review-card__video">
-                        <img class="program-review-card__cover" src="{{ Storage::url('images/img/review-card-2.jpg') }}" alt="" draggable="false" />
-                        <button class="program-review-card__play" type="button" aria-label="Смотреть отзыв">
-                            <img src="{{ Storage::url('images/img/review-play.svg') }}" alt="" draggable="false" />
-                        </button>
-                    </div>
-                    <div class="program-review-card__author">
-                        <img src="{{ Storage::url('images/img/review-author-1.png') }}" alt="" draggable="false" />
-                        <div>
-                            <strong>Айгерим Садыкова</strong>
-                            <span>Кредитный аналитик</span>
-                        </div>
-                    </div>
-                </article>
+                    </article>
+                @endforeach
             </div>
         </div>
     </div>
@@ -131,33 +91,11 @@
 </section>
 
 <script>
-    const reviews = [
-        {
-            cover: "/storage/images/img/review-card-1.jpg",
-            videoUrl: "https://www.youtube.com/embed/9ofghOY94-4?autoplay=1&rel=0",
-            name: "Данияр Сейітов",
-        },
-        {
-            cover: "/storage/images/img/review-card-2.jpg",
-            videoUrl: "https://www.youtube.com/embed/9ofghOY94-4?autoplay=1&rel=0",
-            name: "Арман Ашимов",
-        },
-        {
-            cover: "/storage/images/img/review-card-3.jpg",
-            videoUrl: "https://www.youtube.com/embed/9ofghOY94-4?autoplay=1&rel=0",
-            name: "Аружан Нұрсұлтан",
-        },
-        {
-            cover: "/storage/images/img/review-card-4.jpg",
-            videoUrl: "https://www.youtube.com/embed/9ofghOY94-4?autoplay=1&rel=0",
-            name: "Ерлан Тұрар",
-        },
-        {
-            cover: "/storage/images/img/review-card-2.jpg",
-            videoUrl: "https://www.youtube.com/embed/9ofghOY94-4?autoplay=1&rel=0",
-            name: "Айгерим Садыкова",
-        },
-    ];
+    const reviews = @json(array_values(array_map(fn($r) => [
+        'cover'    => '/storage/' . ($r['cover']    ?? 'images/img/review-card-1.jpg'),
+        'videoUrl' => $r['video_url'] ?? '',
+        'name'     => $r['name']      ?? '',
+    ], $reviews)));
 
     const viewport = document.querySelector("[data-reviews-viewport]");
     const nextButton = document.querySelector("[data-reviews-next]");
@@ -169,151 +107,76 @@
     let currentVideoUrl = "";
 
     nextButton?.addEventListener("click", () => {
-        if (!viewport) {
-            return;
-        }
-
+        if (!viewport) return;
         const firstCard = viewport.querySelector(".program-review-card");
         const step = firstCard ? firstCard.getBoundingClientRect().width + 24 : 340;
         const maxScroll = viewport.scrollWidth - viewport.clientWidth;
         const target = viewport.scrollLeft + step >= maxScroll - 4 ? 0 : viewport.scrollLeft + step;
-
-        viewport.scrollTo({
-            left: target,
-            behavior: "smooth",
-        });
+        viewport.scrollTo({ left: target, behavior: "smooth" });
     });
 
     if (viewport) {
-        let isPointerDown = false;
-        let didDrag = false;
-        let openedFromPointer = false;
-        let pressedCard = null;
-        let startX = 0;
-        let startScrollLeft = 0;
+        let isPointerDown = false, didDrag = false, openedFromPointer = false, pressedCard = null, startX = 0, startScrollLeft = 0;
 
-        viewport.addEventListener("pointerdown", (event) => {
-            isPointerDown = true;
-            didDrag = false;
-            pressedCard = event.target.closest(".program-review-card");
-            startX = event.clientX;
-            startScrollLeft = viewport.scrollLeft;
-            viewport.setPointerCapture(event.pointerId);
+        viewport.addEventListener("pointerdown", (e) => {
+            isPointerDown = true; didDrag = false;
+            pressedCard = e.target.closest(".program-review-card");
+            startX = e.clientX; startScrollLeft = viewport.scrollLeft;
+            viewport.setPointerCapture(e.pointerId);
         });
 
-        viewport.addEventListener("pointermove", (event) => {
-            if (!isPointerDown) {
-                return;
-            }
-
-            const distance = event.clientX - startX;
-            if (Math.abs(distance) > 5) {
-                didDrag = true;
-                viewport.classList.add("is-dragging");
-                viewport.scrollLeft = startScrollLeft - distance;
-            }
+        viewport.addEventListener("pointermove", (e) => {
+            if (!isPointerDown) return;
+            const d = e.clientX - startX;
+            if (Math.abs(d) > 5) { didDrag = true; viewport.classList.add("is-dragging"); viewport.scrollLeft = startScrollLeft - d; }
         });
 
-        const stopDragging = (event, canOpenCard = false) => {
-            if (!isPointerDown) {
-                return;
-            }
-
-            const shouldOpenCard = canOpenCard && !didDrag && pressedCard;
+        const stopDragging = (e, canOpen = false) => {
+            if (!isPointerDown) return;
+            const shouldOpen = canOpen && !didDrag && pressedCard;
             isPointerDown = false;
             viewport.classList.remove("is-dragging");
-
-            if (viewport.hasPointerCapture(event.pointerId)) {
-                viewport.releasePointerCapture(event.pointerId);
-            }
-
-            if (shouldOpenCard) {
-                openedFromPointer = true;
-                openModal(Number(pressedCard.dataset.reviewIndex || 0));
-                window.setTimeout(() => {
-                    openedFromPointer = false;
-                }, 0);
-            }
-
+            if (viewport.hasPointerCapture(e.pointerId)) viewport.releasePointerCapture(e.pointerId);
+            if (shouldOpen) { openedFromPointer = true; openModal(Number(pressedCard.dataset.reviewIndex || 0)); window.setTimeout(() => { openedFromPointer = false; }, 0); }
             pressedCard = null;
         };
 
-        viewport.addEventListener("pointerup", (event) => stopDragging(event, true));
+        viewport.addEventListener("pointerup", (e) => stopDragging(e, true));
         viewport.addEventListener("pointercancel", stopDragging);
         viewport.addEventListener("pointerleave", stopDragging);
 
-        viewport.addEventListener("click", (event) => {
-            if (openedFromPointer || didDrag) {
-                return;
-            }
-
-            const card = event.target.closest(".program-review-card");
-            if (card) {
-                openModal(Number(card.dataset.reviewIndex || 0));
-            }
+        viewport.addEventListener("click", (e) => {
+            if (openedFromPointer || didDrag) return;
+            const card = e.target.closest(".program-review-card");
+            if (card) openModal(Number(card.dataset.reviewIndex || 0));
         });
     }
 
     const openModal = (index) => {
         const review = reviews[index];
-        if (!modal || !modalImage || !modalVideo || !modalCaption || !modalPlay || !review) {
-            return;
-        }
-
+        if (!modal || !modalImage || !modalVideo || !modalCaption || !modalPlay || !review) return;
         currentVideoUrl = review.videoUrl || "";
-        modalImage.src = review.cover;
-        modalImage.alt = review.name || "Отзыв";
-        modalImage.hidden = false;
-        modalVideo.src = "";
-        modalVideo.hidden = true;
-        modalCaption.textContent = (review.name || "Отзыв").toUpperCase();
-        modalCaption.hidden = false;
+        modalImage.src = review.cover; modalImage.alt = review.name || "Отзыв"; modalImage.hidden = false;
+        modalVideo.src = ""; modalVideo.hidden = true;
+        modalCaption.textContent = (review.name || "Отзыв").toUpperCase(); modalCaption.hidden = false;
         modalPlay.hidden = !currentVideoUrl;
-
         modal.hidden = false;
-        requestAnimationFrame(() => {
-            modal.classList.add("is-open");
-            document.body.classList.add("is-review-modal-open");
-        });
+        requestAnimationFrame(() => { modal.classList.add("is-open"); document.body.classList.add("is-review-modal-open"); });
     };
 
     const closeModal = () => {
-        if (!modal || !modalVideo) {
-            return;
-        }
-
-        modal.classList.remove("is-open");
-        document.body.classList.remove("is-review-modal-open");
+        if (!modal || !modalVideo) return;
+        modal.classList.remove("is-open"); document.body.classList.remove("is-review-modal-open");
         modalVideo.src = "";
-
-        window.setTimeout(() => {
-            modal.hidden = true;
-        }, 220);
+        window.setTimeout(() => { modal.hidden = true; }, 220);
     };
 
-    modalPlay?.addEventListener("click", (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-
-        if (!currentVideoUrl || !modalVideo) {
-            return;
-        }
-
-        modalVideo.src = currentVideoUrl;
-        modalVideo.hidden = false;
-        modalPlay.hidden = true;
+    modalPlay?.addEventListener("click", (e) => {
+        e.preventDefault(); e.stopPropagation();
+        if (!currentVideoUrl || !modalVideo) return;
+        modalVideo.src = currentVideoUrl; modalVideo.hidden = false; modalPlay.hidden = true;
     });
 
-    modal?.addEventListener("click", (event) => {
-        if (event.target.closest("[data-review-close]")) {
-            closeModal();
-        }
-    });
-
-    document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && modal && !modal.hidden) {
-            closeModal();
-        }
-    });
-
+    modal?.addEventListener("click", (e) => { if (e.target.closest("[data-review-close]")) closeModal(); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && modal && !modal.hidden) closeModal(); });
 </script>

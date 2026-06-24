@@ -16,7 +16,6 @@
     $currencyCode   = \App\Models\Setting::getGroup('social')->data['currency'] ?? 'KZT';
     $currencySymbol = config('currency.currency.' . $currencyCode, '₸');
 @endphp
-
 <div class="useful-page">
     <section>
         <div class="program-cards" aria-label="Консалтинг">
@@ -78,4 +77,6 @@
     </section>
 </div>
 
-<x-modules.program-edu-steps />
+<x-modules.program-format-comsalting :page="$page" />
+<x-modules.program-project-comsalting :page="$page" />
+<x-modules.program-docs-comsalting :page="$page" />

@@ -1,133 +1,496 @@
 .consulting-formats {
-  padding: 80px 0;
-}
-
-.edu-section--soft {
+  box-sizing: border-box;
+  margin: 0 0 32px;
+  padding: 80px 124px;
   background: #f6f5f4;
   border-radius: 40px;
-  padding: 80px 0;
 }
-
-.home .edu-section--soft {
-  margin: 0;
-}
-
-.edu-section__heading {
+.consulting-formats .edu-section__heading {
+  max-width: 1118px;
   margin: 0 auto 40px;
 }
-.edu-section__heading h2 {
+.consulting-formats .edu-section__heading h2 {
   margin: 0 0 16px;
   font-size: 45px;
   line-height: 52px;
   font-weight: 600;
 }
-.edu-section__heading p {
+.consulting-formats .edu-section__heading p {
   margin: 0;
+  color: #667085;
   font-size: 24px;
   line-height: 32px;
-  color: #667085;
 }
-
-.edu-section__heading--center {
+.consulting-formats .edu-section__heading--center {
   text-align: center;
 }
-
-.edu-format-grid {
+.consulting-formats .edu-format-grid {
   display: flex;
   gap: 16px;
 }
-
-.edu-format-card {
+.consulting-formats .edu-format-card {
   flex: 1 1 0;
+  min-width: 0;
   padding: 24px;
   border-radius: 24px;
   background: #fff;
 }
-.edu-format-card h3 {
+.consulting-formats .edu-format-card h3 {
   margin: 0 0 8px;
   font-size: 28px;
   line-height: 36px;
   font-weight: 600;
 }
-.edu-format-card p {
+.consulting-formats .edu-format-card p {
   margin: 0;
+  color: #667085;
   font-size: 16px;
   line-height: 22px;
-  color: #667085;
 }
-
-.edu-format-card__icon {
+.consulting-formats .edu-format-card__icon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
   width: 56px;
   height: 56px;
   margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   border-radius: 16px;
   background: #ef533f;
-  flex-shrink: 0;
 }
-
-.edu-format-card__list {
-  margin: 16px 0 0;
-  padding: 0;
-  list-style: none;
+.consulting-formats .edu-format-card__icon img {
+  display: block;
+  width: 28px;
+  height: 28px;
+}
+.consulting-formats .edu-format-card__list {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
 }
-.edu-format-card__list li {
+.consulting-formats .edu-format-card__list li {
   position: relative;
   padding-left: 14px;
   font-size: 16px;
   line-height: 22px;
 }
-.edu-format-card__list li::before {
-  content: "";
+.consulting-formats .edu-format-card__list li::before {
   position: absolute;
-  left: 0;
   top: 8px;
+  left: 0;
   width: 6px;
   height: 6px;
   border-radius: 50%;
   background: #ef533f;
+  content: "";
 }
 
+.consulting-project {
+  box-sizing: border-box;
+  margin: 0 0 32px;
+  padding: 80px 124px;
+}
+.consulting-project .edu-section__heading {
+  max-width: 1118px;
+  margin: 0 auto 40px;
+}
+.consulting-project .edu-section__heading h2 {
+  margin: 0 0 16px;
+  font-size: 45px;
+  line-height: 52px;
+  font-weight: 600;
+}
+.consulting-project .edu-section__heading p {
+  margin: 0;
+  color: #667085;
+  font-size: 24px;
+  line-height: 32px;
+}
+.consulting-project .edu-section__heading--center {
+  text-align: center;
+}
+.consulting-project .edu-steps__grid {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.consulting-project .edu-step {
+  flex: 0 1 180px;
+  min-width: 0;
+  text-align: center;
+}
+.consulting-project .edu-step strong {
+  display: block;
+  margin-bottom: 20px;
+  color: #212121;
+  font-family: "Philosopher", Georgia, serif;
+  font-size: 40px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1;
+}
+.consulting-project .edu-step h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+}
+.consulting-project .edu-step p {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+  line-height: 20px;
+}
+.consulting-project .edu-step__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 20px;
+  border-radius: 24px;
+  background: #ffe7e2;
+}
+.consulting-project .edu-step__icon img {
+  display: block;
+  width: 32px;
+  height: 32px;
+}
+.consulting-project .edu-step__line {
+  display: block;
+  flex: 0 1 72px;
+  height: 2px;
+  margin-top: 94px;
+  background: linear-gradient(90deg, rgba(239, 83, 63, 0.25) 0%, #ef533f 100%);
+}
+
+.consulting-docs.edu-cert {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(320px, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 40px;
+  margin: 0 0 32px;
+  padding: 80px 124px;
+}
+.consulting-docs.edu-cert .edu-cert__visual {
+  position: relative;
+  min-width: 0;
+  height: 479px;
+  border-radius: 40px;
+}
+.consulting-docs.edu-cert .edu-cert__bg,
+.consulting-docs.edu-cert .edu-cert__photo {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 32px;
+  object-fit: cover;
+}
+.consulting-docs.edu-cert .edu-cert__photo {
+  z-index: 1;
+}
+.consulting-docs.edu-cert .edu-cert__badge {
+  position: absolute;
+  top: 335px;
+  left: min(249px, 100% - 220px);
+  z-index: 2;
+  width: 220px;
+  padding: 24px;
+  border-radius: 24px;
+  background: radial-gradient(circle at top left, #ef533f 0%, #f77f20 63%, #ffab00 100%);
+  box-shadow: 0 10px 60px rgba(0, 0, 0, 0.1);
+  color: #fff;
+}
+.consulting-docs.edu-cert .edu-cert__badge strong,
+.consulting-docs.edu-cert .edu-cert__badge span {
+  display: block;
+}
+.consulting-docs.edu-cert .edu-cert__badge strong {
+  margin-bottom: 4px;
+  font-size: 18px;
+  line-height: 24px;
+}
+.consulting-docs.edu-cert .edu-cert__badge span {
+  font-size: 14px;
+  line-height: 18px;
+}
+.consulting-docs.edu-cert .edu-cert__shield {
+  display: block;
+  width: 36px;
+  height: 36px;
+  margin-bottom: 12px;
+}
+.consulting-docs.edu-cert .edu-cert__content {
+  min-width: 0;
+}
+.consulting-docs.edu-cert .edu-cert__content h2 {
+  margin: 20px 0 16px;
+  font-size: 45px;
+  font-weight: 600;
+  line-height: 52px;
+}
+.consulting-docs.edu-cert .edu-cert__content > p {
+  margin: 0;
+  color: #212121;
+  font-size: 24px;
+  line-height: 32px;
+}
+.consulting-docs.edu-cert .edu-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: #fff1ee;
+  color: #ef533f;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 22px;
+}
+.consulting-docs.edu-cert .edu-badge img {
+  width: 20px;
+  height: 20px;
+}
+.consulting-docs.edu-cert .edu-checks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 18px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.consulting-docs.edu-cert .edu-checks li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  font-size: 16px;
+  line-height: 22px;
+}
+.consulting-docs.edu-cert .edu-checks li img {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+}
+
+@media (max-width: 1240px) {
+  .consulting-formats {
+    padding-right: 48px;
+    padding-left: 48px;
+  }
+  .consulting-project {
+    padding-right: 48px;
+    padding-left: 48px;
+  }
+  .consulting-project .edu-steps__grid {
+    gap: 24px;
+  }
+  .consulting-project .edu-step {
+    flex: 1 1 0;
+  }
+  .consulting-project .edu-step__line {
+    display: none;
+  }
+  .consulting-docs.edu-cert {
+    padding-right: 48px;
+    padding-left: 48px;
+  }
+}
 @media (max-width: 900px) {
-  .edu-section--soft {
-    padding: 48px 0;
+  .consulting-formats {
+    padding: 48px 24px;
     border-radius: 24px;
   }
-  .edu-section__heading h2 {
-    font-size: 30px;
-    line-height: 1.2;
+  .consulting-formats .edu-section__heading h2 {
+    font-size: 36px;
+    line-height: 42px;
   }
-  .edu-section__heading p {
+  .consulting-formats .edu-section__heading p {
     font-size: 18px;
-    line-height: 1.4;
+    line-height: 26px;
   }
-  .edu-format-grid {
+  .consulting-formats .edu-format-grid {
     flex-direction: column;
     gap: 12px;
   }
-  .edu-format-card {
+  .consulting-formats .edu-format-card {
     padding: 16px;
     border-radius: 16px;
   }
-  .edu-format-card h3 {
+  .consulting-formats .edu-format-card h3 {
     font-size: 20px;
     line-height: 24px;
   }
-  .edu-format-card p,
-  .edu-format-card .edu-format-card__list li {
+  .consulting-formats .edu-format-card p,
+  .consulting-formats .edu-format-card .edu-format-card__list li {
     font-size: 14px;
     line-height: 20px;
   }
-  .edu-format-card__icon {
+  .consulting-formats .edu-format-card__icon {
     width: 48px;
     height: 48px;
-    border-radius: 12px;
     margin-bottom: 12px;
+    border-radius: 12px;
+  }
+  .consulting-formats .edu-format-card__icon img {
+    width: 24px;
+    height: 24px;
+  }
+  .consulting-project {
+    padding: 32px 24px;
+  }
+  .consulting-project .edu-section__heading h2 {
+    font-size: 36px;
+    line-height: 42px;
+  }
+  .consulting-project .edu-section__heading p {
+    font-size: 18px;
+    line-height: 26px;
+  }
+  .consulting-project .edu-steps__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px 16px;
+  }
+  .consulting-docs.edu-cert {
+    grid-template-columns: 1fr;
+    padding: 32px 24px;
+  }
+  .consulting-docs.edu-cert .edu-cert__visual {
+    width: min(100%, 520px);
+    margin: 0 auto;
+  }
+  .consulting-docs.edu-cert .edu-cert__content h2 {
+    font-size: 36px;
+    line-height: 42px;
+  }
+}
+@media (max-width: 640px) {
+  .consulting-formats {
+    padding: 40px 16px;
+  }
+  .consulting-formats .edu-section__heading {
+    margin-bottom: 24px;
+  }
+  .consulting-formats .edu-section__heading h2 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  .consulting-formats .edu-section__heading p {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .consulting-formats .edu-format-grid {
+    gap: 8px;
+  }
+  .consulting-project {
+    padding: 40px 16px;
+  }
+  .consulting-project .edu-section__heading {
+    margin-bottom: 24px;
+  }
+  .consulting-project .edu-section__heading h2 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  .consulting-project .edu-section__heading p {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .consulting-project .edu-steps__grid {
+    gap: 24px 8px;
+  }
+  .consulting-project .edu-step {
+    padding: 0 8px;
+  }
+  .consulting-project .edu-step strong {
+    margin-bottom: 16px;
+    font-size: 32px;
+  }
+  .consulting-project .edu-step__icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 16px;
+    border-radius: 40px;
+  }
+  .consulting-project .edu-step h3 {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  .consulting-docs.edu-cert {
+    gap: 40px;
+    padding: 24px 16px;
+  }
+  .consulting-docs.edu-cert .edu-cert__visual {
+    width: 100%;
+    height: 208px;
+    border-radius: 24px;
+  }
+  .consulting-docs.edu-cert .edu-cert__bg,
+  .consulting-docs.edu-cert .edu-cert__photo {
+    border-radius: 24px;
+  }
+  .consulting-docs.edu-cert .edu-cert__badge {
+    top: 128px;
+    left: 16px;
+    width: 128px;
+    padding: 12px;
+    border-radius: 16px;
+  }
+  .consulting-docs.edu-cert .edu-cert__badge strong {
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .consulting-docs.edu-cert .edu-cert__badge span {
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .consulting-docs.edu-cert .edu-cert__shield {
+    width: 28px;
+    height: 28px;
+    margin-bottom: 8px;
+  }
+  .consulting-docs.edu-cert .edu-badge {
+    padding: 8px 16px;
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .consulting-docs.edu-cert .edu-cert__content h2 {
+    margin-top: 16px;
+    font-size: 28px;
+    line-height: 36px;
+  }
+  .consulting-docs.edu-cert .edu-cert__content > p {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .consulting-docs.edu-cert .edu-checks {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .consulting-docs.edu-cert .edu-checks li {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+@media (max-width: 420px) {
+  .consulting-project {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+  .consulting-project .edu-steps__grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .consulting-project .edu-step {
+    max-width: 260px;
+    margin: 0 auto;
   }
 }
 
