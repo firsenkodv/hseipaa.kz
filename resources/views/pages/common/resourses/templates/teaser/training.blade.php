@@ -78,9 +78,8 @@
     </section>
 </div>
 
-<x-modules.program-format />
+<x-modules.program-format :page="$page" />
 
+<x-modules.program-edu-steps :page="$page" />
 
-<x-modules.program-edu-steps />
-
-<x-modules.program-format-doc />
+<x-modules.program-format-doc :page="$page" />

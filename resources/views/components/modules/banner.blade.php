@@ -1,3 +1,9 @@
+@props(['home' => null])
+
+@php
+    $link = $home['home_banner_link'] ?? '/poleznoe/stati/123-cap-icfm';
+@endphp
+
 <div class="block">
-    <a href="/poleznoe/stati/123-cap-icfm" class="banner" style="background-image: url({{ Storage::url('images/banner.jpg') }})"></a>
+    <a href="{{ $link }}" class="banner" style="background-image: url({{ Storage::url('images/banner.jpg') }})"></a>
 </div>

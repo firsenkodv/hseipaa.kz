@@ -1,5 +1,8 @@
+@props(['home' => null])
+
 @php
     $trainings = \App\Models\Training::published()->take(8)->get();
+    $heading   = $home['schedule_heading'] ?? 'Занимайтесь из дома, на работе — с компьютера или смартфона.';
 
     $currencyCode   = \App\Models\Setting::getGroup('social')->data['currency'] ?? 'KZT';
     $currencySymbol = config('currency.currency.' . $currencyCode, '₸');
@@ -10,7 +13,7 @@
     <div class="container">
 
         <div class="schedule__head">
-            <h2>Занимайтесь из дома, на работе<br>— с компьютера или смартфона.</h2>
+            <h2>{{ $heading }}</h2>
             <a href="{{ route('training') }}">Все программы</a>
         </div>
 

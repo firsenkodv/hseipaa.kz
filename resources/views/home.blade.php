@@ -8,15 +8,15 @@
 
    <x-modules.slider_news/>
 
-   <x-modules.banner />
+   <x-modules.banner :home="$home" />
 
-    <x-modules.programs />
+    <x-modules.programs :home="$home" />
 
-    <x-modules.schedule />
+    <x-modules.schedule :home="$home" />
 
-    <x-modules.advantages />
+    <x-modules.advantages :home="$home" />
 
-    <x-modules.consulting />
+    <x-modules.consulting :home="$home" />
 
     <x-modules.actions_strip />
 

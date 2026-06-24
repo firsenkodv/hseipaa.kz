@@ -12,7 +12,7 @@
 
     <x-modules.program-outline :item="$item"/>
     <x-modules.program-price :item="$item"/>
-    <x-modules.program-reviews/>
+    <x-modules.program-reviews :page="$page" :reviews-key="'consulting'" />
     <div class="block pad_b32">
     <x-modules.about-platform />
     </div>

@@ -2,41 +2,31 @@
     <div class="container advantages__grid">
 
         <div class="advantages__info">
-            <h2>Преимущества Высшей Школы Экономики</h2>
-            <p>25 лет на рынке профессионального образования. Международные стандарты обучения. Самое лучшее качество по приемлемым ценам.</p>
+            <h2>{{ $h2 }}</h2>
+            @if($advDesc)<p>{{ $advDesc }}</p>@endif
 
             <div class="adv-cards">
-                <article>
-                    <strong>Лучшие</strong>
-                    <p>образовательные программы. Участвуем в международных и отечественных программах по повышению квалификации работников финансовой системы</p>
-                </article>
-                <article>
-                    <strong>27 000</strong>
-                    <p>довольных клиентов окончившие наши курсы отзываются положительно как о качестве преподавания так и об объёме полученных знаний и информации</p>
-                </article>
-                <article>
-                    <strong>25 лет</strong>
-                    <p>успешного опыта и стабильная положительная репутация по праву дают нам возможность называться одним из самых сильных образовательных учреждений</p>
-                </article>
-                <article>
-                    <strong>Самое крупное</strong>
-                    <p>образовательное учреждение работа во всех регионах Казахстана и ближнего зарубежья проведение корпоративных семинаров, обучение в группах</p>
-                </article>
+                @foreach($advCards as $card)
+                    <article>
+                        <strong>{{ $card['value'] ?? '' }}</strong>
+                        <p>{{ $card['text'] ?? '' }}</p>
+                    </article>
+                @endforeach
             </div>
         </div>
 
         <div class="advantages__media">
             <div class="advantages__background" data-fancybox="advantages-video" data-src="https://www.youtube.com/watch?v={{ $youtubeVideoId }}" style="background-image: url({{ Storage::url('/images/adv/video.jpg') }}); cursor:pointer;">
-            <button
-                class="video-card video-card--image"
-                type="button"
-                aria-label="Смотреть видео о Высшей Школе Экономики"
-                data-video-src="https://www.youtube.com/embed/{{ $youtubeVideoId }}?autoplay=1"
-            >
-                <div class="video-card__play"></div>
-            </button>
+                <button
+                    class="video-card video-card--image"
+                    type="button"
+                    aria-label="Смотреть видео о Высшей Школе Экономики"
+                    data-video-src="https://www.youtube.com/embed/{{ $youtubeVideoId }}?autoplay=1"
+                >
+                    <div class="video-card__play"></div>
+                </button>
             </div>
-            <p class="advantages__rules">*Обязательно ознакомьтесь с <a href="#">Правилами обучения</a></p>
+            <p class="advantages__rules">*Обязательно ознакомьтесь с <a href="{{ $rulesLink }}">Правилами обучения</a></p>
         </div>
 
     </div>
