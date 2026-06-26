@@ -90,12 +90,15 @@
 </div>
 </section>
 
-<script>
-    const reviews = @json(array_values(array_map(fn($r) => [
+@php
+    $reviewsJsonData = array_values(array_map(fn($r) => [
         'cover'    => '/storage/' . ($r['cover']    ?? 'images/img/review-card-1.jpg'),
         'videoUrl' => $r['video_url'] ?? '',
         'name'     => $r['name']      ?? '',
-    ], $reviews)));
+    ], $reviews));
+@endphp
+<script>
+    const reviews = @json($reviewsJsonData);
 
     const viewport = document.querySelector("[data-reviews-viewport]");
     const nextButton = document.querySelector("[data-reviews-next]");
