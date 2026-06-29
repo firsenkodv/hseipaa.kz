@@ -56,6 +56,9 @@ final class TrainingFormPage extends FormPage
                             Column::make([
                                 Box::make([
                                     Text::make('Заголовок', 'title')->required()->unescape(),
+                                    Text::make('Название для меню', 'menu_title')
+                                        ->hint('Если заполнено — отображается в меню вместо заголовка')
+                                        ->unescape(),
                                     Slug::make('Slug', 'slug')->from('title')->unique()->locked(),
                                 ]),
                                 Text::make('Подзаголовок', 'subtitle')->unescape(),

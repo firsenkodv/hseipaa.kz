@@ -34,7 +34,7 @@
                                                 @foreach($category->trainings as $training)
                                                     <a href="{{ route('training.show', $training->slug) }}"
                                                        class="nav-dropdown-item {{ request()->routeIs('training.show') && request()->route('slug') === $training->slug ? 'nav-dropdown-item--active' : '' }}">
-                                                        {{ $training->title }}
+                                                        {{ $training->menu_title ?: $training->title }}
                                                     </a>
                                                 @endforeach
                                             </div>
@@ -73,7 +73,7 @@
                                                 @foreach($category->consultings as $consulting)
                                                     <a href="{{ route('consulting.show', $consulting->slug) }}"
                                                        class="nav-dropdown-item {{ request()->routeIs('consulting.show') && request()->route('slug') === $consulting->slug ? 'nav-dropdown-item--active' : '' }}">
-                                                        {{ $consulting->title }}
+                                                        {{ $consulting->menu_title ?: $consulting->title }}
                                                     </a>
                                                 @endforeach
                                             </div>

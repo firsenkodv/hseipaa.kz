@@ -19,6 +19,7 @@ class Training extends Model
 
     protected $fillable = [
         'title',
+        'menu_title',
         'slug',
         'template',
         'subtitle',

@@ -16,6 +16,7 @@ class Consulting extends Model
 
     protected $fillable = [
         'title',
+        'menu_title',
         'slug',
         'template',
         'subtitle',
