@@ -43,6 +43,9 @@
   .useful-page section .program-card {
     flex: 0 0 calc((100% - 16px) / 2);
   }
+  .nav-dropdown {
+    --nav-dd-offset: 125px;
+  }
 }
 @media (max-width: 900px) {
   .top_menu {

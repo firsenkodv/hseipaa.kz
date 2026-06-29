@@ -60,6 +60,27 @@
   visibility: hidden;
   transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
   z-index: 100;
+  --nav-dd-offset: 165px;
+  max-height: calc(100vh - var(--nav-dd-offset) - 16px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #d4d4d8 transparent;
+}
+.nav-dropdown::-webkit-scrollbar {
+  width: 8px;
+}
+.nav-dropdown::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+  border-radius: 8px;
+  border: 2px solid #fff;
+}
+.nav-dropdown::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.site-header.scrolled .nav-dropdown {
+  --nav-dd-offset: 125px;
 }
 
 .has-dropdown:hover .nav-dropdown,

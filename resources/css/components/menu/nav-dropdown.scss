@@ -86,6 +86,41 @@ $nd-bg-hover: #f5f5f7;
     visibility: hidden;
     transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
     z-index: 100;
+
+    // Высота шапки (fixed), под которой открывается дропдаун.
+    // Полный режим: топбар 40 + середина 72 + навбар 52 ≈ 164px.
+    // Переопределяется ниже для .scrolled и для брейкпоинтов, где топбар скрыт.
+    --nav-dd-offset: 165px;
+
+    // Ограничиваем высоту видимой областью под шапкой и включаем скролл.
+    // overflow-y: auto → полоса прокрутки появляется ТОЛЬКО когда контент не помещается.
+    // 16px — нижний отступ, чтобы последний ряд не упирался в край экрана.
+    max-height: calc(100vh - var(--nav-dd-offset) - 16px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+
+    // Тонкая ненавязчивая полоса прокрутки
+    scrollbar-width: thin;
+    scrollbar-color: #d4d4d8 transparent;
+
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #d4d4d8;
+        border-radius: 8px;
+        border: 2px solid #fff;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+}
+
+// Когда страница прокручена — топбар схлопывается, шапка ниже на ~40px.
+.site-header.scrolled .nav-dropdown {
+    --nav-dd-offset: 125px;
 }
 
 // Открытое состояние — по hover и по классу .is-open
